@@ -5,8 +5,8 @@
  * 
  * @author Gabriele-P03
  */
-#ifndef FLOAT_TYPE_XSD_JPL
-#define FLOAT_TYPE_XSD_JPL
+#ifndef DATE_TYPE_XSD_JPL
+#define DATE_TYPE_XSD_JPL
 
 #include "../AbstractType.hpp"
 
@@ -15,14 +15,14 @@ namespace jpl{
         namespace _xsd{
             namespace _type{
 
-                class Float : public AbstractType{
+                class Date : public AbstractType{
                     
                     protected:
-                        ~Float(){}
+                        ~Date(){}
 
                     public:
-                        Float() : AbstractType("FLOAT"){}
-                        static const Float* const FLOAT;
+                        Date() : AbstractType("DATE"){}
+                        static const Date* const DATE;
                 };
 
             }
