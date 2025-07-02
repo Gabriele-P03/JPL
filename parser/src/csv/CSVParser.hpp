@@ -90,7 +90,7 @@ namespace jpl{
                      * @throw IllegalArgumentException if table is nullptr
                      * @throw RuntimeException if either there's already a table called as the given one or the same pointed
                      */
-                    void addTable(_utils::_collections::Table* table);
+                    void addTable();//_utils::_collections::Table* table);
 
                     void parse(std::istream* ifs);
 

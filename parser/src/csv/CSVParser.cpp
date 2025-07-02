@@ -8,12 +8,12 @@ jpl::_parser::_csv::CSVParser::CSVParser(const char* separator) : separator(sepa
 }
 
 
-void jpl::_parser::_csv::CSVParser::addTable(jpl::_utils::_collections::Table* table){
-    if(table == nullptr)
-        throw new jpl::_exception::IllegalArgumentException("You cannot add a nullptr");
-    if(!this->multiTable && !this->tables.isEmpty())
+void jpl::_parser::_csv::CSVParser::addTable(){//jpl::_utils::_collections::Table* table){
+    /*if(table == nullptr)
+        throw new jpl::_exception::IllegalArgumentException("You cannot add a nullptr");*/
+    //if(!this->multiTable && !this->tables.isEmpty())
         throw new jpl::_exception::IllegalStateException("This CSV Parser already contains a table instance. If you wanna insert another one, you have to enable multi-table mode before");
-    for(size_t i = 0; i < this->tables.getSize(); i++){
+    /*for(size_t i = 0; i < this->tables.getSize(); i++){
         jpl::_utils::_collections::Table* cr = this->tables.get(i);
         if(cr == table)
             throw new jpl::_exception::RuntimeException("This table has been already inserted");
@@ -21,6 +21,7 @@ void jpl::_parser::_csv::CSVParser::addTable(jpl::_utils::_collections::Table* t
             throw new jpl::_exception::RuntimeException("There's already a table named as " + table->getName());
     }
     this->tables.add(table);
+    */
 }
 
 

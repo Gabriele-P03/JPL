@@ -8,8 +8,6 @@
                 "-ggdb",
                 "-std=c++23",
                 "${workspaceFolder}/Main.cpp",
-                "${workspaceFolder}/src/csv/CSVParser.cpp",
-                "${workspaceFolder}/src/dtd/DTD.cpp",
                 "-Wterminate",
                 "-o",
                 "${workspaceFolder}/out/linux/Main",
