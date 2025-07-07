@@ -92,7 +92,8 @@
         "scoped_allocator": "cpp",
         "spanstream": "cpp",
         "stdfloat": "cpp",
-        "syncstream": "cpp"
+        "syncstream": "cpp",
+        "text_encoding": "cpp"
     },
     "cmake.configureOnOpen": false,
     "C_Cpp.default.compilerPath": "C:\\msys64\\ming64\\bin\\g++.exe",

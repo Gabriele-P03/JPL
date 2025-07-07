@@ -12,7 +12,10 @@ using namespace _parser;
 
 int main(){
 
-    std::ifstream* in = new std::ifstream("/home/gabriele/JPL/parser/out/linux/test.dtd");
-
+    std::ifstream in;
+    in.open("C:\\Users\\Utente\\JPL\\parser\\out\\linux\\test.dtd", std::ios_base::in);
+    if(in.is_open()){
+        printf("OK");
+    }
     _dtd::parse(in);
 }

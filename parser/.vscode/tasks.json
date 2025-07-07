@@ -36,6 +36,7 @@
                 "-g",
                 "-std=c++23",
                 "${workspaceFolder}/Main.cpp",
+                "${workspaceFolder}/src/dtd/DTD.cpp",
                 "-o",
                 "${workspaceFolder}/out/windows/Main.exe"
                 

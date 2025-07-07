@@ -22,12 +22,25 @@ namespace jpl{
             class DTD{
 
                 private:
+                    std::string name;
+                public:
+
+                    DTD(std::string name){
+                        this->name = name;
+                    }
+
+                    std::string getName() const noexcept{
+                        return this->name;
+                    }
 
             };
 
-            static std::string parseSingleTag(std::istream* s);
+            static void parseSingleTag(jpl::_parser::_dtd::DTD* &dtd, std::istream &s);
+            static void parseElement(jpl::_parser::_dtd::DTD* &dtd, std::string &s);
 
-            DTD* parse(std::istream* s);
+            static bool checkValidName(const std::string &name);
+
+            DTD* parse(std::istream &s);
 
         }
     }

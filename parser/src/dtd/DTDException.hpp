@@ -24,7 +24,7 @@ namespace jpl{
                 class DTDException : public jpl::_exception::RuntimeException{
 
                     public:
-                        DTDException(std::string name, std::string msg) : jpl::_exception::RuntimeException(name, msg){
+                        DTDException(std::string msg) : jpl::_exception::RuntimeException("DTDException", msg){
                             #ifdef AUTO_LOG_EXCEPTION_JPL
                                 _logger::error(this->getStacktraceAsString());
                             #endif

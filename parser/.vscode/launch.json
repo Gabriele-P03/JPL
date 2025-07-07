@@ -33,14 +33,9 @@
             "type": "cppdbg",
             "request": "launch",
             "program": "${workspaceRoot}/out/windows/Main.exe",
-            "miDebuggerServerAddress": "localhost:1234",
+            "miDebuggerPath": "C:\\msys64\\mingw64\\bin\\gdb.exe",
             "cwd": "${workspaceRoot}",
             "externalConsole": true,
-            "linux": {
-              "MIMode": "gdb"
-            },
-            "preLaunchTask": "Start GDBServer x WIN",
-            
         }    
     ]
 }
