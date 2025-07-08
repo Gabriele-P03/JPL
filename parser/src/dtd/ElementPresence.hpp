@@ -5,6 +5,9 @@
  * 
  */
 
+#ifndef DTD_ELEMENTPRESENCE_JPL
+#define DTD_ELEMENTPRESENCE_JPL
+
 namespace jpl{
     
     namespace _parser{
@@ -29,3 +32,5 @@ namespace jpl{
         }
     }
 }
+
+#endif

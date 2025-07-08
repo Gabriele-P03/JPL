@@ -4,11 +4,14 @@
  * @date 2025-06-30
  * 
  */
+#ifndef DTD_ELEMENT_JPL
+#define DTD_ELEMENT_JPL
 
 #include <string>
 #include <jpl/utils/structure/list/LinkedList.hpp>
 #include "Attribute.hpp"
 #include "ElementPresence.hpp"
+#include "DTDException.hpp"
 
 namespace jpl{
     
@@ -30,15 +33,9 @@ namespace jpl{
                         this->name = name;
                     }
 
-                    void addAttribute(const Attribute* &attribute){
-                        for(unsigned int i=0; i < this->attributes.getSize(); i++){
-                            if (strcmp(attribute->getName(), this->attributes.get(i)->getName()) == 0){
+                    void addAttribute(Attribute* attribute);
 
-                            }
-                        }
-                    }
-
-                    void addElement(const ElementPresence* e);
+                    void addElement(ElementPresence* e);
 
                     const std::string getName() const noexcept{
                         return this->name;
@@ -51,3 +48,5 @@ namespace jpl{
         }
     }
 }
+
+#endif
