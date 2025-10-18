@@ -52,7 +52,7 @@
                 "request": "launch",
                 "program": "${workspaceFolder}/out/windows/Main.exe",
                 "args": ["--ex", "${workspaceFolder}/out/windows/Main.exe"],
-                "stopAtEntry": false,
+                "stopAtEntry": true,
                 "cwd": "${fileDirname}",
                 "environment": [],
                 "externalConsole": false,

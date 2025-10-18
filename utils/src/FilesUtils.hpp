@@ -170,12 +170,13 @@
                  */
                 inline void readFile(std::fstream* file, char* &buffer, unsigned long &_size){
                     if(!file){
-                        throw new _exception::IllegalArgumentException("File has not been opened yet");
+                        throw _exception::IllegalArgumentException("File has not been opened yet");
                     }else{
                         //Store the length of the file in order to create the right sized buffer
                         file->seekg(0, file->end);
                         _size = file->tellg();
-                        file->seekg(0, file->beg);
+                        file->clear();
+                        file->seekg(0, std::ios_base::beg);
 
                         buffer = new char[_size];
 
@@ -183,9 +184,17 @@
                         if(file->read(buffer, _size)){
                             buffer[_size] = '\0';
                         }else{
-                            throw new _exception::RuntimeException("File could not be fully read");
-                            _size = file->tellg();
-                            buffer = (char*)realloc(buffer, _size);
+                            std::ios_base::iostate state = file->rdstate();
+                            if(state & std::ios_base::eofbit){
+                                throw _exception::RuntimeException("End of file reached: declared bytes " + std::to_string(_size) + ". Actually Read: " + std::to_string(file->tellg()));
+                            }
+                            if(state & std::ios_base::failbit){
+                                throw _exception::RuntimeException("Non-fatal I/O error occurred");
+                            }
+                            if(state & std::ios_base::badbit){
+                                throw _exception::RuntimeException("Fatal I/O error occurred.");
+                            }
+                            throw _exception::RuntimeException("Reading failed with unknown state " + std::to_string(state));
                         }
                     }
                 }

@@ -20,13 +20,24 @@
 #ifndef LOGGER_WRAPPER_JPL
 #define LOGGER_WRAPPER_JPL
 
-    #include <jpl/utils/debug/DebugUtils.hpp>
+    #include <jpl/exception/runtime/RuntimeException.hpp>
+
+    namespace jpl{
+        namespace _utils{
+            namespace _debug{
+
+                extern bool isDebugging();
+            }
+        }
+    }
+    
     //This implicit definition is required only for including headers
     #if ((defined(CUSTOM_LOGGER_JPL) || defined(UFW_LOGGER_JPL) || defined(QUIET_LOGGER_JPL)) && !defined(USE_LOGGER_JPL))
         #define USE_LOGGER_JPL
     #endif
 
     #ifdef USE_LOGGER_JPL
+        #warning "Including Logger.hpp"
         #include "Logger.hpp"
 
         namespace jpl{
@@ -49,10 +60,11 @@
             }
         }
     #else 
-
+        #warning "Not Including Logger.hpp"
         #include <iostream>
         #include <string>
         #include <ctime>
+        #include <mutex>
 
         namespace jpl{
 
@@ -77,6 +89,8 @@
                 */
                 const LOG_STATUS DEBUG_JPL = "DBG";
 
+                extern std::mutex logger_mutex;
+
 
                 static std::string getTM(){
                     std::time_t now = std::time(0);
@@ -99,11 +113,12 @@
                 inline void print(std::string msg, const LOG_STATUS status){
                     
                     #ifndef DISABLE_LOGGER_JPL
+                        std::lock_guard<std::mutex> lock(logger_mutex);
                         if(status == "DBG" && !_utils::_debug::isDebugging()){
                             return;
                         }
 
-                        std::cout<<"[ "<<getTM()<<" ] "<<msg<<std::endl;
+                        std::cout<<"[ "<<getTM()<<" "<<status<<" ] "<<msg<<std::endl;
                     #endif
                 }
 
@@ -114,5 +129,41 @@
             }
         } 
     #endif
+
+    #ifdef USE_STACKTRACE_W_EXCEPTION_JPL
+    namespace jpl{
+        namespace _utils{
+            namespace _debug{
+                class Stacktrace;
+                extern Stacktrace* getStacktrace(unsigned long skipped, unsigned long maxFrame);
+                extern std::string stktrc_str(const Stacktrace* stacktrace);
+            }
+        }
+    }
+    #endif
+
+    #ifdef AUTO_LOG_EXCEPTION_JPL
+
+    namespace jpl{
+        namespace _logger{
+            namespace _exceptionhook{
+
+                extern void on_terminate();
+
+                class LoggerExceptionHook{
+
+                    public:
+                        
+                        LoggerExceptionHook(){
+                            jpl::_logger::info("Logger's Exception Hook set");
+                            std::set_terminate(on_terminate);
+                        }
+                         
+                };
+            }
+        }
+    }
+    
+    #endif 
 
 #endif

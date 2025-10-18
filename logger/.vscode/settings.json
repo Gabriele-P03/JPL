@@ -78,7 +78,8 @@
         "expected": "cpp",
         "regex": "cpp",
         "format": "cpp",
-        "span": "cpp"
+        "span": "cpp",
+        "text_encoding": "cpp"
     },
     "cmake.configureOnOpen": false
 }

@@ -41,13 +41,14 @@ void jpl::_logger::Logger::print(std::string msg, const jpl::_logger::LOG_STATUS
     if(status == jpl::_logger::DEBUG_JPL && !jpl::_utils::_debug::isDebugging()){
         return;
     }
-
-    msg = "[" + this->getFileNameOfInstance() + " -> " + status + "]: " + msg + "\n";
-    std::cout<<msg;
+    logger_mutex.lock();
+    msg = "[" + this->getFileNameOfInstance() + " -> " + status + "]: " + msg;
+    std::cout<<msg<<std::endl;
     if(flag){
         this->file->write(msg.c_str(), msg.size());
         this->file->flush();
     }
+    logger_mutex.unlock();
 }
 
 void jpl::_logger::Logger::closeLogger(){

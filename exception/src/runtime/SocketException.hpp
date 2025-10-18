@@ -15,7 +15,7 @@
 #define SOCKET_EXCEPTION_HPP
 
 #include "RuntimeException.hpp"
-#include <jpl/utils/ErrorUtils.hpp>
+#include <jpl/utils/debug/ErrorUtils.hpp>
 
 namespace jpl{
 
@@ -36,9 +36,7 @@ namespace jpl{
 
             public:
                 SocketException(const unsigned int fd, const unsigned int error_code, std::string msg) : RuntimeException("SocketException", msg), error_code(error_code), fd(fd){
-                    #ifdef AUTO_LOG_EXCEPTION_JPL
-                         ::jpl::_logger::error(AbstractException::getStacktraceAsString());
-                    #endif
+
                 }
                 SocketException(const unsigned int fd, const unsigned int error_code) : SocketException(fd, error_code, ""){
                     std::string msg_s = jpl::_utils::_error::_GetLastErrorAsString(this->error_code); 

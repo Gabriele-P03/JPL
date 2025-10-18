@@ -32,6 +32,8 @@
 
     #include <jpl/exception/runtime/IOException.hpp>
 
+    #include <mutex>
+
     namespace jpl{
 
         namespace _logger{
@@ -58,6 +60,8 @@
             class Logger{
 
                 protected:
+
+                    std::mutex logger_mutex;
 
                     /**
                      * @return the file name of today e.g. dd-mm-yyyy_hh-mm-ss.txt
@@ -111,7 +115,7 @@
 
                             if(file->fail()){
                                 #ifndef UFW_LOGGER_JPL   
-                                    std::cout<<"UFW Mode is not enabled and Logger could not create output file..."<<std::endl;
+                                    std::cout<<"UFW Mode is not enabled and Logger could not create output file: "<<pathToFile<<std::endl;
                                     throw new _exception::IOException("Logger file could not be created and OD has not been enabled. I have to exit...");
                                     exit(EXIT_FAILURE);
                                 #else

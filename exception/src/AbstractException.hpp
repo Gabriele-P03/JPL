@@ -15,33 +15,6 @@
     #include <vector>
     #include <string.h>
 
-    #ifdef USE_STACKTRACE_W_EXCEPTION_JPL
-    namespace jpl{
-        namespace _utils{
-            namespace _debug{
-                class Stacktrace;
-                extern Stacktrace* getStacktrace(unsigned long skipped, unsigned long maxFrame);
-                extern std::string stktrc_str(const Stacktrace* stacktrace);
-            }
-        }
-    }
-        
-    #endif
-
-    #ifdef AUTO_LOG_EXCEPTION_JPL
-        #ifndef USE_STACKTRACE_W_EXCEPTION_JPL
-            #error "Exception auto-logging is available only through  USE_STACKTRACE_W_EXCEPTION_JPL macro. Define it!"
-        #endif
-        #if !defined(LOGGER_WRAPPER_JPL) && !defined(LOGGER_JPL)
-            #error "Either Logger or LoggerWrapper must be included before Exception if you wanna auto-log 'em"
-        #endif 
-        namespace jpl{
-            namespace _logger{
-                void error(std::string msg);
-            }
-        }
-    #endif
-
     namespace jpl{
 
         namespace _exception{
@@ -66,15 +39,8 @@
                      */
                     std::string msg;   
 
-                    #ifdef USE_STACKTRACE_W_EXCEPTION_JPL
-                        _utils::_debug::Stacktrace* stacktrace;
-                    #endif
-
                     AbstractException(std::string type_ex, unsigned long skip) : AbstractException(type_ex, "", skip){}
                     AbstractException(std::string type_ex, std::string msg, unsigned long skip) : type_ex(type_ex), msg(msg){
-                        #ifdef USE_STACKTRACE_W_EXCEPTION_JPL
-                            this->stacktrace = _utils::_debug::getStacktrace(skip, 512);
-                        #endif
                     }
                     
                     
@@ -92,24 +58,6 @@
                         strcpy(c_buffer, buffer.c_str());
                         return c_buffer;
                     }
-
-                    #ifdef USE_STACKTRACE_W_EXCEPTION_JPL
-                        /**
-                         * @return the Stacktrace of the thrown exception
-                         */
-                        virtual const _utils::_debug::Stacktrace* getStacktrace() const{return this->stacktrace;}
-
-                        virtual const std::string getStacktraceAsString() const{
-
-                            const char* tmp = this->what();
-                            std::string buffer = std::string(tmp);
-                            delete[] tmp;
-
-                            buffer += _utils::_debug::stktrc_str(this->stacktrace);
-
-                            return buffer;
-                        }
-                    #endif
 
                     /**
                      * @brief 

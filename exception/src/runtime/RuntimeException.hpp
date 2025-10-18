@@ -21,16 +21,8 @@ namespace jpl{
 
             public:
                 RuntimeException(std::string type_ex, std::string msg, unsigned long skip) : AbstractException(type_ex, msg, skip){
-                    #ifdef AUTO_LOG_EXCEPTION_JPL
-                        if(typeid(this) != typeid(RuntimeException*))
-                            ::jpl::_logger::error(AbstractException::getStacktraceAsString());
-                    #endif
                 }
                 RuntimeException(std::string type_ex, std::string msg) : AbstractException(type_ex, msg, 2){
-                    #ifdef AUTO_LOG_EXCEPTION_JPL
-                        if(typeid(this) != typeid(RuntimeException*))
-                            ::jpl::_logger::error(AbstractException::getStacktraceAsString());
-                    #endif
                 }
                 RuntimeException(std::string msg) : RuntimeException("RuntimeException", msg){}
                 RuntimeException() : RuntimeException(""){}

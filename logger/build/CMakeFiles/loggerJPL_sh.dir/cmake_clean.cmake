@@ -1,10 +1,12 @@
 file(REMOVE_RECURSE
-  ".1.0.0"
-  "CMakeFiles/loggerJPL_sh.dir/src/Logger.cpp.o"
-  "CMakeFiles/loggerJPL_sh.dir/src/Logger.cpp.o.d"
+  "CMakeFiles/loggerJPL_sh.dir/src/Logger.cpp.obj"
+  "CMakeFiles/loggerJPL_sh.dir/src/Logger.cpp.obj.d"
+  "CMakeFiles/loggerJPL_sh.dir/src/LoggerWrapper.cpp.obj"
+  "CMakeFiles/loggerJPL_sh.dir/src/LoggerWrapper.cpp.obj.d"
+  "libloggerJPL.dll"
+  "libloggerJPL.dll.a"
+  "libloggerJPL.dll.manifest"
   "libloggerJPL.pdb"
-  "libloggerJPL.so"
-  "libloggerJPL.so.1.0.0"
 )
 
 # Per-language clean rules from dependency scanning.

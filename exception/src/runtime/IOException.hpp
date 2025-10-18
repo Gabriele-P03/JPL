@@ -29,9 +29,7 @@ namespace jpl{
 
             public:
                 IOException(unsigned int error_code, std::string description, std::string msg) : RuntimeException("IOException", msg), error_code(error_code), description(description){
-                    #ifdef AUTO_LOG_EXCEPTION_JPL
-                         ::jpl::_logger::error(AbstractException::getStacktraceAsString());
-                    #endif
+
                 }
                 IOException(unsigned int error_code, std::string msg) : IOException(error_code,  _utils::_error::_GetLastErrorAsString(error_code), msg){}
                 IOException(unsigned int error_code) : IOException(error_code, _utils::_error::_GetLastErrorAsString(error_code), ""){}

@@ -23,9 +23,7 @@ namespace jpl{
             public:
 
                 NotFoundException(std::string msg) : RuntimeException("NotFoundException", msg){
-                    #ifdef AUTO_LOG_EXCEPTION_JPL
-                         ::jpl::_logger::error(AbstractException::getStacktraceAsString());
-                    #endif
+
                 }
                 NotFoundException() : NotFoundException(""){}
 

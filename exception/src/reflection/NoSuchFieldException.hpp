@@ -26,9 +26,7 @@ namespace jpl{
             public:
 
                 NoSuchFieldException(std::string msg) : AbstractException("ArithmeticException", msg){
-                    #ifdef AUTO_LOG_EXCEPTION_JPL
-                         ::jpl::_logger::error(AbstractException::getStacktraceAsString());
-                    #endif
+
                 }
                 NoSuchFieldException() : NoSuchFieldException(""){}
         };

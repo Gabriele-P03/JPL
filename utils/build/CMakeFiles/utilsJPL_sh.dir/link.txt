@@ -1,1 +1,3 @@
-g++ -fPIC -shared -Wl,-soname,libutilsJPL.so.1.0.0 -o libutilsJPL.so.1.0.0 CMakeFiles/utilsJPL_sh.dir/src/debug/stacktrace/wrapper/StacktraceWrapper.cpp.o CMakeFiles/utilsJPL_sh.dir/src/debug/stacktrace/Stacktrace.cpp.o CMakeFiles/utilsJPL_sh.dir/src/debug/Profiler.cpp.o CMakeFiles/utilsJPL_sh.dir/src/StringUtils.cpp.o CMakeFiles/utilsJPL_sh.dir/src/structure/db/Table.cpp.o CMakeFiles/utilsJPL_sh.dir/src/structure/db/TableWrapper.cpp.o CMakeFiles/utilsJPL_sh.dir/src/structure/db/columns/Column.cpp.o 
+C:\msys64\mingw64\bin\cmake.exe -E rm -f CMakeFiles\utilsJPL_sh.dir/objects.a
+C:\msys64\mingw64\bin\ar.exe qc CMakeFiles\utilsJPL_sh.dir/objects.a @CMakeFiles\utilsJPL_sh.dir\objects1.rsp
+g++ -shared -o libutilsJPL.dll -Wl,--out-implib,libutilsJPL.dll.a -Wl,--major-image-version,0,--minor-image-version,0 -Wl,--whole-archive CMakeFiles\utilsJPL_sh.dir/objects.a -Wl,--no-whole-archive @CMakeFiles\utilsJPL_sh.dir\linkLibs.rsp

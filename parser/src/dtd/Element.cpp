@@ -10,13 +10,12 @@ void jpl::_parser::_dtd::Element::addAttribute(jpl::_parser::_dtd::Attribute* at
     this->attributes.add(attribute);
 }
 
-void jpl::_parser::_dtd::Element::addElement(jpl::_parser::_dtd::ElementPresence* e){
-    std::string name = e->element->getName();
-    for(size_t i = 0; i < this->elements.getSize(); i++){
-        jpl::_parser::_dtd::ElementPresence* pr = this->elements.get(i);
-        if(pr->element->getName() == name){
-            throw jpl::_parser::_dtd::_exception::DTDException("For the element " + this->name + " the sub-element named as " + name + " has been already added");
+void jpl::_parser::_dtd::Element::addElement(jpl::_parser::_dtd::GroupElement* e){
+    for(size_t i = 0; i < this->groupElements.getSize(); i++){
+        jpl::_parser::_dtd::GroupElement* pr = this->groupElements.get(i);
+        if(pr == e){
+            throw jpl::_parser::_dtd::_exception::DTDException("Duplicate pointer to group-elements for the element " + this->name);
         }
     }
-    this->elements.add(e);
+    this->groupElements.add(e);
 }

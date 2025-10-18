@@ -22,9 +22,7 @@ namespace jpl{
 
             public:
                 StackUnderflowException(std::string msg) : RuntimeException("StackUnderflowException", msg){
-                    #ifdef AUTO_LOG_EXCEPTION_JPL
-                         ::jpl::_logger::error(AbstractException::getStacktraceAsString());
-                    #endif
+
                 }
                 StackUnderflowException() : StackUnderflowException(""){}
         };

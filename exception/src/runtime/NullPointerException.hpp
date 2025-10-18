@@ -24,9 +24,7 @@ namespace jpl{
             
             public:
                 NullPointerException(std::string msg) : RuntimeException("NullPointerException", msg){
-                    #ifdef AUTO_LOG_EXCEPTION_JPL
-                         ::jpl::_logger::error(AbstractException::getStacktraceAsString());
-                    #endif
+
                 }
                 NullPointerException() : NullPointerException(""){}
 

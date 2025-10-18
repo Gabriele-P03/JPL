@@ -36,10 +36,9 @@
                 "-g",
                 "-static",
                 "-std=c++23",
+                "-DUSE_STACKTRACE_W_EXCEPTION_JPL",
+                "-DAUTO_LOG_EXCEPTION_JPL",
                 "${workspaceFolder}/Main.cpp",
-                "-ldbghelp",
-                "-LC:\\msys64\\mingw64\\lib\\jpl",
-                "-lloggerJPL_1_0_0",
                 "-o",
                 "${workspaceFolder}/out/windows/Main.exe"
                 

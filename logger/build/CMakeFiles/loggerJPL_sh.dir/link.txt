@@ -1,1 +1,3 @@
-g++ -fPIC -shared -Wl,-soname,libloggerJPL.so.1.0.0 -o libloggerJPL.so.1.0.0 CMakeFiles/loggerJPL_sh.dir/src/Logger.cpp.o 
+C:\msys64\mingw64\bin\cmake.exe -E rm -f CMakeFiles\loggerJPL_sh.dir/objects.a
+C:\msys64\mingw64\bin\ar.exe qc CMakeFiles\loggerJPL_sh.dir/objects.a @CMakeFiles\loggerJPL_sh.dir\objects1.rsp
+g++ -shared -o libloggerJPL.dll -Wl,--out-implib,libloggerJPL.dll.a -Wl,--major-image-version,0,--minor-image-version,0 -Wl,--whole-archive CMakeFiles\loggerJPL_sh.dir/objects.a -Wl,--no-whole-archive @CMakeFiles\loggerJPL_sh.dir\linkLibs.rsp

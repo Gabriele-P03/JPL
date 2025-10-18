@@ -17,6 +17,7 @@
                 "${workspaceFolder}/src/StringUtils.cpp",
                 "${workspaceFolder}/Main.cpp", 
                 "-lloggerJPL",
+                "-fno-rtti",
                 "-Wterminate",
                 "-o",
                 "${workspaceFolder}/out/linux/Main"
@@ -43,7 +44,14 @@
                 "-std=c++23",
                 "${workspaceFolder}/Main.cpp",
                 "${workspaceFolder}/src/debug/stacktrace/wrapper/StacktraceWrapper.cpp",
+                "${workspaceFolder}/src/debug/stacktrace/Stacktrace.cpp",
+                "${workspaceFolder}/src/debug/Profiler.cpp",
+                "${workspaceFolder}/src/debug/DebugUtils.cpp",
+                "${workspaceFolder}/src/StringUtils.cpp",
+                "-lloggerJPL",
                 "-ldbghelp",
+                "-lPowrProf",
+                "-lpdh",
                 "-o",
                 "${workspaceFolder}/out/windows/Main.exe"
                 

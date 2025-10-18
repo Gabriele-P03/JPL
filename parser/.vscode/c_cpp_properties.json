@@ -19,7 +19,7 @@
             "defines": [],
             "cStandard": "c17",
             "cppStandard": "gnu++17",
-            "compilerPath": "/usr/bin/x86_64-w64-mingw32-g++",
+            "compilerPath": "C:\\msys64\\mingw64\\bin\\g++",
             "intelliSenseMode": "windows-gcc-x64"
         }
     ],

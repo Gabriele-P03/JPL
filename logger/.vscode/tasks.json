@@ -31,10 +31,16 @@
             "command": "g++",
             "args": [
                 "-g",
-                "-static",
                 "-std=c++23",
-                "${workspaceFolder}/Main.cpp",
+                "-DAUTO_LOG_EXCEPTION_JPL",
+                "-DUSE_STACKTRACE_W_EXCEPTION_JPL",
+                "${workspaceFolder}/src/LoggerWrapper.cpp",
                 "${workspaceFolder}/src/Logger.cpp",
+                
+                "${workspaceFolder}/Main.cpp",
+                "-lutilsJPL",
+                "-ldbghelp",
+                "-fno-rtti",
                 "-o",
                 "${workspaceFolder}/out/windows/Main.exe"
                 

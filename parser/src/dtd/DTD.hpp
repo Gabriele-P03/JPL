@@ -9,9 +9,9 @@
 #define DTD_JPL
 
 #include <jpl/utils/StringUtils.hpp>
-#include <jpl/utils/structure/list/LinkedList.hpp>
-#include "Element.hpp"
-#include "DTDException.hpp"
+#include "GroupElement.hpp"
+
+#include "../common/HTMLCommon.hpp"
 
 namespace jpl{
 
@@ -24,6 +24,10 @@ namespace jpl{
                 private:
                     std::string name;
                     Element* root;
+
+                    /**
+                     * It stores all elements 
+                     */
                     _utils::_collections::_list::LinkedList<Element*> elements;
                 public:
 
@@ -63,18 +67,12 @@ namespace jpl{
 
             static void parseSingleTag(jpl::_parser::_dtd::DTD* &dtd, std::istream &s);
             static void parseElement(jpl::_parser::_dtd::DTD* &dtd, std::string &s);
+            static void parseContentModel();
+            static GroupElement* parseGroupElement(std::string &e, DTD* &dtd);
+            static Presence parsePresence(std::string &e);
 
             static bool checkValidName(const std::string &name);
-
-            /**
-             * It removes comment from line.
-             * It is smart enough to remove even when it is a multi-line comment
-             * 
-             * @param line
-             * @param flagComment true if the previous line was comment which is still opened
-             */
-            static bool removeComment(std::string &line, bool flagComment) noexcept;
-
+            
             DTD* parse(std::istream &s);
 
         }

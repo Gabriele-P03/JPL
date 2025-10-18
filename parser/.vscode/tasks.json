@@ -31,13 +31,19 @@
         {
             "type": "cppbuild",
             "label": "Windows Client",
-            "command": "x86_64-w64-mingw32-g++",
+            "command": "g++",
             "args": [
                 "-g",
                 "-std=c++23",
-                "${workspaceFolder}/Main.cpp",
-                "${workspaceFolder}/src/dtd/DTD.cpp",
+                "${workspaceFolder}/src/bmp/BMP.cpp",
+                /*"${workspaceFolder}/src/dtd/DTD.cpp",
                 "${workspaceFolder}/src/dtd/Element.cpp",
+                "${workspaceFolder}/src/dtd/GroupElement.cpp",
+                "${workspaceFolder}/src/common/HTMLCommon.cpp",*/
+                "${workspaceFolder}/Main.cpp",
+                "-lutilsJPL",
+                "-ldbghelp",
+                "-lloggerJPL",
                 "-o",
                 "${workspaceFolder}/out/windows/Main.exe"
                 

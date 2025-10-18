@@ -1,4 +1,7 @@
 /**
+ * 
+ * The element presence does store amount of time an element may occurr in a content model 
+ * 
  * @file Element.hpp
  * @author Gabriele-P03
  * @date 2025-06-30
@@ -26,7 +29,15 @@ namespace jpl{
             struct  ElementPresence
             {
                 const Element* element;
-                const Presence* presence;
+                const Presence presence;
+
+                ElementPresence(Element* e, const Presence p) : presence(p){
+                    this->element = e;
+                }
+
+                ~ElementPresence(){
+                    
+                }
             };
             
         }

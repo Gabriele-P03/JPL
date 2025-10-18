@@ -41,6 +41,14 @@ set_target_properties(loggerJPL_sh PROPERTIES OUTPUT_NAME "loggerJPL" SOVERSION 
 add_library( loggerJPL_st STATIC "src/Logger.cpp")
 set_target_properties(loggerJPL_st PROPERTIES OUTPUT_NAME "loggerJPL" SOVERSION ${LOGGER_VERSION_JPL})
 
+if(${AUTO_LOG_EXCEPTION_JPL})
+    message(STATUS " LoggerWrapper.cpp added")
+    target_sources(loggerJPL_sh PUBLIC "src/LoggerWrapper.cpp")  
+    target_sources(loggerJPL_st PUBLIC "src/LoggerWrapper.cpp")  
+endif()
+
+target_link_libraries(loggerJPL_sh libutilsJPL)
+
 set(CMAKE_C_COMPILER gcc)
 set(CMAKE_CXX_COMPILER g++)
 

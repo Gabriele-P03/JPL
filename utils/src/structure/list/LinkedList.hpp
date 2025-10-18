@@ -50,7 +50,10 @@ namespace jpl{
                             }
                             Node(T element) : Node(element, nullptr, nullptr){}
                             Node(std::shared_ptr<T> ptr) : Node(ptr, nullptr, nullptr){}
-                            Node(){}
+                            Node(){
+                                this->next = nullptr;
+                                this->previous = nullptr;
+                            }
                         };
 
                         Node *head, *tail;

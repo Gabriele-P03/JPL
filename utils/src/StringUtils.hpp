@@ -15,6 +15,7 @@
 #include "structure/list/LinkedList.hpp"
 #include <regex>
 #include <algorithm>
+#include <jpl/exception/runtime/RuntimeException.hpp>
 
 namespace jpl{
     namespace _utils{
@@ -183,8 +184,19 @@ namespace jpl{
              * @return index where the root-group's c begins at 
             */
             size_t getIndexGroupOver(std::string src, std::regex o, std::regex c);
+
+            /**
+             * Exeute a balanced splitting on src based on o-c chars. 
+             * It can be used for nested brackets problem
+             * @param src source string to balance split
+             * @param o opening regex
+             * @param c closing regex
+             * @param s separator regex
+             * 
+             * @return LinkedList<std::string> of occurrences
+             */
+            _collections::_list::LinkedList<std::string>* splitBalanced(const std::string &src, const std::regex &o, const std::regex &c, const std::regex &s);   
         }
-    
     }
 }
 

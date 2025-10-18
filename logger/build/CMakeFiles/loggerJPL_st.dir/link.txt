@@ -1,2 +1,2 @@
-/usr/bin/ar qc libloggerJPL.a CMakeFiles/loggerJPL_st.dir/src/Logger.cpp.o
-/usr/bin/ranlib libloggerJPL.a
+C:\msys64\mingw64\bin\ar.exe qc libloggerJPL.a CMakeFiles/loggerJPL_st.dir/src/Logger.cpp.obj CMakeFiles/loggerJPL_st.dir/src/LoggerWrapper.cpp.obj
+C:\msys64\mingw64\bin\ranlib.exe libloggerJPL.a
