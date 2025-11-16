@@ -31,15 +31,29 @@ void jpl::_parser::_bmp::write(std::fstream* s, jpl::_parser::_bmp::BMP* bmp){
 }
 
 char* jpl::_parser::_bmp::toRender(jpl::_parser::_bmp::BMP* bmp, size_t &size){
-   unsigned short bytesToCopy = bmp->bitsPerPixel/8;
-   unsigned short diff = bmp->imageSize/(bmp->width*bmp->height);
-   char* buffer = new char[bmp->height*bmp->width*bytesToCopy];
-   size_t count = 0;
-   for(long i = bmp->imageSize-diff; i >= 0; i -= diff){
-      char* dst = &buffer[count++*bytesToCopy];
-      char* src = &bmp->data[i];
-      memcpy(dst, src, bytesToCopy);
+   unsigned int bytesToCopy = bmp->bitsPerPixel/8;
+   char* buffer = new char[bmp->width*bmp->height*bytesToCopy];
+   for(long h = bmp->height-1; h >= 0; h--){
+      unsigned long pos = (bmp->height-h-1)*bmp->width*bytesToCopy;
+      unsigned long pos1 = h*bmp->width*bytesToCopy;
+      memcpy(&buffer[pos], &bmp->data[pos1], bmp->width*bytesToCopy);
    }
-   size = count*bytesToCopy;
+   size = bmp->height*bmp->width*bytesToCopy;
    return buffer;
+   /*unsigned short bytesToCopy = bmp->bitsPerPixel/8;
+   unsigned short diff = bmp->imageSize/(bmp->width*bmp->height);
+   char* buffer = new char[bmp->height*bmp->width*bytesToCopy];   //Allocate buffer h*w*bytesToCopy
+   size_t count = 0;
+   for(long h = bmp->height-1; h >= 0; h--){
+      for(long w = 0; w < bmp->width*diff; w += diff){
+         size_t pos = h*bmp->width+w;  //Pos of the bytesToCopy set
+         char* src = &bmp->data[pos];
+         char* dst = &buffer[count];
+         memcpy(dst, src, bytesToCopy);
+         count += bytesToCopy;
+      }
+   }
+   size = count;
+   return buffer;
+   */
 }

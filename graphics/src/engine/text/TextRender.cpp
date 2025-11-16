@@ -32,25 +32,23 @@ void jpl::_graphics::_engine::_text::TextRender::render() const{
 
     int locTranslate = glGetUniformLocation(jpl::_graphics::_engine::_text::TextRender::PROGRAM_SHADERS->getProgramIndex(), "translate");
 
-    float offsetTexX = ((float)this->font->getPixelWidthPerChar())/this->font->getWidthFontMap();
-    float offsetTexY = ((float)this->font->getPixelHeightPerChar())/this->font->getHeightFontMap();
+    float offsetTexX = 1.0f/this->font->getCharsPerWidth();
+    float offsetTexY = 1.0f/this->font->getCharsPerHeight();
 
     for(size_t i = 0; i < this->text.size(); i++){
         char cr = this->text.at(i);
-        float r = cr/this->font->getCharsPerWidth();//row
-        float c = cr - r*this->font->getCharsPerWidth();//col
-        c *= this->font->getPixelHeightPerChar();
-        r *= this->font->getPixelWidthPerChar();
-        r /= this->font->getWidthFontMap();
-        c /= this->font->getHeightFontMap();
+        float r = cr/this->font->getCharsPerWidth();//row(height by top side)
+        float c = cr%this->font->getCharsPerWidth();//col(width by right side)
+        r *= offsetTexY;    //With c and r coords the rendered texture begins from top-right corner
+        c *= offsetTexX;
         
-
         float* buffer = new float[20]{
-            x,y, 0.0f, c, r,
-            x+offsetX, y, 0.0f, c+offsetTexX, r,
-            x+offsetX, y+offsetY, 0.0f, c+offsetTexX, r-offsetTexY,
-            x, y+offsetY, 0.0f, c, r-offsetTexY
+            x,y, 0.0f, c, r+offsetTexY,  //Bottom-left
+            x+offsetX, y, 0.0f, c+offsetTexX,r+offsetTexY,    //Bottom-right
+            x+offsetX, y+offsetY, 0.0f, c+offsetTexX, r,       //Top-right
+            x, y+offsetY, 0.0f, c, r     //Top-left
         };
+
         glBindBuffer(GL_ARRAY_BUFFER, jpl::_graphics::_engine::_text::TextRender::PAINTER->getVBO());
         glBufferData(GL_ARRAY_BUFFER, 20*sizeof(float), buffer, GL_STATIC_DRAW);
             glVertexAttribPointer(
@@ -62,6 +60,15 @@ void jpl::_graphics::_engine::_text::TextRender::render() const{
             (void*)0
         );
         glEnableVertexAttribArray(0);
+        glVertexAttribPointer(
+            1,
+            2, 
+            GL_FLOAT,
+            GL_FALSE,
+            5*sizeof(float),
+            (void*)(3*sizeof(float))
+        );
+        glEnableVertexAttribArray(1);
         delete[] buffer;
         jpl::_graphics::_engine::drawMesh(jpl::_graphics::_engine::_text::TextRender::PAINTER, jpl::_graphics::_mesh::QUAD);
         x += offsetX;

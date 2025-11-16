@@ -6,7 +6,7 @@ using namespace _parser;
 
 int main(){
 
-   std::fstream in;
+  std::fstream in;
     in.open("C:\\Users\\Utente\\JPL\\parser\\out\\windows\\ascii.bmp", std::ios_base::in|std::ios_base::binary);
     if(in.is_open()){
         printf("OK");

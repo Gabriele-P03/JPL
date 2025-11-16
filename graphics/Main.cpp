@@ -147,7 +147,7 @@ int main(){
     jpl::_graphics::_engine::_text::ARIALS = new jpl::_graphics::_engine::_text::Font("ascii.bmp", jpl::_graphics::_engine::_text::CHARSET::ASCII, 16, 8, 128);
     jpl::_graphics::_engine::_text::TextRender* tr = new jpl::_graphics::_engine::_text::TextRender(0, 0, 200, 50);
     jpl::_graphics::_engine::_text::TextRender::initializeProgramShaders(manager, "vertex_tr.glsl", "fragment_tr.glsl");
-    tr->setText("C");
+    tr->setText("0ARctL]no");
     tr->setFont(jpl::_graphics::_engine::_text::ARIALS);
 
     while(!glfwWindowShouldClose(w)){
