@@ -29,13 +29,28 @@ namespace jpl{
                     protected:
                         std::string text;
 
-                        float x,y;
+                        float posX,posY;
                         float width,height;
+
+                        float startX;
+                        float offsetX;
+                        float startY;
+                        float offsetY;
+                        float w1;
+                        float h1;
+
+                        /*
+                            They contain offset per char in unit
+                        */
+                        float offsetTexX, offsetTexY;   
 
                         const Font* font;
 
-                        static _shaders::ProgramShaders* PROGRAM_SHADERS;
-                        static Painter* PAINTER;
+                        _shaders::ProgramShaders* PROGRAM_SHADERS;
+                        Painter* PAINTER;
+
+                        float r,g,b,a;
+                        int locColors;
 
                     public:
                         TextRender(float x, float y, float width, float height);
@@ -45,7 +60,19 @@ namespace jpl{
                                 throw jpl::_exception::IllegalArgumentException("Font is nullptr");
                             }
                             this->font = font;
+                            this->offsetTexX = 1.0f/font->getCharsPerWidth();
+                            this->offsetTexY = 1.0f/font->getCharsPerHeight();
                         }
+
+                        void setColors(float r, float g, float b, float a);
+
+                        void setDim(float x, float y, float w, float h);
+
+                        /**
+                         * It must be called both when new dimension have been set and after object has been instanced
+                         * Notice that this function needs to be called after have set a font 
+                         */
+                        void updateCoords();
 
                         void setText(const std::string &text) noexcept{
                             this->text = text;
@@ -57,18 +84,19 @@ namespace jpl{
                             return this->text;
                         }
 
-                        static void setProgramShaders(_shaders::ProgramShaders* ps){
-                            PROGRAM_SHADERS = ps;
+                        void setProgramShaders(_shaders::ProgramShaders* ps){
+                            this->PROGRAM_SHADERS = ps;
                         }
 
-                        static const _shaders::ProgramShaders* const getShader(){
+                        const _shaders::ProgramShaders* const getShader(){
                             return const_cast<const _shaders::ProgramShaders* const>(PROGRAM_SHADERS);
                         }
 
-                        static void initializeProgramShaders(
+                        void initializeProgramShaders(
                             _shaders::ProgramManager* manager,
                             const std::string &vertexShaderFileName,
-                            const std::string &fragmentShaderFileName
+                            const std::string &fragmentShaderFileName,
+                            jpl::_graphics::_engine::Painter* painter
                         );  
                 };
             }

@@ -145,10 +145,12 @@ int main(){
     */
    jpl::_graphics::_shaders::ProgramManager* manager = new jpl::_graphics::_shaders::ProgramManager();
     jpl::_graphics::_engine::_text::ARIALS = new jpl::_graphics::_engine::_text::Font("ascii.bmp", jpl::_graphics::_engine::_text::CHARSET::ASCII, 16, 8, 128);
-    jpl::_graphics::_engine::_text::TextRender* tr = new jpl::_graphics::_engine::_text::TextRender(0, 0, 200, 50);
-    jpl::_graphics::_engine::_text::TextRender::initializeProgramShaders(manager, "vertex_tr.glsl", "fragment_tr.glsl");
+    jpl::_graphics::_engine::_text::TextRender* tr = new jpl::_graphics::_engine::_text::TextRender(0, 0, 100, 200);
+    tr->initializeProgramShaders(manager, "vertex_tr.glsl", "fragment_tr.glsl", new jpl::_graphics::_engine::Painter());
     tr->setText("0ARctL]no");
     tr->setFont(jpl::_graphics::_engine::_text::ARIALS);
+    tr->updateCoords();
+    tr->setColors(1.0f, 0.0f, 0.5f, 0.6f);
 
     while(!glfwWindowShouldClose(w)){
         glfwPollEvents();
