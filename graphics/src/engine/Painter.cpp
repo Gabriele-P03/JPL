@@ -4,6 +4,9 @@ jpl::_graphics::_engine::Painter::Painter(){
     glGenBuffers(1, &this->VBO);
     glGenVertexArrays(1, &this->VAO);
     glGenBuffers(1, &this->EBO);
+    this->x = 0.0f;
+    this->y = 0.0f;
+    this->z = 0.0f;
 }
 
 void jpl::_graphics::_engine::Painter::bindBuffer() const noexcept{
@@ -43,11 +46,16 @@ void jpl::_graphics::_engine::Painter::pushData(const jpl::_graphics::_mesh::Mes
         );
         glEnableVertexAttribArray(1);
     }
-
 }
 
 void jpl::_graphics::_engine::drawMesh(jpl::_graphics::_engine::Painter* painter, const jpl::_graphics::_mesh::Mesh* mesh){
     glBindVertexArray(painter->getVAO());
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, painter->getEBO());
+    glm::mat4 model(1.0f);
+    if(painter->getModelMatrixLocation() > 0 && painter->isPosUpdated()){
+        model = glm::translate(model, glm::vec3(painter->getX(), painter->getY(), painter->getZ()));
+        glUniformMatrix4fv(painter->getModelMatrixLocation(), 1, GL_FALSE, glm::value_ptr(model));
+        painter->setPosUpdated(false);
+    }
     glDrawElements(GL_TRIANGLES, mesh->getSizeIndices(), GL_UNSIGNED_INT, 0);
 }

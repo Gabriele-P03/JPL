@@ -83,6 +83,9 @@ void jpl::_graphics::_engine::_text::TextRender::render() const{
         if(x >= this->startX+w1){
             x = this->startX;
             y -= this->offsetY;   //new line
+            if(y > this->startY-this->h1){
+                break;
+            }
         }
     }
     

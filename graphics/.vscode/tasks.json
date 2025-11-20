@@ -53,6 +53,7 @@
                 "${workspaceFolder}/src/engine/camera/PerspectiveCamera.cpp",
                 "${workspaceFolder}/src/engine/text/Font.cpp",
                 "${workspaceFolder}/src/engine/text/TextRender.cpp",
+                "${workspaceFolder}/src/engine/button/Button.cpp",
                 "${workspaceFolder}/Main.cpp",
                 "-lglfw3",
                 "-lglew32",
