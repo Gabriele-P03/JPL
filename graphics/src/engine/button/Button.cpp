@@ -5,6 +5,8 @@ void jpl::_graphics::_engine::_button::Button::renderTexture() const{
         glActiveTexture(GL_TEXTURE0);
         this->texture->bind();
         this->painter->setPos(this->posX, this->posY, 0.0f);
+        this->painter->pushData(jpl::_graphics::_mesh::QUAD, GL_DYNAMIC_DRAW);
+        jpl::_graphics::_engine::drawMesh(this->painter, jpl::_graphics::_mesh::QUAD);
     }
     
 }

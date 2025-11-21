@@ -15,6 +15,8 @@
 #include "src/engine/text/TextRender.hpp"
 #include "src/Metrics.hpp"
 
+#include "src/mesh/MeshLoader.hpp"
+
 #include "src/engine/button/Button.hpp"
 
 jpl::_graphics::_engine::_camera::PerspectiveCamera* camera = new jpl::_graphics::_engine::_camera::PerspectiveCamera();
@@ -109,22 +111,31 @@ int main(){
     glfwSetWindowSizeCallback(w, jpl::_graphics::_metrics::windowSizeCallback);
 
     jpl::_graphics::_engine::Painter* painter = new jpl::_graphics::_engine::Painter();
-    painter->pushData(jpl::_graphics::_mesh::CUBE, GL_STATIC_DRAW);
-
+    
+    std::fstream* file = new std::fstream;
+    jpl::_utils::_files::getInternalFile("shaders/vertex.glsl", std::fstream::in | std::fstream::binary, &file);
+    jpl::_graphics::_shaders::Shader* vertexShader = new jpl::_graphics::_shaders::Shader(file);
+    vertexShader->probeShader(GL_VERTEX_SHADER);
+    delete file;
+    file = new std::fstream;
+    jpl::_utils::_files::getInternalFile("shaders/fragment.glsl", std::fstream::in | std::fstream::binary, &file);
+    jpl::_graphics::_shaders::Shader* fragmentShader = new jpl::_graphics::_shaders::Shader(file);
+    fragmentShader->probeShader(GL_FRAGMENT_SHADER);
+    delete file;
     jpl::_graphics::_shaders::ProgramManager* manager = new jpl::_graphics::_shaders::ProgramManager();
-    jpl::_graphics::_engine::_text::ARIALS = new jpl::_graphics::_engine::_text::Font("ascii.bmp", jpl::_graphics::_engine::_text::CHARSET::ASCII, 16, 8, 128);
-    jpl::_graphics::_engine::_text::TextRender* tr = new jpl::_graphics::_engine::_text::TextRender(0, 0, 100, 200);
-    tr->initializeProgramShaders(manager, "vertex_tr.glsl", "fragment_tr.glsl", new jpl::_graphics::_engine::Painter());
-    tr->setFont(jpl::_graphics::_engine::_text::ARIALS);
-    tr->updateCoords();
-    tr->setColors(1.0f, 0.0f, 0.5f, 0.6f);
+    jpl::_graphics::_shaders::ProgramShaders* programShaders = new jpl::_graphics::_shaders::ProgramShaders();
+    programShaders->addNewShader(vertexShader);
+    programShaders->addNewShader(fragmentShader);
+    manager->addProgramShaders(programShaders);
+    glLinkProgram(programShaders->getProgramIndex());
 
-    jpl::_graphics::_engine::_button::Button* button = new jpl::_graphics::_engine::_button::Button(300, 100, 400, 100);
-    button->setTextRender(tr);
-    button->setText("Premi!");
-    button->setOnClick( [&](){
-        button->setText("Sto cazzo");
-    });
+    std::fstream* f = new std::fstream;
+    jpl::_utils::_files::getInternalFile("objs\\test.obj", std::ios_base::in, &f);
+    jpl::_graphics::_mesh::Mesh* mesh = jpl::_graphics::_mesh::parse(f);
+
+    //jpl::_graphics::_texture::Texture* texture = jpl::_graphics::
+
+    painter->pushData(mesh, GL_STATIC_DRAW);
 
     while(!glfwWindowShouldClose(w)){
         glfwPollEvents();
@@ -135,19 +146,14 @@ int main(){
             glfwSetWindowShouldClose(w, 1);
         }
 
-        if(jpl::_graphics::_input::_mouse::isLeftButtonPressed()){
-            double x = 0.0d, y = 0.0d;
-            glfwGetCursorPos(w, &x, &y);
-            if(x >= button->getPosX() && x <= button->getPosX()+button->getWidth() && y >= button->getPosY() && y <= button->getPosY()+button->getHeight()){
-                button->click();
-            }
-        }
-
-        tr->setDim(0, 0, 300,50);
-        tr->updateCoords();
-        tr->setText("0ARctL]no");
-        tr->render();
-        button->render();
+        glUseProgram(programShaders->getProgramIndex());
+        int modelMLoc = glGetUniformLocation(programShaders->getProgramIndex(), "modelM");
+        glUniformMatrix4fv(modelMLoc, 1, false, glm::value_ptr(glm::mat4(1.0f)));
+        int viewMLoc = glGetUniformLocation(programShaders->getProgramIndex(), "viewM");
+        glUniformMatrix4fv(viewMLoc, 1, false, glm::value_ptr(camera->getLookAt()));
+        int projMLoc = glGetUniformLocation(programShaders->getProgramIndex(), "projM");
+        glUniformMatrix4fv(projMLoc, 1, false, glm::value_ptr(camera->getProjection()));
+        jpl::_graphics::_engine::drawMesh(painter, mesh);
     }
 
     glfwTerminate();

@@ -91,6 +91,13 @@ void jpl::_graphics::_engine::_text::TextRender::render() const{
     
 }
 
+void jpl::_graphics::_engine::_text::TextRender::render(const std::string &text, unsigned int x, unsigned int y, unsigned int w, unsigned int h){
+    this->setText(text);
+    this->setDim(x,y,w,h);
+    this->updateCoords();
+    this->render();
+}
+
 void jpl::_graphics::_engine::_text::TextRender::initializeProgramShaders(
         jpl::_graphics::_shaders::ProgramManager* manager,
         const std::string &vertexShaderFileName,

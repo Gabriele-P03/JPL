@@ -20,10 +20,10 @@ void jpl::_graphics::_engine::Painter::pushData(const float* data, unsigned int 
 }
 void jpl::_graphics::_engine::Painter::pushData(const jpl::_graphics::_mesh::Mesh* mesh, GLenum mode) const noexcept{
     glBindVertexArray(this->VAO);
-
-    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, this->EBO);
-    glBufferData(GL_ELEMENT_ARRAY_BUFFER, mesh->getSizeIndices()*sizeof(unsigned int), mesh->getIndices(), GL_STATIC_DRAW);
-    
+    if(mesh->getIndices() != nullptr){
+        glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, this->EBO);
+        glBufferData(GL_ELEMENT_ARRAY_BUFFER, mesh->getSizeIndices()*sizeof(unsigned int), mesh->getIndices(), GL_STATIC_DRAW);
+    }
     glBindBuffer(GL_ARRAY_BUFFER, this->VBO);
     glBufferData(GL_ARRAY_BUFFER, mesh->getSizeVertices()*sizeof(float), mesh->getVertices(), mode);
     glVertexAttribPointer(
@@ -50,12 +50,17 @@ void jpl::_graphics::_engine::Painter::pushData(const jpl::_graphics::_mesh::Mes
 
 void jpl::_graphics::_engine::drawMesh(jpl::_graphics::_engine::Painter* painter, const jpl::_graphics::_mesh::Mesh* mesh){
     glBindVertexArray(painter->getVAO());
-    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, painter->getEBO());
     glm::mat4 model(1.0f);
     if(painter->getModelMatrixLocation() > 0 && painter->isPosUpdated()){
         model = glm::translate(model, glm::vec3(painter->getX(), painter->getY(), painter->getZ()));
         glUniformMatrix4fv(painter->getModelMatrixLocation(), 1, GL_FALSE, glm::value_ptr(model));
         painter->setPosUpdated(false);
     }
-    glDrawElements(GL_TRIANGLES, mesh->getSizeIndices(), GL_UNSIGNED_INT, 0);
+    if(mesh->getIndices() != nullptr){
+        glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, painter->getEBO());
+        glDrawElements(GL_TRIANGLES, mesh->getSizeIndices(), GL_UNSIGNED_INT, 0);
+    }else{
+        glBindBuffer(GL_VERTEX_ARRAY, painter->getVBO());
+        glDrawArrays(GL_TRIANGLES, 0, mesh->getSizeVertices()/mesh->getCoordsPerPoint());
+    }
 }

@@ -41,6 +41,7 @@
                 "-DUSE_LOGGER_JPL",
                 "${workspaceFolder}/src/Metrics.cpp",
                 "${workspaceFolder}/src/mesh/Mesh.cpp",
+                "${workspaceFolder}/src/mesh/MeshLoader.cpp",
                 "${workspaceFolder}/src/engine/Painter.cpp",
                 "${workspaceFolder}/src/shaders/Shader.cpp",
                 "${workspaceFolder}/src/shaders/ProgramShaders.cpp",

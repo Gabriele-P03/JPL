@@ -79,6 +79,7 @@ namespace jpl{
                         }
 
                         void render() const;
+                        void render(const std::string &text, unsigned int x, unsigned int y, unsigned int w, unsigned int h);
 
                         std::string getText() const noexcept{
                             return this->text;
