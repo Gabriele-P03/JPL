@@ -19,8 +19,10 @@ namespace jpl{
                     unsigned int VAO;
                     unsigned int EBO;
 
-                    float x, y, z;
+                    unsigned int x, y, z;
                     bool posUpdated;
+                    unsigned int w,h;
+                    bool sizeUpdated;
 
                     /**
                      * Index of the uniform model matrix called modelM.
@@ -45,32 +47,38 @@ namespace jpl{
                         return this->EBO;
                     }
 
-                    void setX(float x) noexcept{
+                    void setX(unsigned int x) noexcept{
                         this->x = x;
                         this->posUpdated = true;
                     }
-                    void setY(float y) noexcept{
+                    void setY(unsigned int y) noexcept{
                         this->y = y;
                         this->posUpdated = true;
                     }
-                    void setZ(float z) noexcept{
+                    void setZ(unsigned int z) noexcept{
                         this->z = z;
                         this->posUpdated = true;
                     }
-                    void setPos(float x, float y, float z) noexcept{
+                    void setPos(unsigned int x, unsigned int y, unsigned int z) noexcept{
                         this->x = x;
                         this->y = y;
                         this->z = z;
                         this->posUpdated = true;
                     }
-                    float getX() const noexcept {return this->x;}
-                    float getY() const noexcept {return this->y;}
-                    float getZ() const noexcept {return this->z;}
+                    unsigned int getX() const noexcept {return this->x;}
+                    unsigned int getY() const noexcept {return this->y;}
+                    unsigned int getZ() const noexcept {return this->z;}
 
                     bool isPosUpdated() const noexcept{
                         return this->posUpdated;
                     }
+                    bool isSizeUpdated() const noexcept{
+                        return this->sizeUpdated;
+                    }
 
+                    void setSizeUpdated(bool sizeUpdated) noexcept{
+                        this->sizeUpdated = sizeUpdated;
+                    }
                     void setPosUpdated(bool posUpdated) noexcept{
                         this->posUpdated = posUpdated;
                     }

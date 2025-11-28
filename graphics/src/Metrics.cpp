@@ -25,6 +25,7 @@ unsigned int jpl::_graphics::_metrics::getMonitorHeight(){
 void jpl::_graphics::_metrics::windowSizeCallback(GLFWwindow* window, int width, int height){
     jpl::_graphics::_metrics::width = width;
     jpl::_graphics::_metrics::height = height;
+    glViewport(0,0,width, height);
 }
 
 void jpl::_graphics::_metrics::windowViewportSizeCallback(GLFWwindow* window, int width, int height){

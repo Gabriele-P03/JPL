@@ -95,6 +95,7 @@ namespace jpl{
 
                         void initializeProgramShaders(
                             _shaders::ProgramManager* manager,
+                            const std::string &identifier,
                             const std::string &vertexShaderFileName,
                             const std::string &fragmentShaderFileName,
                             jpl::_graphics::_engine::Painter* painter

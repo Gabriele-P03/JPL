@@ -46,7 +46,7 @@ namespace jpl{
                     }
 
                     virtual void generate(unsigned int level = 0) const noexcept{
-                        glTexImage2D(this->type, level, this->format, this->width, this->height, 0, this->format, GL_UNSIGNED_BYTE, this->data);
+                        glTexImage2D(this->type, level, this->nrChannels, this->width, this->height, 0, this->format, GL_UNSIGNED_BYTE, this->data);
                         glGenerateMipmap(this->type);
                     }
 

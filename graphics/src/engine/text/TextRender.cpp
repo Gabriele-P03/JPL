@@ -100,6 +100,7 @@ void jpl::_graphics::_engine::_text::TextRender::render(const std::string &text,
 
 void jpl::_graphics::_engine::_text::TextRender::initializeProgramShaders(
         jpl::_graphics::_shaders::ProgramManager* manager,
+        const std::string &identifier,
         const std::string &vertexShaderFileName,
         const std::string &fragmentShaderFileName,
         jpl::_graphics::_engine::Painter* painter
@@ -117,7 +118,7 @@ void jpl::_graphics::_engine::_text::TextRender::initializeProgramShaders(
     jpl::_graphics::_shaders::ProgramShaders* programShaders = new jpl::_graphics::_shaders::ProgramShaders();
     programShaders->addNewShader(vertexShader);
     programShaders->addNewShader(fragmentShader);
-    manager->addProgramShaders(programShaders);
+    manager->addProgramShaders(identifier, programShaders);
     glLinkProgram(programShaders->getProgramIndex());
 
     this->PROGRAM_SHADERS = programShaders;
