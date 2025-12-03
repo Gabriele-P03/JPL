@@ -34,11 +34,20 @@ void jpl::_graphics::_shaders::Shader::probeShader(int shaderType){
     }
     delete er;
     glCompileShader(this->shaderIndex);
-    errStr = jpl::_graphics::_error::getLastErrorAsString(&er);
-    if(er->errorCode != 0){
-        throw jpl::_exception::RuntimeException("The shader program could not be compiled: " + errStr);
+    GLint success = 0;
+    glGetShaderiv(this->shaderIndex, GL_COMPILE_STATUS, &success);
+    if (success == GL_FALSE) {
+        //Setup Error Log
+        GLint maxLength = 0;
+        glGetShaderiv(this->shaderIndex, GL_INFO_LOG_LENGTH, &maxLength);
+        std::vector<char> errorLog(maxLength);
+        glGetShaderInfoLog(this->shaderIndex, maxLength, &maxLength, &errorLog[0]);
+        std::string log;
+        for (int i = 0; i < errorLog.size(); i++) {
+            log += errorLog[i];
+        }
+        throw jpl::_exception::RuntimeException("The shader program could not be compiled: " + log);
     }
-    delete er;
     this->compiled = true;
 }
 
