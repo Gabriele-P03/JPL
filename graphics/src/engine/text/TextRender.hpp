@@ -16,6 +16,7 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 #include "../../Metrics.hpp"
+#include <math.h>
 
 
 namespace jpl{
@@ -28,6 +29,8 @@ namespace jpl{
 
                     protected:
                         std::string text;
+
+                        bool centered;
 
                         float posX,posY;
                         float width,height;
@@ -51,6 +54,13 @@ namespace jpl{
 
                         float r,g,b,a;
                         int locColors;
+
+                        /**
+                         * Calculate the startX for the new line in case of centered rendering
+                         * @param i index of the first char into text
+                         * @param l amount of chars that can be rendered on the current line
+                         */
+                        virtual unsigned int calculateStartXCentered(unsigned int i, int &l) const noexcept;
 
                     public:
                         TextRender(float x, float y, float width, float height);
@@ -91,6 +101,13 @@ namespace jpl{
 
                         const _shaders::ProgramShaders* const getShader(){
                             return const_cast<const _shaders::ProgramShaders* const>(PROGRAM_SHADERS);
+                        }
+
+                        void setCentered(bool v) noexcept{
+                            this->centered = v;
+                        }
+                        const bool isCentered() const noexcept{
+                            return this->centered;
                         }
 
                         void initializeProgramShaders(

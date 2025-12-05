@@ -13,9 +13,9 @@ void jpl::_graphics::_engine::_text::TextRender::setDim(float x, float y, float 
 }
 void jpl::_graphics::_engine::_text::TextRender::updateCoords(){
     this->startX = jpl::_graphics::_metrics::XPosToScreenCoords(this->posX);
-    this->offsetX = ((float)this->font->getPixelWidthPerChar())/jpl::_graphics::_metrics::width;
+    this->offsetX = ((float)this->font->getPixelWidthPerChar())/(jpl::_graphics::_metrics::width/2);
     this->startY = jpl::_graphics::_metrics::YPosToScreenCoords(this->posY+this->height);
-    this->offsetY = ((float)this->font->getPixelHeightPerChar())/jpl::_graphics::_metrics::height;
+    this->offsetY = ((float)this->font->getPixelHeightPerChar())/(jpl::_graphics::_metrics::height/2);
     this->w1 = this->width/jpl::_graphics::_metrics::width;
     this->h1 = this->height/jpl::_graphics::_metrics::height;
 }
@@ -41,8 +41,15 @@ void jpl::_graphics::_engine::_text::TextRender::render() const{
 
     float x = this->startX;
     float y = this->startY;
-
-    for(size_t i = 0; i < this->text.size(); i++){
+    int l = -1; //Set -1 to pass (1) at i = 0
+    for(int i = 0; i < this->text.size(); i++){
+        if(this->centered){
+            if(i > l){ //(1)
+                x = jpl::_graphics::_engine::_text::TextRender::calculateStartXCentered(i, l);
+                x = jpl::_graphics::_metrics::XPosToScreenCoords(x);
+                l = std::max(0, l+i);
+            }
+        }
         char cr = this->text.at(i);
         float r = cr/this->font->getCharsPerWidth();//row(height by top side)
         float c = cr%this->font->getCharsPerWidth();//col(width by right side)
@@ -80,7 +87,7 @@ void jpl::_graphics::_engine::_text::TextRender::render() const{
         glUniform4f(this->locColors, this->r, this->g, this->b, this->a);
         jpl::_graphics::_engine::drawMesh(this->PAINTER, jpl::_graphics::_mesh::QUAD);
         x += this->offsetX;
-        if(x >= this->startX+w1){
+        if(x >= std::abs(this->startX)+w1){
             x = this->startX;
             y -= this->offsetY;   //new line
             if(y > this->startY-this->h1){
@@ -96,6 +103,19 @@ void jpl::_graphics::_engine::_text::TextRender::render(const std::string &text,
     this->setDim(x,y,w,h);
     this->updateCoords();
     this->render();
+}
+
+unsigned int jpl::_graphics::_engine::_text::TextRender::calculateStartXCentered(unsigned int i, int &l) const noexcept{
+    std::string textWONL = this->text.substr(i, this->text.find('\n')); //text within first new line char
+    l = textWONL.size();
+    if(l*this->font->getPixelWidthPerChar() > this->width){
+        l = this->width/this->font->getPixelWidthPerChar(); //Max chars renderizable is equal to width/pixelWidthPerChar
+        textWONL = textWONL.substr(0, l);
+    }
+    size_t s1px = this->font->getPixelWidthPerChar();  //Pixel needed for the textWONL
+    s1px *= l; 
+    int x = this->width/2-s1px/2;
+    return x;
 }
 
 void jpl::_graphics::_engine::_text::TextRender::initializeProgramShaders(

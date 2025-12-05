@@ -59,8 +59,7 @@ namespace jpl{
             extern void windowPositionCallback(GLFWwindow* window, int x, int y);
 
             inline float XPosToScreenCoords(float x){
-                float halfW = ((float)jpl::_graphics::_metrics::width)/2;
-                return (x-halfW)/halfW;
+                return (x/((float)jpl::_graphics::_metrics::width))*2-1.0f;
             }
             inline float YPosToScreenCoords(float y){
                 float halfH = ((float)jpl::_graphics::_metrics::height)/2;
