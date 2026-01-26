@@ -31,6 +31,11 @@ namespace jpl{
                     
                     virtual void initialize(unsigned short port, unsigned long in_addr, const std::string &address) override;
 
+                    /**
+                     * Start listening for new connection
+                     * 
+                     * @param backlog max connection attepts in queue
+                     */
                     virtual void start(size_t backlog);
 
                     virtual void loop() override;

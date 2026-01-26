@@ -34,17 +34,25 @@ namespace jpl{
                     Painter();
 
                     virtual void bindBuffer() const noexcept;
-                    virtual void pushData(const float* data, unsigned int sizeData, GLenum mode) const noexcept;
                     virtual void pushData(const _mesh::Mesh* mesh, GLenum mode) const noexcept;
 
                     unsigned int getVBO() const noexcept{
                         return this->VBO;
                     }
+                    void setVBO(unsigned int vbo) noexcept{
+                        this->VBO = vbo;
+                    }
                     unsigned int getVAO() const noexcept {
                         return this->VAO;
                     }
+                    void setVAO(unsigned int vao) noexcept{
+                        this->VAO = vao;
+                    }
                     unsigned int getEBO() const noexcept{
                         return this->EBO;
+                    }
+                    void setEBO(unsigned int ebo) noexcept{
+                        this->EBO = ebo;
                     }
 
                     void setX(unsigned int x) noexcept{

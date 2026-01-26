@@ -10,7 +10,6 @@
 #include "Font.hpp"
 #include <jpl/exception/runtime/IllegalStateException.hpp>
 #include "../../shaders/ProgramManager.hpp"
-#include "../Painter.hpp"
 #include "../../shaders/Shader.hpp"
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
@@ -49,18 +48,21 @@ namespace jpl{
 
                         const Font* font;
 
-                        _shaders::ProgramShaders* PROGRAM_SHADERS;
-                        Painter* PAINTER;
-
-                        float r,g,b,a;
-                        int locColors;
-
                         /**
                          * Calculate the startX for the new line in case of centered rendering
                          * @param i index of the first char into text
                          * @param l amount of chars that can be rendered on the current line
                          */
                         virtual unsigned int calculateStartXCentered(unsigned int i, int &l) const noexcept;
+
+                        /**
+                         * Set if text may be edited
+                         */
+                        bool editable;
+                        /**
+                         * If editable is set, this is set if player clicked the textbox
+                         */
+                        bool focus;
 
                     public:
                         TextRender(float x, float y, float width, float height);
@@ -74,8 +76,6 @@ namespace jpl{
                             this->offsetTexY = 1.0f/font->getCharsPerHeight();
                         }
 
-                        void setColors(float r, float g, float b, float a);
-
                         void setDim(float x, float y, float w, float h);
 
                         /**
@@ -84,23 +84,13 @@ namespace jpl{
                          */
                         void updateCoords();
 
-                        void setText(const std::string &text) noexcept{
-                            this->text = text;
-                        }
+                        virtual void setText(const std::string &text);
 
                         void render() const;
                         void render(const std::string &text, unsigned int x, unsigned int y, unsigned int w, unsigned int h);
 
                         std::string getText() const noexcept{
                             return this->text;
-                        }
-
-                        void setProgramShaders(_shaders::ProgramShaders* ps){
-                            this->PROGRAM_SHADERS = ps;
-                        }
-
-                        const _shaders::ProgramShaders* const getShader(){
-                            return const_cast<const _shaders::ProgramShaders* const>(PROGRAM_SHADERS);
                         }
 
                         void setCentered(bool v) noexcept{
@@ -110,13 +100,18 @@ namespace jpl{
                             return this->centered;
                         }
 
-                        void initializeProgramShaders(
-                            _shaders::ProgramManager* manager,
-                            const std::string &identifier,
-                            const std::string &vertexShaderFileName,
-                            const std::string &fragmentShaderFileName,
-                            jpl::_graphics::_engine::Painter* painter
-                        );  
+                        void setEditable(bool editable) noexcept{
+                            this->editable = editable;
+                        }
+                        bool isEditable() const noexcept{
+                            return this->editable;
+                        }
+                        void setFocus(bool focus) noexcept{
+                            this->focus = focus;
+                        }
+                        bool isFocus() const noexcept{
+                            return this->focus;
+                        }
                 };
             }
         }

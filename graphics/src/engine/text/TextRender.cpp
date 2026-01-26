@@ -2,7 +2,7 @@
 
 
 jpl::_graphics::_engine::_text::TextRender::TextRender(float x, float y, float width, float height)
-    : posX(x), posY(x), width(width), height(height), r(0.0f), g(0.0f), b(0.0f), a(1.0f){
+    : posX(x), posY(x), width(width), height(height){
 }
 
 void jpl::_graphics::_engine::_text::TextRender::setDim(float x, float y, float w, float h){
@@ -20,25 +20,8 @@ void jpl::_graphics::_engine::_text::TextRender::updateCoords(){
     this->h1 = this->height/jpl::_graphics::_metrics::height;
 }
 
-void jpl::_graphics::_engine::_text::TextRender::setColors(float r, float g, float b, float a){
-    this->r = r;
-    this->g = g; 
-    this->b = b;
-    this->a = a;
-}
-
-void jpl::_graphics::_engine::_text::TextRender::render() const{
-    if(this->font == nullptr){
-        throw jpl::_exception::IllegalStateException("No Font has been set, yet");
-    }
-    if(jpl::_graphics::_engine::_text::TextRender::PROGRAM_SHADERS == nullptr){
-        throw jpl::_exception::IllegalStateException("Static TextRender's ProgramShader instance is nullptr");
-    }
-    jpl::_graphics::_engine::_text::TextRender::PAINTER->pushData(jpl::_graphics::_mesh::QUAD, GL_STATIC_DRAW);
-    glUseProgram(jpl::_graphics::_engine::_text::TextRender::PROGRAM_SHADERS->getProgramIndex());
-    glActiveTexture(GL_TEXTURE0);
-    this->font->getTexture()->bind();
-
+void jpl::_graphics::_engine::_text::TextRender::setText(const std::string &text){
+    this->text = text;
     float x = this->startX;
     float y = this->startY;
     int l = -1; //Set -1 to pass (1) at i = 0
@@ -56,15 +39,13 @@ void jpl::_graphics::_engine::_text::TextRender::render() const{
         r *= this->offsetTexY;    //With c and r coords the rendered texture begins from top-right corner
         c *= this->offsetTexX;
         
-        float* buffer = new float[20]{
+        float buffer[20] = {
             x,y, 0.0f, c, r+this->offsetTexY,  //Bottom-left
             x+this->offsetX, y, 0.0f, c+this->offsetTexX,r+this->offsetTexY,    //Bottom-right
             x+this->offsetX, y+this->offsetY, 0.0f, c+this->offsetTexX, r,       //Top-right
             x, y+this->offsetY, 0.0f, c, r     //Top-left
         };
-
-        glBindBuffer(GL_ARRAY_BUFFER, jpl::_graphics::_engine::_text::TextRender::PAINTER->getVBO());
-        glBufferData(GL_ARRAY_BUFFER, 20*sizeof(float), buffer, GL_STATIC_DRAW);
+        glBufferData(GL_ARRAY_BUFFER, 20*sizeof(float), &buffer, GL_STATIC_DRAW);
             glVertexAttribPointer(
             0,
             3,   //It also means how many float values are referred to vertices
@@ -83,9 +64,6 @@ void jpl::_graphics::_engine::_text::TextRender::render() const{
             (void*)(3*sizeof(float))
         );
         glEnableVertexAttribArray(1);
-        delete[] buffer;
-        glUniform4f(this->locColors, this->r, this->g, this->b, this->a);
-        jpl::_graphics::_engine::drawMesh(this->PAINTER, jpl::_graphics::_mesh::QUAD);
         x += this->offsetX;
         if(x >= std::abs(this->startX)+w1){
             x = this->startX;
@@ -95,7 +73,12 @@ void jpl::_graphics::_engine::_text::TextRender::render() const{
             }
         }
     }
-    
+}
+
+void jpl::_graphics::_engine::_text::TextRender::render() const{
+    glActiveTexture(GL_TEXTURE0);
+    this->font->getTexture()->bind();
+    glDrawElements(GL_QUADS, 4*this->text.size(), GL_UNSIGNED_INT, 0);
 }
 
 void jpl::_graphics::_engine::_text::TextRender::render(const std::string &text, unsigned int x, unsigned int y, unsigned int w, unsigned int h){
@@ -116,33 +99,4 @@ unsigned int jpl::_graphics::_engine::_text::TextRender::calculateStartXCentered
     s1px *= l; 
     int x = this->width/2-s1px/2;
     return x;
-}
-
-void jpl::_graphics::_engine::_text::TextRender::initializeProgramShaders(
-        jpl::_graphics::_shaders::ProgramManager* manager,
-        const std::string &identifier,
-        const std::string &vertexShaderFileName,
-        const std::string &fragmentShaderFileName,
-        jpl::_graphics::_engine::Painter* painter
-){
-    std::fstream* file = new std::fstream;
-    jpl::_utils::_files::getInternalFile("shaders/"+vertexShaderFileName, std::fstream::in | std::fstream::binary, &file);
-    jpl::_graphics::_shaders::Shader* vertexShader = new jpl::_graphics::_shaders::Shader(file);
-    vertexShader->probeShader(GL_VERTEX_SHADER);
-    delete file;
-    file = new std::fstream;
-    jpl::_utils::_files::getInternalFile("shaders/"+fragmentShaderFileName, std::fstream::in | std::fstream::binary, &file);
-    jpl::_graphics::_shaders::Shader* fragmentShader = new jpl::_graphics::_shaders::Shader(file);
-    fragmentShader->probeShader(GL_FRAGMENT_SHADER);
-    delete file;
-    jpl::_graphics::_shaders::ProgramShaders* programShaders = new jpl::_graphics::_shaders::ProgramShaders();
-    programShaders->addNewShader(vertexShader);
-    programShaders->addNewShader(fragmentShader);
-    manager->addProgramShaders(identifier, programShaders);
-    glLinkProgram(programShaders->getProgramIndex());
-
-    this->PROGRAM_SHADERS = programShaders;
-    this->PAINTER = painter;
-    glUseProgram(programShaders->getProgramIndex());
-    this->locColors = glGetUniformLocation(programShaders->getProgramIndex(), "colors");
 }

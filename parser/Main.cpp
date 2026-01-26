@@ -1,32 +1,21 @@
-#include "src/bmp/BMP.hpp"
-
+#include "src/wav/WAV.hpp"
 
 using namespace jpl;
 using namespace _parser;
 
 int main(){
 
-  std::fstream in;
-    in.open("C:\\Users\\Utente\\JPL\\parser\\out\\windows\\ascii.bmp", std::ios_base::in|std::ios_base::binary);
+    std::fstream in;
+    in.open("C:\\Users\\Utente\\JPL\\parser\\out\\windows\\wav_test.wav", std::ios_base::in|std::ios_base::binary);
     if(in.is_open()){
         printf("OK");
     }else{
         printf("Not opened");
     }
-    _parser::_bmp::BMP* bmp = _parser::_bmp::read(&in);
+    _parser::_wav::WAV* wav = _parser::_wav::parse(&in);
 
     std::fstream* out = new std::fstream;
-    out->open("C:\\Users\\Utente\\JPL\\parser\\out\\windows\\testout.bmp", std::ios_base::out | std::ios_base::binary);
-    std::fstream* outReversed = new std::fstream;
-    outReversed->open("C:\\Users\\Utente\\JPL\\parser\\out\\windows\\testoutrev.bmp", std::ios_base::out | std::ios_base::binary);
-    
-    jpl::_parser::_bmp::write(out, bmp);
-    out->flush();
-    out->close();
+    out->open("C:\\Users\\Utente\\JPL\\parser\\out\\windows\\wav_outtest.wav", std::ios_base::out | std::ios_base::binary);
+    jpl::_parser::_wav::write(out, wav);
 
-    size_t size;
-    char* dataReversed = jpl::_parser::_bmp::toRender(bmp, size);
-    outReversed->write((char*)bmp, 54);
-    outReversed->write(dataReversed, size);
-    outReversed->close();
 }

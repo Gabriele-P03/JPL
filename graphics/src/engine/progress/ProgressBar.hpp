@@ -26,16 +26,8 @@ namespace jpl{
                 protected:
 
                     _texture::Texture* background;
-                    _engine::Painter* painter;
-                    _engine::_text::TextRender* textRender;
 
-                    float progress;
-                    float max;
-
-                    /**
-                     * They contains coords of the empty progress bar part in the texture and filled one
-                     */
-                    float coords[40];
+                    float progress, max;
 
                     static constexpr int indicesPerPart[2] = {6,6};
                     static constexpr int indices[12] = {
@@ -59,10 +51,14 @@ namespace jpl{
                      * @param h height of the filled part
                      * @throw IllegalArgumentException if either painter or texture are nullptr 
                      */
-                    ProgressBar(_engine::Painter* painter, _engine::_text::TextRender* textRender, _texture::Texture* background, float max);
+                    ProgressBar(_texture::Texture* background, float max);
+
 
                     float getProgress() const noexcept{
                         return this->progress;
+                    }
+                    void setMax(float max) noexcept{
+                        this->max = max;
                     }
                     float getMax() const noexcept{
                         return this->max;
@@ -72,25 +68,10 @@ namespace jpl{
                      * @param p
                      * @throw IllegalArgumentException if p is less than 0 or greater than max
                      */
-                    virtual void setProgress(float p){
-                        if(p <= 0){
-                            throw jpl::_exception::IllegalArgumentException("progress " + std::to_string(p) + " is less than 0");
-                        }
-                        if(p > this->max){
-                            throw jpl::_exception::IllegalArgumentException("progress " + std::to_string(p) + " is less than max " + std::to_string(this->max));
-                        }
-                        this->progress = p;
-                    }
+                    virtual void setProgress(float p);
 
                     virtual void render() const noexcept;
-                    /**
-                     * It sets float coords array of the empty and filled part both
-                     * @param empty
-                     * @param filled
-                     */
-                    void setCoordsArray(std::array<float, 40> const &coords) noexcept{
-                        std::copy(coords.begin(), coords.begin()+40, this->coords);
-                    }
+
                     
             };
 

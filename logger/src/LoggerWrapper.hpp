@@ -37,7 +37,6 @@
     #endif
 
     #ifdef USE_LOGGER_JPL
-        #warning "Including Logger.hpp"
         #include "Logger.hpp"
 
         namespace jpl{

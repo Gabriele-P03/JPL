@@ -1,4 +1,6 @@
 #include "src/shaders/Shader.hpp"
+
+#define AUTO_LOG_EXCEPTION_JPL
 #include <jpl/logger/LoggerWrapper.hpp>
 #include "src/utils/Hints.hpp"
 #include "src/Metrics.hpp"
@@ -11,13 +13,14 @@
 #include "src/shapes/Cube.hpp"
 #include "src/engine/camera/PerspectiveCamera.hpp"
 #include <glm/gtc/type_ptr.hpp>
-
+#include "src/engine/VAOManager.hpp"
 #include "src/engine/text/TextRender.hpp"
 #include "src/Metrics.hpp"
 
 #include "src/mesh/MeshLoader.hpp"
 
 #include "src/engine/button/Button.hpp"
+#include "src/engine/progress/ProgressBar.hpp"
 
 jpl::_graphics::_engine::_camera::PerspectiveCamera* camera = new jpl::_graphics::_engine::_camera::PerspectiveCamera();
 
@@ -73,6 +76,7 @@ void button_callback(GLFWwindow* w, int k, int s, int a, int m){
 }
 
 int main(){
+    jpl::_logger::_exceptionhook::LoggerExceptionHook();
     jpl::_graphics::_states::fullscreen = false;
     if(!glfwInit()){
         throw jpl::_exception::RuntimeException(jpl::_graphics::_error::getLastErrorAsString());
@@ -126,16 +130,34 @@ int main(){
     jpl::_graphics::_shaders::ProgramShaders* programShaders = new jpl::_graphics::_shaders::ProgramShaders();
     programShaders->addNewShader(vertexShader);
     programShaders->addNewShader(fragmentShader);
-    manager->addProgramShaders(programShaders);
+    manager->addProgramShaders("test", programShaders);
     glLinkProgram(programShaders->getProgramIndex());
+
+    jpl::_graphics::_engine::VAOManager vaom = jpl::_graphics::_engine::VAOManager();
 
     std::fstream* f = new std::fstream;
     jpl::_utils::_files::getInternalFile("objs\\test.obj", std::ios_base::in, &f);
     jpl::_graphics::_mesh::Mesh* mesh = jpl::_graphics::_mesh::parse(f);
 
-    //jpl::_graphics::_texture::Texture* texture = jpl::_graphics::
+    std::fstream* bptf = new std::fstream;
+    jpl::_utils::_files::getInternalFile("test_pb.bmp", std::ios_base::in | std::ios_base::binary, &bptf);
+    jpl::_parser::_bmp::BMP* bmp = jpl::_parser::_bmp::read(bptf);
+    size_t s = 0;
+    char* buffer = jpl::_parser::_bmp::toRender(bmp, s);
+    jpl::_graphics::_texture::Texture* pbt = new jpl::_graphics::_texture::Texture(
+        bmp->width, bmp->height, 3, buffer
+    );
+    pbt->bind();
+    pbt->generate();
+    jpl::_graphics::_engine::ProgressBar* pb = new jpl::_graphics::_engine::ProgressBar(
+        pbt, 100
+    );
 
-    painter->pushData(mesh, GL_STATIC_DRAW);
+    jpl::_graphics::_engine::_text::TextRender* tr = new jpl::_graphics::_engine::_text::TextRender(0, 0, 1280, 128);
+    tr->setText("Ciao");
+    tr->setCentered(true);
+    tr->setFont(new jpl::_graphics::_engine::_text::Font("ascii.bmp", jpl::_graphics::_engine::_text::ASCII, 16,8, 128));
+    tr->updateCoords();
 
     while(!glfwWindowShouldClose(w)){
         glfwPollEvents();
@@ -147,13 +169,9 @@ int main(){
         }
 
         glUseProgram(programShaders->getProgramIndex());
-        int modelMLoc = glGetUniformLocation(programShaders->getProgramIndex(), "modelM");
-        glUniformMatrix4fv(modelMLoc, 1, false, glm::value_ptr(glm::mat4(1.0f)));
-        int viewMLoc = glGetUniformLocation(programShaders->getProgramIndex(), "viewM");
-        glUniformMatrix4fv(viewMLoc, 1, false, glm::value_ptr(camera->getLookAt()));
-        int projMLoc = glGetUniformLocation(programShaders->getProgramIndex(), "projM");
-        glUniformMatrix4fv(projMLoc, 1, false, glm::value_ptr(camera->getProjection()));
-        jpl::_graphics::_engine::drawMesh(painter, mesh);
+        pb->render();
+        
+        tr->render();
     }
 
     glfwTerminate();
