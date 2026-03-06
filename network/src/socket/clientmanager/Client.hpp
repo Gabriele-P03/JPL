@@ -13,6 +13,8 @@
     #include <arpa/inet.h>  //For inet_pton
 #endif
 
+#include "../../tls/TLS.hpp"
+
 namespace jpl{
     namespace _network{
         namespace _clientmanager{
@@ -23,14 +25,25 @@ namespace jpl{
                     const size_t socket;
                     const sockaddr* address;
 
+                    SSL* ssl;
+                    bool withTLS;
+
                 public:
-                    Client(size_t socket, const sockaddr* address);
+                    Client(size_t socket, const sockaddr* address, SSL* ssl = nullptr);
 
                     const size_t getSocket() const noexcept{
                         return this->socket;
                     }
                     const sockaddr* getAddress() const noexcept{
                         return this->address;
+                    }
+
+                    bool isWithTLS() const noexcept{
+                        return this->withTLS;
+                    }
+
+                    SSL* getSSL() const noexcept{
+                        return this->ssl;
                     }
 
                     ~Client();

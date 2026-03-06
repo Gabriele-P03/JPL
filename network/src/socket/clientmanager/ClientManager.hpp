@@ -8,6 +8,8 @@
 #include "Client.hpp"
 #include <jpl/utils/structure/list/LinkedList.hpp>
 #include <jpl/exception/runtime/IllegalStateException.hpp>
+#include "../../tls/TLS.hpp"
+#include "../../tls/TLSWrapper.hpp"
 
 #include <thread>
 
@@ -25,9 +27,10 @@ namespace jpl{
                     jpl::_utils::_collections::_list::LinkedList<Client*>* clients;
 
                     /**
-                     * Check whereas ClientManager has to create two separated thread for sending/receving data for a client
+                     * This function is called everytime a new client is added into clients list.
+                     * In this function, you could start indipendent threads to communicate with client's socket  
                      */
-                    void handleClientAfterInsert(Client* client);
+                    virtual void handleClientAfterInsert(Client* client);
 
                     virtual void receive(Client* client) = 0;
                     virtual void send(Client* client) = 0;

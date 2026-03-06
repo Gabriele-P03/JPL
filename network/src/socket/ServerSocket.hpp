@@ -23,6 +23,7 @@ namespace jpl{
                     unsigned long in_addr;
 
                     _clientmanager::ClientManager* manager;
+                    
 
                 public: 
 
@@ -30,6 +31,14 @@ namespace jpl{
                     ServerSocket(int af, int type, int protocol, _clientmanager::ClientManager* manager);
                     
                     virtual void initialize(unsigned short port, unsigned long in_addr, const std::string &address) override;
+
+                    /**
+                     * This function should be called after either initialize() or setWithTLS()
+                     * 
+                     * @param certPath path to certificate
+                     * @param keyPath path to private key
+                     */
+                    virtual void loadCertificate(const std::string &certPath, int certType, const std::string &keyPath, int keyType);
 
                     /**
                      * Start listening for new connection
@@ -40,7 +49,7 @@ namespace jpl{
 
                     virtual void loop() override;
 
-                    virtual long acceptNewClient(sockaddr* client);
+                    virtual _clientmanager::Client* acceptNewClient();
 
 
             };

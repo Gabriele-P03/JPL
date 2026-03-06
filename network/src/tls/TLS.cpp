@@ -18,10 +18,16 @@ SSL* jpl::_network::_ssl::instanceNewSSL(SSL_CTX* ctx, long fd){
     return ssl;
 }
 
-void jpl::_network::_ssl::connectSSL(SSL* ssl){
-    const int status = SSL_connect(ssl);
+long jpl::_network::_ssl::connectSSL(SSL* ssl){
+    const long status = SSL_connect(ssl);
     if(status != 1){
-        throw new jpl::_exception::RuntimeException("Could not enstabilish SSL connection: " + std::to_string(status));
+        int err = SSL_get_error(ssl, status);
+        if(err == 5){
+            throw new jpl::_exception::RuntimeException("Could not enstabilish SSL connection: " + jpl::_utils::_error::_GetLastErrorAsString());
+        }
+        ERR_print_errors_fp(stderr);
+        
     }
     jpl::_logger::info("SSL enstabilished with cipher: " + std::string(SSL_get_cipher(ssl)));
+    return status;
 }

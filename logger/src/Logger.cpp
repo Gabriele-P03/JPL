@@ -42,7 +42,7 @@ void jpl::_logger::Logger::print(std::string msg, const jpl::_logger::LOG_STATUS
         return;
     }
     logger_mutex.lock();
-    msg = "[" + this->getFileNameOfInstance() + " -> " + status + "]: " + msg + "\n";
+    msg = "[" + this->getFileNameOfInstance() + " -> " + status + "]: " + msg;
     std::cout<<msg<<std::endl;
     if(flag){
         this->file->write(msg.c_str(), msg.size());

@@ -1,3 +1,12 @@
+/**
+    TLS mechanism for instance an encrypted end-to-end channel.
+    As many papers say, SSL is just a common synonim, despite SSL is the TLS' ancestor, of TLS
+
+    TLS mechanism is based on OpenSSL, thus, you could easily read its official documentation; by the way, in order to
+    instance it, you just have to initialize SSL's context via initSSLContext(), pass its result to instanceNewSSL() and then
+    connectSSL()
+*/
+
 #ifndef TLS_JPL
 #define TLS_JPL
 
@@ -6,6 +15,7 @@
 #endif
 
 #include <openssl/ssl.h>
+#include <openssl/err.h>
 #include <jpl/exception/runtime/RuntimeException.hpp>
 #include <jpl/utils/debug/ErrorUtils.hpp>
 #include <jpl/logger/LoggerWrapper.hpp>
@@ -33,13 +43,14 @@ namespace jpl{
             SSL* instanceNewSSL(SSL_CTX* ctx, long fd);
 
             /**
-             * Connect via SSL
+             * Connect via SSL.
+             * It should be called only by client to connect to server
              * 
              * @param ssl 
              * 
              * @throw RuntimeException if connection could not be enstabilished
              */
-            void connectSSL(SSL* ssl);
+            long connectSSL(SSL* ssl);
         }
     }
 }

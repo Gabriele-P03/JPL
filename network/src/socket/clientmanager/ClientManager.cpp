@@ -25,15 +25,10 @@ void jpl::_network::_clientmanager::ClientManager::addNewClient(jpl::_network::_
     }
     this->clients->add(client);
     this->handleClientAfterInsert(client);
+    jpl::_logger::info("Connection enstabilished with client: ");
 }
 
 void jpl::_network::_clientmanager::ClientManager::handleClientAfterInsert(jpl::_network::_clientmanager::Client* client){
-    if(this->asyncClient){
-        std::thread sendThread(&jpl::_network::_clientmanager::ClientManager::send, this, client);
-        sendThread.detach();
-        std::thread receiveThread(&jpl::_network::_clientmanager::ClientManager::receive, this, client); 
-        receiveThread.detach();
-    }
 }
 
 

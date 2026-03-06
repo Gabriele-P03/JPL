@@ -1,8 +1,10 @@
+#define AUTO_LOG_EXCEPTION_JPL
 #include <winsock2.h>
 #include <jpl/logger/LoggerWrapper.hpp>
 #include "src/socket/ServerSocket.hpp"
 #include "src/tls/TLS.hpp"
 #include "src/socket/clientmanager/TestClientManager.hpp"
+#include <jpl/utils/FilesUtils.hpp>
 
 int main(){
 
@@ -11,10 +13,16 @@ int main(){
     #endif
 
     jpl::_network::_socket::ServerSocket ss = jpl::_network::_socket::ServerSocket(SOCK_STREAM, new jpl::_network::_clientmanager::TestClientManager());
+    ss.setTLS(true);
     ss.initialize(8080, 0x01, "");
+    ss.loadCertificate(
+        jpl::_utils::_files::getLocalPath("certificate.crt"),
+        SSL_FILETYPE_PEM,
+        jpl::_utils::_files::getLocalPath("private.key"),
+        SSL_FILETYPE_PEM
+    );
     ss.start(5);
-
-    jpl::_network::_ssl::instanceNewSSL(jpl::_network::_ssl::initSSLContext(TLS_server_method()), ss.getSocketIndex());
-    SSL_Server
+    ss.loop();
+    //
     return 0;
 }

@@ -29,6 +29,9 @@ jpl::_network::_socket::AbstractSocket::AbstractSocket(int af, int type, int pro
         this->bufferSize = 65536;
         this->packetSize = 1024;
     }
+    this->withTLS = false;
+    this->ssl = nullptr;
+    this->sslCtx = nullptr;
 }
 
 void jpl::_network::_socket::AbstractSocket::initialize(unsigned short port, unsigned long in_addr, const std::string &address){
@@ -58,9 +61,10 @@ void jpl::_network::_socket::AbstractSocket::send(const char* data, size_t len, 
         int res = ::send(this->_socket_index, (const char*)start, toSend, flags);
         if(res == -1){
             throw jpl::_exception::SocketException(this->_socket_index);
-        }   
+        }  
+        sent += res; 
     }
-    if(::send(this->_socket_index, "\0", 1, flags) == -1){
+    if(::send(this->_socket_index, "\0", 1, flags) == -1){  //Sending '\0' as term char
         throw jpl::_exception::SocketException(this->_socket_index);
     }
 }
@@ -88,3 +92,4 @@ void jpl::_network::_socket::AbstractSocket::receive(std::vector<char>** pBuffer
         }
     }
 }
+

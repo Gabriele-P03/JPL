@@ -1,5 +1,9 @@
 /**
- * An abstract socket is the abstraction of any socket type class
+ * An abstract socket is the abstraction of any socket type class.
+ * 
+ * If you need a TLS socket based, you just need to set withTLS boolean field via setWithTILS(bool).
+ * You can enable this function at any time of your program, but once set, clients already connected will not be passed on a security channel.
+ * 
  */
 
 #ifndef ABSTRACT_SOCKET_JPL
@@ -19,6 +23,7 @@
 #include <jpl/logger/LoggerWrapper.hpp>
 #include <jpl/exception/runtime/IllegalStateException.hpp>
 #include <jpl/exception/runtime/SocketException.hpp>
+#include "../tls/TLS.hpp"
 
 
 namespace jpl{
@@ -44,6 +49,10 @@ namespace jpl{
 
                     size_t packetSize;
                     size_t bufferSize;
+
+                    bool withTLS;
+                    SSL_CTX* sslCtx;
+                    SSL* ssl;
 
                     #ifdef _WIN32
                         static bool wsaStarted;
@@ -86,6 +95,16 @@ namespace jpl{
                     std::string getAddress() const noexcept{return this->address;}
                     bool isStarted() const noexcept{return this->started;}
 
+                    /**
+                     * @param withTLS
+                     */
+                    void setTLS(bool withTLS) noexcept{
+                        this->withTLS = withTLS;
+                    }
+                    bool isWithTLS() const noexcept{
+                        return this->withTLS;
+                    }
+
                     virtual void addSocketOption(size_t level, size_t optionName, const char* optionValue, size_t optionLength){
                         if( setsockopt(this->_socket_index, level, optionName, optionValue, optionLength) != 0){
                             throw jpl::_exception::SocketException(this->_socket_index);
@@ -99,8 +118,11 @@ namespace jpl{
                     virtual void initialize(unsigned short port, unsigned long in_addr, const std::string &address);
 
                     virtual void send(const char* data, size_t len, int flags);
-
                     virtual void receive(std::vector<char>** pBuffer, size_t &size, int flags);
+
+                    SSL* getSSL() const noexcept{
+                        return this->ssl;
+                    }
             };
         }
     }

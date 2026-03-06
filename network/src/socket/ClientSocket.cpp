@@ -9,10 +9,17 @@ jpl::_network::_socket::ClientSocket::ClientSocket(int af, int type, int protoco
         this->connected = false;
 }
 
-void jpl::_network::_socket::ClientSocket::connectToServer() const{
+void jpl::_network::_socket::ClientSocket::connectToServer(){
     if(connect(this->_socket_index, this->resultaddrinfo->ai_addr, this->resultaddrinfo->ai_addrlen) != 0){
         throw jpl::_exception::SocketException(this->_socket_index);
-    }else{
-        jpl::_logger::info("Connection estabilished with " + this->address);
+    } 
+    if(this->withTLS){
+        this->sslCtx = jpl::_network::_ssl::initSSLContext(TLS_client_method());
+        this->ssl = jpl::_network::_ssl::instanceNewSSL(this->sslCtx, this->getSocketIndex());
+        long res = jpl::_network::_ssl::connectSSL(this->ssl);
+        if(res <= 0){
+            throw jpl::_exception::SocketException(this->_socket_index);
+        }
     }
+    jpl::_logger::info("Connection estabilished with " + this->address);
 }

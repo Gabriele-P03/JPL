@@ -8,6 +8,7 @@
 #define CLIENT_SOCKET_JPL
 
 #include "AbstractSocket.hpp"
+#include "../tls/TLS.hpp"
 
 namespace jpl{
 
@@ -24,7 +25,7 @@ namespace jpl{
                     ClientSocket(int type);
                     ClientSocket(int af, int type, int protocol);
 
-                    virtual void connectToServer() const;
+                    virtual void connectToServer();
 
             };
         }

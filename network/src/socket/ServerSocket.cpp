@@ -16,6 +16,23 @@ void jpl::_network::_socket::ServerSocket::initialize(unsigned short port, unsig
     }else{
         this->in_addr = in_addr;
     }
+    if(this->withTLS){
+        this->sslCtx = jpl::_network::_ssl::initSSLContext(TLS_server_method());
+    }
+}
+
+void jpl::_network::_socket::ServerSocket::loadCertificate(const std::string &certPath, int certType, const std::string &keyPath, int keyType){
+    if(SSL_CTX_use_certificate_file(this->sslCtx, certPath.c_str(), certType) <= 0){
+        ERR_print_errors_fp(stderr);
+        throw jpl::_exception::SocketException(this->_socket_index);
+    }
+    if(SSL_CTX_use_PrivateKey_file(this->sslCtx, keyPath.c_str(), keyType) <= 0){
+        ERR_print_errors_fp(stderr);
+        throw jpl::_exception::SocketException(this->_socket_index);
+    }
+    if(SSL_CTX_check_private_key(this->sslCtx) <= 0){
+        throw jpl::_exception::RuntimeException("Private Key and Certificate does not match");
+    }
 }
 
 void jpl::_network::_socket::ServerSocket::start(size_t backlog){
@@ -39,23 +56,28 @@ void jpl::_network::_socket::ServerSocket::start(size_t backlog){
 
 void jpl::_network::_socket::ServerSocket::loop(){
     while(listening){
-        struct sockaddr* address = new sockaddr;
-        size_t socket = this->acceptNewClient(address);
-        jpl::_network::_clientmanager::Client* client = new jpl::_network::_clientmanager::Client(socket, address);
+        jpl::_network::_clientmanager::Client* client = this->acceptNewClient();
         this->manager->addNewClient(client);
     }
 }
 
-long jpl::_network::_socket::ServerSocket::acceptNewClient(sockaddr* client){
+jpl::_network::_clientmanager::Client* jpl::_network::_socket::ServerSocket::acceptNewClient(){
     jpl::_logger::info("Waiting for new client...");
-    struct sockaddr clientBuffer;
-    int sockaddrlen = sizeof(clientBuffer);
-    memset(&clientBuffer, 0, sockaddrlen);
-    long res = accept(this->_socket_index, &clientBuffer, &sockaddrlen);
+    struct sockaddr* address = new sockaddr;
+    int sockaddrlen = sizeof(*address);
+    memset(address, 0, sockaddrlen);
+    long res = accept(this->_socket_index, address, &sockaddrlen);
     if(res <= 0){
         throw jpl::_exception::SocketException(this->_socket_index);
     }
-    jpl::_logger::info("Client connected with socket index: " + std::to_string(res));
-    *client = clientBuffer;
-    return res;
+    SSL* ssl = nullptr;
+    if(this->withTLS){
+        ssl = jpl::_network::_ssl::instanceNewSSL(this->sslCtx, res);
+        long sslAcceptRes = SSL_accept(ssl);
+        if(sslAcceptRes <= 0){
+            ERR_print_errors_fp(stderr);
+        }
+    }
+    jpl::_network::_clientmanager::Client* client = new jpl::_network::_clientmanager::Client(res, address, ssl);
+    return client;
 }

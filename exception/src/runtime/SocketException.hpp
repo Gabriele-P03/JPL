@@ -40,8 +40,7 @@ namespace jpl{
                 }
                 SocketException(const unsigned int fd, const unsigned int error_code) : SocketException(fd, error_code, ""){
                     std::string msg_s = jpl::_utils::_error::_GetLastErrorAsString(this->error_code); 
-                    this->msg = new char[msg_s.size()];
-                    memcpy((char*)this->msg, msg_s.c_str(), msg_s.size());
+                    memcpy((char*)this->msg.c_str(), msg_s.c_str(), msg_s.size());
                 }
                 SocketException(const unsigned int fd) : SocketException(fd, jpl::_utils::_error::_GetLastError()){}
        

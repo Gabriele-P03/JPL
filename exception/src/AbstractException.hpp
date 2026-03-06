@@ -52,11 +52,8 @@
                      * @return const char* 
                      */
                     inline virtual const char* what() const _GLIBCXX_TXN_SAFE_DYN _GLIBCXX_NOTHROW override{
-                        std::string buffer = 
-                            std::string(this->type_ex) + ": " + std::string(this->msg);
-                        char* c_buffer = new char[buffer.size()];
-                        strcpy(c_buffer, buffer.c_str());
-                        return c_buffer;
+                        std::string buffer = this->type_ex + ": " + this->msg;
+                        return buffer.c_str();
                     }
 
                     /**
