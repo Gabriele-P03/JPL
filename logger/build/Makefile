@@ -168,33 +168,6 @@ src/Logger.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\loggerJPL_st.dir\build.make CMakeFiles/loggerJPL_st.dir/src/Logger.cpp.s
 .PHONY : src/Logger.cpp.s
 
-src/LoggerWrapper.obj: src/LoggerWrapper.cpp.obj
-.PHONY : src/LoggerWrapper.obj
-
-# target to build an object file
-src/LoggerWrapper.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\loggerJPL_sh.dir\build.make CMakeFiles/loggerJPL_sh.dir/src/LoggerWrapper.cpp.obj
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\loggerJPL_st.dir\build.make CMakeFiles/loggerJPL_st.dir/src/LoggerWrapper.cpp.obj
-.PHONY : src/LoggerWrapper.cpp.obj
-
-src/LoggerWrapper.i: src/LoggerWrapper.cpp.i
-.PHONY : src/LoggerWrapper.i
-
-# target to preprocess a source file
-src/LoggerWrapper.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\loggerJPL_sh.dir\build.make CMakeFiles/loggerJPL_sh.dir/src/LoggerWrapper.cpp.i
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\loggerJPL_st.dir\build.make CMakeFiles/loggerJPL_st.dir/src/LoggerWrapper.cpp.i
-.PHONY : src/LoggerWrapper.cpp.i
-
-src/LoggerWrapper.s: src/LoggerWrapper.cpp.s
-.PHONY : src/LoggerWrapper.s
-
-# target to generate assembly for a file
-src/LoggerWrapper.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\loggerJPL_sh.dir\build.make CMakeFiles/loggerJPL_sh.dir/src/LoggerWrapper.cpp.s
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\loggerJPL_st.dir\build.make CMakeFiles/loggerJPL_st.dir/src/LoggerWrapper.cpp.s
-.PHONY : src/LoggerWrapper.cpp.s
-
 # Help Target
 help:
 	@echo The following are some of the valid targets for this Makefile:
@@ -208,9 +181,6 @@ help:
 	@echo ... src/Logger.obj
 	@echo ... src/Logger.i
 	@echo ... src/Logger.s
-	@echo ... src/LoggerWrapper.obj
-	@echo ... src/LoggerWrapper.i
-	@echo ... src/LoggerWrapper.s
 .PHONY : help
 
 

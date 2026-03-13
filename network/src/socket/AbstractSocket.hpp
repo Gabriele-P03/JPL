@@ -20,7 +20,7 @@
 
 #include <string>
 #include <jpl/utils/debug/ErrorUtils.hpp>
-#include <jpl/logger/LoggerWrapper.hpp>
+#include <jpl/logger/Logger.hpp>
 #include <jpl/exception/runtime/IllegalStateException.hpp>
 #include <jpl/exception/runtime/SocketException.hpp>
 #include "../tls/TLS.hpp"

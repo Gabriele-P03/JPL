@@ -2,11 +2,8 @@
 echo --------------------- Installing JPL ---------------------
 echo.
 
-set includes=(exception utils logger parser network sounds)
-Rem (exception utils graphics logger math network parser physics sounds)
-set builds=(utils logger parser network sounds)
 
-Rem (utils graphics logger math network parser physics sounds)
+setlocal enabledelayedexpansion
 
 set mingwPath=C:\msys64\mingw64
 set compilerPath=%mingwPath%\bin
@@ -20,26 +17,48 @@ echo CompilerPath: %compilerPath%
 echo Include Path: %includePath%
 echo Library Path: %libraryPath%
 
-echo.
-
-echo Removing old jpl folder and creating new one into Include Path
-rmdir /s /q %includePath% >null 2>&1
 mkdir %includePath%
 
 echo.
 echo Coping all header files
 
-for /d %%i in (*) do (
-    for %%d in %includes% do (
+if "%~1"=="" (
+    echo Compiling all modules
+    set "includes=exception utils logger parser network sounds"
+    set "builds=utils logger parser network sounds"
+) else (
+    set "includes="
+    set "builds="
+    for %%a in (%*) do (
+        if exist "%%~a" (
+            echo Reserved to %%a
+            set "includes=!includes! %%a"
+            set "cr=%%a"
+            echo Checking for CMakeLists.txt
+            if exist "!cr!\CMakeLists.txt" (
+                echo Found
+                set "builds=!builds! %%a"
+            )
+        ) else (
+            echo Module %%a does not exists
+        )
+    )
+    echo Checks completed for all given modules 
+)
+
+for /d %%i in ("*") do (
+    for %%d in (%includes%) do (
         if %%i==%%d (
             echo.
+            echo Removing old %%i headers folder
+            rmdir /s /q %includePath%\%%i >null 2>&1
             echo Creating %%i's headers folder
             mkdir %includePath%\%%i
             robocopy %cd%\%%i\src %includePath%\%%i /S >nul
         )
     )
 )
-for %%d in %builds% do (
+for %%d in (%builds%) do (
     for /d %%i in (*) do (
         if %%i==%%d (
             echo Building %%i
@@ -48,7 +67,7 @@ for %%d in %builds% do (
             rmdir /s /q build
             mkdir build
             cd build
-            cmake -S .. -B . -G "MinGW Makefiles" -DUSE_STACKTRACE_W_EXCEPTION_JPL=TRUE -DAUTO_LOG_EXCEPTION_JPL=TRUE >nul
+            cmake -S .. -B . -G "MinGW Makefiles" >nul
             %makePath%
             
             echo Coping static library lib%%iJPL.a %libraryPath%\

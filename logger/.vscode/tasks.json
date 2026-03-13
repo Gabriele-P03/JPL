@@ -32,7 +32,6 @@
             "args": [
                 "-g",
                 "-std=c++23",
-                "${workspaceFolder}/src/LoggerWrapper.cpp",
                 "${workspaceFolder}/src/Logger.cpp",
                 "${workspaceFolder}/Main.cpp",
                 "-lutilsJPL",

@@ -1,8 +1,4 @@
-#define AUTO_LOG_EXCEPTION_JPL
-#define USE_STACKTRACE_W_EXCEPTION_JPL
-#define USE_LOGGER_JPL
-
-#include "src/LoggerWrapper.hpp"
+#include "src/Logger.hpp"
 #include <jpl/exception/runtime/SocketException.hpp>
 
 
@@ -12,7 +8,16 @@ throw jpl::_exception::SocketException(1, 1);
 
 int main(){
 
+    jpl::_logger::Logger::initStaticLogger();
     jpl::_logger::_exceptionhook::LoggerExceptionHook();
+
+    jpl::_logger::info("prova");
+    jpl::_logger::info("prova");
+    jpl::_logger::info("prova");
+    jpl::_logger::info("prova");
+    jpl::_logger::info("prova");
+    jpl::_logger::info("prova");
+    jpl::_logger::info("prova");
 
     t();
 }

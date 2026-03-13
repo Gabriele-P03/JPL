@@ -14,9 +14,6 @@
 # EXTERNAL cache entries
 ########################
 
-//No help, variable specified on the command line.
-AUTO_LOG_EXCEPTION_JPL:UNINITIALIZED=TRUE
-
 //Build using shared libraries
 BUILD_SHARED_LIBS:BOOL=ON
 
@@ -274,9 +271,6 @@ LoggerJPL_IS_TOP_LEVEL:STATIC=ON
 
 //Value Computed by CMake
 LoggerJPL_SOURCE_DIR:STATIC=C:/Users/paceg/JPL/logger
-
-//No help, variable specified on the command line.
-USE_STACKTRACE_W_EXCEPTION_JPL:UNINITIALIZED=TRUE
 
 //Dependencies for the target
 loggerJPL_sh_LIB_DEPENDS:STATIC=general;utilsJPL;general;dbghelp;general;PowrProf;general;pdh;

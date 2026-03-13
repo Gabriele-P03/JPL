@@ -13,7 +13,7 @@
 #define TIMER_JPL
 
 #include <ctime>
-#include <jpl/logger/LoggerWrapper.hpp>
+#include <jpl/logger/Logger.hpp>
 #include <jpl/exception/runtime/IllegalStateException.hpp>
 
 namespace jpl{

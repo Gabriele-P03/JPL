@@ -17,7 +17,7 @@
 #define PROFILER_JPL
 
     #ifdef AUTO_LOG_EXCEPTION_JPL
-        #include <jpl/logger/LoggerWrapper.hpp>
+        #include <jpl/logger/Logger.hpp>
     #endif
     
     #include <ctime>

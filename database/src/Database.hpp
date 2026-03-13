@@ -7,7 +7,7 @@
 #define DATABASE_DB_JPL
 
 #include <unordered_map>
-#include <jpl/logger/LoggerWrapper.hpp>
+#include <jpl/logger/Logger.hpp>
 #include <jpl/utils/structure/list/LinkedList.hpp>
 #include "DBType.hpp"
 

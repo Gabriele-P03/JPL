@@ -13,7 +13,7 @@
 #ifndef TABLE_JPL
 #define TABLE_JPL
 
-#include <jpl/logger/LoggerWrapper.hpp>
+#include <jpl/logger/Logger.hpp>
 #include "../list/ArrayList.hpp"
 #include "columns/AbstractColumn.hpp"
 #include "../../functional/predicate/BiPredicate.hpp"

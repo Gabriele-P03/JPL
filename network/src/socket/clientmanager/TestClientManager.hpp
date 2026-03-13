@@ -1,6 +1,6 @@
 #include "ClientManager.hpp"
 
-#include <jpl/logger/LoggerWrapper.hpp>
+#include <jpl/logger/Logger.hpp>
 
 namespace jpl{
     namespace _network{

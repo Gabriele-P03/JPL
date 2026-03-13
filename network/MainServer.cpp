@@ -1,6 +1,6 @@
 #define AUTO_LOG_EXCEPTION_JPL
 #include <winsock2.h>
-#include <jpl/logger/LoggerWrapper.hpp>
+#include <jpl/logger/Logger.hpp>
 #include "src/socket/ServerSocket.hpp"
 #include "src/tls/TLS.hpp"
 #include "src/socket/clientmanager/TestClientManager.hpp"

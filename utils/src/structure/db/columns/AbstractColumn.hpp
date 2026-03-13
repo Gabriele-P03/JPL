@@ -9,7 +9,7 @@
 #ifndef ABSTRACT_COLUMN_JPL
 #define ABSTRACT_COLUMN_JPL
 
-#include <jpl/logger/LoggerWrapper.hpp>
+#include <jpl/logger/Logger.hpp>
 #include <string>
 #include <jpl/exception/runtime/IllegalArgumentException.hpp>
 #include <jpl/exception/runtime/IllegalCastException.hpp>

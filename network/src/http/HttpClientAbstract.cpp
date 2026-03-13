@@ -29,4 +29,5 @@ void jpl::_network::_http::HttpClientAbstract::globalInit(long flags){
     }
     jpl::_network::_http::HttpClientAbstract::counter = 0;
     jpl::_network::_http::HttpClientAbstract::globalInitialized = true;
+    jpl::_logger::info("Curl's Global Initializer called succefully");
 }

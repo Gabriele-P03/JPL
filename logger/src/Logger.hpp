@@ -1,11 +1,9 @@
 /**
- * @file
+ * A logger provides writing logs both on terminal and into file as well.
  * 
- * A logger provides writing log-program on terminal and even on a file.
- * You should never include directly this header file unless you wanna force using this module.
+ * A standard static Logger instance is already available and you can use as you want; just notice that, unless you called initStaticLogger() undefined-behaviour may occurr
  * 
- * A reading of its documentation is suggested before using this module since there are some mode of using it
- *  
+ * If Logger could not create file - if quite has been passed as true - it does not exit program with failure, but just reset flag field
  * 
  * @date 2022-08-01
  * @copyright Copyright (c) 2022
@@ -26,15 +24,20 @@
     #include <fstream>
     #include <iostream>
     #include <ctime>
-
     #include <jpl/utils/FilesUtils.hpp>
     #include <jpl/utils/debug/DebugUtils.hpp>
-
     #include <jpl/exception/runtime/IOException.hpp>
-
     #include <mutex>
 
     namespace jpl{
+
+        namespace _utils{
+            namespace _debug{
+                class Stacktrace;
+                extern Stacktrace* getStacktrace(unsigned long skipped, unsigned long maxFrame);
+                extern std::string stktrc_str(const Stacktrace* stacktrace);
+            }
+        }
 
         namespace _logger{
 
@@ -88,6 +91,8 @@
                      * is able to write on file, too.
                      */
                     bool flag;
+
+                    static Logger* INSTANCE;
                     
                 public:
 
@@ -103,37 +108,21 @@
                      * Create a new instance of Logger associated with the output file at the given path
                      * 
                      * @param pathToFile aboslute path of the file which is wanted to be used as output one
-                     * @param quiet quiet mode 
+                     * @param quiet quiet mode if you don't want to write on file
                      */
                     Logger(std::string pathToFile, bool quiet){
-                        
                         this->flag = false;
-
                         if(!quiet){
                             this->file = new std::ofstream();
                             this->file->open(pathToFile);
 
                             if(file->fail()){
-                                #ifndef UFW_LOGGER_JPL   
-                                    std::cout<<"UFW Mode is not enabled and Logger could not create output file: "<<pathToFile<<std::endl;
-                                    throw new _exception::IOException("Logger file could not be created and OD has not been enabled. I have to exit...");
-                                    exit(EXIT_FAILURE);
-                                #else
-                                    #undef USE_LOGGER_JPL
-                                    try{
-                                        throw new _exception::IOException("Logger file could not be created but OD has been enabled!" + _utils::_error::_GetLastErrorAsString());
-                                    }catch(const _exception::IOException* ex){
-
-                                    }
-                                    //std::cout<<"Logger file could not be created but OI has been enabled"<<std::endl;
-                                #endif
+                                std::cout<<"Could not create output file: "<<pathToFile<<std::endl;
                             }else{
                                 this->flag = true;
                             }
                         }
                     }
-
-                    static Logger* INSTANCE;
 
                     /**
                      * @brief Print msg on terminal
@@ -166,7 +155,60 @@
                     bool isWriting(){ return this->flag; }
 
                     ~Logger();
+
+                    static void initStaticLogger();
+                    static Logger* const getLogger(){
+                        return const_cast<Logger* const>(INSTANCE);
+                    }
             };
+
+                inline void print(std::string msg, const jpl::_logger::LOG_STATUS status){
+                    jpl::_logger::Logger::getLogger()->print(msg, status);
+                }
+                inline void info(std::string msg){
+                    jpl::_logger::Logger::getLogger()->print(msg, jpl::_logger::INFO_JPL);
+                }
+                inline void error(std::string msg){
+                    jpl::_logger::Logger::getLogger()->print(msg, jpl::_logger::ERROR_JPL);
+                }
+                inline void warning(std::string msg){
+                    jpl::_logger::Logger::getLogger()->print(msg, jpl::_logger::WARNING_JPL);
+                }
+                inline void debug(std::string msg){
+                    jpl::_logger::Logger::getLogger()->print(msg, jpl::_logger::DEBUG_JPL);
+                }
+
+            namespace _exceptionhook{
+
+                inline void on_terminate(){
+                    std::exception_ptr ptr = std::current_exception();
+                    try{
+                        if (ptr){
+                            std::rethrow_exception(ptr);
+                        }
+                    }catch(const jpl::_exception::AbstractException &e){
+                        std::string buffer = e.what();
+                        auto* stacktrace = _utils::_debug::getStacktrace(2,512);
+                        buffer += _utils::_debug::stktrc_str(stacktrace);
+                        _logger::error(buffer);
+                    }catch(const std::exception& e){
+                        _logger::error(std::string("Unhandled std::exception: ") + e.what());
+                    }catch(...){
+                        _logger::error("Unhandled unknown exception");
+                    }
+                }
+
+                class LoggerExceptionHook{
+
+                    public:
+                        
+                        LoggerExceptionHook(){
+                            jpl::_logger::info("Logger's Exception Hook set");
+                            std::set_terminate(on_terminate);
+                        }
+                         
+                };
+            }
         }
     } 
 

@@ -5,8 +5,8 @@ jpl::_network::_http::Response::Response(const std::string &responseBody, const 
 
     jpl::_utils::_collections::_list::LinkedList<std::string>* splitted = jpl::_utils::_string::split(responseHeader, std::regex("\n"));
     for(long i = 0; i < splitted->getSize(); i++){
-        std::string cr = splitted->get(i);
-        if(cr.empty()){
+        std::string cr = jpl::_utils::_string::trim(splitted->get(i));
+        if(!cr.empty()){
             jpl::_utils::_collections::_list::LinkedList<std::string>* keyvalue = jpl::_utils::_string::split(cr, std::regex(":"));
 
             //For any parameter which does not have a valid value separated by ':' (e.g. "HTTP/1.1 OK")

@@ -9,6 +9,7 @@
 
 #include <curl/curl.h>
 #include <jpl/exception/runtime/IllegalStateException.hpp>
+#include <jpl/logger/Logger.hpp>
 
 namespace jpl{
     namespace _network{

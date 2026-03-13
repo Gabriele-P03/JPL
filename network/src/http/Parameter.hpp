@@ -32,6 +32,9 @@ namespace jpl{
                     const std::string getValue() const noexcept{
                         return this->value;
                     }
+
+                    
+                    ~Parameter() = default;
             };
         }
     }

@@ -10,6 +10,7 @@ jpl::_network::_http::HttpClient::HttpClient() : jpl::_network::_http::HttpClien
     curl_easy_setopt(this->curl, CURLOPT_HEADERFUNCTION, &WriteCallback);
     curl_easy_setopt(this->curl, CURLOPT_HEADERDATA, &responseHeaders);
     curl_easy_setopt(this->curl, CURLOPT_ERRORBUFFER, this->errorBuffer);
+    jpl::_logger::info("New HttpClient instanced");
 }
 
 jpl::_network::_http::HttpClient::~HttpClient(){
@@ -23,7 +24,7 @@ void jpl::_network::_http::HttpClient::executeRequest(char* url){
     curl_easy_setopt(this->curl, CURLOPT_URL, url);
     CURLcode res = curl_easy_perform(this->curl);
     if(res != CURLE_OK){
-        throw new jpl::_exception::RuntimeException(this->getLastError());
+        throw jpl::_exception::RuntimeException(this->getLastError());
     }
 }
 
@@ -45,6 +46,7 @@ CURLU* jpl::_network::_http::HttpClient::initUrl(const std::string &url, std::ve
         std::string par = cr.getKey() + "=" + cr.getValue();
         curl_url_set(curlurl, CURLUPART_QUERY, par.c_str(), CURLU_APPENDQUERY);
     }
+    jpl::_logger::debug("New URL initialized");
     return curlurl;
 }
 
@@ -55,6 +57,7 @@ char* jpl::_network::_http::HttpClient::extractUrlStringFromCURLU(CURLU* curlu){
     if(code != CURLUE_OK){
         throw jpl::_exception::RuntimeException("Could not extract url string from CURLU: " + std::to_string(code));
     }
+    jpl::_logger::debug("URL extracted: " + std::string(buffer));
     return buffer;
 }
 
@@ -70,6 +73,7 @@ jpl::_network::_http::Response* jpl::_network::_http::HttpClient::get(const std:
 }
 
 jpl::_network::_http::Response* jpl::_network::_http::HttpClient::post(const std::string &url, std::vector<jpl::_network::_http::Parameter> &pars, const char* body, const char* ct, struct curl_slist* headers){
+    jpl::_logger::debug("POST: " + url);
     CURLU* curlu = jpl::_network::_http::HttpClient::initUrl(url, pars);
     char* url_c = jpl::_network::_http::HttpClient::extractUrlStringFromCURLU(curlu);
     curl_easy_setopt(this->curl, CURLOPT_CUSTOMREQUEST, NULL);

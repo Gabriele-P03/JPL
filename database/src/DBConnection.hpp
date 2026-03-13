@@ -8,7 +8,7 @@
 
 #include <SQLAPI.h>
 #include <string>
-#include <jpl/logger/LoggerWrapper.hpp>
+#include <jpl/logger/Logger.hpp>
 #include <unordered_map>
 
 namespace jpl{

@@ -27,6 +27,8 @@ events:
     names:
       - "mingw32-make.exe"
     candidate_directories:
+      - "C:/Users/paceg/.vscode/extensions/vadimcn.vscode-lldb-1.12.1/bin/"
+      - "C:/Users/paceg/AppData/Local/Programs/Microsoft VS Code/"
       - "C:/Windows/System32/"
       - "C:/Windows/"
       - "C:/Windows/System32/wbem/"
@@ -35,14 +37,25 @@ events:
       - "C:/Program Files/Git/cmd/"
       - "C:/Program Files/CMake/bin/"
       - "C:/msys64/mingw64/bin/"
+      - "C:/Program Files/nodejs/"
+      - "C:/Program Files/MySQL/MySQL Shell 8.0/bin/"
       - "C:/Users/paceg/AppData/Local/Microsoft/WindowsApps/"
       - "C:/Users/paceg/AppData/Local/Programs/Microsoft VS Code/bin/"
       - "C:/Program Files/JetBrains/IntelliJ IDEA 2025.3.2/bin/"
+      - "C:/Program Files (x86)/Nmap/"
+      - "C:/Users/paceg/AppData/Roaming/npm/"
+      - "C:/Users/paceg/.jdks/corretto-19.0.2/bin/"
+      - "C:/Users/paceg/.cargo/bin/"
+      - "C:/msys64/usr/bin/"
       - "/REGISTRY-NOTFOUND/bin/"
       - "c:/MinGW/bin/"
       - "/MinGW/bin/"
       - "/REGISTRY-NOTFOUND/MinGW/bin/"
     searched_directories:
+      - "C:/Users/paceg/.vscode/extensions/vadimcn.vscode-lldb-1.12.1/bin/mingw32-make.exe.com"
+      - "C:/Users/paceg/.vscode/extensions/vadimcn.vscode-lldb-1.12.1/bin/mingw32-make.exe"
+      - "C:/Users/paceg/AppData/Local/Programs/Microsoft VS Code/mingw32-make.exe.com"
+      - "C:/Users/paceg/AppData/Local/Programs/Microsoft VS Code/mingw32-make.exe"
       - "C:/Windows/System32/mingw32-make.exe.com"
       - "C:/Windows/System32/mingw32-make.exe"
       - "C:/Windows/mingw32-make.exe.com"
@@ -61,6 +74,8 @@ events:
     found: "C:/msys64/mingw64/bin/mingw32-make.exe"
     search_context:
       ENV{PATH}:
+        - "c:\\Users\\paceg\\.vscode\\extensions\\vadimcn.vscode-lldb-1.12.1\\bin"
+        - "C:\\Users\\paceg\\AppData\\Local\\Programs\\Microsoft VS Code"
         - "C:\\WINDOWS\\system32"
         - "C:\\WINDOWS"
         - "C:\\WINDOWS\\System32\\Wbem"
@@ -69,9 +84,16 @@ events:
         - "C:\\Program Files\\Git\\cmd"
         - "C:\\Program Files\\CMake\\bin"
         - "C:\\msys64\\mingw64\\bin"
+        - "C:\\Program Files\\nodejs\\"
+        - "C:\\Program Files\\MySQL\\MySQL Shell 8.0\\bin\\"
         - "C:\\Users\\paceg\\AppData\\Local\\Microsoft\\WindowsApps"
         - "C:\\Users\\paceg\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
         - "C:\\Program Files\\JetBrains\\IntelliJ IDEA 2025.3.2\\bin"
+        - "C:\\Program Files (x86)\\Nmap"
+        - "C:\\Users\\paceg\\AppData\\Roaming\\npm"
+        - "C:\\Users\\paceg\\.jdks\\corretto-19.0.2\\bin"
+        - "C:\\Users\\paceg\\.cargo\\bin"
+        - "C:\\msys64\\usr\\bin"
   -
     kind: "find-v1"
     backtrace:
@@ -98,6 +120,8 @@ events:
       - "icx"
       - "clang"
     candidate_directories:
+      - "C:/Users/paceg/.vscode/extensions/vadimcn.vscode-lldb-1.12.1/bin/"
+      - "C:/Users/paceg/AppData/Local/Programs/Microsoft VS Code/"
       - "C:/Windows/System32/"
       - "C:/Windows/"
       - "C:/Windows/System32/wbem/"
@@ -106,10 +130,59 @@ events:
       - "C:/Program Files/Git/cmd/"
       - "C:/Program Files/CMake/bin/"
       - "C:/msys64/mingw64/bin/"
+      - "C:/Program Files/nodejs/"
+      - "C:/Program Files/MySQL/MySQL Shell 8.0/bin/"
       - "C:/Users/paceg/AppData/Local/Microsoft/WindowsApps/"
       - "C:/Users/paceg/AppData/Local/Programs/Microsoft VS Code/bin/"
       - "C:/Program Files/JetBrains/IntelliJ IDEA 2025.3.2/bin/"
+      - "C:/Program Files (x86)/Nmap/"
+      - "C:/Users/paceg/AppData/Roaming/npm/"
+      - "C:/Users/paceg/.jdks/corretto-19.0.2/bin/"
+      - "C:/Users/paceg/.cargo/bin/"
+      - "C:/msys64/usr/bin/"
     searched_directories:
+      - "C:/Users/paceg/.vscode/extensions/vadimcn.vscode-lldb-1.12.1/bin/cc.com"
+      - "C:/Users/paceg/.vscode/extensions/vadimcn.vscode-lldb-1.12.1/bin/cc.exe"
+      - "C:/Users/paceg/.vscode/extensions/vadimcn.vscode-lldb-1.12.1/bin/cc"
+      - "C:/Users/paceg/.vscode/extensions/vadimcn.vscode-lldb-1.12.1/bin/gcc.com"
+      - "C:/Users/paceg/.vscode/extensions/vadimcn.vscode-lldb-1.12.1/bin/gcc.exe"
+      - "C:/Users/paceg/.vscode/extensions/vadimcn.vscode-lldb-1.12.1/bin/gcc"
+      - "C:/Users/paceg/.vscode/extensions/vadimcn.vscode-lldb-1.12.1/bin/cl.com"
+      - "C:/Users/paceg/.vscode/extensions/vadimcn.vscode-lldb-1.12.1/bin/cl.exe"
+      - "C:/Users/paceg/.vscode/extensions/vadimcn.vscode-lldb-1.12.1/bin/cl"
+      - "C:/Users/paceg/.vscode/extensions/vadimcn.vscode-lldb-1.12.1/bin/bcc.com"
+      - "C:/Users/paceg/.vscode/extensions/vadimcn.vscode-lldb-1.12.1/bin/bcc.exe"
+      - "C:/Users/paceg/.vscode/extensions/vadimcn.vscode-lldb-1.12.1/bin/bcc"
+      - "C:/Users/paceg/.vscode/extensions/vadimcn.vscode-lldb-1.12.1/bin/xlc.com"
+      - "C:/Users/paceg/.vscode/extensions/vadimcn.vscode-lldb-1.12.1/bin/xlc.exe"
+      - "C:/Users/paceg/.vscode/extensions/vadimcn.vscode-lldb-1.12.1/bin/xlc"
+      - "C:/Users/paceg/.vscode/extensions/vadimcn.vscode-lldb-1.12.1/bin/icx.com"
+      - "C:/Users/paceg/.vscode/extensions/vadimcn.vscode-lldb-1.12.1/bin/icx.exe"
+      - "C:/Users/paceg/.vscode/extensions/vadimcn.vscode-lldb-1.12.1/bin/icx"
+      - "C:/Users/paceg/.vscode/extensions/vadimcn.vscode-lldb-1.12.1/bin/clang.com"
+      - "C:/Users/paceg/.vscode/extensions/vadimcn.vscode-lldb-1.12.1/bin/clang.exe"
+      - "C:/Users/paceg/.vscode/extensions/vadimcn.vscode-lldb-1.12.1/bin/clang"
+      - "C:/Users/paceg/AppData/Local/Programs/Microsoft VS Code/cc.com"
+      - "C:/Users/paceg/AppData/Local/Programs/Microsoft VS Code/cc.exe"
+      - "C:/Users/paceg/AppData/Local/Programs/Microsoft VS Code/cc"
+      - "C:/Users/paceg/AppData/Local/Programs/Microsoft VS Code/gcc.com"
+      - "C:/Users/paceg/AppData/Local/Programs/Microsoft VS Code/gcc.exe"
+      - "C:/Users/paceg/AppData/Local/Programs/Microsoft VS Code/gcc"
+      - "C:/Users/paceg/AppData/Local/Programs/Microsoft VS Code/cl.com"
+      - "C:/Users/paceg/AppData/Local/Programs/Microsoft VS Code/cl.exe"
+      - "C:/Users/paceg/AppData/Local/Programs/Microsoft VS Code/cl"
+      - "C:/Users/paceg/AppData/Local/Programs/Microsoft VS Code/bcc.com"
+      - "C:/Users/paceg/AppData/Local/Programs/Microsoft VS Code/bcc.exe"
+      - "C:/Users/paceg/AppData/Local/Programs/Microsoft VS Code/bcc"
+      - "C:/Users/paceg/AppData/Local/Programs/Microsoft VS Code/xlc.com"
+      - "C:/Users/paceg/AppData/Local/Programs/Microsoft VS Code/xlc.exe"
+      - "C:/Users/paceg/AppData/Local/Programs/Microsoft VS Code/xlc"
+      - "C:/Users/paceg/AppData/Local/Programs/Microsoft VS Code/icx.com"
+      - "C:/Users/paceg/AppData/Local/Programs/Microsoft VS Code/icx.exe"
+      - "C:/Users/paceg/AppData/Local/Programs/Microsoft VS Code/icx"
+      - "C:/Users/paceg/AppData/Local/Programs/Microsoft VS Code/clang.com"
+      - "C:/Users/paceg/AppData/Local/Programs/Microsoft VS Code/clang.exe"
+      - "C:/Users/paceg/AppData/Local/Programs/Microsoft VS Code/clang"
       - "C:/Windows/System32/cc.com"
       - "C:/Windows/System32/cc.exe"
       - "C:/Windows/System32/cc"
@@ -261,6 +334,8 @@ events:
     found: "C:/msys64/mingw64/bin/cc.exe"
     search_context:
       ENV{PATH}:
+        - "c:\\Users\\paceg\\.vscode\\extensions\\vadimcn.vscode-lldb-1.12.1\\bin"
+        - "C:\\Users\\paceg\\AppData\\Local\\Programs\\Microsoft VS Code"
         - "C:\\WINDOWS\\system32"
         - "C:\\WINDOWS"
         - "C:\\WINDOWS\\System32\\Wbem"
@@ -269,9 +344,16 @@ events:
         - "C:\\Program Files\\Git\\cmd"
         - "C:\\Program Files\\CMake\\bin"
         - "C:\\msys64\\mingw64\\bin"
+        - "C:\\Program Files\\nodejs\\"
+        - "C:\\Program Files\\MySQL\\MySQL Shell 8.0\\bin\\"
         - "C:\\Users\\paceg\\AppData\\Local\\Microsoft\\WindowsApps"
         - "C:\\Users\\paceg\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
         - "C:\\Program Files\\JetBrains\\IntelliJ IDEA 2025.3.2\\bin"
+        - "C:\\Program Files (x86)\\Nmap"
+        - "C:\\Users\\paceg\\AppData\\Roaming\\npm"
+        - "C:\\Users\\paceg\\.jdks\\corretto-19.0.2\\bin"
+        - "C:\\Users\\paceg\\.cargo\\bin"
+        - "C:\\msys64\\usr\\bin"
   -
     kind: "find-v1"
     backtrace:
@@ -299,6 +381,8 @@ events:
     found: "C:/Program Files/CMake/share/cmake-4.2/Modules/CMakeCCompilerId.c.in"
     search_context:
       ENV{PATH}:
+        - "c:\\Users\\paceg\\.vscode\\extensions\\vadimcn.vscode-lldb-1.12.1\\bin"
+        - "C:\\Users\\paceg\\AppData\\Local\\Programs\\Microsoft VS Code"
         - "C:\\WINDOWS\\system32"
         - "C:\\WINDOWS"
         - "C:\\WINDOWS\\System32\\Wbem"
@@ -307,9 +391,16 @@ events:
         - "C:\\Program Files\\Git\\cmd"
         - "C:\\Program Files\\CMake\\bin"
         - "C:\\msys64\\mingw64\\bin"
+        - "C:\\Program Files\\nodejs\\"
+        - "C:\\Program Files\\MySQL\\MySQL Shell 8.0\\bin\\"
         - "C:\\Users\\paceg\\AppData\\Local\\Microsoft\\WindowsApps"
         - "C:\\Users\\paceg\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
         - "C:\\Program Files\\JetBrains\\IntelliJ IDEA 2025.3.2\\bin"
+        - "C:\\Program Files (x86)\\Nmap"
+        - "C:\\Users\\paceg\\AppData\\Roaming\\npm"
+        - "C:\\Users\\paceg\\.jdks\\corretto-19.0.2\\bin"
+        - "C:\\Users\\paceg\\.cargo\\bin"
+        - "C:\\msys64\\usr\\bin"
   -
     kind: "message-v1"
     backtrace:
@@ -353,6 +444,8 @@ events:
       - "ar"
     candidate_directories:
       - "C:/msys64/mingw64/bin/"
+      - "C:/Users/paceg/.vscode/extensions/vadimcn.vscode-lldb-1.12.1/bin/"
+      - "C:/Users/paceg/AppData/Local/Programs/Microsoft VS Code/"
       - "C:/Windows/System32/"
       - "C:/Windows/"
       - "C:/Windows/System32/wbem/"
@@ -360,14 +453,23 @@ events:
       - "C:/Windows/System32/OpenSSH/"
       - "C:/Program Files/Git/cmd/"
       - "C:/Program Files/CMake/bin/"
+      - "C:/Program Files/nodejs/"
+      - "C:/Program Files/MySQL/MySQL Shell 8.0/bin/"
       - "C:/Users/paceg/AppData/Local/Microsoft/WindowsApps/"
       - "C:/Users/paceg/AppData/Local/Programs/Microsoft VS Code/bin/"
       - "C:/Program Files/JetBrains/IntelliJ IDEA 2025.3.2/bin/"
+      - "C:/Program Files (x86)/Nmap/"
+      - "C:/Users/paceg/AppData/Roaming/npm/"
+      - "C:/Users/paceg/.jdks/corretto-19.0.2/bin/"
+      - "C:/Users/paceg/.cargo/bin/"
+      - "C:/msys64/usr/bin/"
     searched_directories:
       - "C:/msys64/mingw64/bin/ar.com"
     found: "C:/msys64/mingw64/bin/ar.exe"
     search_context:
       ENV{PATH}:
+        - "c:\\Users\\paceg\\.vscode\\extensions\\vadimcn.vscode-lldb-1.12.1\\bin"
+        - "C:\\Users\\paceg\\AppData\\Local\\Programs\\Microsoft VS Code"
         - "C:\\WINDOWS\\system32"
         - "C:\\WINDOWS"
         - "C:\\WINDOWS\\System32\\Wbem"
@@ -376,9 +478,16 @@ events:
         - "C:\\Program Files\\Git\\cmd"
         - "C:\\Program Files\\CMake\\bin"
         - "C:\\msys64\\mingw64\\bin"
+        - "C:\\Program Files\\nodejs\\"
+        - "C:\\Program Files\\MySQL\\MySQL Shell 8.0\\bin\\"
         - "C:\\Users\\paceg\\AppData\\Local\\Microsoft\\WindowsApps"
         - "C:\\Users\\paceg\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
         - "C:\\Program Files\\JetBrains\\IntelliJ IDEA 2025.3.2\\bin"
+        - "C:\\Program Files (x86)\\Nmap"
+        - "C:\\Users\\paceg\\AppData\\Roaming\\npm"
+        - "C:\\Users\\paceg\\.jdks\\corretto-19.0.2\\bin"
+        - "C:\\Users\\paceg\\.cargo\\bin"
+        - "C:\\msys64\\usr\\bin"
   -
     kind: "find-v1"
     backtrace:
@@ -400,6 +509,8 @@ events:
       - "ranlib"
     candidate_directories:
       - "C:/msys64/mingw64/bin/"
+      - "C:/Users/paceg/.vscode/extensions/vadimcn.vscode-lldb-1.12.1/bin/"
+      - "C:/Users/paceg/AppData/Local/Programs/Microsoft VS Code/"
       - "C:/Windows/System32/"
       - "C:/Windows/"
       - "C:/Windows/System32/wbem/"
@@ -407,14 +518,23 @@ events:
       - "C:/Windows/System32/OpenSSH/"
       - "C:/Program Files/Git/cmd/"
       - "C:/Program Files/CMake/bin/"
+      - "C:/Program Files/nodejs/"
+      - "C:/Program Files/MySQL/MySQL Shell 8.0/bin/"
       - "C:/Users/paceg/AppData/Local/Microsoft/WindowsApps/"
       - "C:/Users/paceg/AppData/Local/Programs/Microsoft VS Code/bin/"
       - "C:/Program Files/JetBrains/IntelliJ IDEA 2025.3.2/bin/"
+      - "C:/Program Files (x86)/Nmap/"
+      - "C:/Users/paceg/AppData/Roaming/npm/"
+      - "C:/Users/paceg/.jdks/corretto-19.0.2/bin/"
+      - "C:/Users/paceg/.cargo/bin/"
+      - "C:/msys64/usr/bin/"
     searched_directories:
       - "C:/msys64/mingw64/bin/ranlib.com"
     found: "C:/msys64/mingw64/bin/ranlib.exe"
     search_context:
       ENV{PATH}:
+        - "c:\\Users\\paceg\\.vscode\\extensions\\vadimcn.vscode-lldb-1.12.1\\bin"
+        - "C:\\Users\\paceg\\AppData\\Local\\Programs\\Microsoft VS Code"
         - "C:\\WINDOWS\\system32"
         - "C:\\WINDOWS"
         - "C:\\WINDOWS\\System32\\Wbem"
@@ -423,9 +543,16 @@ events:
         - "C:\\Program Files\\Git\\cmd"
         - "C:\\Program Files\\CMake\\bin"
         - "C:\\msys64\\mingw64\\bin"
+        - "C:\\Program Files\\nodejs\\"
+        - "C:\\Program Files\\MySQL\\MySQL Shell 8.0\\bin\\"
         - "C:\\Users\\paceg\\AppData\\Local\\Microsoft\\WindowsApps"
         - "C:\\Users\\paceg\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
         - "C:\\Program Files\\JetBrains\\IntelliJ IDEA 2025.3.2\\bin"
+        - "C:\\Program Files (x86)\\Nmap"
+        - "C:\\Users\\paceg\\AppData\\Roaming\\npm"
+        - "C:\\Users\\paceg\\.jdks\\corretto-19.0.2\\bin"
+        - "C:\\Users\\paceg\\.cargo\\bin"
+        - "C:\\msys64\\usr\\bin"
   -
     kind: "find-v1"
     backtrace:
@@ -447,6 +574,8 @@ events:
       - "strip"
     candidate_directories:
       - "C:/msys64/mingw64/bin/"
+      - "C:/Users/paceg/.vscode/extensions/vadimcn.vscode-lldb-1.12.1/bin/"
+      - "C:/Users/paceg/AppData/Local/Programs/Microsoft VS Code/"
       - "C:/Windows/System32/"
       - "C:/Windows/"
       - "C:/Windows/System32/wbem/"
@@ -454,14 +583,23 @@ events:
       - "C:/Windows/System32/OpenSSH/"
       - "C:/Program Files/Git/cmd/"
       - "C:/Program Files/CMake/bin/"
+      - "C:/Program Files/nodejs/"
+      - "C:/Program Files/MySQL/MySQL Shell 8.0/bin/"
       - "C:/Users/paceg/AppData/Local/Microsoft/WindowsApps/"
       - "C:/Users/paceg/AppData/Local/Programs/Microsoft VS Code/bin/"
       - "C:/Program Files/JetBrains/IntelliJ IDEA 2025.3.2/bin/"
+      - "C:/Program Files (x86)/Nmap/"
+      - "C:/Users/paceg/AppData/Roaming/npm/"
+      - "C:/Users/paceg/.jdks/corretto-19.0.2/bin/"
+      - "C:/Users/paceg/.cargo/bin/"
+      - "C:/msys64/usr/bin/"
     searched_directories:
       - "C:/msys64/mingw64/bin/strip.com"
     found: "C:/msys64/mingw64/bin/strip.exe"
     search_context:
       ENV{PATH}:
+        - "c:\\Users\\paceg\\.vscode\\extensions\\vadimcn.vscode-lldb-1.12.1\\bin"
+        - "C:\\Users\\paceg\\AppData\\Local\\Programs\\Microsoft VS Code"
         - "C:\\WINDOWS\\system32"
         - "C:\\WINDOWS"
         - "C:\\WINDOWS\\System32\\Wbem"
@@ -470,9 +608,16 @@ events:
         - "C:\\Program Files\\Git\\cmd"
         - "C:\\Program Files\\CMake\\bin"
         - "C:\\msys64\\mingw64\\bin"
+        - "C:\\Program Files\\nodejs\\"
+        - "C:\\Program Files\\MySQL\\MySQL Shell 8.0\\bin\\"
         - "C:\\Users\\paceg\\AppData\\Local\\Microsoft\\WindowsApps"
         - "C:\\Users\\paceg\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
         - "C:\\Program Files\\JetBrains\\IntelliJ IDEA 2025.3.2\\bin"
+        - "C:\\Program Files (x86)\\Nmap"
+        - "C:\\Users\\paceg\\AppData\\Roaming\\npm"
+        - "C:\\Users\\paceg\\.jdks\\corretto-19.0.2\\bin"
+        - "C:\\Users\\paceg\\.cargo\\bin"
+        - "C:\\msys64\\usr\\bin"
   -
     kind: "find-v1"
     backtrace:
@@ -494,6 +639,8 @@ events:
       - "ld"
     candidate_directories:
       - "C:/msys64/mingw64/bin/"
+      - "C:/Users/paceg/.vscode/extensions/vadimcn.vscode-lldb-1.12.1/bin/"
+      - "C:/Users/paceg/AppData/Local/Programs/Microsoft VS Code/"
       - "C:/Windows/System32/"
       - "C:/Windows/"
       - "C:/Windows/System32/wbem/"
@@ -501,14 +648,23 @@ events:
       - "C:/Windows/System32/OpenSSH/"
       - "C:/Program Files/Git/cmd/"
       - "C:/Program Files/CMake/bin/"
+      - "C:/Program Files/nodejs/"
+      - "C:/Program Files/MySQL/MySQL Shell 8.0/bin/"
       - "C:/Users/paceg/AppData/Local/Microsoft/WindowsApps/"
       - "C:/Users/paceg/AppData/Local/Programs/Microsoft VS Code/bin/"
       - "C:/Program Files/JetBrains/IntelliJ IDEA 2025.3.2/bin/"
+      - "C:/Program Files (x86)/Nmap/"
+      - "C:/Users/paceg/AppData/Roaming/npm/"
+      - "C:/Users/paceg/.jdks/corretto-19.0.2/bin/"
+      - "C:/Users/paceg/.cargo/bin/"
+      - "C:/msys64/usr/bin/"
     searched_directories:
       - "C:/msys64/mingw64/bin/ld.com"
     found: "C:/msys64/mingw64/bin/ld.exe"
     search_context:
       ENV{PATH}:
+        - "c:\\Users\\paceg\\.vscode\\extensions\\vadimcn.vscode-lldb-1.12.1\\bin"
+        - "C:\\Users\\paceg\\AppData\\Local\\Programs\\Microsoft VS Code"
         - "C:\\WINDOWS\\system32"
         - "C:\\WINDOWS"
         - "C:\\WINDOWS\\System32\\Wbem"
@@ -517,9 +673,16 @@ events:
         - "C:\\Program Files\\Git\\cmd"
         - "C:\\Program Files\\CMake\\bin"
         - "C:\\msys64\\mingw64\\bin"
+        - "C:\\Program Files\\nodejs\\"
+        - "C:\\Program Files\\MySQL\\MySQL Shell 8.0\\bin\\"
         - "C:\\Users\\paceg\\AppData\\Local\\Microsoft\\WindowsApps"
         - "C:\\Users\\paceg\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
         - "C:\\Program Files\\JetBrains\\IntelliJ IDEA 2025.3.2\\bin"
+        - "C:\\Program Files (x86)\\Nmap"
+        - "C:\\Users\\paceg\\AppData\\Roaming\\npm"
+        - "C:\\Users\\paceg\\.jdks\\corretto-19.0.2\\bin"
+        - "C:\\Users\\paceg\\.cargo\\bin"
+        - "C:\\msys64\\usr\\bin"
   -
     kind: "find-v1"
     backtrace:
@@ -541,6 +704,8 @@ events:
       - "nm"
     candidate_directories:
       - "C:/msys64/mingw64/bin/"
+      - "C:/Users/paceg/.vscode/extensions/vadimcn.vscode-lldb-1.12.1/bin/"
+      - "C:/Users/paceg/AppData/Local/Programs/Microsoft VS Code/"
       - "C:/Windows/System32/"
       - "C:/Windows/"
       - "C:/Windows/System32/wbem/"
@@ -548,14 +713,23 @@ events:
       - "C:/Windows/System32/OpenSSH/"
       - "C:/Program Files/Git/cmd/"
       - "C:/Program Files/CMake/bin/"
+      - "C:/Program Files/nodejs/"
+      - "C:/Program Files/MySQL/MySQL Shell 8.0/bin/"
       - "C:/Users/paceg/AppData/Local/Microsoft/WindowsApps/"
       - "C:/Users/paceg/AppData/Local/Programs/Microsoft VS Code/bin/"
       - "C:/Program Files/JetBrains/IntelliJ IDEA 2025.3.2/bin/"
+      - "C:/Program Files (x86)/Nmap/"
+      - "C:/Users/paceg/AppData/Roaming/npm/"
+      - "C:/Users/paceg/.jdks/corretto-19.0.2/bin/"
+      - "C:/Users/paceg/.cargo/bin/"
+      - "C:/msys64/usr/bin/"
     searched_directories:
       - "C:/msys64/mingw64/bin/nm.com"
     found: "C:/msys64/mingw64/bin/nm.exe"
     search_context:
       ENV{PATH}:
+        - "c:\\Users\\paceg\\.vscode\\extensions\\vadimcn.vscode-lldb-1.12.1\\bin"
+        - "C:\\Users\\paceg\\AppData\\Local\\Programs\\Microsoft VS Code"
         - "C:\\WINDOWS\\system32"
         - "C:\\WINDOWS"
         - "C:\\WINDOWS\\System32\\Wbem"
@@ -564,9 +738,16 @@ events:
         - "C:\\Program Files\\Git\\cmd"
         - "C:\\Program Files\\CMake\\bin"
         - "C:\\msys64\\mingw64\\bin"
+        - "C:\\Program Files\\nodejs\\"
+        - "C:\\Program Files\\MySQL\\MySQL Shell 8.0\\bin\\"
         - "C:\\Users\\paceg\\AppData\\Local\\Microsoft\\WindowsApps"
         - "C:\\Users\\paceg\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
         - "C:\\Program Files\\JetBrains\\IntelliJ IDEA 2025.3.2\\bin"
+        - "C:\\Program Files (x86)\\Nmap"
+        - "C:\\Users\\paceg\\AppData\\Roaming\\npm"
+        - "C:\\Users\\paceg\\.jdks\\corretto-19.0.2\\bin"
+        - "C:\\Users\\paceg\\.cargo\\bin"
+        - "C:\\msys64\\usr\\bin"
   -
     kind: "find-v1"
     backtrace:
@@ -588,6 +769,8 @@ events:
       - "objdump"
     candidate_directories:
       - "C:/msys64/mingw64/bin/"
+      - "C:/Users/paceg/.vscode/extensions/vadimcn.vscode-lldb-1.12.1/bin/"
+      - "C:/Users/paceg/AppData/Local/Programs/Microsoft VS Code/"
       - "C:/Windows/System32/"
       - "C:/Windows/"
       - "C:/Windows/System32/wbem/"
@@ -595,14 +778,23 @@ events:
       - "C:/Windows/System32/OpenSSH/"
       - "C:/Program Files/Git/cmd/"
       - "C:/Program Files/CMake/bin/"
+      - "C:/Program Files/nodejs/"
+      - "C:/Program Files/MySQL/MySQL Shell 8.0/bin/"
       - "C:/Users/paceg/AppData/Local/Microsoft/WindowsApps/"
       - "C:/Users/paceg/AppData/Local/Programs/Microsoft VS Code/bin/"
       - "C:/Program Files/JetBrains/IntelliJ IDEA 2025.3.2/bin/"
+      - "C:/Program Files (x86)/Nmap/"
+      - "C:/Users/paceg/AppData/Roaming/npm/"
+      - "C:/Users/paceg/.jdks/corretto-19.0.2/bin/"
+      - "C:/Users/paceg/.cargo/bin/"
+      - "C:/msys64/usr/bin/"
     searched_directories:
       - "C:/msys64/mingw64/bin/objdump.com"
     found: "C:/msys64/mingw64/bin/objdump.exe"
     search_context:
       ENV{PATH}:
+        - "c:\\Users\\paceg\\.vscode\\extensions\\vadimcn.vscode-lldb-1.12.1\\bin"
+        - "C:\\Users\\paceg\\AppData\\Local\\Programs\\Microsoft VS Code"
         - "C:\\WINDOWS\\system32"
         - "C:\\WINDOWS"
         - "C:\\WINDOWS\\System32\\Wbem"
@@ -611,9 +803,16 @@ events:
         - "C:\\Program Files\\Git\\cmd"
         - "C:\\Program Files\\CMake\\bin"
         - "C:\\msys64\\mingw64\\bin"
+        - "C:\\Program Files\\nodejs\\"
+        - "C:\\Program Files\\MySQL\\MySQL Shell 8.0\\bin\\"
         - "C:\\Users\\paceg\\AppData\\Local\\Microsoft\\WindowsApps"
         - "C:\\Users\\paceg\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
         - "C:\\Program Files\\JetBrains\\IntelliJ IDEA 2025.3.2\\bin"
+        - "C:\\Program Files (x86)\\Nmap"
+        - "C:\\Users\\paceg\\AppData\\Roaming\\npm"
+        - "C:\\Users\\paceg\\.jdks\\corretto-19.0.2\\bin"
+        - "C:\\Users\\paceg\\.cargo\\bin"
+        - "C:\\msys64\\usr\\bin"
   -
     kind: "find-v1"
     backtrace:
@@ -635,6 +834,8 @@ events:
       - "objcopy"
     candidate_directories:
       - "C:/msys64/mingw64/bin/"
+      - "C:/Users/paceg/.vscode/extensions/vadimcn.vscode-lldb-1.12.1/bin/"
+      - "C:/Users/paceg/AppData/Local/Programs/Microsoft VS Code/"
       - "C:/Windows/System32/"
       - "C:/Windows/"
       - "C:/Windows/System32/wbem/"
@@ -642,14 +843,23 @@ events:
       - "C:/Windows/System32/OpenSSH/"
       - "C:/Program Files/Git/cmd/"
       - "C:/Program Files/CMake/bin/"
+      - "C:/Program Files/nodejs/"
+      - "C:/Program Files/MySQL/MySQL Shell 8.0/bin/"
       - "C:/Users/paceg/AppData/Local/Microsoft/WindowsApps/"
       - "C:/Users/paceg/AppData/Local/Programs/Microsoft VS Code/bin/"
       - "C:/Program Files/JetBrains/IntelliJ IDEA 2025.3.2/bin/"
+      - "C:/Program Files (x86)/Nmap/"
+      - "C:/Users/paceg/AppData/Roaming/npm/"
+      - "C:/Users/paceg/.jdks/corretto-19.0.2/bin/"
+      - "C:/Users/paceg/.cargo/bin/"
+      - "C:/msys64/usr/bin/"
     searched_directories:
       - "C:/msys64/mingw64/bin/objcopy.com"
     found: "C:/msys64/mingw64/bin/objcopy.exe"
     search_context:
       ENV{PATH}:
+        - "c:\\Users\\paceg\\.vscode\\extensions\\vadimcn.vscode-lldb-1.12.1\\bin"
+        - "C:\\Users\\paceg\\AppData\\Local\\Programs\\Microsoft VS Code"
         - "C:\\WINDOWS\\system32"
         - "C:\\WINDOWS"
         - "C:\\WINDOWS\\System32\\Wbem"
@@ -658,9 +868,16 @@ events:
         - "C:\\Program Files\\Git\\cmd"
         - "C:\\Program Files\\CMake\\bin"
         - "C:\\msys64\\mingw64\\bin"
+        - "C:\\Program Files\\nodejs\\"
+        - "C:\\Program Files\\MySQL\\MySQL Shell 8.0\\bin\\"
         - "C:\\Users\\paceg\\AppData\\Local\\Microsoft\\WindowsApps"
         - "C:\\Users\\paceg\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
         - "C:\\Program Files\\JetBrains\\IntelliJ IDEA 2025.3.2\\bin"
+        - "C:\\Program Files (x86)\\Nmap"
+        - "C:\\Users\\paceg\\AppData\\Roaming\\npm"
+        - "C:\\Users\\paceg\\.jdks\\corretto-19.0.2\\bin"
+        - "C:\\Users\\paceg\\.cargo\\bin"
+        - "C:\\msys64\\usr\\bin"
   -
     kind: "find-v1"
     backtrace:
@@ -682,6 +899,8 @@ events:
       - "readelf"
     candidate_directories:
       - "C:/msys64/mingw64/bin/"
+      - "C:/Users/paceg/.vscode/extensions/vadimcn.vscode-lldb-1.12.1/bin/"
+      - "C:/Users/paceg/AppData/Local/Programs/Microsoft VS Code/"
       - "C:/Windows/System32/"
       - "C:/Windows/"
       - "C:/Windows/System32/wbem/"
@@ -689,14 +908,23 @@ events:
       - "C:/Windows/System32/OpenSSH/"
       - "C:/Program Files/Git/cmd/"
       - "C:/Program Files/CMake/bin/"
+      - "C:/Program Files/nodejs/"
+      - "C:/Program Files/MySQL/MySQL Shell 8.0/bin/"
       - "C:/Users/paceg/AppData/Local/Microsoft/WindowsApps/"
       - "C:/Users/paceg/AppData/Local/Programs/Microsoft VS Code/bin/"
       - "C:/Program Files/JetBrains/IntelliJ IDEA 2025.3.2/bin/"
+      - "C:/Program Files (x86)/Nmap/"
+      - "C:/Users/paceg/AppData/Roaming/npm/"
+      - "C:/Users/paceg/.jdks/corretto-19.0.2/bin/"
+      - "C:/Users/paceg/.cargo/bin/"
+      - "C:/msys64/usr/bin/"
     searched_directories:
       - "C:/msys64/mingw64/bin/readelf.com"
     found: "C:/msys64/mingw64/bin/readelf.exe"
     search_context:
       ENV{PATH}:
+        - "c:\\Users\\paceg\\.vscode\\extensions\\vadimcn.vscode-lldb-1.12.1\\bin"
+        - "C:\\Users\\paceg\\AppData\\Local\\Programs\\Microsoft VS Code"
         - "C:\\WINDOWS\\system32"
         - "C:\\WINDOWS"
         - "C:\\WINDOWS\\System32\\Wbem"
@@ -705,9 +933,16 @@ events:
         - "C:\\Program Files\\Git\\cmd"
         - "C:\\Program Files\\CMake\\bin"
         - "C:\\msys64\\mingw64\\bin"
+        - "C:\\Program Files\\nodejs\\"
+        - "C:\\Program Files\\MySQL\\MySQL Shell 8.0\\bin\\"
         - "C:\\Users\\paceg\\AppData\\Local\\Microsoft\\WindowsApps"
         - "C:\\Users\\paceg\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
         - "C:\\Program Files\\JetBrains\\IntelliJ IDEA 2025.3.2\\bin"
+        - "C:\\Program Files (x86)\\Nmap"
+        - "C:\\Users\\paceg\\AppData\\Roaming\\npm"
+        - "C:\\Users\\paceg\\.jdks\\corretto-19.0.2\\bin"
+        - "C:\\Users\\paceg\\.cargo\\bin"
+        - "C:\\msys64\\usr\\bin"
   -
     kind: "find-v1"
     backtrace:
@@ -729,6 +964,8 @@ events:
       - "dlltool"
     candidate_directories:
       - "C:/msys64/mingw64/bin/"
+      - "C:/Users/paceg/.vscode/extensions/vadimcn.vscode-lldb-1.12.1/bin/"
+      - "C:/Users/paceg/AppData/Local/Programs/Microsoft VS Code/"
       - "C:/Windows/System32/"
       - "C:/Windows/"
       - "C:/Windows/System32/wbem/"
@@ -736,14 +973,23 @@ events:
       - "C:/Windows/System32/OpenSSH/"
       - "C:/Program Files/Git/cmd/"
       - "C:/Program Files/CMake/bin/"
+      - "C:/Program Files/nodejs/"
+      - "C:/Program Files/MySQL/MySQL Shell 8.0/bin/"
       - "C:/Users/paceg/AppData/Local/Microsoft/WindowsApps/"
       - "C:/Users/paceg/AppData/Local/Programs/Microsoft VS Code/bin/"
       - "C:/Program Files/JetBrains/IntelliJ IDEA 2025.3.2/bin/"
+      - "C:/Program Files (x86)/Nmap/"
+      - "C:/Users/paceg/AppData/Roaming/npm/"
+      - "C:/Users/paceg/.jdks/corretto-19.0.2/bin/"
+      - "C:/Users/paceg/.cargo/bin/"
+      - "C:/msys64/usr/bin/"
     searched_directories:
       - "C:/msys64/mingw64/bin/dlltool.com"
     found: "C:/msys64/mingw64/bin/dlltool.exe"
     search_context:
       ENV{PATH}:
+        - "c:\\Users\\paceg\\.vscode\\extensions\\vadimcn.vscode-lldb-1.12.1\\bin"
+        - "C:\\Users\\paceg\\AppData\\Local\\Programs\\Microsoft VS Code"
         - "C:\\WINDOWS\\system32"
         - "C:\\WINDOWS"
         - "C:\\WINDOWS\\System32\\Wbem"
@@ -752,9 +998,16 @@ events:
         - "C:\\Program Files\\Git\\cmd"
         - "C:\\Program Files\\CMake\\bin"
         - "C:\\msys64\\mingw64\\bin"
+        - "C:\\Program Files\\nodejs\\"
+        - "C:\\Program Files\\MySQL\\MySQL Shell 8.0\\bin\\"
         - "C:\\Users\\paceg\\AppData\\Local\\Microsoft\\WindowsApps"
         - "C:\\Users\\paceg\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
         - "C:\\Program Files\\JetBrains\\IntelliJ IDEA 2025.3.2\\bin"
+        - "C:\\Program Files (x86)\\Nmap"
+        - "C:\\Users\\paceg\\AppData\\Roaming\\npm"
+        - "C:\\Users\\paceg\\.jdks\\corretto-19.0.2\\bin"
+        - "C:\\Users\\paceg\\.cargo\\bin"
+        - "C:\\msys64\\usr\\bin"
   -
     kind: "find-v1"
     backtrace:
@@ -776,6 +1029,8 @@ events:
       - "addr2line"
     candidate_directories:
       - "C:/msys64/mingw64/bin/"
+      - "C:/Users/paceg/.vscode/extensions/vadimcn.vscode-lldb-1.12.1/bin/"
+      - "C:/Users/paceg/AppData/Local/Programs/Microsoft VS Code/"
       - "C:/Windows/System32/"
       - "C:/Windows/"
       - "C:/Windows/System32/wbem/"
@@ -783,14 +1038,23 @@ events:
       - "C:/Windows/System32/OpenSSH/"
       - "C:/Program Files/Git/cmd/"
       - "C:/Program Files/CMake/bin/"
+      - "C:/Program Files/nodejs/"
+      - "C:/Program Files/MySQL/MySQL Shell 8.0/bin/"
       - "C:/Users/paceg/AppData/Local/Microsoft/WindowsApps/"
       - "C:/Users/paceg/AppData/Local/Programs/Microsoft VS Code/bin/"
       - "C:/Program Files/JetBrains/IntelliJ IDEA 2025.3.2/bin/"
+      - "C:/Program Files (x86)/Nmap/"
+      - "C:/Users/paceg/AppData/Roaming/npm/"
+      - "C:/Users/paceg/.jdks/corretto-19.0.2/bin/"
+      - "C:/Users/paceg/.cargo/bin/"
+      - "C:/msys64/usr/bin/"
     searched_directories:
       - "C:/msys64/mingw64/bin/addr2line.com"
     found: "C:/msys64/mingw64/bin/addr2line.exe"
     search_context:
       ENV{PATH}:
+        - "c:\\Users\\paceg\\.vscode\\extensions\\vadimcn.vscode-lldb-1.12.1\\bin"
+        - "C:\\Users\\paceg\\AppData\\Local\\Programs\\Microsoft VS Code"
         - "C:\\WINDOWS\\system32"
         - "C:\\WINDOWS"
         - "C:\\WINDOWS\\System32\\Wbem"
@@ -799,9 +1063,16 @@ events:
         - "C:\\Program Files\\Git\\cmd"
         - "C:\\Program Files\\CMake\\bin"
         - "C:\\msys64\\mingw64\\bin"
+        - "C:\\Program Files\\nodejs\\"
+        - "C:\\Program Files\\MySQL\\MySQL Shell 8.0\\bin\\"
         - "C:\\Users\\paceg\\AppData\\Local\\Microsoft\\WindowsApps"
         - "C:\\Users\\paceg\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
         - "C:\\Program Files\\JetBrains\\IntelliJ IDEA 2025.3.2\\bin"
+        - "C:\\Program Files (x86)\\Nmap"
+        - "C:\\Users\\paceg\\AppData\\Roaming\\npm"
+        - "C:\\Users\\paceg\\.jdks\\corretto-19.0.2\\bin"
+        - "C:\\Users\\paceg\\.cargo\\bin"
+        - "C:\\msys64\\usr\\bin"
   -
     kind: "find-v1"
     backtrace:
@@ -823,6 +1094,8 @@ events:
       - "tapi"
     candidate_directories:
       - "C:/msys64/mingw64/bin/"
+      - "C:/Users/paceg/.vscode/extensions/vadimcn.vscode-lldb-1.12.1/bin/"
+      - "C:/Users/paceg/AppData/Local/Programs/Microsoft VS Code/"
       - "C:/Windows/System32/"
       - "C:/Windows/"
       - "C:/Windows/System32/wbem/"
@@ -830,13 +1103,26 @@ events:
       - "C:/Windows/System32/OpenSSH/"
       - "C:/Program Files/Git/cmd/"
       - "C:/Program Files/CMake/bin/"
+      - "C:/Program Files/nodejs/"
+      - "C:/Program Files/MySQL/MySQL Shell 8.0/bin/"
       - "C:/Users/paceg/AppData/Local/Microsoft/WindowsApps/"
       - "C:/Users/paceg/AppData/Local/Programs/Microsoft VS Code/bin/"
       - "C:/Program Files/JetBrains/IntelliJ IDEA 2025.3.2/bin/"
+      - "C:/Program Files (x86)/Nmap/"
+      - "C:/Users/paceg/AppData/Roaming/npm/"
+      - "C:/Users/paceg/.jdks/corretto-19.0.2/bin/"
+      - "C:/Users/paceg/.cargo/bin/"
+      - "C:/msys64/usr/bin/"
     searched_directories:
       - "C:/msys64/mingw64/bin/tapi.com"
       - "C:/msys64/mingw64/bin/tapi.exe"
       - "C:/msys64/mingw64/bin/tapi"
+      - "C:/Users/paceg/.vscode/extensions/vadimcn.vscode-lldb-1.12.1/bin/tapi.com"
+      - "C:/Users/paceg/.vscode/extensions/vadimcn.vscode-lldb-1.12.1/bin/tapi.exe"
+      - "C:/Users/paceg/.vscode/extensions/vadimcn.vscode-lldb-1.12.1/bin/tapi"
+      - "C:/Users/paceg/AppData/Local/Programs/Microsoft VS Code/tapi.com"
+      - "C:/Users/paceg/AppData/Local/Programs/Microsoft VS Code/tapi.exe"
+      - "C:/Users/paceg/AppData/Local/Programs/Microsoft VS Code/tapi"
       - "C:/Windows/System32/tapi.com"
       - "C:/Windows/System32/tapi.exe"
       - "C:/Windows/System32/tapi"
@@ -858,6 +1144,12 @@ events:
       - "C:/Program Files/CMake/bin/tapi.com"
       - "C:/Program Files/CMake/bin/tapi.exe"
       - "C:/Program Files/CMake/bin/tapi"
+      - "C:/Program Files/nodejs/tapi.com"
+      - "C:/Program Files/nodejs/tapi.exe"
+      - "C:/Program Files/nodejs/tapi"
+      - "C:/Program Files/MySQL/MySQL Shell 8.0/bin/tapi.com"
+      - "C:/Program Files/MySQL/MySQL Shell 8.0/bin/tapi.exe"
+      - "C:/Program Files/MySQL/MySQL Shell 8.0/bin/tapi"
       - "C:/Users/paceg/AppData/Local/Microsoft/WindowsApps/tapi.com"
       - "C:/Users/paceg/AppData/Local/Microsoft/WindowsApps/tapi.exe"
       - "C:/Users/paceg/AppData/Local/Microsoft/WindowsApps/tapi"
@@ -867,9 +1159,26 @@ events:
       - "C:/Program Files/JetBrains/IntelliJ IDEA 2025.3.2/bin/tapi.com"
       - "C:/Program Files/JetBrains/IntelliJ IDEA 2025.3.2/bin/tapi.exe"
       - "C:/Program Files/JetBrains/IntelliJ IDEA 2025.3.2/bin/tapi"
+      - "C:/Program Files (x86)/Nmap/tapi.com"
+      - "C:/Program Files (x86)/Nmap/tapi.exe"
+      - "C:/Program Files (x86)/Nmap/tapi"
+      - "C:/Users/paceg/AppData/Roaming/npm/tapi.com"
+      - "C:/Users/paceg/AppData/Roaming/npm/tapi.exe"
+      - "C:/Users/paceg/AppData/Roaming/npm/tapi"
+      - "C:/Users/paceg/.jdks/corretto-19.0.2/bin/tapi.com"
+      - "C:/Users/paceg/.jdks/corretto-19.0.2/bin/tapi.exe"
+      - "C:/Users/paceg/.jdks/corretto-19.0.2/bin/tapi"
+      - "C:/Users/paceg/.cargo/bin/tapi.com"
+      - "C:/Users/paceg/.cargo/bin/tapi.exe"
+      - "C:/Users/paceg/.cargo/bin/tapi"
+      - "C:/msys64/usr/bin/tapi.com"
+      - "C:/msys64/usr/bin/tapi.exe"
+      - "C:/msys64/usr/bin/tapi"
     found: false
     search_context:
       ENV{PATH}:
+        - "c:\\Users\\paceg\\.vscode\\extensions\\vadimcn.vscode-lldb-1.12.1\\bin"
+        - "C:\\Users\\paceg\\AppData\\Local\\Programs\\Microsoft VS Code"
         - "C:\\WINDOWS\\system32"
         - "C:\\WINDOWS"
         - "C:\\WINDOWS\\System32\\Wbem"
@@ -878,9 +1187,16 @@ events:
         - "C:\\Program Files\\Git\\cmd"
         - "C:\\Program Files\\CMake\\bin"
         - "C:\\msys64\\mingw64\\bin"
+        - "C:\\Program Files\\nodejs\\"
+        - "C:\\Program Files\\MySQL\\MySQL Shell 8.0\\bin\\"
         - "C:\\Users\\paceg\\AppData\\Local\\Microsoft\\WindowsApps"
         - "C:\\Users\\paceg\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
         - "C:\\Program Files\\JetBrains\\IntelliJ IDEA 2025.3.2\\bin"
+        - "C:\\Program Files (x86)\\Nmap"
+        - "C:\\Users\\paceg\\AppData\\Roaming\\npm"
+        - "C:\\Users\\paceg\\.jdks\\corretto-19.0.2\\bin"
+        - "C:\\Users\\paceg\\.cargo\\bin"
+        - "C:\\msys64\\usr\\bin"
   -
     kind: "find-v1"
     backtrace:
@@ -905,6 +1221,8 @@ events:
       - "gcc-ar"
     candidate_directories:
       - "C:/msys64/mingw64/bin/"
+      - "C:/Users/paceg/.vscode/extensions/vadimcn.vscode-lldb-1.12.1/bin/"
+      - "C:/Users/paceg/AppData/Local/Programs/Microsoft VS Code/"
       - "C:/Windows/System32/"
       - "C:/Windows/"
       - "C:/Windows/System32/wbem/"
@@ -912,13 +1230,26 @@ events:
       - "C:/Windows/System32/OpenSSH/"
       - "C:/Program Files/Git/cmd/"
       - "C:/Program Files/CMake/bin/"
+      - "C:/Program Files/nodejs/"
+      - "C:/Program Files/MySQL/MySQL Shell 8.0/bin/"
       - "C:/Users/paceg/AppData/Local/Microsoft/WindowsApps/"
       - "C:/Users/paceg/AppData/Local/Programs/Microsoft VS Code/bin/"
       - "C:/Program Files/JetBrains/IntelliJ IDEA 2025.3.2/bin/"
+      - "C:/Program Files (x86)/Nmap/"
+      - "C:/Users/paceg/AppData/Roaming/npm/"
+      - "C:/Users/paceg/.jdks/corretto-19.0.2/bin/"
+      - "C:/Users/paceg/.cargo/bin/"
+      - "C:/msys64/usr/bin/"
     searched_directories:
       - "C:/msys64/mingw64/bin/gcc-ar-15.2.com"
       - "C:/msys64/mingw64/bin/gcc-ar-15.2.exe"
       - "C:/msys64/mingw64/bin/gcc-ar-15.2"
+      - "C:/Users/paceg/.vscode/extensions/vadimcn.vscode-lldb-1.12.1/bin/gcc-ar-15.2.com"
+      - "C:/Users/paceg/.vscode/extensions/vadimcn.vscode-lldb-1.12.1/bin/gcc-ar-15.2.exe"
+      - "C:/Users/paceg/.vscode/extensions/vadimcn.vscode-lldb-1.12.1/bin/gcc-ar-15.2"
+      - "C:/Users/paceg/AppData/Local/Programs/Microsoft VS Code/gcc-ar-15.2.com"
+      - "C:/Users/paceg/AppData/Local/Programs/Microsoft VS Code/gcc-ar-15.2.exe"
+      - "C:/Users/paceg/AppData/Local/Programs/Microsoft VS Code/gcc-ar-15.2"
       - "C:/Windows/System32/gcc-ar-15.2.com"
       - "C:/Windows/System32/gcc-ar-15.2.exe"
       - "C:/Windows/System32/gcc-ar-15.2"
@@ -940,6 +1271,12 @@ events:
       - "C:/Program Files/CMake/bin/gcc-ar-15.2.com"
       - "C:/Program Files/CMake/bin/gcc-ar-15.2.exe"
       - "C:/Program Files/CMake/bin/gcc-ar-15.2"
+      - "C:/Program Files/nodejs/gcc-ar-15.2.com"
+      - "C:/Program Files/nodejs/gcc-ar-15.2.exe"
+      - "C:/Program Files/nodejs/gcc-ar-15.2"
+      - "C:/Program Files/MySQL/MySQL Shell 8.0/bin/gcc-ar-15.2.com"
+      - "C:/Program Files/MySQL/MySQL Shell 8.0/bin/gcc-ar-15.2.exe"
+      - "C:/Program Files/MySQL/MySQL Shell 8.0/bin/gcc-ar-15.2"
       - "C:/Users/paceg/AppData/Local/Microsoft/WindowsApps/gcc-ar-15.2.com"
       - "C:/Users/paceg/AppData/Local/Microsoft/WindowsApps/gcc-ar-15.2.exe"
       - "C:/Users/paceg/AppData/Local/Microsoft/WindowsApps/gcc-ar-15.2"
@@ -949,9 +1286,30 @@ events:
       - "C:/Program Files/JetBrains/IntelliJ IDEA 2025.3.2/bin/gcc-ar-15.2.com"
       - "C:/Program Files/JetBrains/IntelliJ IDEA 2025.3.2/bin/gcc-ar-15.2.exe"
       - "C:/Program Files/JetBrains/IntelliJ IDEA 2025.3.2/bin/gcc-ar-15.2"
+      - "C:/Program Files (x86)/Nmap/gcc-ar-15.2.com"
+      - "C:/Program Files (x86)/Nmap/gcc-ar-15.2.exe"
+      - "C:/Program Files (x86)/Nmap/gcc-ar-15.2"
+      - "C:/Users/paceg/AppData/Roaming/npm/gcc-ar-15.2.com"
+      - "C:/Users/paceg/AppData/Roaming/npm/gcc-ar-15.2.exe"
+      - "C:/Users/paceg/AppData/Roaming/npm/gcc-ar-15.2"
+      - "C:/Users/paceg/.jdks/corretto-19.0.2/bin/gcc-ar-15.2.com"
+      - "C:/Users/paceg/.jdks/corretto-19.0.2/bin/gcc-ar-15.2.exe"
+      - "C:/Users/paceg/.jdks/corretto-19.0.2/bin/gcc-ar-15.2"
+      - "C:/Users/paceg/.cargo/bin/gcc-ar-15.2.com"
+      - "C:/Users/paceg/.cargo/bin/gcc-ar-15.2.exe"
+      - "C:/Users/paceg/.cargo/bin/gcc-ar-15.2"
+      - "C:/msys64/usr/bin/gcc-ar-15.2.com"
+      - "C:/msys64/usr/bin/gcc-ar-15.2.exe"
+      - "C:/msys64/usr/bin/gcc-ar-15.2"
       - "C:/msys64/mingw64/bin/gcc-ar-15.com"
       - "C:/msys64/mingw64/bin/gcc-ar-15.exe"
       - "C:/msys64/mingw64/bin/gcc-ar-15"
+      - "C:/Users/paceg/.vscode/extensions/vadimcn.vscode-lldb-1.12.1/bin/gcc-ar-15.com"
+      - "C:/Users/paceg/.vscode/extensions/vadimcn.vscode-lldb-1.12.1/bin/gcc-ar-15.exe"
+      - "C:/Users/paceg/.vscode/extensions/vadimcn.vscode-lldb-1.12.1/bin/gcc-ar-15"
+      - "C:/Users/paceg/AppData/Local/Programs/Microsoft VS Code/gcc-ar-15.com"
+      - "C:/Users/paceg/AppData/Local/Programs/Microsoft VS Code/gcc-ar-15.exe"
+      - "C:/Users/paceg/AppData/Local/Programs/Microsoft VS Code/gcc-ar-15"
       - "C:/Windows/System32/gcc-ar-15.com"
       - "C:/Windows/System32/gcc-ar-15.exe"
       - "C:/Windows/System32/gcc-ar-15"
@@ -973,6 +1331,12 @@ events:
       - "C:/Program Files/CMake/bin/gcc-ar-15.com"
       - "C:/Program Files/CMake/bin/gcc-ar-15.exe"
       - "C:/Program Files/CMake/bin/gcc-ar-15"
+      - "C:/Program Files/nodejs/gcc-ar-15.com"
+      - "C:/Program Files/nodejs/gcc-ar-15.exe"
+      - "C:/Program Files/nodejs/gcc-ar-15"
+      - "C:/Program Files/MySQL/MySQL Shell 8.0/bin/gcc-ar-15.com"
+      - "C:/Program Files/MySQL/MySQL Shell 8.0/bin/gcc-ar-15.exe"
+      - "C:/Program Files/MySQL/MySQL Shell 8.0/bin/gcc-ar-15"
       - "C:/Users/paceg/AppData/Local/Microsoft/WindowsApps/gcc-ar-15.com"
       - "C:/Users/paceg/AppData/Local/Microsoft/WindowsApps/gcc-ar-15.exe"
       - "C:/Users/paceg/AppData/Local/Microsoft/WindowsApps/gcc-ar-15"
@@ -982,9 +1346,30 @@ events:
       - "C:/Program Files/JetBrains/IntelliJ IDEA 2025.3.2/bin/gcc-ar-15.com"
       - "C:/Program Files/JetBrains/IntelliJ IDEA 2025.3.2/bin/gcc-ar-15.exe"
       - "C:/Program Files/JetBrains/IntelliJ IDEA 2025.3.2/bin/gcc-ar-15"
+      - "C:/Program Files (x86)/Nmap/gcc-ar-15.com"
+      - "C:/Program Files (x86)/Nmap/gcc-ar-15.exe"
+      - "C:/Program Files (x86)/Nmap/gcc-ar-15"
+      - "C:/Users/paceg/AppData/Roaming/npm/gcc-ar-15.com"
+      - "C:/Users/paceg/AppData/Roaming/npm/gcc-ar-15.exe"
+      - "C:/Users/paceg/AppData/Roaming/npm/gcc-ar-15"
+      - "C:/Users/paceg/.jdks/corretto-19.0.2/bin/gcc-ar-15.com"
+      - "C:/Users/paceg/.jdks/corretto-19.0.2/bin/gcc-ar-15.exe"
+      - "C:/Users/paceg/.jdks/corretto-19.0.2/bin/gcc-ar-15"
+      - "C:/Users/paceg/.cargo/bin/gcc-ar-15.com"
+      - "C:/Users/paceg/.cargo/bin/gcc-ar-15.exe"
+      - "C:/Users/paceg/.cargo/bin/gcc-ar-15"
+      - "C:/msys64/usr/bin/gcc-ar-15.com"
+      - "C:/msys64/usr/bin/gcc-ar-15.exe"
+      - "C:/msys64/usr/bin/gcc-ar-15"
       - "C:/msys64/mingw64/bin/gcc-ar15.com"
       - "C:/msys64/mingw64/bin/gcc-ar15.exe"
       - "C:/msys64/mingw64/bin/gcc-ar15"
+      - "C:/Users/paceg/.vscode/extensions/vadimcn.vscode-lldb-1.12.1/bin/gcc-ar15.com"
+      - "C:/Users/paceg/.vscode/extensions/vadimcn.vscode-lldb-1.12.1/bin/gcc-ar15.exe"
+      - "C:/Users/paceg/.vscode/extensions/vadimcn.vscode-lldb-1.12.1/bin/gcc-ar15"
+      - "C:/Users/paceg/AppData/Local/Programs/Microsoft VS Code/gcc-ar15.com"
+      - "C:/Users/paceg/AppData/Local/Programs/Microsoft VS Code/gcc-ar15.exe"
+      - "C:/Users/paceg/AppData/Local/Programs/Microsoft VS Code/gcc-ar15"
       - "C:/Windows/System32/gcc-ar15.com"
       - "C:/Windows/System32/gcc-ar15.exe"
       - "C:/Windows/System32/gcc-ar15"
@@ -1006,6 +1391,12 @@ events:
       - "C:/Program Files/CMake/bin/gcc-ar15.com"
       - "C:/Program Files/CMake/bin/gcc-ar15.exe"
       - "C:/Program Files/CMake/bin/gcc-ar15"
+      - "C:/Program Files/nodejs/gcc-ar15.com"
+      - "C:/Program Files/nodejs/gcc-ar15.exe"
+      - "C:/Program Files/nodejs/gcc-ar15"
+      - "C:/Program Files/MySQL/MySQL Shell 8.0/bin/gcc-ar15.com"
+      - "C:/Program Files/MySQL/MySQL Shell 8.0/bin/gcc-ar15.exe"
+      - "C:/Program Files/MySQL/MySQL Shell 8.0/bin/gcc-ar15"
       - "C:/Users/paceg/AppData/Local/Microsoft/WindowsApps/gcc-ar15.com"
       - "C:/Users/paceg/AppData/Local/Microsoft/WindowsApps/gcc-ar15.exe"
       - "C:/Users/paceg/AppData/Local/Microsoft/WindowsApps/gcc-ar15"
@@ -1015,10 +1406,27 @@ events:
       - "C:/Program Files/JetBrains/IntelliJ IDEA 2025.3.2/bin/gcc-ar15.com"
       - "C:/Program Files/JetBrains/IntelliJ IDEA 2025.3.2/bin/gcc-ar15.exe"
       - "C:/Program Files/JetBrains/IntelliJ IDEA 2025.3.2/bin/gcc-ar15"
+      - "C:/Program Files (x86)/Nmap/gcc-ar15.com"
+      - "C:/Program Files (x86)/Nmap/gcc-ar15.exe"
+      - "C:/Program Files (x86)/Nmap/gcc-ar15"
+      - "C:/Users/paceg/AppData/Roaming/npm/gcc-ar15.com"
+      - "C:/Users/paceg/AppData/Roaming/npm/gcc-ar15.exe"
+      - "C:/Users/paceg/AppData/Roaming/npm/gcc-ar15"
+      - "C:/Users/paceg/.jdks/corretto-19.0.2/bin/gcc-ar15.com"
+      - "C:/Users/paceg/.jdks/corretto-19.0.2/bin/gcc-ar15.exe"
+      - "C:/Users/paceg/.jdks/corretto-19.0.2/bin/gcc-ar15"
+      - "C:/Users/paceg/.cargo/bin/gcc-ar15.com"
+      - "C:/Users/paceg/.cargo/bin/gcc-ar15.exe"
+      - "C:/Users/paceg/.cargo/bin/gcc-ar15"
+      - "C:/msys64/usr/bin/gcc-ar15.com"
+      - "C:/msys64/usr/bin/gcc-ar15.exe"
+      - "C:/msys64/usr/bin/gcc-ar15"
       - "C:/msys64/mingw64/bin/gcc-ar.com"
     found: "C:/msys64/mingw64/bin/gcc-ar.exe"
     search_context:
       ENV{PATH}:
+        - "c:\\Users\\paceg\\.vscode\\extensions\\vadimcn.vscode-lldb-1.12.1\\bin"
+        - "C:\\Users\\paceg\\AppData\\Local\\Programs\\Microsoft VS Code"
         - "C:\\WINDOWS\\system32"
         - "C:\\WINDOWS"
         - "C:\\WINDOWS\\System32\\Wbem"
@@ -1027,9 +1435,16 @@ events:
         - "C:\\Program Files\\Git\\cmd"
         - "C:\\Program Files\\CMake\\bin"
         - "C:\\msys64\\mingw64\\bin"
+        - "C:\\Program Files\\nodejs\\"
+        - "C:\\Program Files\\MySQL\\MySQL Shell 8.0\\bin\\"
         - "C:\\Users\\paceg\\AppData\\Local\\Microsoft\\WindowsApps"
         - "C:\\Users\\paceg\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
         - "C:\\Program Files\\JetBrains\\IntelliJ IDEA 2025.3.2\\bin"
+        - "C:\\Program Files (x86)\\Nmap"
+        - "C:\\Users\\paceg\\AppData\\Roaming\\npm"
+        - "C:\\Users\\paceg\\.jdks\\corretto-19.0.2\\bin"
+        - "C:\\Users\\paceg\\.cargo\\bin"
+        - "C:\\msys64\\usr\\bin"
   -
     kind: "find-v1"
     backtrace:
@@ -1054,6 +1469,8 @@ events:
       - "gcc-ranlib"
     candidate_directories:
       - "C:/msys64/mingw64/bin/"
+      - "C:/Users/paceg/.vscode/extensions/vadimcn.vscode-lldb-1.12.1/bin/"
+      - "C:/Users/paceg/AppData/Local/Programs/Microsoft VS Code/"
       - "C:/Windows/System32/"
       - "C:/Windows/"
       - "C:/Windows/System32/wbem/"
@@ -1061,13 +1478,26 @@ events:
       - "C:/Windows/System32/OpenSSH/"
       - "C:/Program Files/Git/cmd/"
       - "C:/Program Files/CMake/bin/"
+      - "C:/Program Files/nodejs/"
+      - "C:/Program Files/MySQL/MySQL Shell 8.0/bin/"
       - "C:/Users/paceg/AppData/Local/Microsoft/WindowsApps/"
       - "C:/Users/paceg/AppData/Local/Programs/Microsoft VS Code/bin/"
       - "C:/Program Files/JetBrains/IntelliJ IDEA 2025.3.2/bin/"
+      - "C:/Program Files (x86)/Nmap/"
+      - "C:/Users/paceg/AppData/Roaming/npm/"
+      - "C:/Users/paceg/.jdks/corretto-19.0.2/bin/"
+      - "C:/Users/paceg/.cargo/bin/"
+      - "C:/msys64/usr/bin/"
     searched_directories:
       - "C:/msys64/mingw64/bin/gcc-ranlib-15.2.com"
       - "C:/msys64/mingw64/bin/gcc-ranlib-15.2.exe"
       - "C:/msys64/mingw64/bin/gcc-ranlib-15.2"
+      - "C:/Users/paceg/.vscode/extensions/vadimcn.vscode-lldb-1.12.1/bin/gcc-ranlib-15.2.com"
+      - "C:/Users/paceg/.vscode/extensions/vadimcn.vscode-lldb-1.12.1/bin/gcc-ranlib-15.2.exe"
+      - "C:/Users/paceg/.vscode/extensions/vadimcn.vscode-lldb-1.12.1/bin/gcc-ranlib-15.2"
+      - "C:/Users/paceg/AppData/Local/Programs/Microsoft VS Code/gcc-ranlib-15.2.com"
+      - "C:/Users/paceg/AppData/Local/Programs/Microsoft VS Code/gcc-ranlib-15.2.exe"
+      - "C:/Users/paceg/AppData/Local/Programs/Microsoft VS Code/gcc-ranlib-15.2"
       - "C:/Windows/System32/gcc-ranlib-15.2.com"
       - "C:/Windows/System32/gcc-ranlib-15.2.exe"
       - "C:/Windows/System32/gcc-ranlib-15.2"
@@ -1089,6 +1519,12 @@ events:
       - "C:/Program Files/CMake/bin/gcc-ranlib-15.2.com"
       - "C:/Program Files/CMake/bin/gcc-ranlib-15.2.exe"
       - "C:/Program Files/CMake/bin/gcc-ranlib-15.2"
+      - "C:/Program Files/nodejs/gcc-ranlib-15.2.com"
+      - "C:/Program Files/nodejs/gcc-ranlib-15.2.exe"
+      - "C:/Program Files/nodejs/gcc-ranlib-15.2"
+      - "C:/Program Files/MySQL/MySQL Shell 8.0/bin/gcc-ranlib-15.2.com"
+      - "C:/Program Files/MySQL/MySQL Shell 8.0/bin/gcc-ranlib-15.2.exe"
+      - "C:/Program Files/MySQL/MySQL Shell 8.0/bin/gcc-ranlib-15.2"
       - "C:/Users/paceg/AppData/Local/Microsoft/WindowsApps/gcc-ranlib-15.2.com"
       - "C:/Users/paceg/AppData/Local/Microsoft/WindowsApps/gcc-ranlib-15.2.exe"
       - "C:/Users/paceg/AppData/Local/Microsoft/WindowsApps/gcc-ranlib-15.2"
@@ -1098,9 +1534,30 @@ events:
       - "C:/Program Files/JetBrains/IntelliJ IDEA 2025.3.2/bin/gcc-ranlib-15.2.com"
       - "C:/Program Files/JetBrains/IntelliJ IDEA 2025.3.2/bin/gcc-ranlib-15.2.exe"
       - "C:/Program Files/JetBrains/IntelliJ IDEA 2025.3.2/bin/gcc-ranlib-15.2"
+      - "C:/Program Files (x86)/Nmap/gcc-ranlib-15.2.com"
+      - "C:/Program Files (x86)/Nmap/gcc-ranlib-15.2.exe"
+      - "C:/Program Files (x86)/Nmap/gcc-ranlib-15.2"
+      - "C:/Users/paceg/AppData/Roaming/npm/gcc-ranlib-15.2.com"
+      - "C:/Users/paceg/AppData/Roaming/npm/gcc-ranlib-15.2.exe"
+      - "C:/Users/paceg/AppData/Roaming/npm/gcc-ranlib-15.2"
+      - "C:/Users/paceg/.jdks/corretto-19.0.2/bin/gcc-ranlib-15.2.com"
+      - "C:/Users/paceg/.jdks/corretto-19.0.2/bin/gcc-ranlib-15.2.exe"
+      - "C:/Users/paceg/.jdks/corretto-19.0.2/bin/gcc-ranlib-15.2"
+      - "C:/Users/paceg/.cargo/bin/gcc-ranlib-15.2.com"
+      - "C:/Users/paceg/.cargo/bin/gcc-ranlib-15.2.exe"
+      - "C:/Users/paceg/.cargo/bin/gcc-ranlib-15.2"
+      - "C:/msys64/usr/bin/gcc-ranlib-15.2.com"
+      - "C:/msys64/usr/bin/gcc-ranlib-15.2.exe"
+      - "C:/msys64/usr/bin/gcc-ranlib-15.2"
       - "C:/msys64/mingw64/bin/gcc-ranlib-15.com"
       - "C:/msys64/mingw64/bin/gcc-ranlib-15.exe"
       - "C:/msys64/mingw64/bin/gcc-ranlib-15"
+      - "C:/Users/paceg/.vscode/extensions/vadimcn.vscode-lldb-1.12.1/bin/gcc-ranlib-15.com"
+      - "C:/Users/paceg/.vscode/extensions/vadimcn.vscode-lldb-1.12.1/bin/gcc-ranlib-15.exe"
+      - "C:/Users/paceg/.vscode/extensions/vadimcn.vscode-lldb-1.12.1/bin/gcc-ranlib-15"
+      - "C:/Users/paceg/AppData/Local/Programs/Microsoft VS Code/gcc-ranlib-15.com"
+      - "C:/Users/paceg/AppData/Local/Programs/Microsoft VS Code/gcc-ranlib-15.exe"
+      - "C:/Users/paceg/AppData/Local/Programs/Microsoft VS Code/gcc-ranlib-15"
       - "C:/Windows/System32/gcc-ranlib-15.com"
       - "C:/Windows/System32/gcc-ranlib-15.exe"
       - "C:/Windows/System32/gcc-ranlib-15"
@@ -1122,6 +1579,12 @@ events:
       - "C:/Program Files/CMake/bin/gcc-ranlib-15.com"
       - "C:/Program Files/CMake/bin/gcc-ranlib-15.exe"
       - "C:/Program Files/CMake/bin/gcc-ranlib-15"
+      - "C:/Program Files/nodejs/gcc-ranlib-15.com"
+      - "C:/Program Files/nodejs/gcc-ranlib-15.exe"
+      - "C:/Program Files/nodejs/gcc-ranlib-15"
+      - "C:/Program Files/MySQL/MySQL Shell 8.0/bin/gcc-ranlib-15.com"
+      - "C:/Program Files/MySQL/MySQL Shell 8.0/bin/gcc-ranlib-15.exe"
+      - "C:/Program Files/MySQL/MySQL Shell 8.0/bin/gcc-ranlib-15"
       - "C:/Users/paceg/AppData/Local/Microsoft/WindowsApps/gcc-ranlib-15.com"
       - "C:/Users/paceg/AppData/Local/Microsoft/WindowsApps/gcc-ranlib-15.exe"
       - "C:/Users/paceg/AppData/Local/Microsoft/WindowsApps/gcc-ranlib-15"
@@ -1131,9 +1594,30 @@ events:
       - "C:/Program Files/JetBrains/IntelliJ IDEA 2025.3.2/bin/gcc-ranlib-15.com"
       - "C:/Program Files/JetBrains/IntelliJ IDEA 2025.3.2/bin/gcc-ranlib-15.exe"
       - "C:/Program Files/JetBrains/IntelliJ IDEA 2025.3.2/bin/gcc-ranlib-15"
+      - "C:/Program Files (x86)/Nmap/gcc-ranlib-15.com"
+      - "C:/Program Files (x86)/Nmap/gcc-ranlib-15.exe"
+      - "C:/Program Files (x86)/Nmap/gcc-ranlib-15"
+      - "C:/Users/paceg/AppData/Roaming/npm/gcc-ranlib-15.com"
+      - "C:/Users/paceg/AppData/Roaming/npm/gcc-ranlib-15.exe"
+      - "C:/Users/paceg/AppData/Roaming/npm/gcc-ranlib-15"
+      - "C:/Users/paceg/.jdks/corretto-19.0.2/bin/gcc-ranlib-15.com"
+      - "C:/Users/paceg/.jdks/corretto-19.0.2/bin/gcc-ranlib-15.exe"
+      - "C:/Users/paceg/.jdks/corretto-19.0.2/bin/gcc-ranlib-15"
+      - "C:/Users/paceg/.cargo/bin/gcc-ranlib-15.com"
+      - "C:/Users/paceg/.cargo/bin/gcc-ranlib-15.exe"
+      - "C:/Users/paceg/.cargo/bin/gcc-ranlib-15"
+      - "C:/msys64/usr/bin/gcc-ranlib-15.com"
+      - "C:/msys64/usr/bin/gcc-ranlib-15.exe"
+      - "C:/msys64/usr/bin/gcc-ranlib-15"
       - "C:/msys64/mingw64/bin/gcc-ranlib15.com"
       - "C:/msys64/mingw64/bin/gcc-ranlib15.exe"
       - "C:/msys64/mingw64/bin/gcc-ranlib15"
+      - "C:/Users/paceg/.vscode/extensions/vadimcn.vscode-lldb-1.12.1/bin/gcc-ranlib15.com"
+      - "C:/Users/paceg/.vscode/extensions/vadimcn.vscode-lldb-1.12.1/bin/gcc-ranlib15.exe"
+      - "C:/Users/paceg/.vscode/extensions/vadimcn.vscode-lldb-1.12.1/bin/gcc-ranlib15"
+      - "C:/Users/paceg/AppData/Local/Programs/Microsoft VS Code/gcc-ranlib15.com"
+      - "C:/Users/paceg/AppData/Local/Programs/Microsoft VS Code/gcc-ranlib15.exe"
+      - "C:/Users/paceg/AppData/Local/Programs/Microsoft VS Code/gcc-ranlib15"
       - "C:/Windows/System32/gcc-ranlib15.com"
       - "C:/Windows/System32/gcc-ranlib15.exe"
       - "C:/Windows/System32/gcc-ranlib15"
@@ -1155,6 +1639,12 @@ events:
       - "C:/Program Files/CMake/bin/gcc-ranlib15.com"
       - "C:/Program Files/CMake/bin/gcc-ranlib15.exe"
       - "C:/Program Files/CMake/bin/gcc-ranlib15"
+      - "C:/Program Files/nodejs/gcc-ranlib15.com"
+      - "C:/Program Files/nodejs/gcc-ranlib15.exe"
+      - "C:/Program Files/nodejs/gcc-ranlib15"
+      - "C:/Program Files/MySQL/MySQL Shell 8.0/bin/gcc-ranlib15.com"
+      - "C:/Program Files/MySQL/MySQL Shell 8.0/bin/gcc-ranlib15.exe"
+      - "C:/Program Files/MySQL/MySQL Shell 8.0/bin/gcc-ranlib15"
       - "C:/Users/paceg/AppData/Local/Microsoft/WindowsApps/gcc-ranlib15.com"
       - "C:/Users/paceg/AppData/Local/Microsoft/WindowsApps/gcc-ranlib15.exe"
       - "C:/Users/paceg/AppData/Local/Microsoft/WindowsApps/gcc-ranlib15"
@@ -1164,10 +1654,27 @@ events:
       - "C:/Program Files/JetBrains/IntelliJ IDEA 2025.3.2/bin/gcc-ranlib15.com"
       - "C:/Program Files/JetBrains/IntelliJ IDEA 2025.3.2/bin/gcc-ranlib15.exe"
       - "C:/Program Files/JetBrains/IntelliJ IDEA 2025.3.2/bin/gcc-ranlib15"
+      - "C:/Program Files (x86)/Nmap/gcc-ranlib15.com"
+      - "C:/Program Files (x86)/Nmap/gcc-ranlib15.exe"
+      - "C:/Program Files (x86)/Nmap/gcc-ranlib15"
+      - "C:/Users/paceg/AppData/Roaming/npm/gcc-ranlib15.com"
+      - "C:/Users/paceg/AppData/Roaming/npm/gcc-ranlib15.exe"
+      - "C:/Users/paceg/AppData/Roaming/npm/gcc-ranlib15"
+      - "C:/Users/paceg/.jdks/corretto-19.0.2/bin/gcc-ranlib15.com"
+      - "C:/Users/paceg/.jdks/corretto-19.0.2/bin/gcc-ranlib15.exe"
+      - "C:/Users/paceg/.jdks/corretto-19.0.2/bin/gcc-ranlib15"
+      - "C:/Users/paceg/.cargo/bin/gcc-ranlib15.com"
+      - "C:/Users/paceg/.cargo/bin/gcc-ranlib15.exe"
+      - "C:/Users/paceg/.cargo/bin/gcc-ranlib15"
+      - "C:/msys64/usr/bin/gcc-ranlib15.com"
+      - "C:/msys64/usr/bin/gcc-ranlib15.exe"
+      - "C:/msys64/usr/bin/gcc-ranlib15"
       - "C:/msys64/mingw64/bin/gcc-ranlib.com"
     found: "C:/msys64/mingw64/bin/gcc-ranlib.exe"
     search_context:
       ENV{PATH}:
+        - "c:\\Users\\paceg\\.vscode\\extensions\\vadimcn.vscode-lldb-1.12.1\\bin"
+        - "C:\\Users\\paceg\\AppData\\Local\\Programs\\Microsoft VS Code"
         - "C:\\WINDOWS\\system32"
         - "C:\\WINDOWS"
         - "C:\\WINDOWS\\System32\\Wbem"
@@ -1176,9 +1683,16 @@ events:
         - "C:\\Program Files\\Git\\cmd"
         - "C:\\Program Files\\CMake\\bin"
         - "C:\\msys64\\mingw64\\bin"
+        - "C:\\Program Files\\nodejs\\"
+        - "C:\\Program Files\\MySQL\\MySQL Shell 8.0\\bin\\"
         - "C:\\Users\\paceg\\AppData\\Local\\Microsoft\\WindowsApps"
         - "C:\\Users\\paceg\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
         - "C:\\Program Files\\JetBrains\\IntelliJ IDEA 2025.3.2\\bin"
+        - "C:\\Program Files (x86)\\Nmap"
+        - "C:\\Users\\paceg\\AppData\\Roaming\\npm"
+        - "C:\\Users\\paceg\\.jdks\\corretto-19.0.2\\bin"
+        - "C:\\Users\\paceg\\.cargo\\bin"
+        - "C:\\msys64\\usr\\bin"
   -
     kind: "find-v1"
     backtrace:
@@ -1210,6 +1724,8 @@ events:
     found: "C:/msys64/mingw64/bin/c++.exe"
     search_context:
       ENV{PATH}:
+        - "c:\\Users\\paceg\\.vscode\\extensions\\vadimcn.vscode-lldb-1.12.1\\bin"
+        - "C:\\Users\\paceg\\AppData\\Local\\Programs\\Microsoft VS Code"
         - "C:\\WINDOWS\\system32"
         - "C:\\WINDOWS"
         - "C:\\WINDOWS\\System32\\Wbem"
@@ -1218,9 +1734,16 @@ events:
         - "C:\\Program Files\\Git\\cmd"
         - "C:\\Program Files\\CMake\\bin"
         - "C:\\msys64\\mingw64\\bin"
+        - "C:\\Program Files\\nodejs\\"
+        - "C:\\Program Files\\MySQL\\MySQL Shell 8.0\\bin\\"
         - "C:\\Users\\paceg\\AppData\\Local\\Microsoft\\WindowsApps"
         - "C:\\Users\\paceg\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
         - "C:\\Program Files\\JetBrains\\IntelliJ IDEA 2025.3.2\\bin"
+        - "C:\\Program Files (x86)\\Nmap"
+        - "C:\\Users\\paceg\\AppData\\Roaming\\npm"
+        - "C:\\Users\\paceg\\.jdks\\corretto-19.0.2\\bin"
+        - "C:\\Users\\paceg\\.cargo\\bin"
+        - "C:\\msys64\\usr\\bin"
   -
     kind: "find-v1"
     backtrace:
@@ -1248,6 +1771,8 @@ events:
     found: "C:/Program Files/CMake/share/cmake-4.2/Modules/CMakeCXXCompilerId.cpp.in"
     search_context:
       ENV{PATH}:
+        - "c:\\Users\\paceg\\.vscode\\extensions\\vadimcn.vscode-lldb-1.12.1\\bin"
+        - "C:\\Users\\paceg\\AppData\\Local\\Programs\\Microsoft VS Code"
         - "C:\\WINDOWS\\system32"
         - "C:\\WINDOWS"
         - "C:\\WINDOWS\\System32\\Wbem"
@@ -1256,9 +1781,16 @@ events:
         - "C:\\Program Files\\Git\\cmd"
         - "C:\\Program Files\\CMake\\bin"
         - "C:\\msys64\\mingw64\\bin"
+        - "C:\\Program Files\\nodejs\\"
+        - "C:\\Program Files\\MySQL\\MySQL Shell 8.0\\bin\\"
         - "C:\\Users\\paceg\\AppData\\Local\\Microsoft\\WindowsApps"
         - "C:\\Users\\paceg\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
         - "C:\\Program Files\\JetBrains\\IntelliJ IDEA 2025.3.2\\bin"
+        - "C:\\Program Files (x86)\\Nmap"
+        - "C:\\Users\\paceg\\AppData\\Roaming\\npm"
+        - "C:\\Users\\paceg\\.jdks\\corretto-19.0.2\\bin"
+        - "C:\\Users\\paceg\\.cargo\\bin"
+        - "C:\\msys64\\usr\\bin"
   -
     kind: "message-v1"
     backtrace:
@@ -1305,6 +1837,8 @@ events:
       - "gcc-ar"
     candidate_directories:
       - "C:/msys64/mingw64/bin/"
+      - "C:/Users/paceg/.vscode/extensions/vadimcn.vscode-lldb-1.12.1/bin/"
+      - "C:/Users/paceg/AppData/Local/Programs/Microsoft VS Code/"
       - "C:/Windows/System32/"
       - "C:/Windows/"
       - "C:/Windows/System32/wbem/"
@@ -1312,13 +1846,26 @@ events:
       - "C:/Windows/System32/OpenSSH/"
       - "C:/Program Files/Git/cmd/"
       - "C:/Program Files/CMake/bin/"
+      - "C:/Program Files/nodejs/"
+      - "C:/Program Files/MySQL/MySQL Shell 8.0/bin/"
       - "C:/Users/paceg/AppData/Local/Microsoft/WindowsApps/"
       - "C:/Users/paceg/AppData/Local/Programs/Microsoft VS Code/bin/"
       - "C:/Program Files/JetBrains/IntelliJ IDEA 2025.3.2/bin/"
+      - "C:/Program Files (x86)/Nmap/"
+      - "C:/Users/paceg/AppData/Roaming/npm/"
+      - "C:/Users/paceg/.jdks/corretto-19.0.2/bin/"
+      - "C:/Users/paceg/.cargo/bin/"
+      - "C:/msys64/usr/bin/"
     searched_directories:
       - "C:/msys64/mingw64/bin/gcc-ar-15.2.com"
       - "C:/msys64/mingw64/bin/gcc-ar-15.2.exe"
       - "C:/msys64/mingw64/bin/gcc-ar-15.2"
+      - "C:/Users/paceg/.vscode/extensions/vadimcn.vscode-lldb-1.12.1/bin/gcc-ar-15.2.com"
+      - "C:/Users/paceg/.vscode/extensions/vadimcn.vscode-lldb-1.12.1/bin/gcc-ar-15.2.exe"
+      - "C:/Users/paceg/.vscode/extensions/vadimcn.vscode-lldb-1.12.1/bin/gcc-ar-15.2"
+      - "C:/Users/paceg/AppData/Local/Programs/Microsoft VS Code/gcc-ar-15.2.com"
+      - "C:/Users/paceg/AppData/Local/Programs/Microsoft VS Code/gcc-ar-15.2.exe"
+      - "C:/Users/paceg/AppData/Local/Programs/Microsoft VS Code/gcc-ar-15.2"
       - "C:/Windows/System32/gcc-ar-15.2.com"
       - "C:/Windows/System32/gcc-ar-15.2.exe"
       - "C:/Windows/System32/gcc-ar-15.2"
@@ -1340,6 +1887,12 @@ events:
       - "C:/Program Files/CMake/bin/gcc-ar-15.2.com"
       - "C:/Program Files/CMake/bin/gcc-ar-15.2.exe"
       - "C:/Program Files/CMake/bin/gcc-ar-15.2"
+      - "C:/Program Files/nodejs/gcc-ar-15.2.com"
+      - "C:/Program Files/nodejs/gcc-ar-15.2.exe"
+      - "C:/Program Files/nodejs/gcc-ar-15.2"
+      - "C:/Program Files/MySQL/MySQL Shell 8.0/bin/gcc-ar-15.2.com"
+      - "C:/Program Files/MySQL/MySQL Shell 8.0/bin/gcc-ar-15.2.exe"
+      - "C:/Program Files/MySQL/MySQL Shell 8.0/bin/gcc-ar-15.2"
       - "C:/Users/paceg/AppData/Local/Microsoft/WindowsApps/gcc-ar-15.2.com"
       - "C:/Users/paceg/AppData/Local/Microsoft/WindowsApps/gcc-ar-15.2.exe"
       - "C:/Users/paceg/AppData/Local/Microsoft/WindowsApps/gcc-ar-15.2"
@@ -1349,9 +1902,30 @@ events:
       - "C:/Program Files/JetBrains/IntelliJ IDEA 2025.3.2/bin/gcc-ar-15.2.com"
       - "C:/Program Files/JetBrains/IntelliJ IDEA 2025.3.2/bin/gcc-ar-15.2.exe"
       - "C:/Program Files/JetBrains/IntelliJ IDEA 2025.3.2/bin/gcc-ar-15.2"
+      - "C:/Program Files (x86)/Nmap/gcc-ar-15.2.com"
+      - "C:/Program Files (x86)/Nmap/gcc-ar-15.2.exe"
+      - "C:/Program Files (x86)/Nmap/gcc-ar-15.2"
+      - "C:/Users/paceg/AppData/Roaming/npm/gcc-ar-15.2.com"
+      - "C:/Users/paceg/AppData/Roaming/npm/gcc-ar-15.2.exe"
+      - "C:/Users/paceg/AppData/Roaming/npm/gcc-ar-15.2"
+      - "C:/Users/paceg/.jdks/corretto-19.0.2/bin/gcc-ar-15.2.com"
+      - "C:/Users/paceg/.jdks/corretto-19.0.2/bin/gcc-ar-15.2.exe"
+      - "C:/Users/paceg/.jdks/corretto-19.0.2/bin/gcc-ar-15.2"
+      - "C:/Users/paceg/.cargo/bin/gcc-ar-15.2.com"
+      - "C:/Users/paceg/.cargo/bin/gcc-ar-15.2.exe"
+      - "C:/Users/paceg/.cargo/bin/gcc-ar-15.2"
+      - "C:/msys64/usr/bin/gcc-ar-15.2.com"
+      - "C:/msys64/usr/bin/gcc-ar-15.2.exe"
+      - "C:/msys64/usr/bin/gcc-ar-15.2"
       - "C:/msys64/mingw64/bin/gcc-ar-15.com"
       - "C:/msys64/mingw64/bin/gcc-ar-15.exe"
       - "C:/msys64/mingw64/bin/gcc-ar-15"
+      - "C:/Users/paceg/.vscode/extensions/vadimcn.vscode-lldb-1.12.1/bin/gcc-ar-15.com"
+      - "C:/Users/paceg/.vscode/extensions/vadimcn.vscode-lldb-1.12.1/bin/gcc-ar-15.exe"
+      - "C:/Users/paceg/.vscode/extensions/vadimcn.vscode-lldb-1.12.1/bin/gcc-ar-15"
+      - "C:/Users/paceg/AppData/Local/Programs/Microsoft VS Code/gcc-ar-15.com"
+      - "C:/Users/paceg/AppData/Local/Programs/Microsoft VS Code/gcc-ar-15.exe"
+      - "C:/Users/paceg/AppData/Local/Programs/Microsoft VS Code/gcc-ar-15"
       - "C:/Windows/System32/gcc-ar-15.com"
       - "C:/Windows/System32/gcc-ar-15.exe"
       - "C:/Windows/System32/gcc-ar-15"
@@ -1373,6 +1947,12 @@ events:
       - "C:/Program Files/CMake/bin/gcc-ar-15.com"
       - "C:/Program Files/CMake/bin/gcc-ar-15.exe"
       - "C:/Program Files/CMake/bin/gcc-ar-15"
+      - "C:/Program Files/nodejs/gcc-ar-15.com"
+      - "C:/Program Files/nodejs/gcc-ar-15.exe"
+      - "C:/Program Files/nodejs/gcc-ar-15"
+      - "C:/Program Files/MySQL/MySQL Shell 8.0/bin/gcc-ar-15.com"
+      - "C:/Program Files/MySQL/MySQL Shell 8.0/bin/gcc-ar-15.exe"
+      - "C:/Program Files/MySQL/MySQL Shell 8.0/bin/gcc-ar-15"
       - "C:/Users/paceg/AppData/Local/Microsoft/WindowsApps/gcc-ar-15.com"
       - "C:/Users/paceg/AppData/Local/Microsoft/WindowsApps/gcc-ar-15.exe"
       - "C:/Users/paceg/AppData/Local/Microsoft/WindowsApps/gcc-ar-15"
@@ -1382,9 +1962,30 @@ events:
       - "C:/Program Files/JetBrains/IntelliJ IDEA 2025.3.2/bin/gcc-ar-15.com"
       - "C:/Program Files/JetBrains/IntelliJ IDEA 2025.3.2/bin/gcc-ar-15.exe"
       - "C:/Program Files/JetBrains/IntelliJ IDEA 2025.3.2/bin/gcc-ar-15"
+      - "C:/Program Files (x86)/Nmap/gcc-ar-15.com"
+      - "C:/Program Files (x86)/Nmap/gcc-ar-15.exe"
+      - "C:/Program Files (x86)/Nmap/gcc-ar-15"
+      - "C:/Users/paceg/AppData/Roaming/npm/gcc-ar-15.com"
+      - "C:/Users/paceg/AppData/Roaming/npm/gcc-ar-15.exe"
+      - "C:/Users/paceg/AppData/Roaming/npm/gcc-ar-15"
+      - "C:/Users/paceg/.jdks/corretto-19.0.2/bin/gcc-ar-15.com"
+      - "C:/Users/paceg/.jdks/corretto-19.0.2/bin/gcc-ar-15.exe"
+      - "C:/Users/paceg/.jdks/corretto-19.0.2/bin/gcc-ar-15"
+      - "C:/Users/paceg/.cargo/bin/gcc-ar-15.com"
+      - "C:/Users/paceg/.cargo/bin/gcc-ar-15.exe"
+      - "C:/Users/paceg/.cargo/bin/gcc-ar-15"
+      - "C:/msys64/usr/bin/gcc-ar-15.com"
+      - "C:/msys64/usr/bin/gcc-ar-15.exe"
+      - "C:/msys64/usr/bin/gcc-ar-15"
       - "C:/msys64/mingw64/bin/gcc-ar15.com"
       - "C:/msys64/mingw64/bin/gcc-ar15.exe"
       - "C:/msys64/mingw64/bin/gcc-ar15"
+      - "C:/Users/paceg/.vscode/extensions/vadimcn.vscode-lldb-1.12.1/bin/gcc-ar15.com"
+      - "C:/Users/paceg/.vscode/extensions/vadimcn.vscode-lldb-1.12.1/bin/gcc-ar15.exe"
+      - "C:/Users/paceg/.vscode/extensions/vadimcn.vscode-lldb-1.12.1/bin/gcc-ar15"
+      - "C:/Users/paceg/AppData/Local/Programs/Microsoft VS Code/gcc-ar15.com"
+      - "C:/Users/paceg/AppData/Local/Programs/Microsoft VS Code/gcc-ar15.exe"
+      - "C:/Users/paceg/AppData/Local/Programs/Microsoft VS Code/gcc-ar15"
       - "C:/Windows/System32/gcc-ar15.com"
       - "C:/Windows/System32/gcc-ar15.exe"
       - "C:/Windows/System32/gcc-ar15"
@@ -1406,6 +2007,12 @@ events:
       - "C:/Program Files/CMake/bin/gcc-ar15.com"
       - "C:/Program Files/CMake/bin/gcc-ar15.exe"
       - "C:/Program Files/CMake/bin/gcc-ar15"
+      - "C:/Program Files/nodejs/gcc-ar15.com"
+      - "C:/Program Files/nodejs/gcc-ar15.exe"
+      - "C:/Program Files/nodejs/gcc-ar15"
+      - "C:/Program Files/MySQL/MySQL Shell 8.0/bin/gcc-ar15.com"
+      - "C:/Program Files/MySQL/MySQL Shell 8.0/bin/gcc-ar15.exe"
+      - "C:/Program Files/MySQL/MySQL Shell 8.0/bin/gcc-ar15"
       - "C:/Users/paceg/AppData/Local/Microsoft/WindowsApps/gcc-ar15.com"
       - "C:/Users/paceg/AppData/Local/Microsoft/WindowsApps/gcc-ar15.exe"
       - "C:/Users/paceg/AppData/Local/Microsoft/WindowsApps/gcc-ar15"
@@ -1415,10 +2022,27 @@ events:
       - "C:/Program Files/JetBrains/IntelliJ IDEA 2025.3.2/bin/gcc-ar15.com"
       - "C:/Program Files/JetBrains/IntelliJ IDEA 2025.3.2/bin/gcc-ar15.exe"
       - "C:/Program Files/JetBrains/IntelliJ IDEA 2025.3.2/bin/gcc-ar15"
+      - "C:/Program Files (x86)/Nmap/gcc-ar15.com"
+      - "C:/Program Files (x86)/Nmap/gcc-ar15.exe"
+      - "C:/Program Files (x86)/Nmap/gcc-ar15"
+      - "C:/Users/paceg/AppData/Roaming/npm/gcc-ar15.com"
+      - "C:/Users/paceg/AppData/Roaming/npm/gcc-ar15.exe"
+      - "C:/Users/paceg/AppData/Roaming/npm/gcc-ar15"
+      - "C:/Users/paceg/.jdks/corretto-19.0.2/bin/gcc-ar15.com"
+      - "C:/Users/paceg/.jdks/corretto-19.0.2/bin/gcc-ar15.exe"
+      - "C:/Users/paceg/.jdks/corretto-19.0.2/bin/gcc-ar15"
+      - "C:/Users/paceg/.cargo/bin/gcc-ar15.com"
+      - "C:/Users/paceg/.cargo/bin/gcc-ar15.exe"
+      - "C:/Users/paceg/.cargo/bin/gcc-ar15"
+      - "C:/msys64/usr/bin/gcc-ar15.com"
+      - "C:/msys64/usr/bin/gcc-ar15.exe"
+      - "C:/msys64/usr/bin/gcc-ar15"
       - "C:/msys64/mingw64/bin/gcc-ar.com"
     found: "C:/msys64/mingw64/bin/gcc-ar.exe"
     search_context:
       ENV{PATH}:
+        - "c:\\Users\\paceg\\.vscode\\extensions\\vadimcn.vscode-lldb-1.12.1\\bin"
+        - "C:\\Users\\paceg\\AppData\\Local\\Programs\\Microsoft VS Code"
         - "C:\\WINDOWS\\system32"
         - "C:\\WINDOWS"
         - "C:\\WINDOWS\\System32\\Wbem"
@@ -1427,9 +2051,16 @@ events:
         - "C:\\Program Files\\Git\\cmd"
         - "C:\\Program Files\\CMake\\bin"
         - "C:\\msys64\\mingw64\\bin"
+        - "C:\\Program Files\\nodejs\\"
+        - "C:\\Program Files\\MySQL\\MySQL Shell 8.0\\bin\\"
         - "C:\\Users\\paceg\\AppData\\Local\\Microsoft\\WindowsApps"
         - "C:\\Users\\paceg\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
         - "C:\\Program Files\\JetBrains\\IntelliJ IDEA 2025.3.2\\bin"
+        - "C:\\Program Files (x86)\\Nmap"
+        - "C:\\Users\\paceg\\AppData\\Roaming\\npm"
+        - "C:\\Users\\paceg\\.jdks\\corretto-19.0.2\\bin"
+        - "C:\\Users\\paceg\\.cargo\\bin"
+        - "C:\\msys64\\usr\\bin"
   -
     kind: "find-v1"
     backtrace:
@@ -1454,6 +2085,8 @@ events:
       - "gcc-ranlib"
     candidate_directories:
       - "C:/msys64/mingw64/bin/"
+      - "C:/Users/paceg/.vscode/extensions/vadimcn.vscode-lldb-1.12.1/bin/"
+      - "C:/Users/paceg/AppData/Local/Programs/Microsoft VS Code/"
       - "C:/Windows/System32/"
       - "C:/Windows/"
       - "C:/Windows/System32/wbem/"
@@ -1461,13 +2094,26 @@ events:
       - "C:/Windows/System32/OpenSSH/"
       - "C:/Program Files/Git/cmd/"
       - "C:/Program Files/CMake/bin/"
+      - "C:/Program Files/nodejs/"
+      - "C:/Program Files/MySQL/MySQL Shell 8.0/bin/"
       - "C:/Users/paceg/AppData/Local/Microsoft/WindowsApps/"
       - "C:/Users/paceg/AppData/Local/Programs/Microsoft VS Code/bin/"
       - "C:/Program Files/JetBrains/IntelliJ IDEA 2025.3.2/bin/"
+      - "C:/Program Files (x86)/Nmap/"
+      - "C:/Users/paceg/AppData/Roaming/npm/"
+      - "C:/Users/paceg/.jdks/corretto-19.0.2/bin/"
+      - "C:/Users/paceg/.cargo/bin/"
+      - "C:/msys64/usr/bin/"
     searched_directories:
       - "C:/msys64/mingw64/bin/gcc-ranlib-15.2.com"
       - "C:/msys64/mingw64/bin/gcc-ranlib-15.2.exe"
       - "C:/msys64/mingw64/bin/gcc-ranlib-15.2"
+      - "C:/Users/paceg/.vscode/extensions/vadimcn.vscode-lldb-1.12.1/bin/gcc-ranlib-15.2.com"
+      - "C:/Users/paceg/.vscode/extensions/vadimcn.vscode-lldb-1.12.1/bin/gcc-ranlib-15.2.exe"
+      - "C:/Users/paceg/.vscode/extensions/vadimcn.vscode-lldb-1.12.1/bin/gcc-ranlib-15.2"
+      - "C:/Users/paceg/AppData/Local/Programs/Microsoft VS Code/gcc-ranlib-15.2.com"
+      - "C:/Users/paceg/AppData/Local/Programs/Microsoft VS Code/gcc-ranlib-15.2.exe"
+      - "C:/Users/paceg/AppData/Local/Programs/Microsoft VS Code/gcc-ranlib-15.2"
       - "C:/Windows/System32/gcc-ranlib-15.2.com"
       - "C:/Windows/System32/gcc-ranlib-15.2.exe"
       - "C:/Windows/System32/gcc-ranlib-15.2"
@@ -1489,6 +2135,12 @@ events:
       - "C:/Program Files/CMake/bin/gcc-ranlib-15.2.com"
       - "C:/Program Files/CMake/bin/gcc-ranlib-15.2.exe"
       - "C:/Program Files/CMake/bin/gcc-ranlib-15.2"
+      - "C:/Program Files/nodejs/gcc-ranlib-15.2.com"
+      - "C:/Program Files/nodejs/gcc-ranlib-15.2.exe"
+      - "C:/Program Files/nodejs/gcc-ranlib-15.2"
+      - "C:/Program Files/MySQL/MySQL Shell 8.0/bin/gcc-ranlib-15.2.com"
+      - "C:/Program Files/MySQL/MySQL Shell 8.0/bin/gcc-ranlib-15.2.exe"
+      - "C:/Program Files/MySQL/MySQL Shell 8.0/bin/gcc-ranlib-15.2"
       - "C:/Users/paceg/AppData/Local/Microsoft/WindowsApps/gcc-ranlib-15.2.com"
       - "C:/Users/paceg/AppData/Local/Microsoft/WindowsApps/gcc-ranlib-15.2.exe"
       - "C:/Users/paceg/AppData/Local/Microsoft/WindowsApps/gcc-ranlib-15.2"
@@ -1498,9 +2150,30 @@ events:
       - "C:/Program Files/JetBrains/IntelliJ IDEA 2025.3.2/bin/gcc-ranlib-15.2.com"
       - "C:/Program Files/JetBrains/IntelliJ IDEA 2025.3.2/bin/gcc-ranlib-15.2.exe"
       - "C:/Program Files/JetBrains/IntelliJ IDEA 2025.3.2/bin/gcc-ranlib-15.2"
+      - "C:/Program Files (x86)/Nmap/gcc-ranlib-15.2.com"
+      - "C:/Program Files (x86)/Nmap/gcc-ranlib-15.2.exe"
+      - "C:/Program Files (x86)/Nmap/gcc-ranlib-15.2"
+      - "C:/Users/paceg/AppData/Roaming/npm/gcc-ranlib-15.2.com"
+      - "C:/Users/paceg/AppData/Roaming/npm/gcc-ranlib-15.2.exe"
+      - "C:/Users/paceg/AppData/Roaming/npm/gcc-ranlib-15.2"
+      - "C:/Users/paceg/.jdks/corretto-19.0.2/bin/gcc-ranlib-15.2.com"
+      - "C:/Users/paceg/.jdks/corretto-19.0.2/bin/gcc-ranlib-15.2.exe"
+      - "C:/Users/paceg/.jdks/corretto-19.0.2/bin/gcc-ranlib-15.2"
+      - "C:/Users/paceg/.cargo/bin/gcc-ranlib-15.2.com"
+      - "C:/Users/paceg/.cargo/bin/gcc-ranlib-15.2.exe"
+      - "C:/Users/paceg/.cargo/bin/gcc-ranlib-15.2"
+      - "C:/msys64/usr/bin/gcc-ranlib-15.2.com"
+      - "C:/msys64/usr/bin/gcc-ranlib-15.2.exe"
+      - "C:/msys64/usr/bin/gcc-ranlib-15.2"
       - "C:/msys64/mingw64/bin/gcc-ranlib-15.com"
       - "C:/msys64/mingw64/bin/gcc-ranlib-15.exe"
       - "C:/msys64/mingw64/bin/gcc-ranlib-15"
+      - "C:/Users/paceg/.vscode/extensions/vadimcn.vscode-lldb-1.12.1/bin/gcc-ranlib-15.com"
+      - "C:/Users/paceg/.vscode/extensions/vadimcn.vscode-lldb-1.12.1/bin/gcc-ranlib-15.exe"
+      - "C:/Users/paceg/.vscode/extensions/vadimcn.vscode-lldb-1.12.1/bin/gcc-ranlib-15"
+      - "C:/Users/paceg/AppData/Local/Programs/Microsoft VS Code/gcc-ranlib-15.com"
+      - "C:/Users/paceg/AppData/Local/Programs/Microsoft VS Code/gcc-ranlib-15.exe"
+      - "C:/Users/paceg/AppData/Local/Programs/Microsoft VS Code/gcc-ranlib-15"
       - "C:/Windows/System32/gcc-ranlib-15.com"
       - "C:/Windows/System32/gcc-ranlib-15.exe"
       - "C:/Windows/System32/gcc-ranlib-15"
@@ -1522,6 +2195,12 @@ events:
       - "C:/Program Files/CMake/bin/gcc-ranlib-15.com"
       - "C:/Program Files/CMake/bin/gcc-ranlib-15.exe"
       - "C:/Program Files/CMake/bin/gcc-ranlib-15"
+      - "C:/Program Files/nodejs/gcc-ranlib-15.com"
+      - "C:/Program Files/nodejs/gcc-ranlib-15.exe"
+      - "C:/Program Files/nodejs/gcc-ranlib-15"
+      - "C:/Program Files/MySQL/MySQL Shell 8.0/bin/gcc-ranlib-15.com"
+      - "C:/Program Files/MySQL/MySQL Shell 8.0/bin/gcc-ranlib-15.exe"
+      - "C:/Program Files/MySQL/MySQL Shell 8.0/bin/gcc-ranlib-15"
       - "C:/Users/paceg/AppData/Local/Microsoft/WindowsApps/gcc-ranlib-15.com"
       - "C:/Users/paceg/AppData/Local/Microsoft/WindowsApps/gcc-ranlib-15.exe"
       - "C:/Users/paceg/AppData/Local/Microsoft/WindowsApps/gcc-ranlib-15"
@@ -1531,9 +2210,30 @@ events:
       - "C:/Program Files/JetBrains/IntelliJ IDEA 2025.3.2/bin/gcc-ranlib-15.com"
       - "C:/Program Files/JetBrains/IntelliJ IDEA 2025.3.2/bin/gcc-ranlib-15.exe"
       - "C:/Program Files/JetBrains/IntelliJ IDEA 2025.3.2/bin/gcc-ranlib-15"
+      - "C:/Program Files (x86)/Nmap/gcc-ranlib-15.com"
+      - "C:/Program Files (x86)/Nmap/gcc-ranlib-15.exe"
+      - "C:/Program Files (x86)/Nmap/gcc-ranlib-15"
+      - "C:/Users/paceg/AppData/Roaming/npm/gcc-ranlib-15.com"
+      - "C:/Users/paceg/AppData/Roaming/npm/gcc-ranlib-15.exe"
+      - "C:/Users/paceg/AppData/Roaming/npm/gcc-ranlib-15"
+      - "C:/Users/paceg/.jdks/corretto-19.0.2/bin/gcc-ranlib-15.com"
+      - "C:/Users/paceg/.jdks/corretto-19.0.2/bin/gcc-ranlib-15.exe"
+      - "C:/Users/paceg/.jdks/corretto-19.0.2/bin/gcc-ranlib-15"
+      - "C:/Users/paceg/.cargo/bin/gcc-ranlib-15.com"
+      - "C:/Users/paceg/.cargo/bin/gcc-ranlib-15.exe"
+      - "C:/Users/paceg/.cargo/bin/gcc-ranlib-15"
+      - "C:/msys64/usr/bin/gcc-ranlib-15.com"
+      - "C:/msys64/usr/bin/gcc-ranlib-15.exe"
+      - "C:/msys64/usr/bin/gcc-ranlib-15"
       - "C:/msys64/mingw64/bin/gcc-ranlib15.com"
       - "C:/msys64/mingw64/bin/gcc-ranlib15.exe"
       - "C:/msys64/mingw64/bin/gcc-ranlib15"
+      - "C:/Users/paceg/.vscode/extensions/vadimcn.vscode-lldb-1.12.1/bin/gcc-ranlib15.com"
+      - "C:/Users/paceg/.vscode/extensions/vadimcn.vscode-lldb-1.12.1/bin/gcc-ranlib15.exe"
+      - "C:/Users/paceg/.vscode/extensions/vadimcn.vscode-lldb-1.12.1/bin/gcc-ranlib15"
+      - "C:/Users/paceg/AppData/Local/Programs/Microsoft VS Code/gcc-ranlib15.com"
+      - "C:/Users/paceg/AppData/Local/Programs/Microsoft VS Code/gcc-ranlib15.exe"
+      - "C:/Users/paceg/AppData/Local/Programs/Microsoft VS Code/gcc-ranlib15"
       - "C:/Windows/System32/gcc-ranlib15.com"
       - "C:/Windows/System32/gcc-ranlib15.exe"
       - "C:/Windows/System32/gcc-ranlib15"
@@ -1555,6 +2255,12 @@ events:
       - "C:/Program Files/CMake/bin/gcc-ranlib15.com"
       - "C:/Program Files/CMake/bin/gcc-ranlib15.exe"
       - "C:/Program Files/CMake/bin/gcc-ranlib15"
+      - "C:/Program Files/nodejs/gcc-ranlib15.com"
+      - "C:/Program Files/nodejs/gcc-ranlib15.exe"
+      - "C:/Program Files/nodejs/gcc-ranlib15"
+      - "C:/Program Files/MySQL/MySQL Shell 8.0/bin/gcc-ranlib15.com"
+      - "C:/Program Files/MySQL/MySQL Shell 8.0/bin/gcc-ranlib15.exe"
+      - "C:/Program Files/MySQL/MySQL Shell 8.0/bin/gcc-ranlib15"
       - "C:/Users/paceg/AppData/Local/Microsoft/WindowsApps/gcc-ranlib15.com"
       - "C:/Users/paceg/AppData/Local/Microsoft/WindowsApps/gcc-ranlib15.exe"
       - "C:/Users/paceg/AppData/Local/Microsoft/WindowsApps/gcc-ranlib15"
@@ -1564,10 +2270,27 @@ events:
       - "C:/Program Files/JetBrains/IntelliJ IDEA 2025.3.2/bin/gcc-ranlib15.com"
       - "C:/Program Files/JetBrains/IntelliJ IDEA 2025.3.2/bin/gcc-ranlib15.exe"
       - "C:/Program Files/JetBrains/IntelliJ IDEA 2025.3.2/bin/gcc-ranlib15"
+      - "C:/Program Files (x86)/Nmap/gcc-ranlib15.com"
+      - "C:/Program Files (x86)/Nmap/gcc-ranlib15.exe"
+      - "C:/Program Files (x86)/Nmap/gcc-ranlib15"
+      - "C:/Users/paceg/AppData/Roaming/npm/gcc-ranlib15.com"
+      - "C:/Users/paceg/AppData/Roaming/npm/gcc-ranlib15.exe"
+      - "C:/Users/paceg/AppData/Roaming/npm/gcc-ranlib15"
+      - "C:/Users/paceg/.jdks/corretto-19.0.2/bin/gcc-ranlib15.com"
+      - "C:/Users/paceg/.jdks/corretto-19.0.2/bin/gcc-ranlib15.exe"
+      - "C:/Users/paceg/.jdks/corretto-19.0.2/bin/gcc-ranlib15"
+      - "C:/Users/paceg/.cargo/bin/gcc-ranlib15.com"
+      - "C:/Users/paceg/.cargo/bin/gcc-ranlib15.exe"
+      - "C:/Users/paceg/.cargo/bin/gcc-ranlib15"
+      - "C:/msys64/usr/bin/gcc-ranlib15.com"
+      - "C:/msys64/usr/bin/gcc-ranlib15.exe"
+      - "C:/msys64/usr/bin/gcc-ranlib15"
       - "C:/msys64/mingw64/bin/gcc-ranlib.com"
     found: "C:/msys64/mingw64/bin/gcc-ranlib.exe"
     search_context:
       ENV{PATH}:
+        - "c:\\Users\\paceg\\.vscode\\extensions\\vadimcn.vscode-lldb-1.12.1\\bin"
+        - "C:\\Users\\paceg\\AppData\\Local\\Programs\\Microsoft VS Code"
         - "C:\\WINDOWS\\system32"
         - "C:\\WINDOWS"
         - "C:\\WINDOWS\\System32\\Wbem"
@@ -1576,9 +2299,16 @@ events:
         - "C:\\Program Files\\Git\\cmd"
         - "C:\\Program Files\\CMake\\bin"
         - "C:\\msys64\\mingw64\\bin"
+        - "C:\\Program Files\\nodejs\\"
+        - "C:\\Program Files\\MySQL\\MySQL Shell 8.0\\bin\\"
         - "C:\\Users\\paceg\\AppData\\Local\\Microsoft\\WindowsApps"
         - "C:\\Users\\paceg\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
         - "C:\\Program Files\\JetBrains\\IntelliJ IDEA 2025.3.2\\bin"
+        - "C:\\Program Files (x86)\\Nmap"
+        - "C:\\Users\\paceg\\AppData\\Roaming\\npm"
+        - "C:\\Users\\paceg\\.jdks\\corretto-19.0.2\\bin"
+        - "C:\\Users\\paceg\\.cargo\\bin"
+        - "C:\\msys64\\usr\\bin"
   -
     kind: "find-v1"
     backtrace:
@@ -1602,6 +2332,8 @@ events:
       - "windres"
       - "windres"
     candidate_directories:
+      - "C:/Users/paceg/.vscode/extensions/vadimcn.vscode-lldb-1.12.1/bin/"
+      - "C:/Users/paceg/AppData/Local/Programs/Microsoft VS Code/"
       - "C:/Windows/System32/"
       - "C:/Windows/"
       - "C:/Windows/System32/wbem/"
@@ -1610,9 +2342,16 @@ events:
       - "C:/Program Files/Git/cmd/"
       - "C:/Program Files/CMake/bin/"
       - "C:/msys64/mingw64/bin/"
+      - "C:/Program Files/nodejs/"
+      - "C:/Program Files/MySQL/MySQL Shell 8.0/bin/"
       - "C:/Users/paceg/AppData/Local/Microsoft/WindowsApps/"
       - "C:/Users/paceg/AppData/Local/Programs/Microsoft VS Code/bin/"
       - "C:/Program Files/JetBrains/IntelliJ IDEA 2025.3.2/bin/"
+      - "C:/Program Files (x86)/Nmap/"
+      - "C:/Users/paceg/AppData/Roaming/npm/"
+      - "C:/Users/paceg/.jdks/corretto-19.0.2/bin/"
+      - "C:/Users/paceg/.cargo/bin/"
+      - "C:/msys64/usr/bin/"
       - "C:/Program Files/bin/"
       - "C:/Program Files/sbin/"
       - "C:/Program Files/"
@@ -1626,6 +2365,12 @@ events:
       - "C:/Program Files (x86)/UTILS/sbin/"
       - "C:/Program Files (x86)/UTILS/"
     searched_directories:
+      - "C:/Users/paceg/.vscode/extensions/vadimcn.vscode-lldb-1.12.1/bin/windres.com"
+      - "C:/Users/paceg/.vscode/extensions/vadimcn.vscode-lldb-1.12.1/bin/windres.exe"
+      - "C:/Users/paceg/.vscode/extensions/vadimcn.vscode-lldb-1.12.1/bin/windres"
+      - "C:/Users/paceg/AppData/Local/Programs/Microsoft VS Code/windres.com"
+      - "C:/Users/paceg/AppData/Local/Programs/Microsoft VS Code/windres.exe"
+      - "C:/Users/paceg/AppData/Local/Programs/Microsoft VS Code/windres"
       - "C:/Windows/System32/windres.com"
       - "C:/Windows/System32/windres.exe"
       - "C:/Windows/System32/windres"
@@ -1651,6 +2396,8 @@ events:
     found: "C:/msys64/mingw64/bin/windres.exe"
     search_context:
       ENV{PATH}:
+        - "c:\\Users\\paceg\\.vscode\\extensions\\vadimcn.vscode-lldb-1.12.1\\bin"
+        - "C:\\Users\\paceg\\AppData\\Local\\Programs\\Microsoft VS Code"
         - "C:\\WINDOWS\\system32"
         - "C:\\WINDOWS"
         - "C:\\WINDOWS\\System32\\Wbem"
@@ -1659,9 +2406,16 @@ events:
         - "C:\\Program Files\\Git\\cmd"
         - "C:\\Program Files\\CMake\\bin"
         - "C:\\msys64\\mingw64\\bin"
+        - "C:\\Program Files\\nodejs\\"
+        - "C:\\Program Files\\MySQL\\MySQL Shell 8.0\\bin\\"
         - "C:\\Users\\paceg\\AppData\\Local\\Microsoft\\WindowsApps"
         - "C:\\Users\\paceg\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
         - "C:\\Program Files\\JetBrains\\IntelliJ IDEA 2025.3.2\\bin"
+        - "C:\\Program Files (x86)\\Nmap"
+        - "C:\\Users\\paceg\\AppData\\Roaming\\npm"
+        - "C:\\Users\\paceg\\.jdks\\corretto-19.0.2\\bin"
+        - "C:\\Users\\paceg\\.cargo\\bin"
+        - "C:\\msys64\\usr\\bin"
       CMAKE_INSTALL_PREFIX: "C:/Program Files (x86)/UTILS"
       CMAKE_SYSTEM_PREFIX_PATH:
         - "C:/Program Files"
@@ -1677,8 +2431,8 @@ events:
     checks:
       - "Detecting C compiler ABI info"
     directories:
-      source: "C:/Users/paceg/JPL/utils/build/CMakeFiles/CMakeScratch/TryCompile-bcwxl9"
-      binary: "C:/Users/paceg/JPL/utils/build/CMakeFiles/CMakeScratch/TryCompile-bcwxl9"
+      source: "C:/Users/paceg/JPL/utils/build/CMakeFiles/CMakeScratch/TryCompile-i2sez4"
+      binary: "C:/Users/paceg/JPL/utils/build/CMakeFiles/CMakeScratch/TryCompile-i2sez4"
     cmakeVariables:
       CMAKE_C_FLAGS: ""
       CMAKE_C_FLAGS_DEBUG: "-g"
@@ -1687,13 +2441,13 @@ events:
       variable: "CMAKE_C_ABI_COMPILED"
       cached: true
       stdout: |
-        Change Dir: 'C:/Users/paceg/JPL/utils/build/CMakeFiles/CMakeScratch/TryCompile-bcwxl9'
+        Change Dir: 'C:/Users/paceg/JPL/utils/build/CMakeFiles/CMakeScratch/TryCompile-i2sez4'
         
-        Run Build Command(s): "C:/Program Files/CMake/bin/cmake.exe" -E env VERBOSE=1 C:/msys64/mingw64/bin/mingw32-make.exe -f Makefile cmTC_b64d0/fast
-        C:/msys64/mingw64/bin/mingw32-make.exe  -f CMakeFiles\\cmTC_b64d0.dir\\build.make CMakeFiles/cmTC_b64d0.dir/build
-        mingw32-make[1]: Entering directory 'C:/Users/paceg/JPL/utils/build/CMakeFiles/CMakeScratch/TryCompile-bcwxl9'
-        Building C object CMakeFiles/cmTC_b64d0.dir/CMakeCCompilerABI.c.obj
-        C:\\msys64\\mingw64\\bin\\cc.exe   -v -o CMakeFiles\\cmTC_b64d0.dir\\CMakeCCompilerABI.c.obj -c "C:\\Program Files\\CMake\\share\\cmake-4.2\\Modules\\CMakeCCompilerABI.c"
+        Run Build Command(s): "C:/Program Files/CMake/bin/cmake.exe" -E env VERBOSE=1 C:/msys64/mingw64/bin/mingw32-make.exe -f Makefile cmTC_838d3/fast
+        C:/msys64/mingw64/bin/mingw32-make.exe  -f CMakeFiles\\cmTC_838d3.dir\\build.make CMakeFiles/cmTC_838d3.dir/build
+        mingw32-make[1]: Entering directory 'C:/Users/paceg/JPL/utils/build/CMakeFiles/CMakeScratch/TryCompile-i2sez4'
+        Building C object CMakeFiles/cmTC_838d3.dir/CMakeCCompilerABI.c.obj
+        C:\\msys64\\mingw64\\bin\\cc.exe   -v -o CMakeFiles\\cmTC_838d3.dir\\CMakeCCompilerABI.c.obj -c "C:\\Program Files\\CMake\\share\\cmake-4.2\\Modules\\CMakeCCompilerABI.c"
         Using built-in specs.
         COLLECT_GCC=C:\\msys64\\mingw64\\bin\\cc.exe
         Target: x86_64-w64-mingw32
@@ -1701,8 +2455,8 @@ events:
         Thread model: posix
         Supported LTO compression algorithms: zlib zstd
         gcc version 15.2.0 (Rev8, Built by MSYS2 project) 
-        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles\\cmTC_b64d0.dir\\CMakeCCompilerABI.c.obj' '-c' '-mtune=generic' '-march=nocona' '-dumpdir' 'CMakeFiles\\cmTC_b64d0.dir\\'
-         C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/cc1.exe -quiet -v -iprefix C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/ -D_REENTRANT C:\\Program Files\\CMake\\share\\cmake-4.2\\Modules\\CMakeCCompilerABI.c -quiet -dumpdir CMakeFiles\\cmTC_b64d0.dir\\ -dumpbase CMakeCCompilerABI.c.c -dumpbase-ext .c -mtune=generic -march=nocona -version -o C:\\Users\\paceg\\AppData\\Local\\Temp\\cc03fNaV.s
+        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles\\cmTC_838d3.dir\\CMakeCCompilerABI.c.obj' '-c' '-mtune=generic' '-march=nocona' '-dumpdir' 'CMakeFiles\\cmTC_838d3.dir\\'
+         C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/cc1.exe -quiet -v -iprefix C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/ -D_REENTRANT C:\\Program Files\\CMake\\share\\cmake-4.2\\Modules\\CMakeCCompilerABI.c -quiet -dumpdir CMakeFiles\\cmTC_838d3.dir\\ -dumpbase CMakeCCompilerABI.c.c -dumpbase-ext .c -mtune=generic -march=nocona -version -o C:\\Users\\paceg\\AppData\\Local\\Temp\\ccGJYC4l.s
         GNU C23 (Rev8, Built by MSYS2 project) version 15.2.0 (x86_64-w64-mingw32)
         	compiled by GNU C version 15.2.0, GMP version 6.3.0, MPFR version 4.2.2, MPC version 1.3.1, isl version isl-0.27-GMP
         
@@ -1721,14 +2475,14 @@ events:
          C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/include-fixed
         End of search list.
         Compiler executable checksum: feaaa8b8d0ead308dc62d839201f7330
-        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles\\cmTC_b64d0.dir\\CMakeCCompilerABI.c.obj' '-c' '-mtune=generic' '-march=nocona' '-dumpdir' 'CMakeFiles\\cmTC_b64d0.dir\\'
-         C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../../../x86_64-w64-mingw32/bin/as.exe -v -o CMakeFiles\\cmTC_b64d0.dir\\CMakeCCompilerABI.c.obj C:\\Users\\paceg\\AppData\\Local\\Temp\\cc03fNaV.s
+        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles\\cmTC_838d3.dir\\CMakeCCompilerABI.c.obj' '-c' '-mtune=generic' '-march=nocona' '-dumpdir' 'CMakeFiles\\cmTC_838d3.dir\\'
+         C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../../../x86_64-w64-mingw32/bin/as.exe -v -o CMakeFiles\\cmTC_838d3.dir\\CMakeCCompilerABI.c.obj C:\\Users\\paceg\\AppData\\Local\\Temp\\ccGJYC4l.s
         GNU assembler version 2.45.1 (x86_64-w64-mingw32) using BFD version (GNU Binutils) 2.45.1
         COMPILER_PATH=C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/;C:/msys64/mingw64/bin/../lib/gcc/;C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../../../x86_64-w64-mingw32/bin/
         LIBRARY_PATH=C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/;C:/msys64/mingw64/bin/../lib/gcc/;C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../../../x86_64-w64-mingw32/lib/../lib/;C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../../../lib/;C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../../../x86_64-w64-mingw32/lib/;C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../../
-        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles\\cmTC_b64d0.dir\\CMakeCCompilerABI.c.obj' '-c' '-mtune=generic' '-march=nocona' '-dumpdir' 'CMakeFiles\\cmTC_b64d0.dir\\CMakeCCompilerABI.c.'
-        Linking C executable cmTC_b64d0.exe
-        "C:\\Program Files\\CMake\\bin\\cmake.exe" -E cmake_link_script CMakeFiles\\cmTC_b64d0.dir\\link.txt --verbose=1
+        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles\\cmTC_838d3.dir\\CMakeCCompilerABI.c.obj' '-c' '-mtune=generic' '-march=nocona' '-dumpdir' 'CMakeFiles\\cmTC_838d3.dir\\CMakeCCompilerABI.c.'
+        Linking C executable cmTC_838d3.exe
+        "C:\\Program Files\\CMake\\bin\\cmake.exe" -E cmake_link_script CMakeFiles\\cmTC_838d3.dir\\link.txt --verbose=1
         Using built-in specs.
         COLLECT_GCC=C:\\msys64\\mingw64\\bin\\cc.exe
         COLLECT_LTO_WRAPPER=C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/lto-wrapper.exe
@@ -1739,16 +2493,16 @@ events:
         gcc version 15.2.0 (Rev8, Built by MSYS2 project) 
         COMPILER_PATH=C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/;C:/msys64/mingw64/bin/../lib/gcc/;C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../../../x86_64-w64-mingw32/bin/
         LIBRARY_PATH=C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/;C:/msys64/mingw64/bin/../lib/gcc/;C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../../../x86_64-w64-mingw32/lib/../lib/;C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../../../lib/;C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../../../x86_64-w64-mingw32/lib/;C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../../
-        COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_b64d0.exe' '-mtune=generic' '-march=nocona' '-dumpdir' 'cmTC_b64d0.'
-         C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/collect2.exe -plugin C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/liblto_plugin.dll -plugin-opt=C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/lto-wrapper.exe -plugin-opt=-fresolution=C:\\Users\\paceg\\AppData\\Local\\Temp\\ccQoOXc3.res -plugin-opt=-pass-through=-lmingw32 -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_eh -plugin-opt=-pass-through=-lmingwex -plugin-opt=-pass-through=-lmsvcrt -plugin-opt=-pass-through=-lkernel32 -plugin-opt=-pass-through=-lpthread -plugin-opt=-pass-through=-ladvapi32 -plugin-opt=-pass-through=-lshell32 -plugin-opt=-pass-through=-luser32 -plugin-opt=-pass-through=-lkernel32 -plugin-opt=-pass-through=-lmingw32 -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_eh -plugin-opt=-pass-through=-lmingwex -plugin-opt=-pass-through=-lmsvcrt -plugin-opt=-pass-through=-lkernel32 -m i386pep -Bdynamic -o cmTC_b64d0.exe C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../../../lib/crt2.o C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/crtbegin.o -LC:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0 -LC:/msys64/mingw64/bin/../lib/gcc -LC:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../../../x86_64-w64-mingw32/lib/../lib -LC:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../../../lib -LC:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../../../x86_64-w64-mingw32/lib -LC:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../.. -v --whole-archive CMakeFiles\\cmTC_b64d0.dir/objects.a --no-whole-archive --out-implib libcmTC_b64d0.dll.a --major-image-version 0 --minor-image-version 0 -lmingw32 -lgcc -lgcc_eh -lmingwex -lmsvcrt -lkernel32 -lpthread -ladvapi32 -lshell32 -luser32 -lkernel32 -lmingw32 -lgcc -lgcc_eh -lmingwex -lmsvcrt -lkernel32 C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../../../lib/default-manifest.o C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/crtend.o
+        COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_838d3.exe' '-mtune=generic' '-march=nocona' '-dumpdir' 'cmTC_838d3.'
+         C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/collect2.exe -plugin C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/liblto_plugin.dll -plugin-opt=C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/lto-wrapper.exe -plugin-opt=-fresolution=C:\\Users\\paceg\\AppData\\Local\\Temp\\ccOj71It.res -plugin-opt=-pass-through=-lmingw32 -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_eh -plugin-opt=-pass-through=-lmingwex -plugin-opt=-pass-through=-lmsvcrt -plugin-opt=-pass-through=-lkernel32 -plugin-opt=-pass-through=-lpthread -plugin-opt=-pass-through=-ladvapi32 -plugin-opt=-pass-through=-lshell32 -plugin-opt=-pass-through=-luser32 -plugin-opt=-pass-through=-lkernel32 -plugin-opt=-pass-through=-lmingw32 -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_eh -plugin-opt=-pass-through=-lmingwex -plugin-opt=-pass-through=-lmsvcrt -plugin-opt=-pass-through=-lkernel32 -m i386pep -Bdynamic -o cmTC_838d3.exe C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../../../lib/crt2.o C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/crtbegin.o -LC:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0 -LC:/msys64/mingw64/bin/../lib/gcc -LC:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../../../x86_64-w64-mingw32/lib/../lib -LC:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../../../lib -LC:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../../../x86_64-w64-mingw32/lib -LC:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../.. -v --whole-archive CMakeFiles\\cmTC_838d3.dir/objects.a --no-whole-archive --out-implib libcmTC_838d3.dll.a --major-image-version 0 --minor-image-version 0 -lmingw32 -lgcc -lgcc_eh -lmingwex -lmsvcrt -lkernel32 -lpthread -ladvapi32 -lshell32 -luser32 -lkernel32 -lmingw32 -lgcc -lgcc_eh -lmingwex -lmsvcrt -lkernel32 C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../../../lib/default-manifest.o C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/crtend.o
         collect2 version 15.2.0
-        C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../../../x86_64-w64-mingw32/bin/ld.exe -plugin C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/liblto_plugin.dll -plugin-opt=C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/lto-wrapper.exe -plugin-opt=-fresolution=C:\\Users\\paceg\\AppData\\Local\\Temp\\ccQoOXc3.res -plugin-opt=-pass-through=-lmingw32 -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_eh -plugin-opt=-pass-through=-lmingwex -plugin-opt=-pass-through=-lmsvcrt -plugin-opt=-pass-through=-lkernel32 -plugin-opt=-pass-through=-lpthread -plugin-opt=-pass-through=-ladvapi32 -plugin-opt=-pass-through=-lshell32 -plugin-opt=-pass-through=-luser32 -plugin-opt=-pass-through=-lkernel32 -plugin-opt=-pass-through=-lmingw32 -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_eh -plugin-opt=-pass-through=-lmingwex -plugin-opt=-pass-through=-lmsvcrt -plugin-opt=-pass-through=-lkernel32 -m i386pep -Bdynamic -o cmTC_b64d0.exe C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../../../lib/crt2.o C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/crtbegin.o -LC:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0 -LC:/msys64/mingw64/bin/../lib/gcc -LC:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../../../x86_64-w64-mingw32/lib/../lib -LC:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../../../lib -LC:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../../../x86_64-w64-mingw32/lib -LC:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../.. -v --whole-archive CMakeFiles\\cmTC_b64d0.dir/objects.a --no-whole-archive --out-implib libcmTC_b64d0.dll.a --major-image-version 0 --minor-image-version 0 -lmingw32 -lgcc -lgcc_eh -lmingwex -lmsvcrt -lkernel32 -lpthread -ladvapi32 -lshell32 -luser32 -lkernel32 -lmingw32 -lgcc -lgcc_eh -lmingwex -lmsvcrt -lkernel32 C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../../../lib/default-manifest.o C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/crtend.o
+        C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../../../x86_64-w64-mingw32/bin/ld.exe -plugin C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/liblto_plugin.dll -plugin-opt=C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/lto-wrapper.exe -plugin-opt=-fresolution=C:\\Users\\paceg\\AppData\\Local\\Temp\\ccOj71It.res -plugin-opt=-pass-through=-lmingw32 -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_eh -plugin-opt=-pass-through=-lmingwex -plugin-opt=-pass-through=-lmsvcrt -plugin-opt=-pass-through=-lkernel32 -plugin-opt=-pass-through=-lpthread -plugin-opt=-pass-through=-ladvapi32 -plugin-opt=-pass-through=-lshell32 -plugin-opt=-pass-through=-luser32 -plugin-opt=-pass-through=-lkernel32 -plugin-opt=-pass-through=-lmingw32 -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_eh -plugin-opt=-pass-through=-lmingwex -plugin-opt=-pass-through=-lmsvcrt -plugin-opt=-pass-through=-lkernel32 -m i386pep -Bdynamic -o cmTC_838d3.exe C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../../../lib/crt2.o C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/crtbegin.o -LC:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0 -LC:/msys64/mingw64/bin/../lib/gcc -LC:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../../../x86_64-w64-mingw32/lib/../lib -LC:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../../../lib -LC:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../../../x86_64-w64-mingw32/lib -LC:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../.. -v --whole-archive CMakeFiles\\cmTC_838d3.dir/objects.a --no-whole-archive --out-implib libcmTC_838d3.dll.a --major-image-version 0 --minor-image-version 0 -lmingw32 -lgcc -lgcc_eh -lmingwex -lmsvcrt -lkernel32 -lpthread -ladvapi32 -lshell32 -luser32 -lkernel32 -lmingw32 -lgcc -lgcc_eh -lmingwex -lmsvcrt -lkernel32 C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../../../lib/default-manifest.o C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/crtend.o
         GNU ld (GNU Binutils) 2.45.1
-        COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_b64d0.exe' '-mtune=generic' '-march=nocona' '-dumpdir' 'cmTC_b64d0.'
-        "C:\\Program Files\\CMake\\bin\\cmake.exe" -E rm -f CMakeFiles\\cmTC_b64d0.dir/objects.a
-        C:\\msys64\\mingw64\\bin\\ar.exe qc CMakeFiles\\cmTC_b64d0.dir/objects.a @CMakeFiles\\cmTC_b64d0.dir\\objects1.rsp
-        C:\\msys64\\mingw64\\bin\\cc.exe  -v -Wl,-v -Wl,--whole-archive CMakeFiles\\cmTC_b64d0.dir/objects.a -Wl,--no-whole-archive -o cmTC_b64d0.exe -Wl,--out-implib,libcmTC_b64d0.dll.a -Wl,--major-image-version,0,--minor-image-version,0
-        mingw32-make[1]: Leaving directory 'C:/Users/paceg/JPL/utils/build/CMakeFiles/CMakeScratch/TryCompile-bcwxl9'
+        COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_838d3.exe' '-mtune=generic' '-march=nocona' '-dumpdir' 'cmTC_838d3.'
+        "C:\\Program Files\\CMake\\bin\\cmake.exe" -E rm -f CMakeFiles\\cmTC_838d3.dir/objects.a
+        C:\\msys64\\mingw64\\bin\\ar.exe qc CMakeFiles\\cmTC_838d3.dir/objects.a @CMakeFiles\\cmTC_838d3.dir\\objects1.rsp
+        C:\\msys64\\mingw64\\bin\\cc.exe  -v -Wl,-v -Wl,--whole-archive CMakeFiles\\cmTC_838d3.dir/objects.a -Wl,--no-whole-archive -o cmTC_838d3.exe -Wl,--out-implib,libcmTC_838d3.dll.a -Wl,--major-image-version,0,--minor-image-version,0
+        mingw32-make[1]: Leaving directory 'C:/Users/paceg/JPL/utils/build/CMakeFiles/CMakeScratch/TryCompile-i2sez4'
         
       exitCode: 0
   -
@@ -1781,13 +2535,13 @@ events:
       Parsed C implicit link information:
         link line regex: [^( *|.*[/\\])(ld[0-9]*(|\\.[a-rt-z][a-z]*|\\.s[a-np-z][a-z]*|\\.so[a-z]+)|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\\]+-)?ld|collect2)[^/\\]*( |$)]
         linker tool regex: [^[ 	]*(->|"|[0-9]+>[ 	-]*Build:[ 	0-9]+ ms[ 	]*)?[ 	]*(([^"]*[/\\])?(ld[0-9]*(|\\.[a-rt-z][a-z]*|\\.s[a-np-z][a-z]*|\\.so[a-z]+)))("|,| |$)]
-        ignore line: [Change Dir: 'C:/Users/paceg/JPL/utils/build/CMakeFiles/CMakeScratch/TryCompile-bcwxl9']
+        ignore line: [Change Dir: 'C:/Users/paceg/JPL/utils/build/CMakeFiles/CMakeScratch/TryCompile-i2sez4']
         ignore line: []
-        ignore line: [Run Build Command(s): "C:/Program Files/CMake/bin/cmake.exe" -E env VERBOSE=1 C:/msys64/mingw64/bin/mingw32-make.exe -f Makefile cmTC_b64d0/fast]
-        ignore line: [C:/msys64/mingw64/bin/mingw32-make.exe  -f CMakeFiles\\cmTC_b64d0.dir\\build.make CMakeFiles/cmTC_b64d0.dir/build]
-        ignore line: [mingw32-make[1]: Entering directory 'C:/Users/paceg/JPL/utils/build/CMakeFiles/CMakeScratch/TryCompile-bcwxl9']
-        ignore line: [Building C object CMakeFiles/cmTC_b64d0.dir/CMakeCCompilerABI.c.obj]
-        ignore line: [C:\\msys64\\mingw64\\bin\\cc.exe   -v -o CMakeFiles\\cmTC_b64d0.dir\\CMakeCCompilerABI.c.obj -c "C:\\Program Files\\CMake\\share\\cmake-4.2\\Modules\\CMakeCCompilerABI.c"]
+        ignore line: [Run Build Command(s): "C:/Program Files/CMake/bin/cmake.exe" -E env VERBOSE=1 C:/msys64/mingw64/bin/mingw32-make.exe -f Makefile cmTC_838d3/fast]
+        ignore line: [C:/msys64/mingw64/bin/mingw32-make.exe  -f CMakeFiles\\cmTC_838d3.dir\\build.make CMakeFiles/cmTC_838d3.dir/build]
+        ignore line: [mingw32-make[1]: Entering directory 'C:/Users/paceg/JPL/utils/build/CMakeFiles/CMakeScratch/TryCompile-i2sez4']
+        ignore line: [Building C object CMakeFiles/cmTC_838d3.dir/CMakeCCompilerABI.c.obj]
+        ignore line: [C:\\msys64\\mingw64\\bin\\cc.exe   -v -o CMakeFiles\\cmTC_838d3.dir\\CMakeCCompilerABI.c.obj -c "C:\\Program Files\\CMake\\share\\cmake-4.2\\Modules\\CMakeCCompilerABI.c"]
         ignore line: [Using built-in specs.]
         ignore line: [COLLECT_GCC=C:\\msys64\\mingw64\\bin\\cc.exe]
         ignore line: [Target: x86_64-w64-mingw32]
@@ -1795,8 +2549,8 @@ events:
         ignore line: [Thread model: posix]
         ignore line: [Supported LTO compression algorithms: zlib zstd]
         ignore line: [gcc version 15.2.0 (Rev8  Built by MSYS2 project) ]
-        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles\\cmTC_b64d0.dir\\CMakeCCompilerABI.c.obj' '-c' '-mtune=generic' '-march=nocona' '-dumpdir' 'CMakeFiles\\cmTC_b64d0.dir\\']
-        ignore line: [ C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/cc1.exe -quiet -v -iprefix C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/ -D_REENTRANT C:\\Program Files\\CMake\\share\\cmake-4.2\\Modules\\CMakeCCompilerABI.c -quiet -dumpdir CMakeFiles\\cmTC_b64d0.dir\\ -dumpbase CMakeCCompilerABI.c.c -dumpbase-ext .c -mtune=generic -march=nocona -version -o C:\\Users\\paceg\\AppData\\Local\\Temp\\cc03fNaV.s]
+        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles\\cmTC_838d3.dir\\CMakeCCompilerABI.c.obj' '-c' '-mtune=generic' '-march=nocona' '-dumpdir' 'CMakeFiles\\cmTC_838d3.dir\\']
+        ignore line: [ C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/cc1.exe -quiet -v -iprefix C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/ -D_REENTRANT C:\\Program Files\\CMake\\share\\cmake-4.2\\Modules\\CMakeCCompilerABI.c -quiet -dumpdir CMakeFiles\\cmTC_838d3.dir\\ -dumpbase CMakeCCompilerABI.c.c -dumpbase-ext .c -mtune=generic -march=nocona -version -o C:\\Users\\paceg\\AppData\\Local\\Temp\\ccGJYC4l.s]
         ignore line: [GNU C23 (Rev8  Built by MSYS2 project) version 15.2.0 (x86_64-w64-mingw32)]
         ignore line: [	compiled by GNU C version 15.2.0  GMP version 6.3.0  MPFR version 4.2.2  MPC version 1.3.1  isl version isl-0.27-GMP]
         ignore line: []
@@ -1815,8 +2569,8 @@ events:
         ignore line: [ C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/include-fixed]
         ignore line: [End of search list.]
         ignore line: [Compiler executable checksum: feaaa8b8d0ead308dc62d839201f7330]
-        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles\\cmTC_b64d0.dir\\CMakeCCompilerABI.c.obj' '-c' '-mtune=generic' '-march=nocona' '-dumpdir' 'CMakeFiles\\cmTC_b64d0.dir\\']
-        ignore line: [ C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../../../x86_64-w64-mingw32/bin/as.exe -v -o CMakeFiles\\cmTC_b64d0.dir\\CMakeCCompilerABI.c.obj C:\\Users\\paceg\\AppData\\Local\\Temp\\cc03fNaV.s]
+        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles\\cmTC_838d3.dir\\CMakeCCompilerABI.c.obj' '-c' '-mtune=generic' '-march=nocona' '-dumpdir' 'CMakeFiles\\cmTC_838d3.dir\\']
+        ignore line: [ C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../../../x86_64-w64-mingw32/bin/as.exe -v -o CMakeFiles\\cmTC_838d3.dir\\CMakeCCompilerABI.c.obj C:\\Users\\paceg\\AppData\\Local\\Temp\\ccGJYC4l.s]
         ignore line: [GNU assembler version 2.45.1 (x86_64-w64-mingw32) using BFD version (GNU Binutils) 2.45.1]
         ignore line: [COMPILER_PATH=C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/]
         ignore line: [C:/msys64/mingw64/bin/../lib/gcc/]
@@ -1827,9 +2581,9 @@ events:
         ignore line: [C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../../../lib/]
         ignore line: [C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../../../x86_64-w64-mingw32/lib/]
         ignore line: [C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../../]
-        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles\\cmTC_b64d0.dir\\CMakeCCompilerABI.c.obj' '-c' '-mtune=generic' '-march=nocona' '-dumpdir' 'CMakeFiles\\cmTC_b64d0.dir\\CMakeCCompilerABI.c.']
-        ignore line: [Linking C executable cmTC_b64d0.exe]
-        ignore line: ["C:\\Program Files\\CMake\\bin\\cmake.exe" -E cmake_link_script CMakeFiles\\cmTC_b64d0.dir\\link.txt --verbose=1]
+        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles\\cmTC_838d3.dir\\CMakeCCompilerABI.c.obj' '-c' '-mtune=generic' '-march=nocona' '-dumpdir' 'CMakeFiles\\cmTC_838d3.dir\\CMakeCCompilerABI.c.']
+        ignore line: [Linking C executable cmTC_838d3.exe]
+        ignore line: ["C:\\Program Files\\CMake\\bin\\cmake.exe" -E cmake_link_script CMakeFiles\\cmTC_838d3.dir\\link.txt --verbose=1]
         ignore line: [Using built-in specs.]
         ignore line: [COLLECT_GCC=C:\\msys64\\mingw64\\bin\\cc.exe]
         ignore line: [COLLECT_LTO_WRAPPER=C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/lto-wrapper.exe]
@@ -1847,13 +2601,13 @@ events:
         ignore line: [C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../../../lib/]
         ignore line: [C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../../../x86_64-w64-mingw32/lib/]
         ignore line: [C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../../]
-        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_b64d0.exe' '-mtune=generic' '-march=nocona' '-dumpdir' 'cmTC_b64d0.']
-        link line: [ C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/collect2.exe -plugin C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/liblto_plugin.dll -plugin-opt=C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/lto-wrapper.exe -plugin-opt=-fresolution=C:\\Users\\paceg\\AppData\\Local\\Temp\\ccQoOXc3.res -plugin-opt=-pass-through=-lmingw32 -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_eh -plugin-opt=-pass-through=-lmingwex -plugin-opt=-pass-through=-lmsvcrt -plugin-opt=-pass-through=-lkernel32 -plugin-opt=-pass-through=-lpthread -plugin-opt=-pass-through=-ladvapi32 -plugin-opt=-pass-through=-lshell32 -plugin-opt=-pass-through=-luser32 -plugin-opt=-pass-through=-lkernel32 -plugin-opt=-pass-through=-lmingw32 -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_eh -plugin-opt=-pass-through=-lmingwex -plugin-opt=-pass-through=-lmsvcrt -plugin-opt=-pass-through=-lkernel32 -m i386pep -Bdynamic -o cmTC_b64d0.exe C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../../../lib/crt2.o C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/crtbegin.o -LC:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0 -LC:/msys64/mingw64/bin/../lib/gcc -LC:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../../../x86_64-w64-mingw32/lib/../lib -LC:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../../../lib -LC:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../../../x86_64-w64-mingw32/lib -LC:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../.. -v --whole-archive CMakeFiles\\cmTC_b64d0.dir/objects.a --no-whole-archive --out-implib libcmTC_b64d0.dll.a --major-image-version 0 --minor-image-version 0 -lmingw32 -lgcc -lgcc_eh -lmingwex -lmsvcrt -lkernel32 -lpthread -ladvapi32 -lshell32 -luser32 -lkernel32 -lmingw32 -lgcc -lgcc_eh -lmingwex -lmsvcrt -lkernel32 C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../../../lib/default-manifest.o C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/crtend.o]
+        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_838d3.exe' '-mtune=generic' '-march=nocona' '-dumpdir' 'cmTC_838d3.']
+        link line: [ C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/collect2.exe -plugin C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/liblto_plugin.dll -plugin-opt=C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/lto-wrapper.exe -plugin-opt=-fresolution=C:\\Users\\paceg\\AppData\\Local\\Temp\\ccOj71It.res -plugin-opt=-pass-through=-lmingw32 -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_eh -plugin-opt=-pass-through=-lmingwex -plugin-opt=-pass-through=-lmsvcrt -plugin-opt=-pass-through=-lkernel32 -plugin-opt=-pass-through=-lpthread -plugin-opt=-pass-through=-ladvapi32 -plugin-opt=-pass-through=-lshell32 -plugin-opt=-pass-through=-luser32 -plugin-opt=-pass-through=-lkernel32 -plugin-opt=-pass-through=-lmingw32 -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_eh -plugin-opt=-pass-through=-lmingwex -plugin-opt=-pass-through=-lmsvcrt -plugin-opt=-pass-through=-lkernel32 -m i386pep -Bdynamic -o cmTC_838d3.exe C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../../../lib/crt2.o C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/crtbegin.o -LC:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0 -LC:/msys64/mingw64/bin/../lib/gcc -LC:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../../../x86_64-w64-mingw32/lib/../lib -LC:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../../../lib -LC:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../../../x86_64-w64-mingw32/lib -LC:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../.. -v --whole-archive CMakeFiles\\cmTC_838d3.dir/objects.a --no-whole-archive --out-implib libcmTC_838d3.dll.a --major-image-version 0 --minor-image-version 0 -lmingw32 -lgcc -lgcc_eh -lmingwex -lmsvcrt -lkernel32 -lpthread -ladvapi32 -lshell32 -luser32 -lkernel32 -lmingw32 -lgcc -lgcc_eh -lmingwex -lmsvcrt -lkernel32 C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../../../lib/default-manifest.o C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/crtend.o]
           arg [C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/collect2.exe] ==> ignore
           arg [-plugin] ==> ignore
           arg [C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/liblto_plugin.dll] ==> ignore
           arg [-plugin-opt=C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/lto-wrapper.exe] ==> ignore
-          arg [-plugin-opt=-fresolution=C:\\Users\\paceg\\AppData\\Local\\Temp\\ccQoOXc3.res] ==> ignore
+          arg [-plugin-opt=-fresolution=C:\\Users\\paceg\\AppData\\Local\\Temp\\ccOj71It.res] ==> ignore
           arg [-plugin-opt=-pass-through=-lmingw32] ==> ignore
           arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
           arg [-plugin-opt=-pass-through=-lgcc_eh] ==> ignore
@@ -1875,7 +2629,7 @@ events:
           arg [i386pep] ==> ignore
           arg [-Bdynamic] ==> search dynamic
           arg [-o] ==> ignore
-          arg [cmTC_b64d0.exe] ==> ignore
+          arg [cmTC_838d3.exe] ==> ignore
           arg [C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../../../lib/crt2.o] ==> obj [C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../../../lib/crt2.o]
           arg [C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/crtbegin.o] ==> obj [C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/crtbegin.o]
           arg [-LC:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0] ==> dir [C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0]
@@ -1886,10 +2640,10 @@ events:
           arg [-LC:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../..] ==> dir [C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../..]
           arg [-v] ==> ignore
           arg [--whole-archive] ==> ignore
-          arg [CMakeFiles\\cmTC_b64d0.dir/objects.a] ==> ignore
+          arg [CMakeFiles\\cmTC_838d3.dir/objects.a] ==> ignore
           arg [--no-whole-archive] ==> ignore
           arg [--out-implib] ==> ignore
-          arg [libcmTC_b64d0.dll.a] ==> ignore
+          arg [libcmTC_838d3.dll.a] ==> ignore
           arg [--major-image-version] ==> ignore
           arg [0] ==> ignore
           arg [--minor-image-version] ==> ignore
@@ -1914,7 +2668,7 @@ events:
           arg [C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../../../lib/default-manifest.o] ==> obj [C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../../../lib/default-manifest.o]
           arg [C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/crtend.o] ==> obj [C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/crtend.o]
         ignore line: [collect2 version 15.2.0]
-        ignore line: [C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../../../x86_64-w64-mingw32/bin/ld.exe -plugin C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/liblto_plugin.dll -plugin-opt=C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/lto-wrapper.exe -plugin-opt=-fresolution=C:\\Users\\paceg\\AppData\\Local\\Temp\\ccQoOXc3.res -plugin-opt=-pass-through=-lmingw32 -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_eh -plugin-opt=-pass-through=-lmingwex -plugin-opt=-pass-through=-lmsvcrt -plugin-opt=-pass-through=-lkernel32 -plugin-opt=-pass-through=-lpthread -plugin-opt=-pass-through=-ladvapi32 -plugin-opt=-pass-through=-lshell32 -plugin-opt=-pass-through=-luser32 -plugin-opt=-pass-through=-lkernel32 -plugin-opt=-pass-through=-lmingw32 -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_eh -plugin-opt=-pass-through=-lmingwex -plugin-opt=-pass-through=-lmsvcrt -plugin-opt=-pass-through=-lkernel32 -m i386pep -Bdynamic -o cmTC_b64d0.exe C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../../../lib/crt2.o C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/crtbegin.o -LC:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0 -LC:/msys64/mingw64/bin/../lib/gcc -LC:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../../../x86_64-w64-mingw32/lib/../lib -LC:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../../../lib -LC:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../../../x86_64-w64-mingw32/lib -LC:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../.. -v --whole-archive CMakeFiles\\cmTC_b64d0.dir/objects.a --no-whole-archive --out-implib libcmTC_b64d0.dll.a --major-image-version 0 --minor-image-version 0 -lmingw32 -lgcc -lgcc_eh -lmingwex -lmsvcrt -lkernel32 -lpthread -ladvapi32 -lshell32 -luser32 -lkernel32 -lmingw32 -lgcc -lgcc_eh -lmingwex -lmsvcrt -lkernel32 C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../../../lib/default-manifest.o C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/crtend.o]
+        ignore line: [C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../../../x86_64-w64-mingw32/bin/ld.exe -plugin C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/liblto_plugin.dll -plugin-opt=C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/lto-wrapper.exe -plugin-opt=-fresolution=C:\\Users\\paceg\\AppData\\Local\\Temp\\ccOj71It.res -plugin-opt=-pass-through=-lmingw32 -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_eh -plugin-opt=-pass-through=-lmingwex -plugin-opt=-pass-through=-lmsvcrt -plugin-opt=-pass-through=-lkernel32 -plugin-opt=-pass-through=-lpthread -plugin-opt=-pass-through=-ladvapi32 -plugin-opt=-pass-through=-lshell32 -plugin-opt=-pass-through=-luser32 -plugin-opt=-pass-through=-lkernel32 -plugin-opt=-pass-through=-lmingw32 -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_eh -plugin-opt=-pass-through=-lmingwex -plugin-opt=-pass-through=-lmsvcrt -plugin-opt=-pass-through=-lkernel32 -m i386pep -Bdynamic -o cmTC_838d3.exe C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../../../lib/crt2.o C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/crtbegin.o -LC:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0 -LC:/msys64/mingw64/bin/../lib/gcc -LC:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../../../x86_64-w64-mingw32/lib/../lib -LC:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../../../lib -LC:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../../../x86_64-w64-mingw32/lib -LC:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../.. -v --whole-archive CMakeFiles\\cmTC_838d3.dir/objects.a --no-whole-archive --out-implib libcmTC_838d3.dll.a --major-image-version 0 --minor-image-version 0 -lmingw32 -lgcc -lgcc_eh -lmingwex -lmsvcrt -lkernel32 -lpthread -ladvapi32 -lshell32 -luser32 -lkernel32 -lmingw32 -lgcc -lgcc_eh -lmingwex -lmsvcrt -lkernel32 C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../../../lib/default-manifest.o C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/crtend.o]
         linker tool for 'C': C:/msys64/mingw64/x86_64-w64-mingw32/bin/ld.exe
         remove lib [gcc_eh]
         remove lib [msvcrt]
@@ -1955,8 +2709,8 @@ events:
     checks:
       - "Detecting CXX compiler ABI info"
     directories:
-      source: "C:/Users/paceg/JPL/utils/build/CMakeFiles/CMakeScratch/TryCompile-dle1zf"
-      binary: "C:/Users/paceg/JPL/utils/build/CMakeFiles/CMakeScratch/TryCompile-dle1zf"
+      source: "C:/Users/paceg/JPL/utils/build/CMakeFiles/CMakeScratch/TryCompile-d7w8hj"
+      binary: "C:/Users/paceg/JPL/utils/build/CMakeFiles/CMakeScratch/TryCompile-d7w8hj"
     cmakeVariables:
       CMAKE_CXX_FLAGS: ""
       CMAKE_CXX_FLAGS_DEBUG: "-g"
@@ -1966,13 +2720,13 @@ events:
       variable: "CMAKE_CXX_ABI_COMPILED"
       cached: true
       stdout: |
-        Change Dir: 'C:/Users/paceg/JPL/utils/build/CMakeFiles/CMakeScratch/TryCompile-dle1zf'
+        Change Dir: 'C:/Users/paceg/JPL/utils/build/CMakeFiles/CMakeScratch/TryCompile-d7w8hj'
         
-        Run Build Command(s): "C:/Program Files/CMake/bin/cmake.exe" -E env VERBOSE=1 C:/msys64/mingw64/bin/mingw32-make.exe -f Makefile cmTC_3b2a9/fast
-        C:/msys64/mingw64/bin/mingw32-make.exe  -f CMakeFiles\\cmTC_3b2a9.dir\\build.make CMakeFiles/cmTC_3b2a9.dir/build
-        mingw32-make[1]: Entering directory 'C:/Users/paceg/JPL/utils/build/CMakeFiles/CMakeScratch/TryCompile-dle1zf'
-        Building CXX object CMakeFiles/cmTC_3b2a9.dir/CMakeCXXCompilerABI.cpp.obj
-        C:\\msys64\\mingw64\\bin\\c++.exe   -v -o CMakeFiles\\cmTC_3b2a9.dir\\CMakeCXXCompilerABI.cpp.obj -c "C:\\Program Files\\CMake\\share\\cmake-4.2\\Modules\\CMakeCXXCompilerABI.cpp"
+        Run Build Command(s): "C:/Program Files/CMake/bin/cmake.exe" -E env VERBOSE=1 C:/msys64/mingw64/bin/mingw32-make.exe -f Makefile cmTC_6a52f/fast
+        C:/msys64/mingw64/bin/mingw32-make.exe  -f CMakeFiles\\cmTC_6a52f.dir\\build.make CMakeFiles/cmTC_6a52f.dir/build
+        mingw32-make[1]: Entering directory 'C:/Users/paceg/JPL/utils/build/CMakeFiles/CMakeScratch/TryCompile-d7w8hj'
+        Building CXX object CMakeFiles/cmTC_6a52f.dir/CMakeCXXCompilerABI.cpp.obj
+        C:\\msys64\\mingw64\\bin\\c++.exe   -v -o CMakeFiles\\cmTC_6a52f.dir\\CMakeCXXCompilerABI.cpp.obj -c "C:\\Program Files\\CMake\\share\\cmake-4.2\\Modules\\CMakeCXXCompilerABI.cpp"
         Using built-in specs.
         COLLECT_GCC=C:\\msys64\\mingw64\\bin\\c++.exe
         Target: x86_64-w64-mingw32
@@ -1980,8 +2734,8 @@ events:
         Thread model: posix
         Supported LTO compression algorithms: zlib zstd
         gcc version 15.2.0 (Rev8, Built by MSYS2 project) 
-        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles\\cmTC_3b2a9.dir\\CMakeCXXCompilerABI.cpp.obj' '-c' '-shared-libgcc' '-mtune=generic' '-march=nocona' '-dumpdir' 'CMakeFiles\\cmTC_3b2a9.dir\\'
-         C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/cc1plus.exe -quiet -v -iprefix C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/ -D_REENTRANT C:\\Program Files\\CMake\\share\\cmake-4.2\\Modules\\CMakeCXXCompilerABI.cpp -quiet -dumpdir CMakeFiles\\cmTC_3b2a9.dir\\ -dumpbase CMakeCXXCompilerABI.cpp.cpp -dumpbase-ext .cpp -mtune=generic -march=nocona -version -o C:\\Users\\paceg\\AppData\\Local\\Temp\\ccndZece.s
+        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles\\cmTC_6a52f.dir\\CMakeCXXCompilerABI.cpp.obj' '-c' '-shared-libgcc' '-mtune=generic' '-march=nocona' '-dumpdir' 'CMakeFiles\\cmTC_6a52f.dir\\'
+         C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/cc1plus.exe -quiet -v -iprefix C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/ -D_REENTRANT C:\\Program Files\\CMake\\share\\cmake-4.2\\Modules\\CMakeCXXCompilerABI.cpp -quiet -dumpdir CMakeFiles\\cmTC_6a52f.dir\\ -dumpbase CMakeCXXCompilerABI.cpp.cpp -dumpbase-ext .cpp -mtune=generic -march=nocona -version -o C:\\Users\\paceg\\AppData\\Local\\Temp\\cc8DN1ji.s
         GNU C++17 (Rev8, Built by MSYS2 project) version 15.2.0 (x86_64-w64-mingw32)
         	compiled by GNU C version 15.2.0, GMP version 6.3.0, MPFR version 4.2.2, MPC version 1.3.1, isl version isl-0.27-GMP
         
@@ -2006,14 +2760,14 @@ events:
          C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/include-fixed
         End of search list.
         Compiler executable checksum: e7386b44e3a7fd4f3b26b08cdd95994a
-        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles\\cmTC_3b2a9.dir\\CMakeCXXCompilerABI.cpp.obj' '-c' '-shared-libgcc' '-mtune=generic' '-march=nocona' '-dumpdir' 'CMakeFiles\\cmTC_3b2a9.dir\\'
-         C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../../../x86_64-w64-mingw32/bin/as.exe -v -o CMakeFiles\\cmTC_3b2a9.dir\\CMakeCXXCompilerABI.cpp.obj C:\\Users\\paceg\\AppData\\Local\\Temp\\ccndZece.s
+        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles\\cmTC_6a52f.dir\\CMakeCXXCompilerABI.cpp.obj' '-c' '-shared-libgcc' '-mtune=generic' '-march=nocona' '-dumpdir' 'CMakeFiles\\cmTC_6a52f.dir\\'
+         C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../../../x86_64-w64-mingw32/bin/as.exe -v -o CMakeFiles\\cmTC_6a52f.dir\\CMakeCXXCompilerABI.cpp.obj C:\\Users\\paceg\\AppData\\Local\\Temp\\cc8DN1ji.s
         GNU assembler version 2.45.1 (x86_64-w64-mingw32) using BFD version (GNU Binutils) 2.45.1
         COMPILER_PATH=C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/;C:/msys64/mingw64/bin/../lib/gcc/;C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../../../x86_64-w64-mingw32/bin/
         LIBRARY_PATH=C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/;C:/msys64/mingw64/bin/../lib/gcc/;C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../../../x86_64-w64-mingw32/lib/../lib/;C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../../../lib/;C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../../../x86_64-w64-mingw32/lib/;C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../../
-        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles\\cmTC_3b2a9.dir\\CMakeCXXCompilerABI.cpp.obj' '-c' '-shared-libgcc' '-mtune=generic' '-march=nocona' '-dumpdir' 'CMakeFiles\\cmTC_3b2a9.dir\\CMakeCXXCompilerABI.cpp.'
-        Linking CXX executable cmTC_3b2a9.exe
-        "C:\\Program Files\\CMake\\bin\\cmake.exe" -E cmake_link_script CMakeFiles\\cmTC_3b2a9.dir\\link.txt --verbose=1
+        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles\\cmTC_6a52f.dir\\CMakeCXXCompilerABI.cpp.obj' '-c' '-shared-libgcc' '-mtune=generic' '-march=nocona' '-dumpdir' 'CMakeFiles\\cmTC_6a52f.dir\\CMakeCXXCompilerABI.cpp.'
+        Linking CXX executable cmTC_6a52f.exe
+        "C:\\Program Files\\CMake\\bin\\cmake.exe" -E cmake_link_script CMakeFiles\\cmTC_6a52f.dir\\link.txt --verbose=1
         Using built-in specs.
         COLLECT_GCC=C:\\msys64\\mingw64\\bin\\c++.exe
         COLLECT_LTO_WRAPPER=C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/lto-wrapper.exe
@@ -2024,16 +2778,16 @@ events:
         gcc version 15.2.0 (Rev8, Built by MSYS2 project) 
         COMPILER_PATH=C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/;C:/msys64/mingw64/bin/../lib/gcc/;C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../../../x86_64-w64-mingw32/bin/
         LIBRARY_PATH=C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/;C:/msys64/mingw64/bin/../lib/gcc/;C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../../../x86_64-w64-mingw32/lib/../lib/;C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../../../lib/;C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../../../x86_64-w64-mingw32/lib/;C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../../
-        COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_3b2a9.exe' '-shared-libgcc' '-mtune=generic' '-march=nocona' '-dumpdir' 'cmTC_3b2a9.'
-         C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/collect2.exe -plugin C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/liblto_plugin.dll -plugin-opt=C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/lto-wrapper.exe -plugin-opt=-fresolution=C:\\Users\\paceg\\AppData\\Local\\Temp\\ccXjSlJk.res -plugin-opt=-pass-through=-lmingw32 -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lmingwex -plugin-opt=-pass-through=-lmsvcrt -plugin-opt=-pass-through=-lkernel32 -plugin-opt=-pass-through=-lpthread -plugin-opt=-pass-through=-ladvapi32 -plugin-opt=-pass-through=-lshell32 -plugin-opt=-pass-through=-luser32 -plugin-opt=-pass-through=-lkernel32 -plugin-opt=-pass-through=-lmingw32 -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lmingwex -plugin-opt=-pass-through=-lmsvcrt -plugin-opt=-pass-through=-lkernel32 -m i386pep -Bdynamic -o cmTC_3b2a9.exe C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../../../lib/crt2.o C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/crtbegin.o -LC:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0 -LC:/msys64/mingw64/bin/../lib/gcc -LC:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../../../x86_64-w64-mingw32/lib/../lib -LC:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../../../lib -LC:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../../../x86_64-w64-mingw32/lib -LC:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../.. -v --whole-archive CMakeFiles\\cmTC_3b2a9.dir/objects.a --no-whole-archive --out-implib libcmTC_3b2a9.dll.a --major-image-version 0 --minor-image-version 0 -lstdc++ -lmingw32 -lgcc_s -lgcc -lmingwex -lmsvcrt -lkernel32 -lpthread -ladvapi32 -lshell32 -luser32 -lkernel32 -lmingw32 -lgcc_s -lgcc -lmingwex -lmsvcrt -lkernel32 C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../../../lib/default-manifest.o C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/crtend.o
+        COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_6a52f.exe' '-shared-libgcc' '-mtune=generic' '-march=nocona' '-dumpdir' 'cmTC_6a52f.'
+         C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/collect2.exe -plugin C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/liblto_plugin.dll -plugin-opt=C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/lto-wrapper.exe -plugin-opt=-fresolution=C:\\Users\\paceg\\AppData\\Local\\Temp\\ccr9yqge.res -plugin-opt=-pass-through=-lmingw32 -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lmingwex -plugin-opt=-pass-through=-lmsvcrt -plugin-opt=-pass-through=-lkernel32 -plugin-opt=-pass-through=-lpthread -plugin-opt=-pass-through=-ladvapi32 -plugin-opt=-pass-through=-lshell32 -plugin-opt=-pass-through=-luser32 -plugin-opt=-pass-through=-lkernel32 -plugin-opt=-pass-through=-lmingw32 -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lmingwex -plugin-opt=-pass-through=-lmsvcrt -plugin-opt=-pass-through=-lkernel32 -m i386pep -Bdynamic -o cmTC_6a52f.exe C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../../../lib/crt2.o C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/crtbegin.o -LC:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0 -LC:/msys64/mingw64/bin/../lib/gcc -LC:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../../../x86_64-w64-mingw32/lib/../lib -LC:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../../../lib -LC:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../../../x86_64-w64-mingw32/lib -LC:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../.. -v --whole-archive CMakeFiles\\cmTC_6a52f.dir/objects.a --no-whole-archive --out-implib libcmTC_6a52f.dll.a --major-image-version 0 --minor-image-version 0 -lstdc++ -lmingw32 -lgcc_s -lgcc -lmingwex -lmsvcrt -lkernel32 -lpthread -ladvapi32 -lshell32 -luser32 -lkernel32 -lmingw32 -lgcc_s -lgcc -lmingwex -lmsvcrt -lkernel32 C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../../../lib/default-manifest.o C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/crtend.o
         collect2 version 15.2.0
-        C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../../../x86_64-w64-mingw32/bin/ld.exe -plugin C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/liblto_plugin.dll -plugin-opt=C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/lto-wrapper.exe -plugin-opt=-fresolution=C:\\Users\\paceg\\AppData\\Local\\Temp\\ccXjSlJk.res -plugin-opt=-pass-through=-lmingw32 -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lmingwex -plugin-opt=-pass-through=-lmsvcrt -plugin-opt=-pass-through=-lkernel32 -plugin-opt=-pass-through=-lpthread -plugin-opt=-pass-through=-ladvapi32 -plugin-opt=-pass-through=-lshell32 -plugin-opt=-pass-through=-luser32 -plugin-opt=-pass-through=-lkernel32 -plugin-opt=-pass-through=-lmingw32 -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lmingwex -plugin-opt=-pass-through=-lmsvcrt -plugin-opt=-pass-through=-lkernel32 -m i386pep -Bdynamic -o cmTC_3b2a9.exe C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../../../lib/crt2.o C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/crtbegin.o -LC:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0 -LC:/msys64/mingw64/bin/../lib/gcc -LC:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../../../x86_64-w64-mingw32/lib/../lib -LC:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../../../lib -LC:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../../../x86_64-w64-mingw32/lib -LC:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../.. -v --whole-archive CMakeFiles\\cmTC_3b2a9.dir/objects.a --no-whole-archive --out-implib libcmTC_3b2a9.dll.a --major-image-version 0 --minor-image-version 0 -lstdc++ -lmingw32 -lgcc_s -lgcc -lmingwex -lmsvcrt -lkernel32 -lpthread -ladvapi32 -lshell32 -luser32 -lkernel32 -lmingw32 -lgcc_s -lgcc -lmingwex -lmsvcrt -lkernel32 C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../../../lib/default-manifest.o C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/crtend.o
+        C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../../../x86_64-w64-mingw32/bin/ld.exe -plugin C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/liblto_plugin.dll -plugin-opt=C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/lto-wrapper.exe -plugin-opt=-fresolution=C:\\Users\\paceg\\AppData\\Local\\Temp\\ccr9yqge.res -plugin-opt=-pass-through=-lmingw32 -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lmingwex -plugin-opt=-pass-through=-lmsvcrt -plugin-opt=-pass-through=-lkernel32 -plugin-opt=-pass-through=-lpthread -plugin-opt=-pass-through=-ladvapi32 -plugin-opt=-pass-through=-lshell32 -plugin-opt=-pass-through=-luser32 -plugin-opt=-pass-through=-lkernel32 -plugin-opt=-pass-through=-lmingw32 -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lmingwex -plugin-opt=-pass-through=-lmsvcrt -plugin-opt=-pass-through=-lkernel32 -m i386pep -Bdynamic -o cmTC_6a52f.exe C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../../../lib/crt2.o C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/crtbegin.o -LC:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0 -LC:/msys64/mingw64/bin/../lib/gcc -LC:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../../../x86_64-w64-mingw32/lib/../lib -LC:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../../../lib -LC:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../../../x86_64-w64-mingw32/lib -LC:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../.. -v --whole-archive CMakeFiles\\cmTC_6a52f.dir/objects.a --no-whole-archive --out-implib libcmTC_6a52f.dll.a --major-image-version 0 --minor-image-version 0 -lstdc++ -lmingw32 -lgcc_s -lgcc -lmingwex -lmsvcrt -lkernel32 -lpthread -ladvapi32 -lshell32 -luser32 -lkernel32 -lmingw32 -lgcc_s -lgcc -lmingwex -lmsvcrt -lkernel32 C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../../../lib/default-manifest.o C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/crtend.o
         GNU ld (GNU Binutils) 2.45.1
-        COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_3b2a9.exe' '-shared-libgcc' '-mtune=generic' '-march=nocona' '-dumpdir' 'cmTC_3b2a9.'
-        "C:\\Program Files\\CMake\\bin\\cmake.exe" -E rm -f CMakeFiles\\cmTC_3b2a9.dir/objects.a
-        C:\\msys64\\mingw64\\bin\\ar.exe qc CMakeFiles\\cmTC_3b2a9.dir/objects.a @CMakeFiles\\cmTC_3b2a9.dir\\objects1.rsp
-        C:\\msys64\\mingw64\\bin\\c++.exe  -v -Wl,-v -Wl,--whole-archive CMakeFiles\\cmTC_3b2a9.dir/objects.a -Wl,--no-whole-archive -o cmTC_3b2a9.exe -Wl,--out-implib,libcmTC_3b2a9.dll.a -Wl,--major-image-version,0,--minor-image-version,0
-        mingw32-make[1]: Leaving directory 'C:/Users/paceg/JPL/utils/build/CMakeFiles/CMakeScratch/TryCompile-dle1zf'
+        COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_6a52f.exe' '-shared-libgcc' '-mtune=generic' '-march=nocona' '-dumpdir' 'cmTC_6a52f.'
+        "C:\\Program Files\\CMake\\bin\\cmake.exe" -E rm -f CMakeFiles\\cmTC_6a52f.dir/objects.a
+        C:\\msys64\\mingw64\\bin\\ar.exe qc CMakeFiles\\cmTC_6a52f.dir/objects.a @CMakeFiles\\cmTC_6a52f.dir\\objects1.rsp
+        C:\\msys64\\mingw64\\bin\\c++.exe  -v -Wl,-v -Wl,--whole-archive CMakeFiles\\cmTC_6a52f.dir/objects.a -Wl,--no-whole-archive -o cmTC_6a52f.exe -Wl,--out-implib,libcmTC_6a52f.dll.a -Wl,--major-image-version,0,--minor-image-version,0
+        mingw32-make[1]: Leaving directory 'C:/Users/paceg/JPL/utils/build/CMakeFiles/CMakeScratch/TryCompile-d7w8hj'
         
       exitCode: 0
   -
@@ -2072,13 +2826,13 @@ events:
       Parsed CXX implicit link information:
         link line regex: [^( *|.*[/\\])(ld[0-9]*(|\\.[a-rt-z][a-z]*|\\.s[a-np-z][a-z]*|\\.so[a-z]+)|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\\]+-)?ld|collect2)[^/\\]*( |$)]
         linker tool regex: [^[ 	]*(->|"|[0-9]+>[ 	-]*Build:[ 	0-9]+ ms[ 	]*)?[ 	]*(([^"]*[/\\])?(ld[0-9]*(|\\.[a-rt-z][a-z]*|\\.s[a-np-z][a-z]*|\\.so[a-z]+)))("|,| |$)]
-        ignore line: [Change Dir: 'C:/Users/paceg/JPL/utils/build/CMakeFiles/CMakeScratch/TryCompile-dle1zf']
+        ignore line: [Change Dir: 'C:/Users/paceg/JPL/utils/build/CMakeFiles/CMakeScratch/TryCompile-d7w8hj']
         ignore line: []
-        ignore line: [Run Build Command(s): "C:/Program Files/CMake/bin/cmake.exe" -E env VERBOSE=1 C:/msys64/mingw64/bin/mingw32-make.exe -f Makefile cmTC_3b2a9/fast]
-        ignore line: [C:/msys64/mingw64/bin/mingw32-make.exe  -f CMakeFiles\\cmTC_3b2a9.dir\\build.make CMakeFiles/cmTC_3b2a9.dir/build]
-        ignore line: [mingw32-make[1]: Entering directory 'C:/Users/paceg/JPL/utils/build/CMakeFiles/CMakeScratch/TryCompile-dle1zf']
-        ignore line: [Building CXX object CMakeFiles/cmTC_3b2a9.dir/CMakeCXXCompilerABI.cpp.obj]
-        ignore line: [C:\\msys64\\mingw64\\bin\\c++.exe   -v -o CMakeFiles\\cmTC_3b2a9.dir\\CMakeCXXCompilerABI.cpp.obj -c "C:\\Program Files\\CMake\\share\\cmake-4.2\\Modules\\CMakeCXXCompilerABI.cpp"]
+        ignore line: [Run Build Command(s): "C:/Program Files/CMake/bin/cmake.exe" -E env VERBOSE=1 C:/msys64/mingw64/bin/mingw32-make.exe -f Makefile cmTC_6a52f/fast]
+        ignore line: [C:/msys64/mingw64/bin/mingw32-make.exe  -f CMakeFiles\\cmTC_6a52f.dir\\build.make CMakeFiles/cmTC_6a52f.dir/build]
+        ignore line: [mingw32-make[1]: Entering directory 'C:/Users/paceg/JPL/utils/build/CMakeFiles/CMakeScratch/TryCompile-d7w8hj']
+        ignore line: [Building CXX object CMakeFiles/cmTC_6a52f.dir/CMakeCXXCompilerABI.cpp.obj]
+        ignore line: [C:\\msys64\\mingw64\\bin\\c++.exe   -v -o CMakeFiles\\cmTC_6a52f.dir\\CMakeCXXCompilerABI.cpp.obj -c "C:\\Program Files\\CMake\\share\\cmake-4.2\\Modules\\CMakeCXXCompilerABI.cpp"]
         ignore line: [Using built-in specs.]
         ignore line: [COLLECT_GCC=C:\\msys64\\mingw64\\bin\\c++.exe]
         ignore line: [Target: x86_64-w64-mingw32]
@@ -2086,8 +2840,8 @@ events:
         ignore line: [Thread model: posix]
         ignore line: [Supported LTO compression algorithms: zlib zstd]
         ignore line: [gcc version 15.2.0 (Rev8  Built by MSYS2 project) ]
-        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles\\cmTC_3b2a9.dir\\CMakeCXXCompilerABI.cpp.obj' '-c' '-shared-libgcc' '-mtune=generic' '-march=nocona' '-dumpdir' 'CMakeFiles\\cmTC_3b2a9.dir\\']
-        ignore line: [ C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/cc1plus.exe -quiet -v -iprefix C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/ -D_REENTRANT C:\\Program Files\\CMake\\share\\cmake-4.2\\Modules\\CMakeCXXCompilerABI.cpp -quiet -dumpdir CMakeFiles\\cmTC_3b2a9.dir\\ -dumpbase CMakeCXXCompilerABI.cpp.cpp -dumpbase-ext .cpp -mtune=generic -march=nocona -version -o C:\\Users\\paceg\\AppData\\Local\\Temp\\ccndZece.s]
+        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles\\cmTC_6a52f.dir\\CMakeCXXCompilerABI.cpp.obj' '-c' '-shared-libgcc' '-mtune=generic' '-march=nocona' '-dumpdir' 'CMakeFiles\\cmTC_6a52f.dir\\']
+        ignore line: [ C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/cc1plus.exe -quiet -v -iprefix C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/ -D_REENTRANT C:\\Program Files\\CMake\\share\\cmake-4.2\\Modules\\CMakeCXXCompilerABI.cpp -quiet -dumpdir CMakeFiles\\cmTC_6a52f.dir\\ -dumpbase CMakeCXXCompilerABI.cpp.cpp -dumpbase-ext .cpp -mtune=generic -march=nocona -version -o C:\\Users\\paceg\\AppData\\Local\\Temp\\cc8DN1ji.s]
         ignore line: [GNU C++17 (Rev8  Built by MSYS2 project) version 15.2.0 (x86_64-w64-mingw32)]
         ignore line: [	compiled by GNU C version 15.2.0  GMP version 6.3.0  MPFR version 4.2.2  MPC version 1.3.1  isl version isl-0.27-GMP]
         ignore line: []
@@ -2112,8 +2866,8 @@ events:
         ignore line: [ C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/include-fixed]
         ignore line: [End of search list.]
         ignore line: [Compiler executable checksum: e7386b44e3a7fd4f3b26b08cdd95994a]
-        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles\\cmTC_3b2a9.dir\\CMakeCXXCompilerABI.cpp.obj' '-c' '-shared-libgcc' '-mtune=generic' '-march=nocona' '-dumpdir' 'CMakeFiles\\cmTC_3b2a9.dir\\']
-        ignore line: [ C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../../../x86_64-w64-mingw32/bin/as.exe -v -o CMakeFiles\\cmTC_3b2a9.dir\\CMakeCXXCompilerABI.cpp.obj C:\\Users\\paceg\\AppData\\Local\\Temp\\ccndZece.s]
+        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles\\cmTC_6a52f.dir\\CMakeCXXCompilerABI.cpp.obj' '-c' '-shared-libgcc' '-mtune=generic' '-march=nocona' '-dumpdir' 'CMakeFiles\\cmTC_6a52f.dir\\']
+        ignore line: [ C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../../../x86_64-w64-mingw32/bin/as.exe -v -o CMakeFiles\\cmTC_6a52f.dir\\CMakeCXXCompilerABI.cpp.obj C:\\Users\\paceg\\AppData\\Local\\Temp\\cc8DN1ji.s]
         ignore line: [GNU assembler version 2.45.1 (x86_64-w64-mingw32) using BFD version (GNU Binutils) 2.45.1]
         ignore line: [COMPILER_PATH=C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/]
         ignore line: [C:/msys64/mingw64/bin/../lib/gcc/]
@@ -2124,9 +2878,9 @@ events:
         ignore line: [C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../../../lib/]
         ignore line: [C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../../../x86_64-w64-mingw32/lib/]
         ignore line: [C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../../]
-        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles\\cmTC_3b2a9.dir\\CMakeCXXCompilerABI.cpp.obj' '-c' '-shared-libgcc' '-mtune=generic' '-march=nocona' '-dumpdir' 'CMakeFiles\\cmTC_3b2a9.dir\\CMakeCXXCompilerABI.cpp.']
-        ignore line: [Linking CXX executable cmTC_3b2a9.exe]
-        ignore line: ["C:\\Program Files\\CMake\\bin\\cmake.exe" -E cmake_link_script CMakeFiles\\cmTC_3b2a9.dir\\link.txt --verbose=1]
+        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles\\cmTC_6a52f.dir\\CMakeCXXCompilerABI.cpp.obj' '-c' '-shared-libgcc' '-mtune=generic' '-march=nocona' '-dumpdir' 'CMakeFiles\\cmTC_6a52f.dir\\CMakeCXXCompilerABI.cpp.']
+        ignore line: [Linking CXX executable cmTC_6a52f.exe]
+        ignore line: ["C:\\Program Files\\CMake\\bin\\cmake.exe" -E cmake_link_script CMakeFiles\\cmTC_6a52f.dir\\link.txt --verbose=1]
         ignore line: [Using built-in specs.]
         ignore line: [COLLECT_GCC=C:\\msys64\\mingw64\\bin\\c++.exe]
         ignore line: [COLLECT_LTO_WRAPPER=C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/lto-wrapper.exe]
@@ -2144,13 +2898,13 @@ events:
         ignore line: [C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../../../lib/]
         ignore line: [C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../../../x86_64-w64-mingw32/lib/]
         ignore line: [C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../../]
-        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_3b2a9.exe' '-shared-libgcc' '-mtune=generic' '-march=nocona' '-dumpdir' 'cmTC_3b2a9.']
-        link line: [ C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/collect2.exe -plugin C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/liblto_plugin.dll -plugin-opt=C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/lto-wrapper.exe -plugin-opt=-fresolution=C:\\Users\\paceg\\AppData\\Local\\Temp\\ccXjSlJk.res -plugin-opt=-pass-through=-lmingw32 -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lmingwex -plugin-opt=-pass-through=-lmsvcrt -plugin-opt=-pass-through=-lkernel32 -plugin-opt=-pass-through=-lpthread -plugin-opt=-pass-through=-ladvapi32 -plugin-opt=-pass-through=-lshell32 -plugin-opt=-pass-through=-luser32 -plugin-opt=-pass-through=-lkernel32 -plugin-opt=-pass-through=-lmingw32 -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lmingwex -plugin-opt=-pass-through=-lmsvcrt -plugin-opt=-pass-through=-lkernel32 -m i386pep -Bdynamic -o cmTC_3b2a9.exe C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../../../lib/crt2.o C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/crtbegin.o -LC:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0 -LC:/msys64/mingw64/bin/../lib/gcc -LC:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../../../x86_64-w64-mingw32/lib/../lib -LC:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../../../lib -LC:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../../../x86_64-w64-mingw32/lib -LC:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../.. -v --whole-archive CMakeFiles\\cmTC_3b2a9.dir/objects.a --no-whole-archive --out-implib libcmTC_3b2a9.dll.a --major-image-version 0 --minor-image-version 0 -lstdc++ -lmingw32 -lgcc_s -lgcc -lmingwex -lmsvcrt -lkernel32 -lpthread -ladvapi32 -lshell32 -luser32 -lkernel32 -lmingw32 -lgcc_s -lgcc -lmingwex -lmsvcrt -lkernel32 C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../../../lib/default-manifest.o C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/crtend.o]
+        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_6a52f.exe' '-shared-libgcc' '-mtune=generic' '-march=nocona' '-dumpdir' 'cmTC_6a52f.']
+        link line: [ C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/collect2.exe -plugin C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/liblto_plugin.dll -plugin-opt=C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/lto-wrapper.exe -plugin-opt=-fresolution=C:\\Users\\paceg\\AppData\\Local\\Temp\\ccr9yqge.res -plugin-opt=-pass-through=-lmingw32 -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lmingwex -plugin-opt=-pass-through=-lmsvcrt -plugin-opt=-pass-through=-lkernel32 -plugin-opt=-pass-through=-lpthread -plugin-opt=-pass-through=-ladvapi32 -plugin-opt=-pass-through=-lshell32 -plugin-opt=-pass-through=-luser32 -plugin-opt=-pass-through=-lkernel32 -plugin-opt=-pass-through=-lmingw32 -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lmingwex -plugin-opt=-pass-through=-lmsvcrt -plugin-opt=-pass-through=-lkernel32 -m i386pep -Bdynamic -o cmTC_6a52f.exe C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../../../lib/crt2.o C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/crtbegin.o -LC:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0 -LC:/msys64/mingw64/bin/../lib/gcc -LC:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../../../x86_64-w64-mingw32/lib/../lib -LC:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../../../lib -LC:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../../../x86_64-w64-mingw32/lib -LC:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../.. -v --whole-archive CMakeFiles\\cmTC_6a52f.dir/objects.a --no-whole-archive --out-implib libcmTC_6a52f.dll.a --major-image-version 0 --minor-image-version 0 -lstdc++ -lmingw32 -lgcc_s -lgcc -lmingwex -lmsvcrt -lkernel32 -lpthread -ladvapi32 -lshell32 -luser32 -lkernel32 -lmingw32 -lgcc_s -lgcc -lmingwex -lmsvcrt -lkernel32 C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../../../lib/default-manifest.o C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/crtend.o]
           arg [C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/collect2.exe] ==> ignore
           arg [-plugin] ==> ignore
           arg [C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/liblto_plugin.dll] ==> ignore
           arg [-plugin-opt=C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/lto-wrapper.exe] ==> ignore
-          arg [-plugin-opt=-fresolution=C:\\Users\\paceg\\AppData\\Local\\Temp\\ccXjSlJk.res] ==> ignore
+          arg [-plugin-opt=-fresolution=C:\\Users\\paceg\\AppData\\Local\\Temp\\ccr9yqge.res] ==> ignore
           arg [-plugin-opt=-pass-through=-lmingw32] ==> ignore
           arg [-plugin-opt=-pass-through=-lgcc_s] ==> ignore
           arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
@@ -2172,7 +2926,7 @@ events:
           arg [i386pep] ==> ignore
           arg [-Bdynamic] ==> search dynamic
           arg [-o] ==> ignore
-          arg [cmTC_3b2a9.exe] ==> ignore
+          arg [cmTC_6a52f.exe] ==> ignore
           arg [C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../../../lib/crt2.o] ==> obj [C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../../../lib/crt2.o]
           arg [C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/crtbegin.o] ==> obj [C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/crtbegin.o]
           arg [-LC:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0] ==> dir [C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0]
@@ -2183,10 +2937,10 @@ events:
           arg [-LC:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../..] ==> dir [C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../..]
           arg [-v] ==> ignore
           arg [--whole-archive] ==> ignore
-          arg [CMakeFiles\\cmTC_3b2a9.dir/objects.a] ==> ignore
+          arg [CMakeFiles\\cmTC_6a52f.dir/objects.a] ==> ignore
           arg [--no-whole-archive] ==> ignore
           arg [--out-implib] ==> ignore
-          arg [libcmTC_3b2a9.dll.a] ==> ignore
+          arg [libcmTC_6a52f.dll.a] ==> ignore
           arg [--major-image-version] ==> ignore
           arg [0] ==> ignore
           arg [--minor-image-version] ==> ignore
@@ -2212,7 +2966,7 @@ events:
           arg [C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../../../lib/default-manifest.o] ==> obj [C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../../../lib/default-manifest.o]
           arg [C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/crtend.o] ==> obj [C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/crtend.o]
         ignore line: [collect2 version 15.2.0]
-        ignore line: [C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../../../x86_64-w64-mingw32/bin/ld.exe -plugin C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/liblto_plugin.dll -plugin-opt=C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/lto-wrapper.exe -plugin-opt=-fresolution=C:\\Users\\paceg\\AppData\\Local\\Temp\\ccXjSlJk.res -plugin-opt=-pass-through=-lmingw32 -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lmingwex -plugin-opt=-pass-through=-lmsvcrt -plugin-opt=-pass-through=-lkernel32 -plugin-opt=-pass-through=-lpthread -plugin-opt=-pass-through=-ladvapi32 -plugin-opt=-pass-through=-lshell32 -plugin-opt=-pass-through=-luser32 -plugin-opt=-pass-through=-lkernel32 -plugin-opt=-pass-through=-lmingw32 -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lmingwex -plugin-opt=-pass-through=-lmsvcrt -plugin-opt=-pass-through=-lkernel32 -m i386pep -Bdynamic -o cmTC_3b2a9.exe C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../../../lib/crt2.o C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/crtbegin.o -LC:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0 -LC:/msys64/mingw64/bin/../lib/gcc -LC:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../../../x86_64-w64-mingw32/lib/../lib -LC:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../../../lib -LC:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../../../x86_64-w64-mingw32/lib -LC:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../.. -v --whole-archive CMakeFiles\\cmTC_3b2a9.dir/objects.a --no-whole-archive --out-implib libcmTC_3b2a9.dll.a --major-image-version 0 --minor-image-version 0 -lstdc++ -lmingw32 -lgcc_s -lgcc -lmingwex -lmsvcrt -lkernel32 -lpthread -ladvapi32 -lshell32 -luser32 -lkernel32 -lmingw32 -lgcc_s -lgcc -lmingwex -lmsvcrt -lkernel32 C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../../../lib/default-manifest.o C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/crtend.o]
+        ignore line: [C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../../../x86_64-w64-mingw32/bin/ld.exe -plugin C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/liblto_plugin.dll -plugin-opt=C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/lto-wrapper.exe -plugin-opt=-fresolution=C:\\Users\\paceg\\AppData\\Local\\Temp\\ccr9yqge.res -plugin-opt=-pass-through=-lmingw32 -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lmingwex -plugin-opt=-pass-through=-lmsvcrt -plugin-opt=-pass-through=-lkernel32 -plugin-opt=-pass-through=-lpthread -plugin-opt=-pass-through=-ladvapi32 -plugin-opt=-pass-through=-lshell32 -plugin-opt=-pass-through=-luser32 -plugin-opt=-pass-through=-lkernel32 -plugin-opt=-pass-through=-lmingw32 -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lmingwex -plugin-opt=-pass-through=-lmsvcrt -plugin-opt=-pass-through=-lkernel32 -m i386pep -Bdynamic -o cmTC_6a52f.exe C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../../../lib/crt2.o C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/crtbegin.o -LC:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0 -LC:/msys64/mingw64/bin/../lib/gcc -LC:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../../../x86_64-w64-mingw32/lib/../lib -LC:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../../../lib -LC:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../../../x86_64-w64-mingw32/lib -LC:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../.. -v --whole-archive CMakeFiles\\cmTC_6a52f.dir/objects.a --no-whole-archive --out-implib libcmTC_6a52f.dll.a --major-image-version 0 --minor-image-version 0 -lstdc++ -lmingw32 -lgcc_s -lgcc -lmingwex -lmsvcrt -lkernel32 -lpthread -ladvapi32 -lshell32 -luser32 -lkernel32 -lmingw32 -lgcc_s -lgcc -lmingwex -lmsvcrt -lkernel32 C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/../../../../lib/default-manifest.o C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/15.2.0/crtend.o]
         linker tool for 'CXX': C:/msys64/mingw64/x86_64-w64-mingw32/bin/ld.exe
         remove lib [msvcrt]
         remove lib [msvcrt]

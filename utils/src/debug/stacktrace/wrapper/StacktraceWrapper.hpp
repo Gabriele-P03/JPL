@@ -71,7 +71,7 @@
     #include <string>
 
     #ifdef AUTO_LOG_EXCEPTION_JPL
-        #include <jpl/logger/LoggerWrapper.hpp>
+        #include <jpl/logger/Logger.hpp>
     #endif
 
     #ifdef _WIN32

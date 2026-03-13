@@ -1,7 +1,7 @@
 #include "src/shaders/Shader.hpp"
 
 #define AUTO_LOG_EXCEPTION_JPL
-#include <jpl/logger/LoggerWrapper.hpp>
+#include <jpl/logger/Logger.hpp>
 #include "src/utils/Hints.hpp"
 #include "src/Metrics.hpp"
 #include "src/input/Keyboard.hpp"

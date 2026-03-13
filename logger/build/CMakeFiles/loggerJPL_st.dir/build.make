@@ -86,34 +86,17 @@ CMakeFiles/loggerJPL_st.dir/src/Logger.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/loggerJPL_st.dir/src/Logger.cpp.s"
 	g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\paceg\JPL\logger\src\Logger.cpp -o CMakeFiles\loggerJPL_st.dir\src\Logger.cpp.s
 
-CMakeFiles/loggerJPL_st.dir/src/LoggerWrapper.cpp.obj: CMakeFiles/loggerJPL_st.dir/flags.make
-CMakeFiles/loggerJPL_st.dir/src/LoggerWrapper.cpp.obj: CMakeFiles/loggerJPL_st.dir/includes_CXX.rsp
-CMakeFiles/loggerJPL_st.dir/src/LoggerWrapper.cpp.obj: C:/Users/paceg/JPL/logger/src/LoggerWrapper.cpp
-CMakeFiles/loggerJPL_st.dir/src/LoggerWrapper.cpp.obj: CMakeFiles/loggerJPL_st.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\paceg\JPL\logger\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/loggerJPL_st.dir/src/LoggerWrapper.cpp.obj"
-	g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/loggerJPL_st.dir/src/LoggerWrapper.cpp.obj -MF CMakeFiles\loggerJPL_st.dir\src\LoggerWrapper.cpp.obj.d -o CMakeFiles\loggerJPL_st.dir\src\LoggerWrapper.cpp.obj -c C:\Users\paceg\JPL\logger\src\LoggerWrapper.cpp
-
-CMakeFiles/loggerJPL_st.dir/src/LoggerWrapper.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/loggerJPL_st.dir/src/LoggerWrapper.cpp.i"
-	g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\paceg\JPL\logger\src\LoggerWrapper.cpp > CMakeFiles\loggerJPL_st.dir\src\LoggerWrapper.cpp.i
-
-CMakeFiles/loggerJPL_st.dir/src/LoggerWrapper.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/loggerJPL_st.dir/src/LoggerWrapper.cpp.s"
-	g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\paceg\JPL\logger\src\LoggerWrapper.cpp -o CMakeFiles\loggerJPL_st.dir\src\LoggerWrapper.cpp.s
-
 # Object files for target loggerJPL_st
 loggerJPL_st_OBJECTS = \
-"CMakeFiles/loggerJPL_st.dir/src/Logger.cpp.obj" \
-"CMakeFiles/loggerJPL_st.dir/src/LoggerWrapper.cpp.obj"
+"CMakeFiles/loggerJPL_st.dir/src/Logger.cpp.obj"
 
 # External object files for target loggerJPL_st
 loggerJPL_st_EXTERNAL_OBJECTS =
 
 libloggerJPL.a: CMakeFiles/loggerJPL_st.dir/src/Logger.cpp.obj
-libloggerJPL.a: CMakeFiles/loggerJPL_st.dir/src/LoggerWrapper.cpp.obj
 libloggerJPL.a: CMakeFiles/loggerJPL_st.dir/build.make
 libloggerJPL.a: CMakeFiles/loggerJPL_st.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=C:\Users\paceg\JPL\logger\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX static library libloggerJPL.a"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=C:\Users\paceg\JPL\logger\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX static library libloggerJPL.a"
 	$(CMAKE_COMMAND) -P CMakeFiles\loggerJPL_st.dir\cmake_clean_target.cmake
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles\loggerJPL_st.dir\link.txt --verbose=$(VERBOSE)
 

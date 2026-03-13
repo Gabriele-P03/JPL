@@ -1,29 +1,18 @@
 #include "Logger.hpp"
 
-#ifndef CUSTOM_LOGGER_JPL
-    #ifdef QUIET_LOGGER_JPL
-        #ifdef __linux__
-            jpl::_logger::Logger* jpl::_logger::Logger::INSTANCE = new jpl::_logger::Logger(
-                jpl::_utils::_files::getLocalPath("logs/" + jpl::_logger::Logger::getFileNameOfInstance() + ".txt"), true
-            );
-        #elif _WIN32
-            jpl::_logger::Logger* jpl::_logger::Logger::INSTANCE = new jpl::_logger::Logger(
-                jpl::_utils::_files::getLocalPath("logs\\" + jpl::_logger::Logger::getFileNameOfInstance() + ".txt"), true
-            );
-        #endif
-    #else
-        #ifdef __linux__
-            jpl::_logger::Logger* jpl::_logger::Logger::INSTANCE = new jpl::_logger::Logger(
-                jpl::_utils::_files::getLocalPath("logs/" + jpl::_logger::Logger::getFileNameOfInstance() + ".txt"), false
-            );
-        #elif _WIN32
-            jpl::_logger::Logger* jpl::_logger::Logger::INSTANCE = new jpl::_logger::Logger(
-                jpl::_utils::_files::getLocalPath("logs\\" + jpl::_logger::Logger::getFileNameOfInstance() + ".txt"), false
-            );
-        #endif
-    #endif
-#endif
+jpl::_logger::Logger* jpl::_logger::Logger::INSTANCE = nullptr;
 
+void jpl::_logger::Logger::initStaticLogger(){
+    #ifdef __linux__
+        jpl::_logger::Logger::INSTANCE = new jpl::_logger::Logger(
+            jpl::_utils::_files::getLocalPath("logs/" + jpl::_logger::Logger::getFileNameOfInstance() + ".txt"), false
+        );
+    #elif _WIN32
+        jpl::_logger::Logger::INSTANCE = new jpl::_logger::Logger(
+            jpl::_utils::_files::getLocalPath("logs\\" + jpl::_logger::Logger::getFileNameOfInstance() + ".txt"), false
+        );
+    #endif
+}
 
 jpl::_logger::LOG_STATUS jpl::_logger::INFO_JPL = "INF";
 jpl::_logger::LOG_STATUS jpl::_logger::WARNING_JPL = "WAR";
@@ -42,8 +31,8 @@ void jpl::_logger::Logger::print(std::string msg, const jpl::_logger::LOG_STATUS
         return;
     }
     logger_mutex.lock();
-    msg = "[" + this->getFileNameOfInstance() + " -> " + status + "]: " + msg;
-    std::cout<<msg<<std::endl;
+    msg = "[" + this->getFileNameOfInstance() + " -> " + status + "]: " + msg + "\n";
+    std::cout<<msg;
     if(flag){
         this->file->write(msg.c_str(), msg.size());
         this->file->flush();

@@ -18,7 +18,7 @@
 #include <openssl/err.h>
 #include <jpl/exception/runtime/RuntimeException.hpp>
 #include <jpl/utils/debug/ErrorUtils.hpp>
-#include <jpl/logger/LoggerWrapper.hpp>
+#include <jpl/logger/Logger.hpp>
 
 namespace jpl{
     namespace _network{
