@@ -1,5 +1,19 @@
 #include "Button.hpp"
 
+jpl::_graphics::_engine::_button::Button::Button(unsigned int posX, unsigned int posY, unsigned int width, unsigned int height, _text::TextRender* textRender, _texture::Texture* texture){
+    if(textRender != nullptr){
+        this->textRender = textRender;
+    }else{
+        this->textRender = nullptr;
+    }
+    if(texture == nullptr){
+        throw jpl::_exception::IllegalArgumentException("texture cannot be nullptr");
+    }
+    this->texture = texture;
+    this->setPos(posX, posY, width, height);
+    this->textRender->setDim(posX, posY, width, height);
+    this->textRender->updateCoords();
+}
 
 void jpl::_graphics::_engine::_button::Button::setPos(unsigned int posX, unsigned int posY, unsigned int width, unsigned int height){
     float startX = jpl::_graphics::_metrics::XPosToScreenCoords(posX);
@@ -24,4 +38,7 @@ void jpl::_graphics::_engine::_button::Button::render() const{
     glActiveTexture(GL_TEXTURE0);
     this->texture->bind();
     glDrawElements(GL_QUADS, 4, GL_UNSIGNED_INT, 0);
+    if(this->textRender != nullptr){
+        this->textRender->render();
+    }
 }

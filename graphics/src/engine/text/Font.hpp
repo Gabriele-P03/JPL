@@ -74,6 +74,9 @@ namespace jpl{
                             return this->texture->getHeight()/this->charsPerHeight;
                         }
 
+                        ~Font(){
+                            delete this->texture;
+                        }
                 };
 
                 extern Font* ARIALS;

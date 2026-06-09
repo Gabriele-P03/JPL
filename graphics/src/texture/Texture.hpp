@@ -71,7 +71,12 @@ namespace jpl{
                     const char* getData() const noexcept{
                         return this->data;
                     } 
-            };
+
+                
+                    ~Texture(){
+                        delete[] this->data;
+                    }
+                };
 
         }
     }

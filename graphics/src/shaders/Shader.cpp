@@ -16,7 +16,7 @@ jpl::_graphics::_shaders::Shader::Shader(const char* rawProgram, int sizeRawProg
 }
 
 jpl::_graphics::_shaders::Shader::~Shader(){
-    delete this->rawProgram;
+    delete[] this->rawProgram;
     glDeleteShader(this->shaderIndex);
 }
 

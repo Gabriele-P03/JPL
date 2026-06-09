@@ -1,93 +1,71 @@
-cmake_minimum_required(VERSION 3.9)
-message("")
-message("---------------------------------------- GRAPHICS ----------------------------------------")
-message("")
+cmake_minimum_required(VERSION 3.15) # Versione minima consigliata per C++23
+project(GRAPHICS VERSION 1.0.0)
 
+# --- 1. CONFIGURAZIONI COMPILATORE ---
+set(CMAKE_CXX_STANDARD 23)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
+# --- 2. RICERCA DIPENDENZE (Portabile) ---
 find_package(GLEW REQUIRED)
 find_package(OpenGL REQUIRED)
+find_package(glfw3 REQUIRED) # Nota: spesso il pacchetto si chiama glfw3 o GLFW
 
-set(ALLOW_DUPLICATE_CUSTOM_TARGETS TRUE)
-set(GRAPHICS_VERSION_JPL "1.0.0")
-project(GRAPHICS VERSION ${GRAPHICS_VERSION_JPL})
+# --- 3. DEFINIZIONE SORGENTI ---
+set(SOURCES
+    "src/Metrics.cpp"
+    "src/utils/Window.cpp"
+    "src/shaders/Shader.cpp"
+    "src/shaders/ProgramShaders.cpp"
+    "src/shaders/ProgramManager.cpp"
+    "src/mesh/Mesh.cpp"
+    "src/mesh/MeshLoader.cpp"
+    "src/input/Keyboard.cpp"
+    "src/input/Mouse.cpp"
+    "src/engine/Painter.cpp"
+    "src/engine/button/Button.cpp"
+    "src/engine/camera/BaseCamera.cpp"
+    "src/engine/camera/OrthoCamera.cpp"
+    "src/engine/camera/PerspectiveCamera.cpp"
+    "src/engine/text/Font.cpp"
+    "src/engine/text/TextRender.cpp"
+    "src/engine/progress/ProgressBar.cpp"
+    "src/engine/VAO.cpp"
+    "src/engine/VAOManager.cpp"
+)
 
-set(CMAKE_C_COMPILER gcc)
-set(CMAKE_CXX_COMPILER g++)
-set(CMAKE_CXX_STANDARD 23)
-message("Compiling Graphics v: " ${GRAPHICS_VERSION_JPL})
-message("Compiling with Cxx v: " ${CMAKE_CXX_STANDARD})
+# --- 4. CREAZIONE TARGET ---
 
-set(FIRST_CALL_ADD_LIBRARY_SH TRUE)
-set(FIRST_CALL_ADD_LIBRARY_ST TRUE)
+# Libreria STATICA (.a)
+add_library(graphicsJPL_st STATIC ${SOURCES})
+set_target_properties(graphicsJPL_st PROPERTIES OUTPUT_NAME "graphicsJPL")
 
-add_compile_definitions(STB_IMAGE_IMPLEMENTATION)
+# Libreria SHARED (.so / .dll)
+add_library(graphicsJPL_sh SHARED ${SOURCES})
+set_target_properties(graphicsJPL_sh PROPERTIES OUTPUT_NAME "graphicsJPL" SOVERSION ${PROJECT_VERSION})
 
-function (addSRC PATH_SRC NAME_INFO STATIC_ENABLE SHARED_ENABLE)
-    if(${STATIC_ENABLE})
-        if(${FIRST_CALL_ADD_LIBRARY_SH})
-            
-            add_library( graphicsJPL_sh SHARED ${PATH_SRC})
-            set_target_properties(graphicsJPL_sh PROPERTIES OUTPUT_NAME "graphicsJPL" SOVERSION ${GRAPHICS_VERSION_JPL})
-            set(FIRST_CALL_ADD_LIBRARY_SH FALSE PARENT_SCOPE)#CACHE BOOL "First Call to Add Library for Shared done")
-            target_link_libraries(graphicsJPL_sh dbghelp)   
-            target_link_libraries(graphicsJPL_sh PowrProf)   
-            target_link_libraries(graphicsJPL_sh pdh)    
-        else()
-            target_sources(graphicsJPL_sh PUBLIC ${PATH_SRC})    
-        endif()
-    endif()    
+# --- 5. GESTIONE DIPENDENZE (Risolve gli Undefined Reference) ---
 
-    if(${SHARED_ENABLE})
-        if(${FIRST_CALL_ADD_LIBRARY_ST})
-            add_library( graphicsJPL_st STATIC ${PATH_SRC})
-            set_target_properties(graphicsJPL_st PROPERTIES OUTPUT_NAME "graphicsJPL")
-            set(FIRST_CALL_ADD_LIBRARY_ST FALSE PARENT_SCOPE)#CACHE BOOL "First Call to Add Library for Static done")
-        else()
-            target_sources(graphicsJPL_st PUBLIC ${PATH_SRC})
-        endif()
-    endif()
+# Definiamo le librerie comuni a entrambi i target
+set(COMMON_LIBS 
+    OpenGL::GL 
+    GLEW::GLEW 
+    glfw 
+    parserJPL
+)
 
-    message("-- Adding " ${NAME_INFO} "... ")
+# Linking per la Statica: usiamo INTERFACE per propagare le dipendenze a chi usa il .a
+target_link_libraries(graphicsJPL_st PUBLIC ${COMMON_LIBS})
 
-endfunction()
+# Linking per la Shared
+target_link_libraries(graphicsJPL_sh PRIVATE ${COMMON_LIBS})
+if(WIN32)
+    target_link_libraries(graphicsJPL_sh PRIVATE dbghelp PowrProf pdh)
+endif()
 
-addSRC("src/Metrics.cpp" "Metrics" TRUE TRUE)
-addSRC("src/utils/Window.cpp" "Metrics" TRUE TRUE)
-addSRC("src/shaders/Shader.cpp" "Metrics" TRUE TRUE)
-addSRC("src/shaders/ProgramShaders.cpp" "Metrics" TRUE TRUE)
-addSRC("src/shaders/ProgramManager.cpp" "Metrics" TRUE TRUE)
-addSRC("src/mesh/Mesh.cpp" "Metrics" TRUE TRUE)
-addSRC("src/mesh/MeshLoader.cpp" "Metrics" TRUE TRUE)
-addSRC("src/input/Keyboard.cpp" "Metrics" TRUE TRUE)
-addSRC("src/input/Mouse.cpp" "Metrics" TRUE TRUE)
-addSRC("src/engine/Painter.cpp" "Metrics" TRUE TRUE)
-addSRC("src/engine/button/Button.cpp" "Metrics" TRUE TRUE)
-addSRC("src/engine/camera/BaseCamera.cpp" "Metrics" TRUE TRUE)
-addSRC("src/engine/camera/OrthoCamera.cpp" "Metrics" TRUE TRUE)
-addSRC("src/engine/camera/PerspectiveCamera.cpp" "Metrics" TRUE TRUE)
-addSRC("src/engine/text/Font.cpp" "Metrics" TRUE TRUE)
-addSRC("src/engine/text/TextRender.cpp" "Metrics" TRUE TRUE)
-addSRC("src/engine/progress/ProgressBar.cpp" "Metrics" TRUE TRUE)
-addSRC("src/engine/VAO.cpp" "Metrics" TRUE TRUE)
-addSRC("src/engine/VAOManager.cpp" "Metrics" TRUE TRUE)
+# --- 6. DEFINIZIONI E INCLUDE ---
+target_compile_definitions(graphicsJPL_st PUBLIC STB_IMAGE_IMPLEMENTATION)
+target_compile_definitions(graphicsJPL_sh PRIVATE STB_IMAGE_IMPLEMENTATION)
 
-set(CMAKE_C_COMPILER gcc)
-set(CMAKE_CXX_COMPILER g++)
-
-set(CMAKE_CXX_STANDARD 23)
-
-set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY "${PROJECT_BINARY_DIR}")
-set(CMAKE_LIBRARY_OUTPUT_DIRECTORY "${PROJECT_BINARY_DIR}")
-set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${PROJECT_BINARY_DIR}")
-
-
-include_directories(CPLUS_INCLUDE_PATH)
-include_directories(C_INCLUDE_PATH)
-
-target_link_libraries(graphicsJPL_sh libglfw3)
-target_link_libraries(graphicsJPL_sh libglew32)
-target_link_libraries(graphicsJPL_sh Opengl32)
-target_link_libraries(graphicsJPL_sh libparserJPL)
-
-option(BUILD_SHARED_LIBS "Build using shared libraries" ON)
-
-add_executable(GRAPHICS${SOURCE_FILES})
+# Specifica dove trovare gli header (se sono in 'include' o 'src')
+target_include_directories(graphicsJPL_st PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/src)
+target_include_directories(graphicsJPL_sh PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/src)

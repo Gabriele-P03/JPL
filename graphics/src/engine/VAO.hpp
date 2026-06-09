@@ -20,7 +20,6 @@ namespace jpl{
                 const unsigned int vbo;
                 VBO(const std::string &name, const unsigned int vbo)
                     : name(name), vbo(vbo){
-
                 }
                 ~VBO() = default;
                 void bind() const noexcept{
@@ -52,11 +51,13 @@ namespace jpl{
                 }
                 ~VAO() = default;
 
-                void addVBO(const std::string &name, const unsigned int VBO);
+                VBO* addVBO(const std::string &name);
+                VBO* addVBO(const std::string &name, const unsigned int VBO);
                 void addVBO(VBO* vbo);
                 VBO* getVBOByName(const std::string& name) noexcept;
 
-                void addEBO(const std::string &name, const unsigned int EBO);
+                EBO* addEBO(const std::string &name);
+                EBO* addEBO(const std::string &name, const unsigned int EBO);
                 void addEBO(EBO* vbo);
                 EBO* getEBOByName(const std::string& name) noexcept;
 

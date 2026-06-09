@@ -34,10 +34,7 @@ namespace jpl{
 
                     public:
 
-                        Button(_text::TextRender* textRender, _texture::Texture* texture){
-                                this->texture = texture;
-                                this->textRender = textRender;
-                        }
+                        Button(unsigned int posX, unsigned int posY, unsigned int width, unsigned int height, _text::TextRender* textRender, _texture::Texture* texture);
 
                         unsigned int getPosX() const noexcept{return this->posX;}
                         unsigned int getPosY() const noexcept{return this->posY;}
@@ -61,9 +58,6 @@ namespace jpl{
                         }
 
                         void settextRender(_text::TextRender* tr){
-                            if(tr == nullptr){
-                                throw jpl::_exception::IllegalArgumentException("text Render cannot be nullptr");
-                            }
                             this->textRender = tr;
                         }
                         const _text::TextRender* getTextRender() const noexcept{
@@ -80,6 +74,9 @@ namespace jpl{
                          * Render button
                          */
                         virtual void render() const;
+
+                        ~Button(){
+                        }
                 };
             }
         }

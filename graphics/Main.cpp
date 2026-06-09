@@ -1,6 +1,5 @@
 #include "src/shaders/Shader.hpp"
 
-#define AUTO_LOG_EXCEPTION_JPL
 #include <jpl/logger/Logger.hpp>
 #include "src/utils/Hints.hpp"
 #include "src/Metrics.hpp"
@@ -76,7 +75,10 @@ void button_callback(GLFWwindow* w, int k, int s, int a, int m){
 }
 
 int main(){
+
+    jpl::_logger::Logger::initStaticLogger();
     jpl::_logger::_exceptionhook::LoggerExceptionHook();
+
     jpl::_graphics::_states::fullscreen = false;
     if(!glfwInit()){
         throw jpl::_exception::RuntimeException(jpl::_graphics::_error::getLastErrorAsString());
@@ -134,6 +136,12 @@ int main(){
     glLinkProgram(programShaders->getProgramIndex());
 
     jpl::_graphics::_engine::VAOManager vaom = jpl::_graphics::_engine::VAOManager();
+    jpl::_graphics::_engine::VAO* vao = vaom.addNewVAO("pb");
+    jpl::_graphics::_engine::VBO* vbo = vao->addVBO("pb");
+    jpl::_graphics::_engine::EBO* ebo = vao->addEBO("pb");
+    jpl::_graphics::_engine::VAO* vao2 = vaom.addNewVAO("text");
+    jpl::_graphics::_engine::VBO* vbo2 = vao2->addVBO("text");
+    jpl::_graphics::_engine::EBO* ebo2 = vao2->addEBO("text");
 
     std::fstream* f = new std::fstream;
     jpl::_utils::_files::getInternalFile("objs\\test.obj", std::ios_base::in, &f);
@@ -149,29 +157,57 @@ int main(){
     );
     pbt->bind();
     pbt->generate();
+
+
     jpl::_graphics::_engine::ProgressBar* pb = new jpl::_graphics::_engine::ProgressBar(
         pbt, 100
     );
+    vao->bind();
+    vbo->bind();
+    ebo->bind();
+    pb->bind();
 
-    jpl::_graphics::_engine::_text::TextRender* tr = new jpl::_graphics::_engine::_text::TextRender(0, 0, 1280, 128);
-    tr->setText("Ciao");
-    tr->setCentered(true);
+    pb->setProgress(0.0f);
+
+
+    
+    jpl::_graphics::_engine::_text::TextRender* tr = new jpl::_graphics::_engine::_text::TextRender(0, 0, 1000, 512);
     tr->setFont(new jpl::_graphics::_engine::_text::Font("ascii.bmp", jpl::_graphics::_engine::_text::ASCII, 16,8, 128));
+    vao2->bind();
+    vbo2->bind();
+    ebo2->bind();
     tr->updateCoords();
+    tr->setCentered(false);
+    tr->setText("Hello World!\nThis is a test of the text rendering system.\nIt supports multiple lines and centered text.");
+
+    
 
     while(!glfwWindowShouldClose(w)){
         glfwPollEvents();
-        glfwSwapBuffers(w);
+        
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+        glClearColor(0.5f, 0.0f, 0.1f, 0.5f);
         //glUseProgram(programShaders->getProgramIndex());
         if(jpl::_graphics::_input::_keyboard::isKeyPressed(GLFW_KEY_ESCAPE)){
             glfwSetWindowShouldClose(w, 1);
         }
 
         glUseProgram(programShaders->getProgramIndex());
-        pb->render();
         
+        float prog = pb->getProgress();
+        if(prog > 0.99f){
+            prog = 0.0f;
+        }
+
+        vao->bind();
+        vbo->bind();
+        pb->setProgress(prog+0.001f);
+        pb->render();
+
+        vao2->bind();
         tr->render();
+
+        glfwSwapBuffers(w);
     }
 
     glfwTerminate();

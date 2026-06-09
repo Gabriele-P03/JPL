@@ -5,6 +5,7 @@ jpl::_graphics::_engine::VAO* jpl::_graphics::_engine::VAOManager::addNewVAO(con
     glGenVertexArrays(1, &i);
     jpl::_graphics::_engine::VAO* vao = new jpl::_graphics::_engine::VAO(name, i);
     this->addNewVAO(vao);
+    return vao;
 }
 
 void jpl::_graphics::_engine::VAOManager::addNewVAO(jpl::_graphics::_engine::VAO* vao){
@@ -21,7 +22,7 @@ void jpl::_graphics::_engine::VAOManager::addNewVAO(const std::string &name, uns
 }
 
 jpl::_graphics::_engine::VAO* jpl::_graphics::_engine::VAOManager::getVAOByName(const std::string &name) const noexcept{
-    for(unsigned long i = 0; i <= this->list.size(); i++){
+    for(long i = 0; i < this->list.size(); i++){
         jpl::_graphics::_engine::VAO* cr = this->list.at(i);
         if( strcmp(cr->name.c_str(), name.c_str()) == 0){
             return cr;

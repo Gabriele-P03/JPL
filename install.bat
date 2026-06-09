@@ -24,8 +24,8 @@ echo Coping all header files
 
 if "%~1"=="" (
     echo Compiling all modules
-    set "includes=exception utils logger parser network sounds"
-    set "builds=utils logger parser network sounds"
+    set "includes=exception utils logger parser network sounds graphics"
+    set "builds=utils logger parser network sounds graphics"
 ) else (
     set "includes="
     set "builds="

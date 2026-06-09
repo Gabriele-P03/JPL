@@ -65,6 +65,7 @@ namespace jpl{
                         bool focus;
 
                     public:
+                        TextRender();
                         TextRender(float x, float y, float width, float height);
 
                         void setFont(const Font* font){
@@ -111,6 +112,9 @@ namespace jpl{
                         }
                         bool isFocus() const noexcept{
                             return this->focus;
+                        }
+
+                        ~TextRender(){
                         }
                 };
             }

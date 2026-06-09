@@ -64,6 +64,8 @@ namespace jpl{
                         return this->max;
                     }
 
+                    virtual void bind() const noexcept;
+
                     /**
                      * @param p
                      * @throw IllegalArgumentException if p is less than 0 or greater than max
@@ -72,7 +74,8 @@ namespace jpl{
 
                     virtual void render() const noexcept;
 
-                    
+                    ~ProgressBar(){
+                    }
             };
 
         }

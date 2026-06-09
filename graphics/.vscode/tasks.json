@@ -7,8 +7,6 @@
             "args": [
                 "-ggdb",
                 "-std=c++23",
-                "-DAUTO_LOG_EXCEPTION_JPL",
-                "-DUSE_STACKTRACE_W_EXCEPTION_JPL",
                 "${workspaceFolder}/Main.cpp", 
                 "-lloggerJPL",
                 "-fno-rtti",
@@ -64,6 +62,10 @@
                 "-lOpengl32",
                 "-lloggerJPL",
                 "-lparserJPL",
+                "-lutilsJPL",
+                "-ldbghelp",
+                "-lPowrProf",
+                "-lpdh",
                 "-o",
                 "${workspaceFolder}/out/windows/Main.exe"
                 
