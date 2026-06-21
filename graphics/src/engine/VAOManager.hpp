@@ -5,6 +5,7 @@
 #ifndef VAOSMANAGER_GRAPHICS_JPL
 #define VAOSMANAGER_GRAPHICS_JPL
 
+#include <unordered_map>
 #include "VAO.hpp"
 
 namespace jpl{
@@ -16,34 +17,43 @@ namespace jpl{
 
                 protected:
 
-                    std::vector<VAO*> list;
+                    std::unordered_map<std::string, VAO* const> vaos;
 
                 public:
 
-                    VAOManager() = default;
-                    ~VAOManager() = default;
+                    VAOManager();
+                    ~VAOManager();
 
                     /**
                      * @throw IllegalArgumentException if vaovbo is nullptr
                      * @throw RuntimeException if another vao with the same name already exists
                      */
-                    void addNewVAO(VAO* vao);
+                    VAO* const addNewVAO(const std::string& identifier, VAO* const vao);
                     /**
                      * @throw RuntimeException if another vao with the same name already exists
                      */
-                    void addNewVAO(const std::string &name, unsigned int VAO);
+                    VAO* const addNewVAO(const std::string &identifier, const unsigned int VAO);
 
                     /**
                      * @param name
                      * @throw RuntimeException if another vao with the same name already exists
                      * @return new VAO created
                      */
-                    VAO* addNewVAO(const std::string &name);
+                    VAO* const addNewVAO(const std::string &identifier);
 
                     /**
-                     * @return VAO with given name or nullptr
+                     * @return VAO with given name otherwise nullptr
                      */
-                    VAO* getVAOByName(const std::string &name) const noexcept;
+                    VAO* const getVAOByName(const std::string &identifier) const noexcept;
+
+                    /**
+                     * @param identifier
+                     * @throw IllegalArgumentException if no VAO with the given name has been found
+                     */
+                    void removeVAOByName(const std::string &identifier);
+
+                    static VAOManager* INSTANCE;
+                    static void initializeVAOManager();
             };
         }
     }

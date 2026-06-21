@@ -1,5 +1,7 @@
 #include "Painter.hpp"
 
+jpl::_graphics::_engine::Painter* jpl::_graphics::_engine::Painter::INSTANCE = nullptr;
+
 jpl::_graphics::_engine::Painter::Painter(){
     glGenBuffers(1, &this->VBO);
     glGenVertexArrays(1, &this->VAO);
@@ -11,10 +13,6 @@ jpl::_graphics::_engine::Painter::Painter(){
 
 void jpl::_graphics::_engine::Painter::bindBuffer() const noexcept{
     glBindVertexArray(this->VAO);
-    glBindBuffer(GL_ARRAY_BUFFER, this->VBO);
-    if(this->EBO > 0){
-        glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, this->EBO);
-    }
 }
 
 void jpl::_graphics::_engine::Painter::pushData(const jpl::_graphics::_mesh::Mesh* mesh, GLenum mode) const noexcept{
@@ -60,4 +58,8 @@ void jpl::_graphics::_engine::drawMesh(jpl::_graphics::_engine::Painter* painter
     }else{
         glDrawArrays(GL_TRIANGLES, 0, mesh->getSizeVertices()/mesh->getCoordsPerPoint());
     }
+}
+
+void jpl::_graphics::_engine::Painter::initializePainter(){
+    jpl::_graphics::_engine::Painter::INSTANCE = new jpl::_graphics::_engine::Painter();
 }

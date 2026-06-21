@@ -38,6 +38,7 @@ endfunction()
 
 addSRC("src/wav/WAV.cpp" "WAVE" TRUE TRUE)
 addSRC("src/bmp/BMP.cpp" "BMP" TRUE TRUE)
+addSRC("src/png/PNG.cpp" "PNG" TRUE TRUE)
 
 set(CMAKE_C_COMPILER gcc)
 set(CMAKE_CXX_COMPILER g++)

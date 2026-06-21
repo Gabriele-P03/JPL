@@ -31,6 +31,7 @@ set(SOURCES
     "src/engine/progress/ProgressBar.cpp"
     "src/engine/VAO.cpp"
     "src/engine/VAOManager.cpp"
+    "src/engine/scene/SceneManager.cpp"
 )
 
 # --- 4. CREAZIONE TARGET ---
@@ -51,21 +52,18 @@ set(COMMON_LIBS
     GLEW::GLEW 
     glfw 
     parserJPL
+    loggerJPL
 )
 
-# Linking per la Statica: usiamo INTERFACE per propagare le dipendenze a chi usa il .a
 target_link_libraries(graphicsJPL_st PUBLIC ${COMMON_LIBS})
 
-# Linking per la Shared
 target_link_libraries(graphicsJPL_sh PRIVATE ${COMMON_LIBS})
 if(WIN32)
     target_link_libraries(graphicsJPL_sh PRIVATE dbghelp PowrProf pdh)
 endif()
 
-# --- 6. DEFINIZIONI E INCLUDE ---
 target_compile_definitions(graphicsJPL_st PUBLIC STB_IMAGE_IMPLEMENTATION)
 target_compile_definitions(graphicsJPL_sh PRIVATE STB_IMAGE_IMPLEMENTATION)
 
-# Specifica dove trovare gli header (se sono in 'include' o 'src')
 target_include_directories(graphicsJPL_st PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/src)
 target_include_directories(graphicsJPL_sh PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/src)

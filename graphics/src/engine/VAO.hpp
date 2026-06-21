@@ -16,11 +16,8 @@ namespace jpl{
         namespace _engine{
 
             struct VBO{
-                const std::string name;
                 const unsigned int vbo;
-                VBO(const std::string &name, const unsigned int vbo)
-                    : name(name), vbo(vbo){
-                }
+                VBO(const unsigned int vbo) : vbo(vbo){}
                 ~VBO() = default;
                 void bind() const noexcept{
                     glBindBuffer(GL_ARRAY_BUFFER, this->vbo);
@@ -28,12 +25,8 @@ namespace jpl{
             };
 
             struct EBO{
-                const std::string name;
                 const unsigned int ebo;
-                EBO(const std::string &name, const unsigned int ebo)
-                    : name(name), ebo(ebo){
-
-                }
+                EBO(const unsigned int ebo) : ebo(ebo){}
                 ~EBO() = default;
                 void bind() const noexcept{
                     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, this->ebo);
@@ -41,25 +34,19 @@ namespace jpl{
             };
 
             struct VAO{
-                const std::string name;
                 const unsigned int vao;
                 std::vector<VBO*> VBOs;
                 std::vector<EBO*> EBOs;
-                VAO(const std::string &name, const unsigned int vao)
-                    : name(name), vao(vao){
+                VAO(const unsigned int vao);
+                ~VAO();
 
-                }
-                ~VAO() = default;
+                VBO* const addVBO();
+                VBO* const addVBO(const unsigned int VBO);
+                VBO* const addVBO(VBO* const vbo);
 
-                VBO* addVBO(const std::string &name);
-                VBO* addVBO(const std::string &name, const unsigned int VBO);
-                void addVBO(VBO* vbo);
-                VBO* getVBOByName(const std::string& name) noexcept;
-
-                EBO* addEBO(const std::string &name);
-                EBO* addEBO(const std::string &name, const unsigned int EBO);
-                void addEBO(EBO* vbo);
-                EBO* getEBOByName(const std::string& name) noexcept;
+                EBO* const addEBO();
+                EBO* const addEBO(const unsigned int EBO);
+                EBO* const addEBO(EBO* const vbo);
 
                 void bind() const noexcept{
                     glBindVertexArray(this->vao);

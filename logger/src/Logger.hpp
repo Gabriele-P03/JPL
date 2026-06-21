@@ -1,9 +1,21 @@
 /**
- * A logger provides writing logs both on terminal and into file as well.
+ * This is a thread-safety Logger, providing writing logs both on terminal and into file as well.
  * 
- * A standard static Logger instance is already available and you can use as you want; just notice that, unless you called initStaticLogger() undefined-behaviour may occurr
+ * Printing on terminal is a on-demand task carried out by the current thread (i.e. one which called print()). 
+ * On the other side, writing on file, if enabled, is carried out by a dedicated thread; this approach has been choosen since I/O tasks would have tend to stop
+ * threads, also several flush per time would happened. Therefore, the special thread delegated to flush file is being sleeping via Conditional Variable and
+ * waken up by a thread when its logging-request make reach the maximum amount of request per flushing.
+ * This operation needs a Queue in order to hold request in their arrival order.
  * 
- * If Logger could not create file - if quite has been passed as true - it does not exit program with failure, but just reset flag field
+ * MAX_LOG_REQUEST_PER_FLUSH_JPL represents the max amount of log request per flush, you are free to change it
+ * 
+ * Writing on file is not a mandatory task and you can inibite it passing true as quiet field in constructor.
+ * Notice that, in case of error during output file creation, flag field is reset and, although you passed true, delegated thread won't write on file.
+ * Delegated thread is spawn only in case of positive result of output file creation.
+ * 
+ * A standard static Logger instance is already available, in order to instance it you have to call initStaticLogger() 
+ * 
+ * In the _exceptionhook namespace you can find out an exception hook as well, calling LoggerExceptionHook() it set the hook for every unhandled exception and log its stacktrace automagically
  * 
  * @date 2022-08-01
  * @copyright Copyright (c) 2022
@@ -20,14 +32,19 @@
         #include <windows.h>
     #endif
 
+    #include <queue>
     #include <string>
     #include <fstream>
     #include <iostream>
     #include <ctime>
     #include <jpl/utils/FilesUtils.hpp>
     #include <jpl/utils/debug/DebugUtils.hpp>
-    #include <jpl/exception/runtime/IOException.hpp>
+
+    #include <condition_variable>
+    #include <thread>
     #include <mutex>
+
+    #define MAX_LOG_REQUEST_PER_FLUSH_JPL 5
 
     namespace jpl{
 
@@ -41,30 +58,34 @@
 
         namespace _logger{
 
-                typedef const char* const LOG_STATUS;
-
-                /**
-                * @brief Information message
-                */
-                extern const LOG_STATUS INFO_JPL;
-                /**
-                * @brief Warning message
-                */
-                extern const LOG_STATUS WARNING_JPL;
-                /**
-                * @brief Error message
-                */
-                extern const LOG_STATUS ERROR_JPL;
-                /**
-                * @brief Debug message (not visible unless process has a debugger attached) 
-                */
-                extern const LOG_STATUS DEBUG_JPL;
+            typedef const char* const LOG_STATUS;
+            /**
+            * @brief Information message
+            */
+            extern const LOG_STATUS INFO_JPL;
+            /**
+            * @brief Warning message
+            */
+            extern const LOG_STATUS WARNING_JPL;
+            /**
+            * @brief Error message
+            */
+            extern const LOG_STATUS ERROR_JPL;
+            /**
+            * @brief Debug message (not visible unless process has a debugger attached) 
+            */
+            extern const LOG_STATUS DEBUG_JPL;
 
             class Logger{
 
                 protected:
 
+                    static void writeOnFile(Logger* const instance);
+
                     std::mutex logger_mutex;
+                    std::thread delegatedThread;
+                    std::condition_variable cv;
+                    std::queue<std::string> requestQueue;
 
                     /**
                      * @return the file name of today e.g. dd-mm-yyyy_hh-mm-ss.txt
@@ -79,50 +100,29 @@
                         return std::localtime(&now);
                     }
 
-                    /**
-                     * Logger's output file
-                     */
+                    //Logger's output file
                     std::ofstream* file;
-
-                    /**
-                     * @brief If the fstream could be created, this flag is set to true,
-                     * otherwise to false.
-                     * Is is used to check, when UFW_LOGGER_JPL macro is defined, if logger
-                     * is able to write on file, too.
-                     */
+                    
+                    //It represents the result of creating file
                     bool flag;
+
+                    //It is set by destructor in order to let delegated thread knows to close file after have flushed last logger requests left
+                    bool close;
+
+                    const size_t size;
 
                     static Logger* INSTANCE;
                     
                 public:
 
                     /**
-                     * Create a new instance of Logger associated with the output file at the given path.
-                     * Quiet mode is implicitly set to false
-                     * 
-                     * @param pathToFile aboslute path of the file which is wanted to be used as output one
-                     */
-                    Logger(std::string pathToFile) : Logger(pathToFile, false){}
-
-                    /**
                      * Create a new instance of Logger associated with the output file at the given path
                      * 
                      * @param pathToFile aboslute path of the file which is wanted to be used as output one
                      * @param quiet quiet mode if you don't want to write on file
+                     * @param size amount of logging request that must be performed before each flushing operation. 0 means flushing on each request
                      */
-                    Logger(std::string pathToFile, bool quiet){
-                        this->flag = false;
-                        if(!quiet){
-                            this->file = new std::ofstream();
-                            this->file->open(pathToFile);
-
-                            if(file->fail()){
-                                std::cout<<"Could not create output file: "<<pathToFile<<std::endl;
-                            }else{
-                                this->flag = true;
-                            }
-                        }
-                    }
+                    Logger(const std::string& pathToFile, bool quiet, const size_t size);
 
                     /**
                      * @brief Print msg on terminal
@@ -130,7 +130,7 @@
                      * 
                      * @param msg message
                      */
-                    void print(std::string msg);
+                    void print(const std::string& msg);
 
                     /**
                      * @brief write msg on terminal
@@ -139,20 +139,23 @@
                      * @param msg message
                      * @param status status of the message
                      */
-                    void print(std::string msg, const LOG_STATUS status);
+                    void print(const std::string& msg, const LOG_STATUS status);
 
                     /**
-                     * Close logger and its file
-                     */
-                    void closeLogger();
-
-                    /**
-                     * @brief this check-function is useless to call unless you have defined
-                     * UFW_LOGGER_JPL 
-                     * 
-                     * @return if Logger is able to write on file
+                     * @return if Logger is able to write on file, specially if it had not been able to create output file
                      */
                     bool isWriting(){ return this->flag; }
+
+                    /**
+                     * Forced Waking-Up Delegated Theread
+                     */
+                    void flush();
+
+                    /**
+                     * Close the Logger, it call flush() as well
+                     * It is not needed to call destructor then  
+                     */
+                    void flushAndClose();
 
                     ~Logger();
 
@@ -162,19 +165,19 @@
                     }
             };
 
-                inline void print(std::string msg, const jpl::_logger::LOG_STATUS status){
+                inline void print(const std::string& msg, const jpl::_logger::LOG_STATUS status){
                     jpl::_logger::Logger::getLogger()->print(msg, status);
                 }
-                inline void info(std::string msg){
+                inline void info(const std::string& msg){
                     jpl::_logger::Logger::getLogger()->print(msg, jpl::_logger::INFO_JPL);
                 }
-                inline void error(std::string msg){
+                inline void error(const std::string& msg){
                     jpl::_logger::Logger::getLogger()->print(msg, jpl::_logger::ERROR_JPL);
                 }
-                inline void warning(std::string msg){
+                inline void warning(const std::string& msg){
                     jpl::_logger::Logger::getLogger()->print(msg, jpl::_logger::WARNING_JPL);
                 }
-                inline void debug(std::string msg){
+                inline void debug(const std::string& msg){
                     jpl::_logger::Logger::getLogger()->print(msg, jpl::_logger::DEBUG_JPL);
                 }
 

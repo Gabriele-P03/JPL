@@ -93,6 +93,9 @@ namespace jpl{
                     int getModelMatrixLocation() const noexcept{
                         return this->locModelMatrix;
                     } 
+
+                    static Painter* INSTANCE;
+                    static void initializePainter();
             };
 
             extern void drawMesh(Painter* vertex, const _mesh::Mesh* mesh);

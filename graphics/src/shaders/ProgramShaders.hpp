@@ -6,8 +6,10 @@
 #ifndef PROGRAMSHADERS_GRAPHICS_JPL
 #define PROGRAMSHADERS_GRAPHICS_JPL
 
-#include <jpl/utils/structure/list/LinkedList.hpp>
+#include <unordered_map>
 #include <GL/glew.h>
+#include <jpl/exception/runtime/IllegalArgumentException.hpp>
+#include <jpl/logger/Logger.hpp>
 #include "../utils/Error.hpp"
 
 namespace jpl{
@@ -30,7 +32,7 @@ namespace jpl{
                 protected:
 
                     const unsigned int program;
-                    jpl::_utils::_collections::_list::LinkedList<Shader*>* shaders;
+                    std::unordered_map<std::string, Shader* const> shaders;
 
                 public:
 
@@ -47,36 +49,26 @@ namespace jpl{
                     ~ProgramShaders();
                     
                     /**
-                     * Add new shader to the current list
+                     * Add new shader to the map
+                     * @param identifier
                      * @param shader
                      * @throw IllegalArgumentException if shader is nullptr
                      * @throw IllegalArgumentException if shader has been already inserted into this list
                      * @throw RuntimeException for any error occurred during attaching shader 
                      */
-                    void addNewShader(Shader* shader);
+                    void addNewShader(const std::string &identifier, Shader* shader);
+
+                    Shader* getShaderByIdentifier(const std::string &identifier) const;
 
                     /**
                      * Detach the given shader
-                     * @param shader
-                     * @throw IllegalArgumentException if shader is nullptr
-                     * @throw RuntimeException is shader was not found in list
+                     * @param identifier
+                     * @throw RuntimeException is shader was not found
                      */
-                    void detachShader(Shader* shader);
-                    /**
-                     * Detach shader with the given shaderIndex
-                     * @param shaderIndex
-                     * @IllegalArgumentException if no shader has been found with the given shaderIndex
-                     * @throw RuntimeException for any errors occurred
-                     */
-                    void detachShader(unsigned int shaderIndex);
+                    void detachShader(const std::string &identifier);
 
-                    size_t getShadersSize() const noexcept{
-                        return this->shaders->getSize();
-                    }
-
-                    Shader* getShaderByIndex(size_t i) const noexcept{
-                        return this->shaders->get(i);
-                    }
+                    virtual void link() const;
+                    virtual void use() const;
                 
                     unsigned int getProgramIndex() const noexcept {
                         return this->program;

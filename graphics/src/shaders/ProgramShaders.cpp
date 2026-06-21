@@ -8,23 +8,21 @@ jpl::_graphics::_shaders::ProgramShaders::ProgramShaders(unsigned int program) :
     if(program == 0){
         throw jpl::_exception::RuntimeException(jpl::_graphics::_error::getLastErrorAsString());
     }
-    this->shaders = new jpl::_utils::_collections::_list::LinkedList<jpl::_graphics::_shaders::Shader*>();
+    jpl::_logger::info("New ProgramShader generated: " + std::to_string(this->program));
 }
 
 jpl::_graphics::_shaders::ProgramShaders::~ProgramShaders(){
-    delete this->shaders;
+    this->shaders.clear();
     glDeleteProgram(this->program);
 }
 
-void jpl::_graphics::_shaders::ProgramShaders::addNewShader(jpl::_graphics::_shaders::Shader* shader){
+void jpl::_graphics::_shaders::ProgramShaders::addNewShader(const std::string &identifier, jpl::_graphics::_shaders::Shader* shader){
     if (shader == nullptr){
         throw jpl::_exception::IllegalArgumentException("Shader is nullptr");
     }
-    for(size_t i = 0; i < this->shaders->getSize(); i++){
-        jpl::_graphics::_shaders::Shader* cr = this->shaders->get(i);
-        if(cr == shader){
-            throw jpl::_exception::IllegalArgumentException("This shader pointer has been already inserted");
-        }
+    typename std::unordered_map<std::string, jpl::_graphics::_shaders::Shader* const>::iterator it = this->shaders.find(identifier);
+    if(it != this->shaders.end()){
+        throw jpl::_exception::IllegalArgumentException("This shader pointer has been already inserted");
     }
     glAttachShader(this->program, jpl::_graphics::_shaders::getShaderIndexByShader(shader));
     jpl::_graphics::_error::GLFWErrorJPL* er;
@@ -32,33 +30,32 @@ void jpl::_graphics::_shaders::ProgramShaders::addNewShader(jpl::_graphics::_sha
     if(er->errorCode != 0){
         throw jpl::_exception::RuntimeException("Error occurred during attaching shader by ProgramShader: " + errStr);
     }
-    this->shaders->add(shader);
+    this->shaders.insert({identifier, shader});
+    jpl::_logger::info("ProgramShader " + std::to_string(this->program) + ": new shader attached " + identifier);
 }
 
-void jpl::_graphics::_shaders::ProgramShaders::detachShader(jpl::_graphics::_shaders::Shader* shader){
-    if(shader == nullptr){
-        throw jpl::_exception::IllegalArgumentException("Shader is nullptr");
+jpl::_graphics::_shaders::Shader* jpl::_graphics::_shaders::ProgramShaders::getShaderByIdentifier(const std::string &identifier) const{
+    typename std::unordered_map<std::string, jpl::_graphics::_shaders::Shader* const>::const_iterator it = this->shaders.find(identifier);
+    if(it == this->shaders.end()){
+        throw jpl::_exception::IllegalArgumentException("No shader " + identifier + " has been registered, yet");
     }
-    this->detachShader(jpl::_graphics::_shaders::getShaderIndexByShader(shader));
+    return it->second;
 }
 
-void jpl::_graphics::_shaders::ProgramShaders::detachShader(unsigned int shaderIndex){
-    if(shaderIndex == 0){
-        throw jpl::_exception::IllegalArgumentException("Shader Index not valid: " + std::to_string(shaderIndex));
+void jpl::_graphics::_shaders::ProgramShaders::detachShader(const std::string &identifier){
+    typename std::unordered_map<std::string, jpl::_graphics::_shaders::Shader* const>::iterator it = this->shaders.find(identifier);
+    if(it == this->shaders.end()){
+        throw jpl::_exception::RuntimeException("There's no shader " + identifier);
     }
-    size_t pos = 0;
-    bool flagFound = false; 
-    for(size_t i = 0; i <= this->shaders->getSize(); i++){
-        jpl::_graphics::_shaders::Shader* cr = this->shaders->get(i);
-        if(shaderIndex == jpl::_graphics::_shaders::getShaderIndexByShader(cr)){
-            pos = i;
-            flagFound = true;
-            glDetachShader(this->program, jpl::_graphics::_shaders::getShaderIndexByShader(cr));
-            break;
-        }
-    }
-    if(!flagFound){
-        throw jpl::_exception::RuntimeException("Sahder with index " + std::to_string(shaderIndex) + " is not present in list");
-    }
-    this->shaders->removeAt(pos);
+    glDetachShader(this->program, jpl::_graphics::_shaders::getShaderIndexByShader(it->second));
+    this->shaders.erase(it);
+}
+
+void jpl::_graphics::_shaders::ProgramShaders::link() const{
+    jpl::_logger::info("Linking ProgramShader " + std::to_string(this->program));
+    glLinkProgram(this->program);
+}
+
+void jpl::_graphics::_shaders::ProgramShaders::use() const{
+    glUseProgram(this->program);
 }

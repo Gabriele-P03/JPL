@@ -81,7 +81,7 @@
                  * @throw PermissionException if a special permission has been needed to open file
                  * @throw RuntimeException for any other errors
                  */ 
-                inline void getLocalFile(std::string pathToFile, std::ios_base::openmode _mode, std::fstream** file){
+                inline void getLocalFile(const std::string& pathToFile, std::ios_base::openmode _mode, std::fstream** file){
                     
                     #ifdef __linux__
                         std::string path = getRootPath() + "/" + pathToFile;
@@ -127,7 +127,7 @@
                  * @throw PermissionException if a special permission has been needed to open file
                  * @throw RuntimeException for any other errors
                  */ 
-                inline void getInternalFile(std::string pathToFile, std::ios_base::openmode _mode, std::fstream** file){
+                inline void getInternalFile(const std::string& pathToFile, std::ios_base::openmode _mode, std::fstream** file){
                     getLocalFile( "resources/" + pathToFile, _mode, file);
                 }
 
@@ -136,23 +136,23 @@
                      * @param path
                      * @return the given path concatenate to the resources folder's one.
                      */ 
-                    inline std::string getInternalPath(std::string path) noexcept{return getRootPath() + "/resources/" + path;}
+                    inline std::string getInternalPath(const std::string& path) noexcept{return getRootPath() + "/resources/" + path;}
                     /**
                      * @param path
                      * @return the given path concatenate to the root folder's one
                      */ 
-                    inline std::string getLocalPath(std::string path) noexcept{return getRootPath() + "/" + path;}
+                    inline std::string getLocalPath(const std::string& path) noexcept{return getRootPath() + "/" + path;}
                 #elif _WIN32
                     /**
                      * @param path
                      * @return the given path concatenate to the resources folder's one.
                      */ 
-                    inline std::string getInternalPath(std::string path) noexcept{return getRootPath() + "\\resources\\" + path;}
+                    inline std::string getInternalPath(const std::string& path) noexcept{return getRootPath() + "\\resources\\" + path;}
                     /**
                      * @param path
                      * @return the given path concatenate to the root folder's one
                      */ 
-                    inline std::string getLocalPath(std::string path) noexcept{return getRootPath() + "\\" + path;}
+                    inline std::string getLocalPath(const std::string& path) noexcept{return getRootPath() + "\\" + path;}
                 #endif
 
 
@@ -210,7 +210,7 @@
                  * @throw PermissionException if a special permission has been needed to open file
                  * @throw RuntimeException for any other errors
                  */
-                inline void readFile(std::string pathToFile, char* &buffer, unsigned long &_size){
+                inline void readFile(const std::string& pathToFile, char* &buffer, unsigned long &_size){
 
                     std::fstream* file = new std::fstream;
                     try{
