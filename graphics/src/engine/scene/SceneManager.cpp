@@ -64,8 +64,14 @@ void jpl::_graphics::_engine::SceneManager::render(){
 
 void jpl::_graphics::_engine::SceneManager::initializeSceneManager(){
     jpl::_graphics::_engine::SceneManager::INSTANCE = new jpl::_graphics::_engine::SceneManager();
+    jpl::_logger::debug("Mouse Button Callback set on top of the SceneManager");
+    glfwSetMouseButtonCallback(glfwGetCurrentContext(), &jpl::_graphics::_engine::sceneButtonCallbackWrapper);
 }
 
 jpl::_graphics::_engine::SceneManager::~SceneManager(){
     this->scenes.clear();
+}
+
+void jpl::_graphics::_engine::sceneButtonCallbackWrapper(GLFWwindow* window, int button, int action, int mods){
+    jpl::_graphics::_engine::SceneManager::INSTANCE->getCurrentScene()->clickCallback(window, button, action, mods);
 }

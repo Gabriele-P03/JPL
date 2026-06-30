@@ -81,6 +81,8 @@ namespace jpl{
                         ~SceneManager();
                 };
 
+                extern void sceneButtonCallbackWrapper(GLFWwindow* window, int button, int action, int mods);
+
         }
     }
 }

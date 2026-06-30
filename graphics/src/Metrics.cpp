@@ -9,6 +9,11 @@ unsigned int jpl::_graphics::_metrics::y;
 unsigned int jpl::_graphics::_metrics::monitorHeight = jpl::_graphics::_metrics::getMonitorHeight();
 unsigned int jpl::_graphics::_metrics::monitorWidth = jpl::_graphics::_metrics::getMonitorWidth();
 
+float jpl::_graphics::_metrics::aspectRatio;
+
+float jpl::_graphics::_metrics::scaleRatioX;
+float jpl::_graphics::_metrics::scaleRatioY;
+
 unsigned int jpl::_graphics::_metrics::getMonitorWidth(){
     #ifdef _WIN32
         return GetSystemMetrics(SM_CXSCREEN);
@@ -25,6 +30,9 @@ unsigned int jpl::_graphics::_metrics::getMonitorHeight(){
 void jpl::_graphics::_metrics::windowSizeCallback(GLFWwindow* window, int width, int height){
     jpl::_graphics::_metrics::width = width;
     jpl::_graphics::_metrics::height = height;
+    jpl::_graphics::_metrics::aspectRatio = ((float)width)/((float)height);
+    jpl::_graphics::_metrics::scaleRatioX= (float)width/(float)(jpl::_graphics::_metrics::monitorWidth*jpl::_graphics::_metrics::monitorWidth);
+    jpl::_graphics::_metrics::scaleRatioY= (float)height/(float)(jpl::_graphics::_metrics::monitorHeight*jpl::_graphics::_metrics::monitorHeight);
     glViewport(0,0,width, height);
 }
 

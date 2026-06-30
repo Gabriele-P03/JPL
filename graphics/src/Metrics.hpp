@@ -17,6 +17,11 @@ namespace jpl{
     namespace _graphics{
         namespace _metrics{
 
+            extern float aspectRatio;
+
+            extern float scaleRatioX;
+            extern float scaleRatioY;
+
             //Window width
             extern unsigned int width;
             //Window height
@@ -58,10 +63,10 @@ namespace jpl{
              */
             extern void windowPositionCallback(GLFWwindow* window, int x, int y);
 
-            inline float XPosToScreenCoords(float x){
+            inline float XPosToNDC(float x){
                 return (x/((float)jpl::_graphics::_metrics::width))*2-1.0f;
             }
-            inline float YPosToScreenCoords(float y){
+            inline float YPosToNDC(float y){
                 float halfH = ((float)jpl::_graphics::_metrics::height)/2;
                 return (y-halfH)/halfH;
             }

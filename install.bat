@@ -72,6 +72,8 @@ for %%d in (%builds%) do (
             
             echo Coping static library lib%%iJPL.a %libraryPath%\
             copy lib%%iJPL.a %libraryPath%\
+            echo Coping dynamic library lib%%iJPL.dll %compilerPath%\
+            copy lib%%iJPL.dll %compilerPath%\
 
             cd ..
             cd ..

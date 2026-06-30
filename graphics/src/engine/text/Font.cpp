@@ -17,6 +17,8 @@ jpl::_graphics::_engine::_text::Font::Font(
     this->charsPerWidth = charsPerWidth;
     this->texture->bind();
     this->texture->generate();
+    f->close();
+    delete f;
 }
 
 jpl::_graphics::_engine::_text::Font::Font(jpl::_graphics::_texture::Texture* texture, CHARSET charset, unsigned int charsPerWidth, unsigned int charsPerHeight, unsigned int chars){

@@ -31,6 +31,7 @@ set(SOURCES
     "src/engine/progress/ProgressBar.cpp"
     "src/engine/VAO.cpp"
     "src/engine/VAOManager.cpp"
+    "src/engine/scene/Scene.cpp"
     "src/engine/scene/SceneManager.cpp"
 )
 

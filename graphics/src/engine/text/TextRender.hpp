@@ -1,6 +1,9 @@
 /**
  * TextRender provides a way to render some text on the screen. 
- * Based on given shader, it may render either in a 3D or 2D context. 
+ * 
+ * If text exceeds available space, a scrollable view is implemented.
+ * 
+ * Although window coords begins from bottom-left corner up to the top-right, text renderer begins to write from top-left corner of its view 
  */
 
 #ifndef TEXTRENDER_GRAPHICS_JPL
@@ -27,91 +30,61 @@ namespace jpl{
                 class TextRender{
 
                     protected:
+
+                        float x,y,w,h;
+                        float r,g,b,a;
+                        //It is updated by setText in order to prevent any ovewrflow during render call
+                        unsigned int charsToRender;
+                        //In NDC
+                        float offsetTexX, offsetTexY;
+                        float offsetX, offsetY;
+                        unsigned int projectionLocation, colorsLocation;
+
+                        unsigned int sizeFont;
                         std::string text;
-
-                        bool centered;
-
-                        float posX,posY;
-                        float width,height;
-
-                        float startX;
-                        float offsetX;
-                        float startY;
-                        float offsetY;
-                        float w1;
-                        float h1;
-
-                        /*
-                            They contain offset per char in unit
-                        */
-                        float offsetTexX, offsetTexY;   
-
+                        unsigned int programShader;
                         const Font* font;
 
-                        /**
-                         * Calculate the startX for the new line in case of centered rendering
-                         * @param i index of the first char into text
-                         * @param l amount of chars that can be rendered on the current line
-                         */
-                        virtual unsigned int calculateStartXCentered(unsigned int i, int &l) const noexcept;
-
-                        /**
-                         * Set if text may be edited
-                         */
-                        bool editable;
-                        /**
-                         * If editable is set, this is set if player clicked the textbox
-                         */
-                        bool focus;
-
                     public:
-                        TextRender();
-                        TextRender(float x, float y, float width, float height);
-
-                        void setFont(const Font* font){
-                            if(font == nullptr){
-                                throw jpl::_exception::IllegalArgumentException("Font is nullptr");
-                            }
-                            this->font = font;
-                            this->offsetTexX = 1.0f/font->getCharsPerWidth();
-                            this->offsetTexY = 1.0f/font->getCharsPerHeight();
-                        }
-
-                        void setDim(float x, float y, float w, float h);
-
                         /**
-                         * It must be called both when new dimension have been set and after object has been instanced
-                         * Notice that this function needs to be called after have set a font 
+                         * @param ps programShader
+                         * @param x
+                         * @param y
+                         * @param w
+                         * @param h
                          */
-                        void updateCoords();
+                        TextRender(unsigned int ps, float x, float y, float w, float h);
 
+                        void setFont(Font* font);
+
+                        void setRGBA(float r, float g, float b, float a);
                         virtual void setText(const std::string &text);
-
                         void render() const;
-                        void render(const std::string &text, unsigned int x, unsigned int y, unsigned int w, unsigned int h);
+                        void render(const std::string &text, float x, float y, float w, float h, float r, float g, float b, float a);
 
                         std::string getText() const noexcept{
                             return this->text;
                         }
 
-                        void setCentered(bool v) noexcept{
-                            this->centered = v;
-                        }
-                        const bool isCentered() const noexcept{
-                            return this->centered;
+                        void setDim(float x, float y, float w, float h) noexcept{
+                            this->x = x;
+                            this->y = y;
+                            this->w = w;
+                            this->h = h;
                         }
 
-                        void setEditable(bool editable) noexcept{
-                            this->editable = editable;
+                        void setProgramShader(unsigned int ps) noexcept{
+                            this->programShader = ps;
                         }
-                        bool isEditable() const noexcept{
-                            return this->editable;
+                        unsigned int getProgramShader() const noexcept{
+                            return this->programShader;
                         }
-                        void setFocus(bool focus) noexcept{
-                            this->focus = focus;
+
+                        void setFontSize(unsigned int fontSize) noexcept{
+                            this->sizeFont = fontSize;
                         }
-                        bool isFocus() const noexcept{
-                            return this->focus;
+                        unsigned int getFontSize() const noexcept{
+                            return this->sizeFont;
                         }
 
                         ~TextRender(){
