@@ -9,7 +9,7 @@
 #define BUTTON_GRAPHICS_JPL
 
 #include "../text/TextRender.hpp"
-#include <functional>
+#include "../interfaces/IClickable.hpp"
 #include "../VAO.hpp"
 
 namespace jpl{
@@ -17,7 +17,7 @@ namespace jpl{
         namespace _engine{
             namespace _button{
 
-                class Button{
+                class Button : public IClickable{
 
                     protected:
                         
@@ -25,64 +25,42 @@ namespace jpl{
 
                         _texture::Texture* texture;
 
-                        unsigned int programIndex, projectionLocation;
-                        float x, y, w, h;
-
                         _shaders::ProgramShaders* psTextRenderer;
                         VAO* vaoTextRenderer;
 
-                        static constexpr unsigned int indices[6] = {
-                            0,1,2,
-                            0,1,3
-                        };
-
-                        std::function<void()> clickFunction;
-
                     public:
 
-                        Button(unsigned int programIndex, float x, float y, float w, float h, _text::TextRender* textRender, _texture::Texture* texture);
-
-                        float getX() const noexcept{return this->x;}
-                        float getY() const noexcept{return this->y;}
-                        float getW() const noexcept{return this->w;}
-                        float getH() const noexcept{return this->h;}
-                        virtual void setPos(float x, float y, float w, float h);
+                        Button(float x, float y, float w, float h, _texture::Texture* texture);
 
                         /**
-                         * If textRender instance is commonly used, you must call always setText before render; another option may be to use separates VBO per each text you want to render 
+                         * Sets new text for the Button's TextRender. VAO and Shader are not activated automatically
                          * @param text
                          * @throw IllegalStateException if textRender has not set yet
                          */
-                        virtual void setText(const std::string &text){
-                            this->textRender->setText(text);
-                        }
+                        virtual void setText(const std::string &text);
                         /**
                          * @return current rendered text or empty string if textRender has not set yet
                          */
                         std::string getText() const noexcept{
                             return this->textRender->getText();
                         }
-
-                        void settextRender(_text::TextRender* tr){
+                        
+                        void setTextRender(_text::TextRender* tr, _shaders::ProgramShaders* psTR, VAO* vaoTR){
                             this->textRender = tr;
+                            this->psTextRenderer = psTR;
+                            this->vaoTextRenderer = vaoTR;
                         }
                         const _text::TextRender* getTextRender() const noexcept{
                             return this->textRender;
                         }
-
-                        void click(){
-                            this->clickFunction();
-                        }
-                        void setOnClick( std::function<void()> f){
-                            this->clickFunction = std::move(f);
-                        }
                         /**
-                         * Render button
+                         * Render button.
+                         * Please, ensure to have the right VBO already binded since this function calls glBufferSubData 
                          */
-                        virtual void render() const;
+                        virtual void render(Painter* painter) override;
 
-                        void setVAOTextRenderer(VAO* vao){
-                            this->vaoTextRenderer = vao;
+                        _shaders::ProgramShaders* getShaderTextRender() const noexcept{
+                            return this->psTextRenderer;
                         }
                         VAO* getVAOTextRenderer() const noexcept{
                             return this->vaoTextRenderer;

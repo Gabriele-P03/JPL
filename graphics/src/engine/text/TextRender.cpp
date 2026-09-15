@@ -1,13 +1,11 @@
 #include "TextRender.hpp"
 
-jpl::_graphics::_engine::_text::TextRender::TextRender(unsigned int ps, float x, float y, float w, float h)
-    : x(x), y(y), w(w), h(h){
-
-    this->programShader = ps;
-    this->colorsLocation = glGetUniformLocation(this->programShader, "colors");
-    this->projectionLocation = glGetUniformLocation(this->programShader, "projection");
+jpl::_graphics::_engine::_text::TextRender::TextRender(float x, float y, float w, float h)
+    : jpl::_graphics::_engine::IClickable::IClickable(x,y,w,h), jpl::_graphics::_engine::ITextEditable(""){
     this->sizeFont = 1;
     this->charsToRender = 0;
+    this->editable = false;
+    this->focused = false;
 }
 
 void jpl::_graphics::_engine::_text::TextRender::setRGBA(float r, float g, float b, float a){
@@ -32,17 +30,15 @@ void jpl::_graphics::_engine::_text::TextRender::setText(const std::string &text
     if(text.empty()){
         return;
     }
-    this->text = text;
+    jpl::_graphics::_engine::ITextEditable::setText(text);
     float offsetX = this->offsetX*this->sizeFont;
     float offsetY = this->offsetY*this->sizeFont;
     float x = this->x;
     float y = this->y+this->h-offsetY;
     //20 floats for each char: 3 for vertex coords and 2 for texture coords
     float* buffer = new float[20*this->text.size()];
-    unsigned int* indices = new unsigned int[6*this->text.size()];
     this->charsToRender = 0;
     for(int i = 0; i < this->text.size(); i++){
-
         char cr = this->text.at(i);
         bool newline = cr == '\n';
         if(!newline){
@@ -50,7 +46,6 @@ void jpl::_graphics::_engine::_text::TextRender::setText(const std::string &text
             float c = cr%this->font->getCharsPerWidth();//col(width by left side)
             r *= this->offsetTexY;    //With c and r coords the rendered texture begins from top-left corner
             c *= this->offsetTexX;
-            
             buffer[20*i] = x;                   //Bottom-left
             buffer[20*i+1] = y;
             buffer[20*i+2] = 0.0f;
@@ -74,13 +69,6 @@ void jpl::_graphics::_engine::_text::TextRender::setText(const std::string &text
             buffer[20*i+17] = 0.0f;
             buffer[20*i+18] = c+this->offsetTexX;
             buffer[20*i+19] = r+this->offsetTexY;
-
-            indices[6*i]   = 4*i;     // Bottom-left
-            indices[6*i+1] = 4*i+3;   // Bottom-right
-            indices[6*i+2] = 4*i+1;   // Top-right
-            indices[6*i+3] = 4*i;     // Bottom-left
-            indices[6*i+4] = 4*i+1;   // Top-right
-            indices[6*i+5] = 4*i+2;   // Top-left
             this->charsToRender++;
             //Next x pos
             x += offsetX;
@@ -96,35 +84,15 @@ void jpl::_graphics::_engine::_text::TextRender::setText(const std::string &text
             }
         }
     }
-    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(unsigned int)*6*this->charsToRender, indices, GL_STATIC_DRAW);
-    glBufferData(GL_ARRAY_BUFFER, 20*sizeof(float)*this->charsToRender, buffer, GL_STATIC_DRAW);
-    glVertexAttribPointer(
-        0,
-        3,   //It also means how many float values are referred to vertices
-        GL_FLOAT,
-        GL_FALSE,
-        5*sizeof(float),
-        (void*)0
-    );
-    glEnableVertexAttribArray(0);
-    glVertexAttribPointer(
-        1,
-        2, 
-        GL_FLOAT,
-        GL_FALSE,
-        5*sizeof(float),
-        (void*)(3*sizeof(float))
-    );
-    glEnableVertexAttribArray(1);
+    glBufferSubData(GL_ARRAY_BUFFER, 0, 20*sizeof(float)*this->charsToRender, buffer);
     delete[] buffer;
-    delete[] indices;
 }
 
-void jpl::_graphics::_engine::_text::TextRender::render() const{
+void jpl::_graphics::_engine::_text::TextRender::render(jpl::_graphics::_engine::Painter* painter){
     glActiveTexture(GL_TEXTURE0);
     this->font->getTexture()->bind();
-    glUniform4fv(this->colorsLocation, 4, glm::value_ptr(glm::vec4(this->r, this->g, this->b, this->a)));
-    glUniformMatrix4fv(this->projectionLocation, 1, GL_FALSE, 
+    glUniform4fv(2, 4, glm::value_ptr(glm::vec4(this->r, this->g, this->b, this->a)));
+    glUniformMatrix4fv(3, 1, GL_FALSE, 
         glm::value_ptr(
             glm::ortho(0.0f, (float)jpl::_graphics::_metrics::monitorWidth, 0.0f, (float)jpl::_graphics::_metrics::monitorHeight)
         )
@@ -136,5 +104,5 @@ void jpl::_graphics::_engine::_text::TextRender::render(const std::string &text,
     this->setDim(x,y,w,h);
     this->setRGBA(r,g,b,a);
     this->setText(text);
-    this->render();
+    this->render(nullptr);
 }

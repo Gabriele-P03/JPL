@@ -16,6 +16,7 @@ namespace jpl{
         namespace _engine{
             namespace _text{
 
+
                 enum CHARSET{
                     UNICODE,
                     ASCII,

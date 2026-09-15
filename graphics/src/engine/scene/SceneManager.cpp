@@ -65,7 +65,9 @@ void jpl::_graphics::_engine::SceneManager::render(){
 void jpl::_graphics::_engine::SceneManager::initializeSceneManager(){
     jpl::_graphics::_engine::SceneManager::INSTANCE = new jpl::_graphics::_engine::SceneManager();
     jpl::_logger::debug("Mouse Button Callback set on top of the SceneManager");
-    glfwSetMouseButtonCallback(glfwGetCurrentContext(), &jpl::_graphics::_engine::sceneButtonCallbackWrapper);
+    GLFWwindow* w = glfwGetCurrentContext();
+    glfwSetMouseButtonCallback(w, &jpl::_graphics::_engine::sceneButtonCallbackWrapper);
+    glfwSetKeyCallback(w, jpl::_graphics::_engine::sceneKeyCallbackWrapper);
 }
 
 jpl::_graphics::_engine::SceneManager::~SceneManager(){
@@ -74,4 +76,7 @@ jpl::_graphics::_engine::SceneManager::~SceneManager(){
 
 void jpl::_graphics::_engine::sceneButtonCallbackWrapper(GLFWwindow* window, int button, int action, int mods){
     jpl::_graphics::_engine::SceneManager::INSTANCE->getCurrentScene()->clickCallback(window, button, action, mods);
+}
+void jpl::_graphics::_engine::sceneKeyCallbackWrapper(GLFWwindow* window, int key, int scancode, int action, int mods){
+    jpl::_graphics::_engine::SceneManager::INSTANCE->getCurrentScene()->keyCallback(window, key, scancode, action, mods);
 }

@@ -1,9 +1,18 @@
-#ifndef VERTEX_GRAPHICS_JPL
-#define VERTEX_GRAPHICS_JPL
+/**
+ * Painter is a wrapper class which can be used to paint any 2D texture basing on a certain mesh.
+ * 
+ * You can push a new mesh via pushData(const Mesh*, GLenum); since it does not check what VAO, VBO and EBO have been lastly binded, it is up to you
+ * to bind them before call this function.
+ * 
+ * Once you have pushed a new mesh, you are able to call render(Texture*, float, float, float, float) in order to render the texture
+ */
+
+#ifndef PAINTER_GRAPHICS_JPL
+#define PAINTER_GRAPHICS_JPL
 
 #include "../mesh/Mesh.hpp"
-#include <GL/glew.h>
-
+#include "../texture/Texture.hpp"
+#include "../Metrics.hpp"
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
@@ -15,90 +24,44 @@ namespace jpl{
             class Painter{
 
                 protected:
-                    unsigned int VBO;
-                    unsigned int VAO;
-                    unsigned int EBO;
 
-                    unsigned int x, y, z;
-                    bool posUpdated;
-                    unsigned int w,h;
-                    bool sizeUpdated;
+                    //These fields below are used only to ensure new matrix pushing
+                    _texture::Texture* lastTexture;
+                    float x,y,w,h;
 
                     /**
-                     * Index of the uniform model matrix called modelM.
-                     * If none modelM matrix has been found, it is set as -1
+                     * This fiels is set by pushData whereas mesh does contain indices.
+                     * It is read by render function in order to call glDrawElements rather than glDrawArrays
                      */
-                    int locModelMatrix;
+                    unsigned int sizeIndices;
+
+                    /**
+                     * This fiels is set by pushData whereas mesh does not contain indices and represents how many float values per point.
+                     * It is read by render function in order to call glDrawArrays rather than glDrawElements
+                     */
+                    unsigned int valuesPerPoint;
 
                 public:
                     Painter();
 
-                    virtual void bindBuffer() const noexcept;
-                    virtual void pushData(const _mesh::Mesh* mesh, GLenum mode) const noexcept;
+                    virtual void pushData(const _mesh::Mesh* mesh, GLenum mode);
 
-                    unsigned int getVBO() const noexcept{
-                        return this->VBO;
+                    void setSizeIndices(unsigned int sizeIndices) noexcept{
+                        this->sizeIndices = sizeIndices;
                     }
-                    void setVBO(unsigned int vbo) noexcept{
-                        this->VBO = vbo;
+                    unsigned int getSizeIndices() const noexcept{
+                        return this->sizeIndices;
                     }
-                    unsigned int getVAO() const noexcept {
-                        return this->VAO;
+                    void setValuesPerPoint(unsigned int valuesPerPoint) noexcept{
+                        this->valuesPerPoint = valuesPerPoint;
                     }
-                    void setVAO(unsigned int vao) noexcept{
-                        this->VAO = vao;
-                    }
-                    unsigned int getEBO() const noexcept{
-                        return this->EBO;
-                    }
-                    void setEBO(unsigned int ebo) noexcept{
-                        this->EBO = ebo;
+                    unsigned int getValuesPerPoint() const noexcept{
+                        return this->valuesPerPoint;
                     }
 
-                    void setX(unsigned int x) noexcept{
-                        this->x = x;
-                        this->posUpdated = true;
-                    }
-                    void setY(unsigned int y) noexcept{
-                        this->y = y;
-                        this->posUpdated = true;
-                    }
-                    void setZ(unsigned int z) noexcept{
-                        this->z = z;
-                        this->posUpdated = true;
-                    }
-                    void setPos(unsigned int x, unsigned int y, unsigned int z) noexcept{
-                        this->x = x;
-                        this->y = y;
-                        this->z = z;
-                        this->posUpdated = true;
-                    }
-                    unsigned int getX() const noexcept {return this->x;}
-                    unsigned int getY() const noexcept {return this->y;}
-                    unsigned int getZ() const noexcept {return this->z;}
-
-                    bool isPosUpdated() const noexcept{
-                        return this->posUpdated;
-                    }
-                    bool isSizeUpdated() const noexcept{
-                        return this->sizeUpdated;
-                    }
-
-                    void setSizeUpdated(bool sizeUpdated) noexcept{
-                        this->sizeUpdated = sizeUpdated;
-                    }
-                    void setPosUpdated(bool posUpdated) noexcept{
-                        this->posUpdated = posUpdated;
-                    }
-                    int getModelMatrixLocation() const noexcept{
-                        return this->locModelMatrix;
-                    } 
-
-                    static Painter* INSTANCE;
-                    static void initializePainter();
+                    virtual void render(_texture::Texture* texture, float x, float y, float w, float h) const;
             };
 
-            extern void drawMesh(Painter* vertex, const _mesh::Mesh* mesh);
 
         }
     }

@@ -3,8 +3,6 @@
  * An example of scene may be the main menu
  * 
  * 
- * buttons list is declared as const in order to let programmer choose to use it, since there are
- * several ways to manage clicks basing on context (i.e. 2D/3D or 1000+ buttons) 
  * 
  */
 #ifndef SCENE_GRAPHICS_JPL
@@ -12,6 +10,7 @@
 
 #include <unordered_map>
 #include "../button/Button.hpp"
+#include "../text/TextRender.hpp"
 
 namespace jpl{
     namespace _graphics{
@@ -21,7 +20,10 @@ namespace jpl{
 
                 protected:
 
-                    std::vector<_button::Button*>* buttons;
+                    std::vector<IClickable*> clickables;
+                    
+                    //It is the last clicked element
+                    IClickable* focusedElement;
 
                 public:
                     Scene();
@@ -35,6 +37,8 @@ namespace jpl{
                      * @param mods
                      */
                     virtual void clickCallback(GLFWwindow* window, int button, int action, int mods);
+
+                    virtual void keyCallback(GLFWwindow* window, int key, int scancode, int action, int mods);
 
 
                     virtual void render() = 0;

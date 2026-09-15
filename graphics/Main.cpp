@@ -24,9 +24,11 @@
 #include "src/engine/button/Button.hpp"
 #include "src/engine/progress/ProgressBar.hpp"
 
-void clickCallback(GLFWwindow* window, int button, int action, int mods){
-    jpl::_logger::info("Mouse clicked: " + std::to_string(button) + " - " + std::to_string(action));
-    if (button == GLFW_MOUSE_BUTTON_LEFT && action == GLFW_PRESS) {
+jpl::_graphics::_engine::_button::Button* button = nullptr;
+
+void clickCallback(GLFWwindow* window, int btn, int action, int mods){
+    jpl::_logger::info("Mouse clicked: " + std::to_string(btn) + " - " + std::to_string(action));
+    if (btn == GLFW_MOUSE_BUTTON_LEFT && action == GLFW_PRESS) {
         double mouseX, mouseY;
         glfwGetCursorPos(window, &mouseX, &mouseY);
         mouseY =  ((float)jpl::_graphics::_metrics::height)-mouseY;
@@ -35,19 +37,17 @@ void clickCallback(GLFWwindow* window, int button, int action, int mods){
         float scaleX = ((float)jpl::_graphics::_metrics::monitorWidth/(float)jpl::_graphics::_metrics::width);
         float scaleY = ((float)jpl::_graphics::_metrics::monitorHeight/(float)jpl::_graphics::_metrics::height);
 
-        float xscale, yscale;
-        glfwGetWindowContentScale(window, &xscale, &yscale);
-        mouseX /= xscale;
-        mouseY /= yscale;
-
-        jpl::_logger::debug("Monitor: " + std::to_string(jpl::_graphics::_metrics::monitorWidth) + " - " + std::to_string(jpl::_graphics::_metrics::monitorHeight) );
-        jpl::_logger::debug("Window: " + std::to_string(jpl::_graphics::_metrics::width) + " - " + std::to_string(jpl::_graphics::_metrics::height) );
-        jpl::_logger::debug("WindowScale: " + std::to_string(xscale) + " - " + std::to_string(yscale) );
-        jpl::_logger::debug("Scale: " + std::to_string(scaleX) + " - " + std::to_string(scaleY) );
-
         mouseX *= scaleX;
         mouseY *= scaleY;
-        jpl::_logger::info("Pst-scale -> X: " + std::to_string(mouseX) + " Y: " + std::to_string(mouseY));
+        float tmp_sx = button->getX();
+        float tmp_sy = button->getY();
+        float tmp_ex = button->getW();
+        float tmp_ey = button->getH();
+
+        if(mouseX >= tmp_sx && mouseX <= tmp_ex && mouseY >= tmp_sy && mouseY <= tmp_ey){
+            //Button clicked
+            jpl::_logger::info("Button clicked");
+        }
     }
 }
 
@@ -127,7 +127,7 @@ int main(){
     vao->bind();
     vbo->bind();
     ebo->bind();
-    jpl::_graphics::_engine::_button::Button* button = new jpl::_graphics::_engine::_button::Button(programShaders->getProgramIndex(), 0, 0, 257, 96, nullptr, loadTexture("test.png"));
+    button = new jpl::_graphics::_engine::_button::Button(programShaders->getProgramIndex(), 0, 0, 257, 96, nullptr, loadTexture("test.png"));
     button->setVAOTextRenderer(vao);
 
     tr->setRGBA(1.0f, 0.6f, 0.4f, 0.5f);

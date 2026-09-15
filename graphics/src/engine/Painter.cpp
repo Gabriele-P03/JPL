@@ -1,28 +1,14 @@
 #include "Painter.hpp"
 
-jpl::_graphics::_engine::Painter* jpl::_graphics::_engine::Painter::INSTANCE = nullptr;
-
 jpl::_graphics::_engine::Painter::Painter(){
-    glGenBuffers(1, &this->VBO);
-    glGenVertexArrays(1, &this->VAO);
-    glGenBuffers(1, &this->EBO);
-    this->x = 0.0f;
-    this->y = 0.0f;
-    this->z = 0.0f;
 }
 
-void jpl::_graphics::_engine::Painter::bindBuffer() const noexcept{
-    glBindVertexArray(this->VAO);
-}
 
-void jpl::_graphics::_engine::Painter::pushData(const jpl::_graphics::_mesh::Mesh* mesh, GLenum mode) const noexcept{
-    glBindVertexArray(this->VAO);
+void jpl::_graphics::_engine::Painter::pushData(const jpl::_graphics::_mesh::Mesh* mesh, GLenum mode){
+    glBufferData(GL_ARRAY_BUFFER, mesh->getSizeVertices()*sizeof(float), mesh->getVertices(), mode);
     if(mesh->getIndices() != nullptr){
-        glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, this->EBO);
         glBufferData(GL_ELEMENT_ARRAY_BUFFER, mesh->getSizeIndices()*sizeof(unsigned int), mesh->getIndices(), GL_STATIC_DRAW);
     }
-    glBindBuffer(GL_ARRAY_BUFFER, this->VBO);
-    glBufferData(GL_ARRAY_BUFFER, mesh->getSizeVertices()*sizeof(float), mesh->getVertices(), mode);
     glVertexAttribPointer(
         0,
         3,   //It also means how many float values are referred to vertices
@@ -38,28 +24,29 @@ void jpl::_graphics::_engine::Painter::pushData(const jpl::_graphics::_mesh::Mes
             2, 
             GL_FLOAT,
             mesh->isNormalized(),
-            5*sizeof(float),
-            (void*)(3*sizeof(float))
+            mesh->getCoordsPerPoint() *sizeof(float),
+            (void*)(mesh->getOffsetTexture()*sizeof(float))
         );
         glEnableVertexAttribArray(1);
-    }
-}
-
-void jpl::_graphics::_engine::drawMesh(jpl::_graphics::_engine::Painter* painter, const jpl::_graphics::_mesh::Mesh* mesh){
-    painter->bindBuffer();
-    glm::mat4 model(1.0f);
-    if(painter->getModelMatrixLocation() > 0 && painter->isPosUpdated()){
-        model = glm::translate(model, glm::vec3(painter->getX(), painter->getY(), painter->getZ()));
-        glUniformMatrix4fv(painter->getModelMatrixLocation(), 1, GL_FALSE, glm::value_ptr(model));
-        painter->setPosUpdated(false);
-    }
-    if(painter->getEBO() > 0){
-        glDrawElements(GL_TRIANGLES, mesh->getSizeIndices(), GL_UNSIGNED_INT, 0);
+        this->sizeIndices = mesh->getSizeIndices();
     }else{
-        glDrawArrays(GL_TRIANGLES, 0, mesh->getSizeVertices()/mesh->getCoordsPerPoint());
+        this->sizeIndices = 0;
+        this->valuesPerPoint =  mesh->getSizeVertices()/mesh->getCoordsPerPoint();
     }
 }
 
-void jpl::_graphics::_engine::Painter::initializePainter(){
-    jpl::_graphics::_engine::Painter::INSTANCE = new jpl::_graphics::_engine::Painter();
+void jpl::_graphics::_engine::Painter::render(jpl::_graphics::_texture::Texture* texture, float x, float y, float w, float h) const{
+    glActiveTexture(GL_TEXTURE0);
+    texture->bind();
+    glm::mat4 model = glm::mat4(1.0f);
+    model = glm::translate(model, glm::vec3(x, y, 0.0f));
+    model = glm::scale(model, glm::vec3(w, -h, 1.0f));
+    model = glm::translate(model, glm::vec3(0.5f, -0.5f, 0.0f));
+    glUniformMatrix4fv(2, 1, GL_FALSE, glm::value_ptr(model));
+    glUniformMatrix4fv(4, 1, GL_FALSE, glm::value_ptr(jpl::_graphics::_metrics::ortho));
+    if(this->sizeIndices > 0){
+        glDrawElements(GL_TRIANGLES, this->sizeIndices, GL_UNSIGNED_INT, 0);
+    }else{
+        glDrawArrays(GL_TRIANGLES, 0, this->valuesPerPoint);
+    }
 }

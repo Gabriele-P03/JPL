@@ -82,6 +82,7 @@ namespace jpl{
                 };
 
                 extern void sceneButtonCallbackWrapper(GLFWwindow* window, int button, int action, int mods);
+                extern void sceneKeyCallbackWrapper(GLFWwindow* window, int key, int scancode, int action, int mods);
 
         }
     }

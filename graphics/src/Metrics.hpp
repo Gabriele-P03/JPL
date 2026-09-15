@@ -7,7 +7,8 @@
 #define METRICS_GRAPHICS_JPL
 
 #include "utils/Window.hpp"
-
+#include <glm/glm.hpp>
+#include <glm/gtc/matrix_transform.hpp>
 #ifdef _WIN32
     #include <windows.h>
 #else
@@ -16,6 +17,9 @@
 namespace jpl{
     namespace _graphics{
         namespace _metrics{
+
+            extern glm::mat4 ortho;
+            extern glm::mat4 perspective;
 
             extern float aspectRatio;
 
@@ -26,6 +30,8 @@ namespace jpl{
             extern unsigned int width;
             //Window height
             extern unsigned int height;
+
+            extern float fov, nearPlane, farPlane;
 
             //Viewport width
             extern unsigned int viewportWidth;
@@ -45,17 +51,18 @@ namespace jpl{
             extern unsigned int getMonitorWidth();
             extern unsigned int getMonitorHeight();
 
-            /**
-             * Update width and height fields once window has been resized.
-             * This function should be called by callback
-             */
-            extern void windowSizeCallback(GLFWwindow* window, int width, int height);
-        
+       
             /**
              * Update viewport's width and height fields once window has been resized.
              * This function should be called by callback
              */
             extern void windowViewportSizeCallback(GLFWwindow* window, int width, int height);
+
+            /**
+             * Update width and height, viewport and ortho  fields once window has been resized.
+             * This function should be called by callback
+             */
+            extern void windowFrameBufferCallback(GLFWwindow* window, int width, int height);
 
             /**
              * Update window's position once moved.
