@@ -3,7 +3,10 @@
  * 
  * EBO used within its context must be already loaded with indices on your own. Since this class uses glDrawElements but does not push
  * indices via glBufferData, undefined behaviour may occurr.
- * Also, calling setText vertices into VBO are edited, although that function does not bind any VBO before. It is up to you to bind it
+ * Also, calling setText vertices into VBO are edited, although that function does not bind any VBO before. It is up to you to bind it.
+ * 
+ * Each TextRender instance should have its own VAO and VBO - they can share EBO - since each text is going to fill a VBO; in order to prevent several
+ * calls to setText, therefore to glBufferSubData, constructor will generate its own VAO and VBO
  */
 
 #ifndef TEXTRENDER_GRAPHICS_JPL
@@ -43,8 +46,10 @@ namespace jpl{
 
                         bool focused;
                         bool editable;
+
+                        unsigned int vao, vbo;
                         _shaders::ProgramShaders* ps;
-                        VAO* vao;
+
 
                     public:
                         /**
@@ -54,7 +59,7 @@ namespace jpl{
                          * @param w
                          * @param h
                          */
-                        TextRender(float x, float y, float w, float h);
+                        TextRender(_shaders::ProgramShaders* ps, EBO* ebo, float x, float y, float w, float h);
 
                         void setFont(Font* font);
 
@@ -65,11 +70,6 @@ namespace jpl{
 
                         virtual void render(Painter* painter) override;
                         void render(const std::string &text, float x, float y, float w, float h, float r, float g, float b, float a);
-
-                        void setVAOAndPS(VAO* vao, _shaders::ProgramShaders* ps) noexcept{
-                            this->vao = vao;
-                            this->ps = ps;
-                        }
 
                         virtual void click() override{
                             if(this->editable)

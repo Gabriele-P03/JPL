@@ -68,6 +68,7 @@ void jpl::_graphics::_engine::SceneManager::initializeSceneManager(){
     GLFWwindow* w = glfwGetCurrentContext();
     glfwSetMouseButtonCallback(w, &jpl::_graphics::_engine::sceneButtonCallbackWrapper);
     glfwSetKeyCallback(w, jpl::_graphics::_engine::sceneKeyCallbackWrapper);
+    glfwSetCharCallback(w, jpl::_graphics::_engine::sceneCharCallbackWrapper);
 }
 
 jpl::_graphics::_engine::SceneManager::~SceneManager(){
@@ -79,4 +80,7 @@ void jpl::_graphics::_engine::sceneButtonCallbackWrapper(GLFWwindow* window, int
 }
 void jpl::_graphics::_engine::sceneKeyCallbackWrapper(GLFWwindow* window, int key, int scancode, int action, int mods){
     jpl::_graphics::_engine::SceneManager::INSTANCE->getCurrentScene()->keyCallback(window, key, scancode, action, mods);
+}
+void jpl::_graphics::_engine::sceneCharCallbackWrapper(GLFWwindow* window, unsigned int codepoint){
+    jpl::_graphics::_engine::SceneManager::INSTANCE->getCurrentScene()->charCallback(window, codepoint);
 }

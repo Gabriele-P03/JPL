@@ -40,6 +40,8 @@ namespace jpl{
 
                     virtual void keyCallback(GLFWwindow* window, int key, int scancode, int action, int mods);
 
+                    virtual void charCallback(GLFWwindow* window, unsigned int codepoint);
+
 
                     virtual void render() = 0;
 

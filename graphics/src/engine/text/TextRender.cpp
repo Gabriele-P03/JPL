@@ -1,12 +1,43 @@
 #include "TextRender.hpp"
 
-jpl::_graphics::_engine::_text::TextRender::TextRender(float x, float y, float w, float h)
+jpl::_graphics::_engine::_text::TextRender::TextRender(jpl::_graphics::_shaders::ProgramShaders* ps, jpl::_graphics::_engine::EBO* ebo, float x, float y, float w, float h)
     : jpl::_graphics::_engine::IClickable::IClickable(x,y,w,h), jpl::_graphics::_engine::ITextEditable(""){
     this->sizeFont = 1;
     this->setFont(jpl::_graphics::_engine::_text::ARIALS);
     this->charsToRender = 0;
     this->editable = false;
     this->focused = false;
+    this->ps = ps;
+    this->ps->use();
+    glGenVertexArrays(1, &this->vao);
+    glGenBuffers(1, &this->vbo);
+    glBindVertexArray(this->vao);
+    glBindBuffer(GL_ARRAY_BUFFER, this->vbo);
+    ebo->bind();
+    constexpr unsigned int MAX_CHARS_TEXT_RENDER = 4096;
+    size_t vboSizeInBytes = MAX_CHARS_TEXT_RENDER * 4 * jpl::_graphics::_shapes::Quad::VALUES_PER_POINTS * sizeof(float);
+    glBufferData(GL_ARRAY_BUFFER, vboSizeInBytes, nullptr, GL_DYNAMIC_DRAW);
+
+    //ebo glBufferData must be called by programmer
+    glVertexAttribPointer(
+        0,
+        jpl::_graphics::_shapes::Quad::COORDS_PER_POINT,   //It also means how many float values are referred to vertices
+        GL_FLOAT,
+        GL_FALSE,
+        jpl::_graphics::_shapes::Quad::VALUES_PER_POINTS*sizeof(float),
+        (void*)0
+    );
+    glEnableVertexAttribArray(0);
+
+    glVertexAttribPointer(
+        1,
+        jpl::_graphics::_shapes::Quad::SIZE_TEXTURE, 
+        GL_FLOAT,
+        GL_FALSE,
+        jpl::_graphics::_shapes::Quad::VALUES_PER_POINTS*sizeof(float),
+        (void*)(jpl::_graphics::_shapes::Quad::COORDS_PER_POINT*sizeof(float))
+    );
+    glEnableVertexAttribArray(1);
 }
 
 void jpl::_graphics::_engine::_text::TextRender::setRGBA(float r, float g, float b, float a){
@@ -28,10 +59,8 @@ void jpl::_graphics::_engine::_text::TextRender::setFont(jpl::_graphics::_engine
 
 void jpl::_graphics::_engine::_text::TextRender::setText(const std::string &text){
     this->ps->use();
-    this->vao->bind();
-    if(text.empty()){
-        return;
-    }
+    glBindVertexArray(this->vao);
+    glBindBuffer(GL_ARRAY_BUFFER, this->vbo);
     jpl::_graphics::_engine::ITextEditable::setText(text);
     float offsetX = this->offsetX*this->sizeFont;
     float offsetY = this->offsetY*this->sizeFont;
@@ -95,21 +124,16 @@ void jpl::_graphics::_engine::_text::TextRender::setText(const std::string &text
 
 void jpl::_graphics::_engine::_text::TextRender::render(jpl::_graphics::_engine::Painter* painter){
     this->ps->use();
-    this->vao->bind();
+    glBindVertexArray(this->vao);
     glActiveTexture(GL_TEXTURE0);
     this->font->getTexture()->bind();
-
     GLint x = 0;
     glGetIntegerv(GL_CURRENT_PROGRAM, &x);
     int i = glGetUniformLocation(x, "projection");
     glUniformMatrix4fv(i, 1, GL_FALSE, glm::value_ptr(jpl::_graphics::_metrics::ortho));
-
     i = glGetUniformLocation(x, "colors");
     glUniform4fv(2, 1, glm::value_ptr(glm::vec4(this->r, this->g, this->b, this->a)));
-
-    //glDisable(GL_CULL_FACE); // Spegne temporaneamente il culling per il testo
     glDrawElements(GL_TRIANGLES, 6 * this->charsToRender, GL_UNSIGNED_INT, 0);
-    //glEnable(GL_CULL_FACE);  // Lo riaccende subito dopo
 }
 
 void jpl::_graphics::_engine::_text::TextRender::render(const std::string &text, float x, float y, float w, float h, float r, float g, float b, float a){
