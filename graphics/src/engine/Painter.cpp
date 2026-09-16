@@ -40,8 +40,8 @@ void jpl::_graphics::_engine::Painter::render(jpl::_graphics::_texture::Texture*
     texture->bind();
     glm::mat4 model = glm::mat4(1.0f);
     model = glm::translate(model, glm::vec3(x, y, 0.0f));
-    model = glm::scale(model, glm::vec3(w, -h, 1.0f));
-    model = glm::translate(model, glm::vec3(0.5f, -0.5f, 0.0f));
+    model = glm::scale(model, glm::vec3(w, h, 1.0f));
+    model = glm::translate(model, glm::vec3(0.5f, 0.5f, 0.0f));
     glUniformMatrix4fv(2, 1, GL_FALSE, glm::value_ptr(model));
     glUniformMatrix4fv(4, 1, GL_FALSE, glm::value_ptr(jpl::_graphics::_metrics::ortho));
     if(this->sizeIndices > 0){

@@ -3,6 +3,7 @@
 jpl::_graphics::_engine::_text::TextRender::TextRender(float x, float y, float w, float h)
     : jpl::_graphics::_engine::IClickable::IClickable(x,y,w,h), jpl::_graphics::_engine::ITextEditable(""){
     this->sizeFont = 1;
+    this->setFont(jpl::_graphics::_engine::_text::ARIALS);
     this->charsToRender = 0;
     this->editable = false;
     this->focused = false;
@@ -26,7 +27,8 @@ void jpl::_graphics::_engine::_text::TextRender::setFont(jpl::_graphics::_engine
 }
 
 void jpl::_graphics::_engine::_text::TextRender::setText(const std::string &text){
-    
+    this->ps->use();
+    this->vao->bind();
     if(text.empty()){
         return;
     }
@@ -35,69 +37,79 @@ void jpl::_graphics::_engine::_text::TextRender::setText(const std::string &text
     float offsetY = this->offsetY*this->sizeFont;
     float x = this->x;
     float y = this->y+this->h-offsetY;
-    //20 floats for each char: 3 for vertex coords and 2 for texture coords
-    float* buffer = new float[20*this->text.size()];
+
+    std::vector<float> buffer(20 * text.size(), 0.0f);
+    
     this->charsToRender = 0;
     for(int i = 0; i < this->text.size(); i++){
         char cr = this->text.at(i);
         bool newline = cr == '\n';
         if(!newline){
-            float r = cr/this->font->getCharsPerWidth();//row(height by top side)
-            float c = cr%this->font->getCharsPerWidth();//col(width by left side)
-            r *= this->offsetTexY;    //With c and r coords the rendered texture begins from top-left corner
+            float r = cr/this->font->getCharsPerWidth();
+            float c = cr%this->font->getCharsPerWidth();
+            r = 1.0f - r*this->offsetTexY;    
             c *= this->offsetTexX;
-            buffer[20*i] = x;                   //Bottom-left
-            buffer[20*i+1] = y;
-            buffer[20*i+2] = 0.0f;
-            buffer[20*i+3] = c;
-            buffer[20*i+4] = r+this->offsetTexY;
 
-            buffer[20*i+5] = x+offsetX;  //Top-right
-            buffer[20*i+6] = y+offsetY;
-            buffer[20*i+7] = 0.0f;
-            buffer[20*i+8] = c+this->offsetTexX;
-            buffer[20*i+9] = r;
-
-            buffer[20*i+10] = x;                //Top-left
-            buffer[20*i+11] = y+offsetY;
-            buffer[20*i+12] = 0.0f;
-            buffer[20*i+13] = c;
-            buffer[20*i+14] = r;
-
-            buffer[20*i+15] = x+offsetX;   //Bottom-right
-            buffer[20*i+16] = y;
-            buffer[20*i+17] = 0.0f;
-            buffer[20*i+18] = c+this->offsetTexX;
-            buffer[20*i+19] = r+this->offsetTexY;
+            int baseIdx = 20 * this->charsToRender;
+            //BR
+            buffer[baseIdx]     = x;                    
+            buffer[baseIdx + 1] = y;
+            buffer[baseIdx + 2] = 0.0f;
+            buffer[baseIdx + 3] = c;
+            buffer[baseIdx + 4] = r - this->offsetTexY;
+            //TR
+            buffer[baseIdx + 5] = x + offsetX;  
+            buffer[baseIdx + 6] = y + offsetY;
+            buffer[baseIdx + 7] = 0.0f;
+            buffer[baseIdx + 8] = c + this->offsetTexX;
+            buffer[baseIdx + 9] = r;
+            //TL
+            buffer[baseIdx + 10] = x;                
+            buffer[baseIdx + 11] = y + offsetY;
+            buffer[baseIdx + 12] = 0.0f;
+            buffer[baseIdx + 13] = c;
+            buffer[baseIdx + 14] = r;
+            //BR
+            buffer[baseIdx + 15] = x + offsetX;   
+            buffer[baseIdx + 16] = y;
+            buffer[baseIdx + 17] = 0.0f;
+            buffer[baseIdx + 18] = c + this->offsetTexX;
+            buffer[baseIdx + 19] = r - this->offsetTexY;
+            
             this->charsToRender++;
-            //Next x pos
             x += offsetX;
         }else{
-            x = this->w; //Force next if-statement to be taken
+            x = this->w; 
         }
-        //x+this->offsetX in order to check whereas there's enough space for the next char
-        if(x+this->offsetX >= this->x + this->w){
+        
+        if(x + this->offsetX >= this->x + this->w){
             x = this->x;
-            y -= offsetY;   //new line
+            y -= offsetY;   
             if(y < this->y){
                 break;
             }
         }
     }
-    glBufferSubData(GL_ARRAY_BUFFER, 0, 20*sizeof(float)*this->charsToRender, buffer);
-    delete[] buffer;
+    glBufferSubData(GL_ARRAY_BUFFER, 0, 20*sizeof(float)*this->charsToRender, buffer.data());
 }
 
 void jpl::_graphics::_engine::_text::TextRender::render(jpl::_graphics::_engine::Painter* painter){
+    this->ps->use();
+    this->vao->bind();
     glActiveTexture(GL_TEXTURE0);
     this->font->getTexture()->bind();
-    glUniform4fv(2, 4, glm::value_ptr(glm::vec4(this->r, this->g, this->b, this->a)));
-    glUniformMatrix4fv(3, 1, GL_FALSE, 
-        glm::value_ptr(
-            glm::ortho(0.0f, (float)jpl::_graphics::_metrics::monitorWidth, 0.0f, (float)jpl::_graphics::_metrics::monitorHeight)
-        )
-    );
-    glDrawElements(GL_TRIANGLES, 6*this->charsToRender, GL_UNSIGNED_INT, 0);
+
+    GLint x = 0;
+    glGetIntegerv(GL_CURRENT_PROGRAM, &x);
+    int i = glGetUniformLocation(x, "projection");
+    glUniformMatrix4fv(i, 1, GL_FALSE, glm::value_ptr(jpl::_graphics::_metrics::ortho));
+
+    i = glGetUniformLocation(x, "colors");
+    glUniform4fv(2, 1, glm::value_ptr(glm::vec4(this->r, this->g, this->b, this->a)));
+
+    //glDisable(GL_CULL_FACE); // Spegne temporaneamente il culling per il testo
+    glDrawElements(GL_TRIANGLES, 6 * this->charsToRender, GL_UNSIGNED_INT, 0);
+    //glEnable(GL_CULL_FACE);  // Lo riaccende subito dopo
 }
 
 void jpl::_graphics::_engine::_text::TextRender::render(const std::string &text, float x, float y, float w, float h, float r, float g, float b, float a){

@@ -25,7 +25,7 @@ namespace jpl{
                     static constexpr unsigned int SIZE_INDICES = 6;
                     static constexpr unsigned int ORTHO_INDICES[SIZE_INDICES] = {
                         0,1,2,
-                        0,3,2
+                        0,2,3
                     };
             };
         }

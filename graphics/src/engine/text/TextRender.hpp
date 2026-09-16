@@ -9,18 +9,16 @@
 #ifndef TEXTRENDER_GRAPHICS_JPL
 #define TEXTRENDER_GRAPHICS_JPL
 
-#include <string>
 #include "Font.hpp"
-#include <jpl/exception/runtime/IllegalStateException.hpp>
 #include "../../shaders/ProgramManager.hpp"
-#include "../../shaders/Shader.hpp"
+#include "../VAO.hpp"
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 #include "../../Metrics.hpp"
-#include <math.h>
 #include "../interfaces/IClickable.hpp"
 #include "../interfaces/ITextEditable.hpp"
+
 
 
 namespace jpl{
@@ -40,12 +38,13 @@ namespace jpl{
                         float offsetTexX, offsetTexY;
                         float offsetX, offsetY;
 
-                        unsigned int sizeFont;
-                        unsigned int programShader;
+                        float sizeFont;
                         const Font* font;
 
                         bool focused;
                         bool editable;
+                        _shaders::ProgramShaders* ps;
+                        VAO* vao;
 
                     public:
                         /**
@@ -67,8 +66,9 @@ namespace jpl{
                         virtual void render(Painter* painter) override;
                         void render(const std::string &text, float x, float y, float w, float h, float r, float g, float b, float a);
 
-                        void setProgramShader(unsigned int ps) noexcept{
-                            this->programShader = ps;
+                        void setVAOAndPS(VAO* vao, _shaders::ProgramShaders* ps) noexcept{
+                            this->vao = vao;
+                            this->ps = ps;
                         }
 
                         virtual void click() override{
@@ -89,10 +89,10 @@ namespace jpl{
                             return this->editable;
                         }
 
-                        void setFontSize(unsigned int fontSize) noexcept{
+                        void setFontSize(float fontSize) noexcept{
                             this->sizeFont = fontSize;
                         }
-                        unsigned int getFontSize() const noexcept{
+                        float getFontSize() const noexcept{
                             return this->sizeFont;
                         }
 

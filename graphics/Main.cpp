@@ -52,7 +52,7 @@ void clickCallback(GLFWwindow* window, int btn, int action, int mods){
 }
 
 
-
+constexpr unsigned int MAX_CHARS_TEXT_RENDER = 4096;
 jpl::_graphics::_texture::Texture* loadTexture(const std::string &path);
 
 int main(){
@@ -92,7 +92,7 @@ int main(){
     glfwGetWindowSize(w, &w1, &h1);
     jpl::_graphics::_metrics::width = w1;
     jpl::_graphics::_metrics::height = h1;
-    glfwSetWindowSizeCallback(w, jpl::_graphics::_metrics::windowSizeCallback);
+    glfwSetFramebufferSizeCallback(w, jpl::_graphics::_metrics::windowFrameBufferCallback);
     glfwSetMouseButtonCallback(w, clickCallback);
     jpl::_graphics::_engine::Painter* painter = new jpl::_graphics::_engine::Painter();
     
@@ -119,19 +119,55 @@ int main(){
     jpl::_graphics::_engine::VAO* vao = vaom.addNewVAO("test");
     jpl::_graphics::_engine::VBO* vbo = vao->addVBO();
     jpl::_graphics::_engine::EBO* ebo = vao->addEBO();
-
-    jpl::_graphics::_engine::_text::TextRender* tr = new jpl::_graphics::_engine::_text::TextRender(programShaders->getProgramIndex(), 1, 1, 1000, 289);
-    jpl::_graphics::_engine::_text::Font* font = new jpl::_graphics::_engine::_text::Font(
-        loadTexture("fonts/arials.png"), jpl::_graphics::_engine::_text::ASCII, 16,8, 128);
-    tr->setFont(font);
     vao->bind();
     vbo->bind();
     ebo->bind();
-    button = new jpl::_graphics::_engine::_button::Button(programShaders->getProgramIndex(), 0, 0, 257, 96, nullptr, loadTexture("test.png"));
-    button->setVAOTextRenderer(vao);
+    std::vector<unsigned int> v(MAX_CHARS_TEXT_RENDER * 6);
+    unsigned int indexCursor = 0;
+    for (unsigned int i = 0; i < MAX_CHARS_TEXT_RENDER; i++) {
+        unsigned int vertexOffset = i * 4;
+        v[indexCursor++] = vertexOffset + 0; //BL
+        v[indexCursor++] = vertexOffset + 1; //TR
+        v[indexCursor++] = vertexOffset + 2; //TL
+        v[indexCursor++] = vertexOffset + 0; //BL
+        v[indexCursor++] = vertexOffset + 3; //BR
+        v[indexCursor++] = vertexOffset + 1; //TR
+    }
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, v.size() * sizeof(unsigned int), v.data(), GL_STATIC_DRAW);
+    size_t vboSizeInBytes = MAX_CHARS_TEXT_RENDER * 4 * jpl::_graphics::_shapes::Quad::VALUES_PER_POINTS * sizeof(float);
+    glBufferData(GL_ARRAY_BUFFER, vboSizeInBytes, nullptr, GL_DYNAMIC_DRAW);
+    glVertexAttribPointer(
+        0,
+        jpl::_graphics::_shapes::Quad::COORDS_PER_POINT,   
+        GL_FLOAT,
+        GL_FALSE,
+        jpl::_graphics::_shapes::Quad::VALUES_PER_POINTS * sizeof(float),
+        (void*)0
+    );
+    glEnableVertexAttribArray(0);
+    glVertexAttribPointer(
+        1,
+        jpl::_graphics::_shapes::Quad::SIZE_TEXTURE, 
+        GL_FLOAT,
+        GL_FALSE,
+        jpl::_graphics::_shapes::Quad::VALUES_PER_POINTS * sizeof(float),
+        (void*)(jpl::_graphics::_shapes::Quad::COORDS_PER_POINT * sizeof(float))
+    );
+    glEnableVertexAttribArray(1);
+    glBindVertexArray(0); 
 
-    tr->setRGBA(1.0f, 0.6f, 0.4f, 0.5f);
-    //tr->setText("JoinS");
+
+    jpl::_graphics::_engine::_text::TextRender* tr = new jpl::_graphics::_engine::_text::TextRender(1, 1, 1000, 289);
+    jpl::_graphics::_engine::_text::Font* font = new jpl::_graphics::_engine::_text::Font(
+        loadTexture("fonts/arials.png"), jpl::_graphics::_engine::_text::ASCII, 16,8, 128);
+    tr->setFont(font);
+    tr->setRGBA(0.5f,0.5f,0.5f, 0.5f);
+    tr->setFontSize(1);
+    tr->setVAOAndPS(vao, programShaders);
+    vao->bind();
+    vbo->bind();
+    ebo->bind();
+    tr->setText("Pp");
     
     glEnable(GL_BLEND);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
@@ -145,10 +181,8 @@ int main(){
         if(jpl::_graphics::_input::_keyboard::isKeyPressed(GLFW_KEY_ESCAPE)){
             glfwSetWindowShouldClose(w, 1);
         }
-
-        vao->bind();
-        button->render();
-
+        programShaders->use();
+        tr->render(nullptr);
         glfwSwapBuffers(w);
     }
 

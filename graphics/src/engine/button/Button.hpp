@@ -22,11 +22,7 @@ namespace jpl{
                     protected:
                         
                         _text::TextRender* textRender;
-
                         _texture::Texture* texture;
-
-                        _shaders::ProgramShaders* psTextRenderer;
-                        VAO* vaoTextRenderer;
 
                     public:
 
@@ -45,10 +41,8 @@ namespace jpl{
                             return this->textRender->getText();
                         }
                         
-                        void setTextRender(_text::TextRender* tr, _shaders::ProgramShaders* psTR, VAO* vaoTR){
+                        void setTextRender(_text::TextRender* tr){
                             this->textRender = tr;
-                            this->psTextRenderer = psTR;
-                            this->vaoTextRenderer = vaoTR;
                         }
                         const _text::TextRender* getTextRender() const noexcept{
                             return this->textRender;
@@ -59,12 +53,6 @@ namespace jpl{
                          */
                         virtual void render(Painter* painter) override;
 
-                        _shaders::ProgramShaders* getShaderTextRender() const noexcept{
-                            return this->psTextRenderer;
-                        }
-                        VAO* getVAOTextRenderer() const noexcept{
-                            return this->vaoTextRenderer;
-                        }
 
                         ~Button(){
                             delete this->texture;

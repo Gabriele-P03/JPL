@@ -41,7 +41,7 @@ void jpl::_graphics::_metrics::windowFrameBufferCallback(GLFWwindow* window, int
     jpl::_graphics::_metrics::aspectRatio = ((float)width)/((float)height);
     jpl::_graphics::_metrics::scaleRatioX= (float)width/(float)(jpl::_graphics::_metrics::monitorWidth*jpl::_graphics::_metrics::monitorWidth);
     jpl::_graphics::_metrics::scaleRatioY= (float)height/(float)(jpl::_graphics::_metrics::monitorHeight*jpl::_graphics::_metrics::monitorHeight);      
-    jpl::_graphics::_metrics::ortho = glm::ortho(0.0f, static_cast<float>(width), static_cast<float>(height), 0.0f, -1.0f, 1.0f);
+    jpl::_graphics::_metrics::ortho = glm::ortho(0.0f, static_cast<float>(width), 0.0f, static_cast<float>(height), -1.0f, 1.0f);
     jpl::_graphics::_metrics::perspective = glm::perspective(jpl::_graphics::_metrics::fov, jpl::_graphics::_metrics::aspectRatio, jpl::_graphics::_metrics::nearPlane, jpl::_graphics::_metrics::farPlane);
 }
 

@@ -10,6 +10,7 @@
 #include <string.h>
 #include <string>
 #include <vector>
+#include <jpl/logger/Logger.hpp>
 
 namespace jpl{
     namespace _graphics{
