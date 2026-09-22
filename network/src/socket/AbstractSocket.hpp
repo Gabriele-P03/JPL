@@ -47,9 +47,6 @@ namespace jpl{
 
                     bool started;
 
-                    size_t packetSize;
-                    size_t bufferSize;
-
                     bool withTLS;
                     SSL_CTX* sslCtx;
                     SSL* ssl;
@@ -83,9 +80,6 @@ namespace jpl{
                         #endif
                     }
 
-                    virtual void setPacketSize(size_t value){this->packetSize = value;}
-                    virtual void setBufferSize(size_t value){this->bufferSize = value;}
-
                 public:
 
                     int getFamily() const noexcept{return this->af;}
@@ -113,12 +107,15 @@ namespace jpl{
 
                 
                     /**
-                     * 
+                     * Initialize abstract socket
+                     * @param port pass 0 in case of server
+                     * @param in_addr pass 1 in case of server
+                     * @param address pass empty string in case of server
                      */
                     virtual void initialize(unsigned short port, unsigned long in_addr, const std::string &address);
 
-                    virtual void send(const char* data, size_t len, int flags);
-                    virtual void receive(std::vector<char>** pBuffer, size_t &size, int flags);
+                    virtual void send(size_t socket, const char* data, size_t len, int flags);
+                    virtual void receive(size_t socket, std::vector<char>** pBuffer, int flags);
 
                     SSL* getSSL() const noexcept{
                         return this->ssl;

@@ -39,6 +39,14 @@ void jpl::_graphics::_engine::SceneManager::setNewCurrentSceneByName(const std::
     if(scene == nullptr){
         throw jpl::_exception::RuntimeException("Scene " + name + " does not exists");
     }
+    if(this->currentScene != nullptr){
+        scene->onDiscard(this->currentScene);
+        if(this->currentScene->isDeleteOnDiscard()){
+            this->scenes.erase(this->currentSceneName);
+            this->currentScene = nullptr;
+            this->currentSceneName = "";
+        }
+    }   
     this->currentScene = scene;
     this->currentSceneName = name;
     jpl::_logger::info("Scene " + name + " set as current");

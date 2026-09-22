@@ -11,7 +11,7 @@ jpl::_utils::_debug::Stacktrace::Stacktrace() : jpl::_utils::_debug::Stacktrace(
 
 const jpl::_utils::_debug::Frame jpl::_utils::_debug::Stacktrace::getFrameAt(unsigned long i) const{
     if(i >= this->size)
-        throw new jpl::_exception::IndexOutOfBoundsException(this->size, i);
+        throw jpl::_exception::IndexOutOfBoundsException(this->size, i);
     return *this->frames->get(i);
 }
 

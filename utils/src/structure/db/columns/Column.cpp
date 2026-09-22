@@ -15,7 +15,7 @@ template<> bool jpl::_utils::_collections::Column<bool>::getValue(jpl::_utils::_
         return false;
     else if(cr.compare("1") || cr.compare("true"))
         return true;
-    throw new jpl::_exception::RuntimeException("Column " + this->name + " contains a non boolean value: " + cr);
+    throw jpl::_exception::RuntimeException("Column " + this->name + " contains a non boolean value: " + cr);
 };
 template<> void jpl::_utils::_collections::Column<bool>::setValue(jpl::_utils::_collections::Tuple* tuple, bool value) const{
     tuple->setValue(this->getIndex()-1, value ? "1" : "0");
@@ -27,7 +27,7 @@ template<> double jpl::_utils::_collections::Column<double>::getValue(jpl::_util
     try{
         return std::atof(cr.c_str());
     }catch(std::exception* ex){
-        throw new jpl::_exception::IllegalCastException(cr + " is not a valid double value");
+        throw jpl::_exception::IllegalCastException(cr + " is not a valid double value");
     }
 };
 template<> void jpl::_utils::_collections::Column<double>::setValue(jpl::_utils::_collections::Tuple* tuple, double value) const{
@@ -40,7 +40,7 @@ template<> long jpl::_utils::_collections::Column<long>::getValue(jpl::_utils::_
     try{
         return std::atol(cr.c_str());
     }catch(std::exception* ex){
-        throw new jpl::_exception::IllegalCastException(cr + " is not a valid long value");
+        throw jpl::_exception::IllegalCastException(cr + " is not a valid long value");
     }
 };
 template<> void jpl::_utils::_collections::Column<long>::setValue(jpl::_utils::_collections::Tuple* tuple, long value) const{
@@ -53,7 +53,7 @@ template<> int jpl::_utils::_collections::Column<int>::getValue(jpl::_utils::_co
     try{
         return std::atoi(cr.c_str());
     }catch(std::exception* ex){
-        throw new jpl::_exception::IllegalCastException(cr + " is not a valid integer value");
+        throw jpl::_exception::IllegalCastException(cr + " is not a valid integer value");
     }
 };
 template<> void jpl::_utils::_collections::Column<int>::setValue(jpl::_utils::_collections::Tuple* tuple, int value) const{

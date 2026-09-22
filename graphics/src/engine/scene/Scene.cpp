@@ -2,6 +2,7 @@
 
 jpl::_graphics::_engine::Scene::Scene(){
     this->focusedElement = nullptr;
+    this->setDeleteOnDiscard(false);
 }
 
 void jpl::_graphics::_engine::Scene::clickCallback(GLFWwindow* window, int button, int action, int mods){

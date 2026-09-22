@@ -44,7 +44,7 @@ namespace jpl{
 
                     void setName(std::string name){
                         if(name.empty())
-                            throw new jpl::_exception::IllegalArgumentException("A column cannot have an empty name");
+                            throw jpl::_exception::IllegalArgumentException("A column cannot have an empty name");
                         this->name = name;
                     }
                     std::string getName() const noexcept{return this->name;}

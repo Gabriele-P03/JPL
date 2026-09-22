@@ -54,7 +54,7 @@ namespace jpl{
                          */
                         virtual void rightShiftItems(unsigned int start, unsigned int offset){
                             if(start > this->max)
-                                throw new jpl::_exception::IndexOutOfBoundsException(this->max, this->size+offset);
+                                throw jpl::_exception::IndexOutOfBoundsException(this->max, this->size+offset);
                             if(this->size + offset > this->max)
                                 this->reallocate(this->max + this->max - this->size + offset);
                             for(unsigned int i = this->size; i > start; i--)
@@ -71,7 +71,7 @@ namespace jpl{
                          */
                         virtual void leftShiftItems(unsigned int start, unsigned int offset){
                             if(start - offset < 0)
-                                throw new jpl::_exception::IndexOutOfBoundsException(0, start - offset);
+                                throw jpl::_exception::IndexOutOfBoundsException(0, start - offset);
                             for(unsigned int i = start; i < this->size-1; i++)
                                 this->list[i] = this->list[i+offset];
                         }
@@ -95,10 +95,10 @@ namespace jpl{
                         } 
                         ArrayList(const T* const array, unsigned long size) : ArrayList<T>(){
                             if(array == nullptr)
-                                throw new _exception::IllegalArgumentException("You cannot pass a null pointer");
+                                throw _exception::IllegalArgumentException("You cannot pass a null pointer");
                             else{
                                 if(size == 0)
-                                    throw new _exception::IllegalArgumentException("You have passed a size parameter as 0");
+                                    throw _exception::IllegalArgumentException("You have passed a size parameter as 0");
                             }
                             this->size = size;
                             this->max = size;
@@ -121,7 +121,7 @@ namespace jpl{
                         */
                         virtual void reallocate(unsigned long size){
                             if(this->size >= size)
-                                throw new jpl::_exception::IllegalArgumentException("An arraylist cannot be reallocated with a size less than its current one. If you wanna reduce its size, you should delete");
+                                throw jpl::_exception::IllegalArgumentException("An arraylist cannot be reallocated with a size less than its current one. If you wanna reduce its size, you should delete");
                             this->max = size;
                             if(this->size == 0)
                                 this->list = new std::shared_ptr<T>[size];
@@ -138,7 +138,7 @@ namespace jpl{
 
                         virtual T get(unsigned long index) const override{
                             if(index >= this->size)
-                                throw new jpl::_exception::IndexOutOfBoundsException(this->size, index);
+                                throw jpl::_exception::IndexOutOfBoundsException(this->size, index);
                             return *this->list[index].get();
                         }
 
@@ -163,7 +163,7 @@ namespace jpl{
 
                         virtual void addAll(unsigned long index, List<T>* list) override{
                             if(list == nullptr)
-                                throw new _exception::NullPointerException("Collection passed to addAll cannot be nullptr");
+                                throw _exception::NullPointerException("Collection passed to addAll cannot be nullptr");
                             if(index+list->getSize() > this->max)
                                 this->reallocate(index+list->getSize()-this->max);
                             if(index < this->size)
@@ -194,7 +194,7 @@ namespace jpl{
 
                         virtual void removeAt(unsigned long index) override{
                             if(index >= this->size)
-                                throw new jpl::_exception::IndexOutOfBoundsException(this->size, index);
+                                throw jpl::_exception::IndexOutOfBoundsException(this->size, index);
                             std::shared_ptr<T> &cr = this->list[index];
                             this->resetHelper(cr);
                             this->leftShiftItems(index, 1);
@@ -267,7 +267,7 @@ namespace jpl{
 
                         virtual T set(unsigned long index, T t) override {
                             if(index >= this->size)
-                                throw new _exception::IndexOutOfBoundsException(this->size, index);
+                                throw _exception::IndexOutOfBoundsException(this->size, index);
                             std::shared_ptr<T> &cr = this->list[index];
                             T cp;
                             Nullable<T>::nullify(cp);
@@ -278,11 +278,11 @@ namespace jpl{
 
                         virtual ArrayList<T>* subList(unsigned long start, unsigned long end) const override{
                             if(start >= this->size)
-                                throw new _exception::IndexOutOfBoundsException(this->size, start, "Start is larger/equals than list's size");
+                                throw _exception::IndexOutOfBoundsException(this->size, start, "Start is larger/equals than list's size");
                             if(end >= this->size)
-                                throw new _exception::IndexOutOfBoundsException(this->size, end, "End is larger/equals than list's size");               
+                                throw _exception::IndexOutOfBoundsException(this->size, end, "End is larger/equals than list's size");               
                             if(start > end)
-                                throw new _exception::IndexOutOfBoundsException(end, start, "Start is larger than End"); 
+                                throw _exception::IndexOutOfBoundsException(end, start, "Start is larger than End"); 
                             ArrayList<T>* buffer = new ArrayList<T>(end-start);
                             for(unsigned long i = start; i < end; i++){
                                 std::shared_ptr<T> cr = this->list[i];

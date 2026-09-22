@@ -60,7 +60,7 @@ namespace jpl{
 
                         Node* forwardProbe(unsigned long steps) const {
                             if( steps >= this->max )
-                                throw new _exception::IndexOutOfBoundsException(this->max-1, steps);
+                                throw _exception::IndexOutOfBoundsException(this->max-1, steps);
                             Node* node = head;
                             for(unsigned long i = 0; i < steps; i++){
                                 node = node->next;
@@ -69,7 +69,7 @@ namespace jpl{
                         }
                         Node* reverseProbe(unsigned long steps) const{
                             if( steps >= this->max )
-                                throw new _exception::IndexOutOfBoundsException(this->max-1, steps);
+                                throw _exception::IndexOutOfBoundsException(this->max-1, steps);
                             Node* node = tail;
                             for(unsigned long i = steps; i > 0; i--){
                                 node = node->previous;
@@ -79,7 +79,7 @@ namespace jpl{
 
                         Node* smartProbe(unsigned long index) const{
                             if(index >= this->max){
-                                throw new _exception::IndexOutOfBoundsException(this->max-1, index);
+                                throw _exception::IndexOutOfBoundsException(this->max-1, index);
                             }
                             if( index <= (this->size/2) ){
                                 return this->forwardProbe(index);
@@ -95,7 +95,7 @@ namespace jpl{
                         */
                         void detach(Node* &node){
                             if(node == nullptr)
-                                throw new _exception::NullPointerException("A nullptr cannot be passed");                           
+                                throw _exception::NullPointerException("A nullptr cannot be passed");                           
                             if(node->previous != nullptr){  //not head
                                 if(node->next != nullptr){  //not tail
                                     node->previous->next = node->next;
@@ -120,7 +120,7 @@ namespace jpl{
                         */
                         void detach_s(Node* &first, Node* &last, unsigned long size){
                             if(size > this->size)
-                                throw new _exception::IndexOutOfBoundsException(this->size, size);
+                                throw _exception::IndexOutOfBoundsException(this->size, size);
                             if(first != this->head){
                                 if(last != this->tail){
                                     first->previous->next = last->next;
@@ -269,7 +269,7 @@ namespace jpl{
                         }
                         virtual void addAll(unsigned long index, List<T>* list) override{
                             if(list == nullptr)
-                                throw new _exception::NullPointerException("list passed to addAll cannot be nullptr");
+                                throw _exception::NullPointerException("list passed to addAll cannot be nullptr");
                             unsigned long size = list->getSize();
                             Node* first = nullptr, *pre = nullptr;
                             for(unsigned long i = 0; i < size; i++){
@@ -441,9 +441,9 @@ namespace jpl{
                         }
                         virtual List<T>* subList(unsigned long start, unsigned long end) const override {
                             if(start >= end)
-                                throw new jpl::_exception::IndexOutOfBoundsException(end, start);
+                                throw jpl::_exception::IndexOutOfBoundsException(end, start);
                             if(end > this->max)
-                                throw new jpl::_exception::IndexOutOfBoundsException(this->max, end);
+                                throw jpl::_exception::IndexOutOfBoundsException(this->max, end);
                             unsigned long offset = end - start;
                             jpl::_utils::_collections::_list::LinkedList<T>* list = new jpl::_utils::_collections::_list::LinkedList<T>(offset);
                             Node* cr = this->smartProbe(start), *cr1 = list->head;

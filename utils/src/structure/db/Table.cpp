@@ -19,15 +19,15 @@ void jpl::_utils::_collections::Table::addColumn(jpl::_utils::_collections::Abst
 }
 void jpl::_utils::_collections::Table::addColumn(std::size_t index, jpl::_utils::_collections::AbstractColumn* column){
     if(!this->editableColumn)
-      throw new jpl::_exception::IllegalStateException("This table does not allow columns-editing");
+      throw jpl::_exception::IllegalStateException("This table does not allow columns-editing");
     if(column == nullptr)
-        throw new jpl::_exception::IllegalArgumentException("You cannot add nullptr as column");
+        throw jpl::_exception::IllegalArgumentException("You cannot add nullptr as column");
     if(index > this->columns->getSize())
-        throw new jpl::_exception::IndexOutOfBoundsException(this->columns->getSize(), index);
+        throw jpl::_exception::IndexOutOfBoundsException(this->columns->getSize(), index);
     for(size_t i = 0; i < this->columns->getSize(); i++){
         jpl::_utils::_collections::AbstractColumn* col = this->columns->get(i);
         if(col->getName().compare(column->getName()) == 0){
-            throw new jpl::_exception::RuntimeException("There's already a column names as " + column->getName() + " in " + this->name + " table");
+            throw jpl::_exception::RuntimeException("There's already a column names as " + column->getName() + " in " + this->name + " table");
         }
     }    
     this->columns->add(index, column);
@@ -41,11 +41,11 @@ jpl::_utils::_collections::AbstractColumn* jpl::_utils::_collections::Table::get
         if(cr->getName().compare(name) == 0)
             return cr;
     }
-    throw new jpl::_exception::NotFoundException("Column " + name + " not found in the table " + this->name);
+    throw jpl::_exception::NotFoundException("Column " + name + " not found in the table " + this->name);
 }
 jpl::_utils::_collections::AbstractColumn* jpl::_utils::_collections::Table::getColumn(size_t index){
     if(index >= this->columns->getSize())
-        throw new jpl::_exception::IndexOutOfBoundsException(this->columns->getSize(), index);
+        throw jpl::_exception::IndexOutOfBoundsException(this->columns->getSize(), index);
     return this->columns->get(index);
 }
 
@@ -59,24 +59,24 @@ bool jpl::_utils::_collections::Table::hasColumn(std::string name) const noexcep
 
 void jpl::_utils::_collections::Table::removeColumn(jpl::_utils::_collections::AbstractColumn* column){
     if(!this->editableColumn)
-      throw new jpl::_exception::IllegalStateException("This table does not allow columns-editing");
+      throw jpl::_exception::IllegalStateException("This table does not allow columns-editing");
     if(column == nullptr)
-        throw new jpl::_exception::IllegalArgumentException("You cannot add nullptr as column");
+        throw jpl::_exception::IllegalArgumentException("You cannot add nullptr as column");
     if(column->isMandatory())
-        throw new jpl::_exception::IllegalStateException("Column " + column->getName() + " is mandatory and it is cannot be removed");
+        throw jpl::_exception::IllegalStateException("Column " + column->getName() + " is mandatory and it is cannot be removed");
     if(!this->columns->remove(column))
-        throw new jpl::_exception::NotFoundException("Column " + column->getName() + " has not been found in table " + this->name);    
+        throw jpl::_exception::NotFoundException("Column " + column->getName() + " has not been found in table " + this->name);    
     for(size_t i = 0; i < this->columns->getSize(); i++)
         this->columns->get(i)->setIndex(i+1);
 }
 void jpl::_utils::_collections::Table::removeColumn(size_t index){
     if(!this->editableColumn)
-      throw new jpl::_exception::IllegalStateException("This table does not allow columns-editing");
+      throw jpl::_exception::IllegalStateException("This table does not allow columns-editing");
     if(index >= this->columns->getSize())
-        throw new jpl::_exception::IndexOutOfBoundsException(this->columns->getSize(), index);
+        throw jpl::_exception::IndexOutOfBoundsException(this->columns->getSize(), index);
     jpl::_utils::_collections::AbstractColumn* cr = this->columns->get(index);
     if(cr->isMandatory())
-        throw new jpl::_exception::IllegalStateException("Column " + cr->getName() + " is mandatory and it is cannot be removed");
+        throw jpl::_exception::IllegalStateException("Column " + cr->getName() + " is mandatory and it is cannot be removed");
     this->columns->removeAt(index); 
     for(size_t i = index; i < this->columns->getSize(); i++)
         this->columns->get(i)->setIndex(i+1);
@@ -91,11 +91,11 @@ void jpl::_utils::_collections::Table::addTuple(jpl::_utils::_collections::Tuple
 }
 void jpl::_utils::_collections::Table::addTuple(std::size_t index, jpl::_utils::_collections::Tuple* tuple){
     if(!this->editableTuple)
-      throw new jpl::_exception::IllegalStateException("This table does not allow tuple-editing");
+      throw jpl::_exception::IllegalStateException("This table does not allow tuple-editing");
     if(tuple == nullptr)
-        throw new jpl::_exception::IllegalArgumentException("You cannot add nullptr as tuple");
+        throw jpl::_exception::IllegalArgumentException("You cannot add nullptr as tuple");
     if(index > this->tuples->getSize())
-        throw new jpl::_exception::IndexOutOfBoundsException(this->tuples->getSize(), index);
+        throw jpl::_exception::IndexOutOfBoundsException(this->tuples->getSize(), index);
     this->checkSizeTuple(tuple);    
     this->tuples->add(index, tuple);  
 }
@@ -104,40 +104,40 @@ void jpl::_utils::_collections::Table::addTuples(jpl::_utils::_collections::_lis
 }
 void jpl::_utils::_collections::Table::addTuples(size_t index, jpl::_utils::_collections::_list::ArrayList<Tuple*> tuples){
     if(index > this->tuples->getSize())
-        throw new jpl::_exception::IndexOutOfBoundsException(this->tuples->getSize(), index);
+        throw jpl::_exception::IndexOutOfBoundsException(this->tuples->getSize(), index);
     for(size_t i = 0; i < tuples.getSize(); i++){
         Tuple* tuple = tuples.get(i);
         if(tuple == nullptr)
-            throw new jpl::_exception::IllegalArgumentException("You cannot add nullptr as tuple. Index: " + i);
+            throw jpl::_exception::IllegalArgumentException("You cannot add nullptr as tuple. Index: " + i);
         this->checkSizeTuple(tuple);
     }
     this->tuples->addAll(index, &tuples);
 }
 void jpl::_utils::_collections::Table::removeTuple(jpl::_utils::_collections::Tuple* tuple){
     if(!this->editableTuple)
-        throw new jpl::_exception::IllegalStateException("The table " + this->name + " does not allow to edit its tuples");
+        throw jpl::_exception::IllegalStateException("The table " + this->name + " does not allow to edit its tuples");
     if(tuple == nullptr)
-        throw new jpl::_exception::IllegalArgumentException("You cannot add a nullptr as tuple");
+        throw jpl::_exception::IllegalArgumentException("You cannot add a nullptr as tuple");
     if(!this->tuples->remove(tuple))
-        throw new jpl::_exception::NotFoundException("This table does not contains the given tuple"); 
+        throw jpl::_exception::NotFoundException("This table does not contains the given tuple"); 
 }
 void jpl::_utils::_collections::Table::removeTuple(size_t index){
     if(!this->editableTuple)
-        throw new jpl::_exception::IllegalStateException("The table " + this->name + " does not allow to edit its tuples");
+        throw jpl::_exception::IllegalStateException("The table " + this->name + " does not allow to edit its tuples");
     this->tuples->removeAt(index);
 }
 void jpl::_utils::_collections::Table::removeTuples(jpl::_utils::_collections::_list::ArrayList<Tuple*> tuples){
     if(!this->editableTuple)
-        throw new jpl::_exception::IllegalStateException("The table " + this->name + " does not allow to edit its tuples");
+        throw jpl::_exception::IllegalStateException("The table " + this->name + " does not allow to edit its tuples");
     for(size_t i = 0; i < tuples.getSize(); i++){
         if(tuples.get(i) == nullptr)
-            throw new jpl::_exception::IllegalArgumentException("You cannot remove nullptr as tuple. Index: " + i);
+            throw jpl::_exception::IllegalArgumentException("You cannot remove nullptr as tuple. Index: " + i);
     }
     this->tuples->removeAll(&tuples);
 }
 void jpl::_utils::_collections::Table::removeTuplesIf(jpl::_utils::_functional::Predicate<jpl::_utils::_collections::Tuple*> predicate){
     if(!this->editableTuple)
-        throw new jpl::_exception::IllegalStateException("The table " + this->name + " does not allow to edit its tuples");
+        throw jpl::_exception::IllegalStateException("The table " + this->name + " does not allow to edit its tuples");
     this->tuples->removeAllIf(predicate);
 }
 
@@ -147,6 +147,6 @@ void jpl::_utils::_collections::Table::checkSizeTuple(Tuple* tuple) const {
         tuple->values->reallocate(max);
     }else{
         if(tuple->values->getMax() != max)
-            throw new jpl::_exception::RuntimeException("A tuple must have " + std::to_string(max) + " cell in order to be inserted into " + this->getName() + " table");
+            throw jpl::_exception::RuntimeException("A tuple must have " + std::to_string(max) + " cell in order to be inserted into " + this->getName() + " table");
     }
 }

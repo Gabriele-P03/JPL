@@ -9,20 +9,20 @@
         if(fd == -1){
             std::string cause = std::string("Could not open self-status: ");
             cause += jpl::_utils::_error::_GetLastErrorAsString();
-            throw new _exception::RuntimeException(cause.c_str());
+            throw _exception::RuntimeException(cause.c_str());
         }
         char buffer[4096];
         const unsigned int read_byte = read(fd, buffer, sizeof(buffer)-1);
         if(read_byte <= 0){
             std::string cause = std::string("Could not read self-status fully: ");
             cause += jpl::_utils::_error::_GetLastErrorAsString();
-            throw new _exception::RuntimeException(cause.c_str());
+            throw _exception::RuntimeException(cause.c_str());
         }
         buffer[read_byte] = '\0';
         constexpr char tracePIDString[] = "TracerPid:";
         const auto ptr = strstr(buffer, tracePIDString);
         if(!ptr){
-            throw new _exception::RuntimeException("No occurrence of TracerPID found into self-status");
+            throw _exception::RuntimeException("No occurrence of TracerPID found into self-status");
         }
         for (const char* characterPtr = ptr + sizeof(tracePIDString) - 1; characterPtr <= buffer + read_byte; ++characterPtr){
             if (isspace(*characterPtr))

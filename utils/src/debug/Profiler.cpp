@@ -204,7 +204,7 @@ void jpl::_utils::_profiler::Profiler::measureCpu(jpl::_utils::_profiler::System
         long now = times(&tmSample);
         double percent;
         if(now == -1)
-            throw new jpl::_exception::RuntimeException("Could not read CPU usage of current process: " + jpl::_utils::_error::_GetLastErrorAsString());
+            throw jpl::_exception::RuntimeException("Could not read CPU usage of current process: " + jpl::_utils::_error::_GetLastErrorAsString());
         if(now <= jpl::_utils::_profiler::Profiler::lastCPUTime || tmSample.tms_stime < jpl::_utils::_profiler::Profiler::lastKernelTime || tmSample.tms_utime < jpl::_utils::_profiler::Profiler::lastUserTime){
             percent = (jpl::_utils::_profiler::Profiler::lastKernelTime+jpl::_utils::_profiler::Profiler::lastUserTime)/jpl::_utils::_profiler::Profiler::lastCPUTime;
         }else{
@@ -237,7 +237,7 @@ const jpl::_utils::_profiler::SystemInfo *const jpl::_utils::_profiler::Profiler
 void* jpl::_utils::_profiler::Profiler::measures(void* instanceProfiler){
     jpl::_utils::_profiler::Profiler* profiler = static_cast<jpl::_utils::_profiler::Profiler*>(instanceProfiler);
     if( profiler == nullptr)
-        throw new jpl::_exception::IllegalArgumentException("Not a instance of Profiler class has been passed");
+        throw jpl::_exception::IllegalArgumentException("Not a instance of Profiler class has been passed");
     #ifdef _WIN32
         unsigned long ms = profiler->sleepMS;
     #elif __linux__
@@ -260,7 +260,7 @@ void* jpl::_utils::_profiler::Profiler::measures(void* instanceProfiler){
 
 void jpl::_utils::_profiler::Profiler::start(unsigned long sleepMS){
     if(this->started)
-        throw new jpl::_exception::IllegalStateException("This profiler has been already started");
+        throw jpl::_exception::IllegalStateException("This profiler has been already started");
     this->systemInfoList = new std::vector<const jpl::_utils::_profiler::SystemInfo*>();
     this->sleepMS = sleepMS;
     this->threadProfiler = new std::thread(&jpl::_utils::_profiler::Profiler::measures, this);
@@ -269,14 +269,14 @@ void jpl::_utils::_profiler::Profiler::start(unsigned long sleepMS){
         this->threadProfiler->detach();
     }catch(const std::system_error* ex){
         this->started = false;
-        throw new jpl::_exception::RuntimeException("This profiler could not be started: " + jpl::_utils::_error::_GetLastErrorAsString(ex->code().value()));
+        throw jpl::_exception::RuntimeException("This profiler could not be started: " + jpl::_utils::_error::_GetLastErrorAsString(ex->code().value()));
     }
 
 }
 
 void jpl::_utils::_profiler::Profiler::end(){
     if(!this->started)
-        throw new jpl::_exception::IllegalStateException("This profiler has been already over");
+        throw jpl::_exception::IllegalStateException("This profiler has been already over");
     this->started = false;
     free(this->threadProfiler);
 }

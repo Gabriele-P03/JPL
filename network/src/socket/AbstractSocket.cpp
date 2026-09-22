@@ -26,8 +26,6 @@ jpl::_network::_socket::AbstractSocket::AbstractSocket(int af, int type, int pro
         this->started = false;
     }else{
         this->started = true;
-        this->bufferSize = 65536;
-        this->packetSize = 1024;
     }
     this->withTLS = false;
     this->ssl = nullptr;
@@ -50,45 +48,32 @@ void jpl::_network::_socket::AbstractSocket::initialize(unsigned short port, uns
     this->port = port;
 }
 
-void jpl::_network::_socket::AbstractSocket::send(const char* data, size_t len, int flags){
+void jpl::_network::_socket::AbstractSocket::send(size_t socket, const char* data, size_t len, int flags){
     size_t sent = 0;
-    while(len > sent || data[sent] != '\0'){
-        const char* start = &data[sent];
-        size_t toSend = (len - sent);
-        if(toSend > this->packetSize){
-            toSend = this->packetSize;
-        }
-        int res = ::send(this->_socket_index, (const char*)start, toSend, flags);
-        if(res == -1){
-            throw jpl::_exception::SocketException(this->_socket_index);
-        }  
-        sent += res; 
+    int res = ::send(socket, data, len, flags);
+    if(res == -1){
+        throw jpl::_exception::SocketException(socket);
     }
-    if(::send(this->_socket_index, "\0", 1, flags) == -1){  //Sending '\0' as term char
-        throw jpl::_exception::SocketException(this->_socket_index);
+    if(data[len-1] != '\0'){    //checking whereas last char is \0
+        if(::send(socket, "\0", 1, flags) == -1){  //Sending '\0' as term char
+            throw jpl::_exception::SocketException(socket);
+        }
     }
 }
 
-void jpl::_network::_socket::AbstractSocket::receive(std::vector<char>** pBuffer, size_t &size, int flags){
+void jpl::_network::_socket::AbstractSocket::receive(size_t socket, std::vector<char>** pBuffer, int flags){
     std::vector<char>* buffer = *pBuffer;
-    buffer = new std::vector<char>;
-    size = 0;
     while(true){
-        char packet[this->packetSize];
-        int read = recv(this->_socket_index, packet, this->packetSize, flags);
+        char packet[2048];
+        int read = recv(socket, packet, 2048, flags);
         if(read <= 0){
-            delete buffer;
-            throw jpl::_exception::SocketException(this->_socket_index);
+            throw jpl::_exception::SocketException(socket);
         }
         buffer->insert(buffer->end(), packet, packet+read);
-        size += size;
         if(!buffer->empty()){
             if(buffer->back() == '\0'){
                 break;
             }
-        }
-        if(this->bufferSize <= size){
-            break;
         }
     }
 }

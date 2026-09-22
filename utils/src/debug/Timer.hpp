@@ -51,9 +51,9 @@ namespace jpl{
 
                     virtual void start() {
                         if(this->started)
-                            throw new _exception::IllegalStateException("The timer " + this->timerName + " has been already started at " + this->timeToString(&this->startTime));
+                            throw _exception::IllegalStateException("The timer " + this->timerName + " has been already started at " + this->timeToString(&this->startTime));
                         if(this->terminated)
-                            throw new _exception::IllegalStateException("The timer " + this->timerName + " has been already terminated at " + this->timeToString(&this->endTime));
+                            throw _exception::IllegalStateException("The timer " + this->timerName + " has been already terminated at " + this->timeToString(&this->endTime));
             
                         this->startTime = time(nullptr);
                         this->started = true;
@@ -62,9 +62,9 @@ namespace jpl{
 
                     virtual void end(){
                         if(!this->started)
-                            throw new _exception::IllegalStateException("The timer " + this->timerName + " has not been started yet");
+                            throw _exception::IllegalStateException("The timer " + this->timerName + " has not been started yet");
                         if(this->terminated)
-                            throw new _exception::IllegalStateException("The timer " + this->timerName + " has been already terminated at " + this->timeToString(&this->endTime));
+                            throw _exception::IllegalStateException("The timer " + this->timerName + " has been already terminated at " + this->timeToString(&this->endTime));
             
                         this->endTime = time(nullptr);
                         this->started = false;

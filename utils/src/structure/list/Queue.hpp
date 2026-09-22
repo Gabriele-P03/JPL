@@ -32,7 +32,7 @@ namespace jpl{
                          * @throw RuntimeException anytime it is called
                         */
                         virtual void add(T t) {
-                            throw new _exception::RuntimeException("You must call push(T) in order to add an element into a queue");
+                            throw _exception::RuntimeException("You must call push(T) in order to add an element into a queue");
                         }
 
                     protected:
@@ -117,7 +117,7 @@ namespace jpl{
                         */
                         virtual T peek() const{
                             if(this->size == 0)
-                                throw new _exception::IndexOutOfBoundsException(0, 0);
+                                throw _exception::IndexOutOfBoundsException(0, 0);
                             return *this->head->element.get();    
                         }
                         /**
@@ -126,7 +126,7 @@ namespace jpl{
                         */
                         virtual T pop(){
                             if(this->size == 0)
-                                throw new _exception::IndexOutOfBoundsException(0, 0);
+                                throw _exception::IndexOutOfBoundsException(0, 0);
                             T t;
                             Nullable<T>::nullify(t);
                             T cr = *this->head->element.get();

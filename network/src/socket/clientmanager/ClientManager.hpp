@@ -5,6 +5,7 @@
 #ifndef CLIENTMANAGER_HPP
 #define CLIENTMANAGER_HPP
 
+#include <cstring>
 #include "Client.hpp"
 #include <jpl/utils/structure/list/LinkedList.hpp>
 #include <jpl/exception/runtime/IllegalStateException.hpp>
@@ -23,27 +24,19 @@ namespace jpl{
                 protected:
 
                     const size_t maxClientAmount; //0 unlimited
-                    const bool asyncClient;
-                    jpl::_utils::_collections::_list::LinkedList<Client*>* clients;
+                    std::unordered_map<std::string, Client*> clients;
 
                     /**
                      * This function is called everytime a new client is added into clients list.
                      * In this function, you could start indipendent threads to communicate with client's socket  
                      */
-                    virtual void handleClientAfterInsert(Client* client);
-
-                    virtual void receive(Client* client) = 0;
-                    virtual void send(Client* client) = 0;
+                    virtual void handleClientAfterInsert(Client* client) = 0;
 
                 public:
                     ClientManager(size_t maxClientAmount);
-                    ClientManager(bool asyncClient, size_t maxClientAmount);
 
                     size_t getMaxClientAmount() const noexcept{
                         return this->maxClientAmount;
-                    }
-                    bool isAsyncClient() const noexcept{
-                        return this->asyncClient;
                     }
 
                     /**
@@ -53,9 +46,9 @@ namespace jpl{
                      * @throw IllegalArgumentException if client is nullptr
                      * @throw IllegalArgumentException if a client with the same socket index has been already added
                      */
-                    virtual void addNewClient(Client* &client);
+                    virtual void addNewClient(const std::string& identifier, Client* client);
 
-                    ~ClientManager();
+                    ~ClientManager() = default;
 
             };
         }

@@ -21,6 +21,8 @@ jpl::_network::_http::HttpClient::~HttpClient(){
 }
 
 void jpl::_network::_http::HttpClient::executeRequest(char* url){
+    this->responseBody.clear();
+    this->responseHeaders.clear();
     curl_easy_setopt(this->curl, CURLOPT_URL, url);
     CURLcode res = curl_easy_perform(this->curl);
     if(res != CURLE_OK){

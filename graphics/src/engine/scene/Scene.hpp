@@ -25,6 +25,8 @@ namespace jpl{
                     //It is the last clicked element
                     IClickable* focusedElement;
 
+                    bool deleteOnDiscard;
+
                 public:
                     Scene();
                     virtual ~Scene();
@@ -42,8 +44,23 @@ namespace jpl{
 
                     virtual void charCallback(GLFWwindow* window, unsigned int codepoint);
 
+                    /**
+                     * Called by SceneManager when this scene get out of scope
+                     * @param newScene new scene which is getting in scope (check nullptr)
+                     */
+                    virtual void onDiscard(Scene* &newScene) = 0;
 
                     virtual void render() = 0;
+
+                    bool isDeleteOnDiscard() const noexcept {
+                        return this->deleteOnDiscard;
+                    }
+                    /**
+                     * Set if scene must be freed once out of SceneManager's scope
+                     */
+                    void setDeleteOnDiscard(bool deleteOnDiscard){
+                        this->deleteOnDiscard = deleteOnDiscard;
+                    }
 
                     /**
                      * This function could help you to push VBOs and EBOs data.

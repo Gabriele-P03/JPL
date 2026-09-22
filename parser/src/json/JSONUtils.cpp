@@ -17,7 +17,7 @@ jpl::_parser::_json::JSONElement* jpl::_parser::_json::parseJSONString(std::stri
         std::string b = jpl::_utils::_string::trim( buffer.substr(1, eS-1) ); //it also remove opening and closing bracket 
         jpl::_parser::_json::stct(buffer, eS+1);
         if(e != '}')
-            throw new jpl::_parser::_json::_exception::JSONParseException("Json String does not terminate with }");
+            throw jpl::_parser::_json::_exception::JSONParseException("Json String does not terminate with }");
         jpl::_parser::_json::JSONObject* obj = jpl::_parser::_json::parseJSONObjectByString(b, parseName, tabs);
         if(parseName)
             obj->setName(name);
@@ -28,7 +28,7 @@ jpl::_parser::_json::JSONElement* jpl::_parser::_json::parseJSONString(std::stri
         std::string b = jpl::_utils::_string::trim( buffer.substr(1, eS-1) ); //it also remove opening and closing bracket 
         jpl::_parser::_json::stct(buffer, eS+1);
         if(e != ']')
-            throw new jpl::_parser::_json::_exception::JSONParseException("Json String does not terminate with ]");
+            throw jpl::_parser::_json::_exception::JSONParseException("Json String does not terminate with ]");
         jpl::_parser::_json::JSONArray* array = jpl::_parser::_json::parseJSONArrayByString(b, parseName, tabs);
         if(parseName)
             array->setName(name);
@@ -40,7 +40,7 @@ jpl::_parser::_json::JSONElement* jpl::_parser::_json::parseJSONString(std::stri
         buffer = "";     
         return field;
     }
-    throw new jpl::_parser::_json::_exception::JSONParseException(s + " is not a valid char at the beginning of a json file");
+    throw jpl::_parser::_json::_exception::JSONParseException(s + " is not a valid char at the beginning of a json file");
 }
 
 jpl::_parser::_json::JSONArray* jpl::_parser::_json::parseJSONArrayByString(std::string &buffer, bool parseName, size_t tabs){
@@ -75,11 +75,11 @@ jpl::_parser::_json::JSONObject* jpl::_parser::_json::parseJSONObjectByString(st
 
 jpl::_parser::_json::JSONField* jpl::_parser::_json::parseJSONFieldByString(std::string &buffer, bool parseName, size_t tabs){
     if(buffer.empty())
-        throw new jpl::_parser::_json::_exception::JSONParseException("Trying to parse an empty string");
+        throw jpl::_parser::_json::_exception::JSONParseException("Trying to parse an empty string");
     try{
         std::tm tm;       //Try TM
         if(strptime(buffer.c_str(), "%Y-%m-%d %H:%M:%S", &tm) == NULL)  //As most of all DBMS require
-            throw new std::exception();
+            throw std::exception();
         return new jpl::_parser::_json::JSONFieldTM("", tabs, tm);
     }catch(const std::exception* ex){}
     if(jpl::_utils::_string::match(buffer, std::regex("^-?[0-9]+\\.?[0-9]*$"))){
@@ -102,7 +102,7 @@ void jpl::_parser::_json::stct(std::string &buffer, size_t i){
             buffer = jpl::_utils::_string::trim(buffer.erase(0,1));   //remove comma and trim
         }
         if(!jpl::_utils::_string::startWith(buffer, jpl::_parser::_json::stct_regex)){
-            throw new jpl::_parser::_json::_exception::JSONParseException(buffer.at(0) + " is not a valid char for JSONobject/JSONArray/JSONField beginning");
+            throw jpl::_parser::_json::_exception::JSONParseException(buffer.at(0) + " is not a valid char for JSONobject/JSONArray/JSONField beginning");
         }
     }
 }

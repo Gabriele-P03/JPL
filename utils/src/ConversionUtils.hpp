@@ -227,7 +227,7 @@ namespace jpl
 				}else if(value.compare("0") || jpl::_utils::_string::toLower(value).compare("false") == 0){
 					return false;
 				}
-				throw new jpl::_exception::IllegalArgumentException(value + " could not be parsed as boolean value");
+				throw jpl::_exception::IllegalArgumentException(value + " could not be parsed as boolean value");
 			}
 		}
 	}

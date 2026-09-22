@@ -54,7 +54,7 @@ namespace jpl{
                     */
                     List(List<T>* list) : List<T>(){
                         if(list == nullptr){
-                            throw new _exception::NullPointerException("You cannot pass a nullptr as list");
+                            throw _exception::NullPointerException("You cannot pass a nullptr as list");
                         }
                     }
                     

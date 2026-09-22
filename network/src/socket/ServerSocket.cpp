@@ -57,7 +57,8 @@ void jpl::_network::_socket::ServerSocket::start(size_t backlog){
 void jpl::_network::_socket::ServerSocket::loop(){
     while(listening){
         jpl::_network::_clientmanager::Client* client = this->acceptNewClient();
-        this->manager->addNewClient(client);
+        const std::string identifier = this->getIdentifierPostAccept(client);
+        this->manager->addNewClient(identifier, client);
     }
 }
 

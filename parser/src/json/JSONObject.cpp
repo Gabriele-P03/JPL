@@ -23,12 +23,12 @@ jpl::_parser::_json::JSONObject* jpl::_parser::_json::JSONObject::getJSONObject(
         if(cr->getName().compare(name) == 0)
             return cr;
     }
-    throw new jpl::_parser::_json::_exception::JSONKeyNotFoundException(name + " json object has not been found");
+    throw jpl::_parser::_json::_exception::JSONKeyNotFoundException(name + " json object has not been found");
 }
 
 jpl::_parser::_json::JSONObject* jpl::_parser::_json::JSONObject::getJSONObject(unsigned long index) const{
     if(index >= this->jsonObjects.getSize())
-        throw new jpl::_exception::IndexOutOfBoundsException(this->jsonObjects.getSize(), index);
+        throw jpl::_exception::IndexOutOfBoundsException(this->jsonObjects.getSize(), index);
     return this->jsonObjects.get(index);
 }
 
@@ -42,12 +42,12 @@ jpl::_parser::_json::JSONArray* jpl::_parser::_json::JSONObject::getJSONArray(st
         if(cr->getName().compare(name) == 0)
             return cr;
     }
-    throw new jpl::_parser::_json::_exception::JSONKeyNotFoundException(name + " json array has not been found");
+    throw jpl::_parser::_json::_exception::JSONKeyNotFoundException(name + " json array has not been found");
 }
 
 jpl::_parser::_json::JSONArray* jpl::_parser::_json::JSONObject::getJSONArray(unsigned long index) const{
     if(index >= this->jsonArrays.getSize())
-        throw new jpl::_exception::IndexOutOfBoundsException(this->jsonArrays.getSize(), index);
+        throw jpl::_exception::IndexOutOfBoundsException(this->jsonArrays.getSize(), index);
     return this->jsonArrays.get(index);
 }
 
@@ -63,12 +63,12 @@ jpl::_parser::_json::JSONField* jpl::_parser::_json::JSONObject::getJSONField(st
         if(cr->getName().compare(name) == 0)
             return cr;
     }
-    throw new jpl::_parser::_json::_exception::JSONKeyNotFoundException(name + " json field has not been found");
+    throw jpl::_parser::_json::_exception::JSONKeyNotFoundException(name + " json field has not been found");
 }
 
 jpl::_parser::_json::JSONField* jpl::_parser::_json::JSONObject::getJSONField(unsigned long index) const{
     if(index >= this->fields.getSize())
-        throw new jpl::_exception::IndexOutOfBoundsException(this->fields.getSize(), index);
+        throw jpl::_exception::IndexOutOfBoundsException(this->fields.getSize(), index);
     return this->fields.get(index);
 }
 
@@ -82,7 +82,7 @@ jpl::_parser::_json::JSONFieldInt* jpl::_parser::_json::JSONObject::getJSONField
                 return static_cast<jpl::_parser::_json::JSONFieldInt*>(cr);
         }
     }
-    throw new jpl::_parser::_json::_exception::JSONKeyNotFoundException(name + " json field int has not been found");
+    throw jpl::_parser::_json::_exception::JSONKeyNotFoundException(name + " json field int has not been found");
 }
 
 //  --------------------------------------- JSON Fields UInt ---------------------------------------
@@ -95,7 +95,7 @@ jpl::_parser::_json::JSONFieldUInt* jpl::_parser::_json::JSONObject::getJSONFiel
                 return static_cast<jpl::_parser::_json::JSONFieldUInt*>(cr);
         }
     }
-    throw new jpl::_parser::_json::_exception::JSONKeyNotFoundException(name + " json field uint has not been found");
+    throw jpl::_parser::_json::_exception::JSONKeyNotFoundException(name + " json field uint has not been found");
 }
 
 //  --------------------------------------- JSON Fields Long ---------------------------------------
@@ -108,7 +108,7 @@ jpl::_parser::_json::JSONFieldLong* jpl::_parser::_json::JSONObject::getJSONFiel
                 return static_cast<jpl::_parser::_json::JSONFieldLong*>(cr);
         }
     }
-    throw new jpl::_parser::_json::_exception::JSONKeyNotFoundException(name + " json field long has not been found");
+    throw jpl::_parser::_json::_exception::JSONKeyNotFoundException(name + " json field long has not been found");
 }
 //  --------------------------------------- JSON Fields ULong ---------------------------------------
 
@@ -120,7 +120,7 @@ jpl::_parser::_json::JSONFieldULong* jpl::_parser::_json::JSONObject::getJSONFie
                 return static_cast<jpl::_parser::_json::JSONFieldULong*>(cr);
         }
     }
-    throw new jpl::_parser::_json::_exception::JSONKeyNotFoundException(name + " json field ulong has not been found");
+    throw jpl::_parser::_json::_exception::JSONKeyNotFoundException(name + " json field ulong has not been found");
 }
 
 //  --------------------------------------- JSON Fields Float ---------------------------------------
@@ -133,7 +133,7 @@ jpl::_parser::_json::JSONFieldFloat* jpl::_parser::_json::JSONObject::getJSONFie
                 return static_cast<jpl::_parser::_json::JSONFieldFloat*>(cr);
         }
     }
-    throw new jpl::_parser::_json::_exception::JSONKeyNotFoundException(name + " json field float has not been found");
+    throw jpl::_parser::_json::_exception::JSONKeyNotFoundException(name + " json field float has not been found");
 }
 
 //  --------------------------------------- JSON Fields Double ---------------------------------------
@@ -146,7 +146,7 @@ jpl::_parser::_json::JSONFieldDouble* jpl::_parser::_json::JSONObject::getJSONFi
                 return static_cast<jpl::_parser::_json::JSONFieldDouble*>(cr);
         }
     }
-    throw new jpl::_parser::_json::_exception::JSONKeyNotFoundException(name + " json field double has not been found");
+    throw jpl::_parser::_json::_exception::JSONKeyNotFoundException(name + " json field double has not been found");
 }
 
 //  --------------------------------------- JSON Fields Bool ---------------------------------------
@@ -159,7 +159,7 @@ jpl::_parser::_json::JSONFieldBool* jpl::_parser::_json::JSONObject::getJSONFiel
                 return static_cast<jpl::_parser::_json::JSONFieldBool*>(cr);
         }
     }
-    throw new jpl::_parser::_json::_exception::JSONKeyNotFoundException(name + " json field bool has not been found");
+    throw jpl::_parser::_json::_exception::JSONKeyNotFoundException(name + " json field bool has not been found");
 }
 
 
@@ -174,7 +174,7 @@ jpl::_parser::_json::JSONFieldTM* jpl::_parser::_json::JSONObject::getJSONFieldT
                 return static_cast<jpl::_parser::_json::JSONFieldTM*>(cr);
         }
     }
-    throw new jpl::_parser::_json::_exception::JSONKeyNotFoundException(name + " json field tm has not been found");
+    throw jpl::_parser::_json::_exception::JSONKeyNotFoundException(name + " json field tm has not been found");
 }
 
 //  --------------------------------------- JSON Fields String ---------------------------------------
@@ -187,7 +187,7 @@ jpl::_parser::_json::JSONFieldString* jpl::_parser::_json::JSONObject::getJSONFi
                 return static_cast<jpl::_parser::_json::JSONFieldString*>(cr);
         }
     }
-    throw new jpl::_parser::_json::_exception::JSONKeyNotFoundException(name + " json field string has not been found");
+    throw jpl::_parser::_json::_exception::JSONKeyNotFoundException(name + " json field string has not been found");
 }
 
 
@@ -195,28 +195,28 @@ jpl::_parser::_json::JSONFieldString* jpl::_parser::_json::JSONObject::getJSONFi
 
 void jpl::_parser::_json::JSONObject::addJSONObject(JSONObject* jsonObject){
     if(jsonObject == nullptr)
-        throw new jpl::_exception::IllegalArgumentException("You cannot add null json object");
+        throw jpl::_exception::IllegalArgumentException("You cannot add null json object");
     for(size_t i = 0; i < this->jsonObjects.getSize(); i++){
         if(this->jsonObjects.get(i)->getName().compare(jsonObject->getName()) == 0)
-            throw new jpl::_parser::_json::_exception::JSONDuplicateElementException(jsonObject->getName() + " object has been already parsed in the JSONObject " + this->name);
+            throw jpl::_parser::_json::_exception::JSONDuplicateElementException(jsonObject->getName() + " object has been already parsed in the JSONObject " + this->name);
     }   
     this->jsonObjects.add(jsonObject);
 }
 void jpl::_parser::_json::JSONObject::addJSONArray(JSONArray* jsonArray){
     if(jsonArray == nullptr)
-        throw new jpl::_exception::IllegalArgumentException("You cannot add null json array");
+        throw jpl::_exception::IllegalArgumentException("You cannot add null json array");
     for(size_t i = 0; i < this->jsonArrays.getSize(); i++){
         if(this->jsonArrays.get(i)->getName().compare(jsonArray->getName()) == 0)
-            throw new jpl::_parser::_json::_exception::JSONDuplicateElementException(jsonArray->getName() + " has array been already parsed in the JSONObject " + this->name);
+            throw jpl::_parser::_json::_exception::JSONDuplicateElementException(jsonArray->getName() + " has array been already parsed in the JSONObject " + this->name);
     }       
     this->jsonArrays.add(jsonArray);
 }
 void jpl::_parser::_json::JSONObject::addJSONField(JSONField* field){
     if(field == nullptr)
-        throw new jpl::_exception::IllegalArgumentException("You cannot add null json field");
+        throw jpl::_exception::IllegalArgumentException("You cannot add null json field");
     for(size_t i = 0; i < this->fields.getSize(); i++){
         if(this->fields.get(i)->getName().compare(field->getName()) == 0)
-            throw new jpl::_parser::_json::_exception::JSONDuplicateElementException(field->getName() + " field has been already parsed in the JSONObject " + this->name);
+            throw jpl::_parser::_json::_exception::JSONDuplicateElementException(field->getName() + " field has been already parsed in the JSONObject " + this->name);
     }    
     this->fields.add(field);
 }

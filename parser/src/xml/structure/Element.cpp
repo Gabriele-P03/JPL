@@ -35,14 +35,14 @@ jpl::_parser::_xml::Element* jpl::_parser::_xml::Element::getElement(std::string
             return cr;
         }
     }
-    throw new jpl::_parser::_xml::_exception::XMLNotFoundException("Element " + name + " not found in " + this->name + " element");
+    throw jpl::_parser::_xml::_exception::XMLNotFoundException("Element " + name + " not found in " + this->name + " element");
 }
 void jpl::_parser::_xml::Element::removeElement(Element* element){
     if(element == nullptr){
-        throw new jpl::_exception::IllegalArgumentException("XML Remove Element: nullptr as element");
+        throw jpl::_exception::IllegalArgumentException("XML Remove Element: nullptr as element");
     }
     if(!this->elements.remove(element))
-        throw new jpl::_parser::_xml::_exception::XMLNotFoundException("Element " + element->getName() + " does not exist into element " + this->name);
+        throw jpl::_parser::_xml::_exception::XMLNotFoundException("Element " + element->getName() + " does not exist into element " + this->name);
 } 
 void jpl::_parser::_xml::Element::removeElement(std::string name){
     for(size_t i = 0; i < this->elements.getSize(); i++){
@@ -52,11 +52,11 @@ void jpl::_parser::_xml::Element::removeElement(std::string name){
             return;
         }
     }
-    throw new jpl::_parser::_xml::_exception::XMLNotFoundException("Element " + name + " does not exist into element " + this->name);
+    throw jpl::_parser::_xml::_exception::XMLNotFoundException("Element " + name + " does not exist into element " + this->name);
 } 
 void jpl::_parser::_xml::Element::addElement(Element* element){
     if(element == nullptr){
-        throw new jpl::_exception::IllegalArgumentException("You cannot add nullptr as element");
+        throw jpl::_exception::IllegalArgumentException("You cannot add nullptr as element");
     }
     element->setTabs(this->tabs+1);
     this->elements.add(element);
@@ -83,14 +83,14 @@ jpl::_parser::_xml::Attribute* jpl::_parser::_xml::Element::getAttribute(std::st
             return cr;
         }
     }
-    throw new jpl::_parser::_xml::_exception::XMLNotFoundException("Attribute " + name + " not found in " + this->name + " element");
+    throw jpl::_parser::_xml::_exception::XMLNotFoundException("Attribute " + name + " not found in " + this->name + " element");
 }
 void jpl::_parser::_xml::Element::removeAttribute(Attribute* attribute){
     if(attribute == nullptr){
-        throw new jpl::_exception::NullPointerException("XML Remove Attribute: nullptr as attribute");
+        throw jpl::_exception::NullPointerException("XML Remove Attribute: nullptr as attribute");
     }
     if(!this->attributes.remove(attribute))
-        throw new jpl::_parser::_xml::_exception::XMLNotFoundException("Attribute " + attribute->getName() + " does not exist into element " + this->name);
+        throw jpl::_parser::_xml::_exception::XMLNotFoundException("Attribute " + attribute->getName() + " does not exist into element " + this->name);
 } 
 void jpl::_parser::_xml::Element::removeAttribute(std::string name){
     for(size_t i = 0; i < this->attributes.getSize(); i++){
@@ -100,16 +100,16 @@ void jpl::_parser::_xml::Element::removeAttribute(std::string name){
             return;
         }
     }
-    throw new jpl::_parser::_xml::_exception::XMLNotFoundException("Attribute " + name + " does not exist into element " + this->name);
+    throw jpl::_parser::_xml::_exception::XMLNotFoundException("Attribute " + name + " does not exist into element " + this->name);
 } 
 void jpl::_parser::_xml::Element::addAttribute(Attribute* attribute){
     if(attribute == nullptr){
-        throw new jpl::_exception::IllegalArgumentException("You cannot add nullptr as attribute");
+        throw jpl::_exception::IllegalArgumentException("You cannot add nullptr as attribute");
     }
     for(size_t i = 0; i < this->attributes.getSize(); i++){
         Attribute* cr = this->attributes.get(i);
         if(cr->getName().compare(attribute->getName()) == 0){
-            throw new jpl::_parser::_xml::_exception::XMLDuplicateException("There is already an attribute named as" + attribute->getName() + " into " + this->name);
+            throw jpl::_parser::_xml::_exception::XMLDuplicateException("There is already an attribute named as" + attribute->getName() + " into " + this->name);
         }
     }
     this->attributes.add(attribute);

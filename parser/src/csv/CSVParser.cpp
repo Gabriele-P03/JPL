@@ -3,22 +3,22 @@
 jpl::_parser::_csv::CSVParser::CSVParser() : jpl::_parser::_csv::CSVParser(";") {}
 jpl::_parser::_csv::CSVParser::CSVParser(const char* separator) : separator(separator){
     if(separator == nullptr)
-        throw new jpl::_exception::IllegalArgumentException("Char separator is nullptr");
+        throw jpl::_exception::IllegalArgumentException("Char separator is nullptr");
     this->multiTable = false;
 }
 
 
 void jpl::_parser::_csv::CSVParser::addTable(){//jpl::_utils::_collections::Table* table){
     /*if(table == nullptr)
-        throw new jpl::_exception::IllegalArgumentException("You cannot add a nullptr");*/
+        throw jpl::_exception::IllegalArgumentException("You cannot add a nullptr");*/
     //if(!this->multiTable && !this->tables.isEmpty())
-        throw new jpl::_exception::IllegalStateException("This CSV Parser already contains a table instance. If you wanna insert another one, you have to enable multi-table mode before");
+        throw jpl::_exception::IllegalStateException("This CSV Parser already contains a table instance. If you wanna insert another one, you have to enable multi-table mode before");
     /*for(size_t i = 0; i < this->tables.getSize(); i++){
         jpl::_utils::_collections::Table* cr = this->tables.get(i);
         if(cr == table)
-            throw new jpl::_exception::RuntimeException("This table has been already inserted");
+            throw jpl::_exception::RuntimeException("This table has been already inserted");
         if(cr->getName().compare(table->getName()) == 0)
-            throw new jpl::_exception::RuntimeException("There's already a table named as " + table->getName());
+            throw jpl::_exception::RuntimeException("There's already a table named as " + table->getName());
     }
     this->tables.add(table);
     */
@@ -56,7 +56,7 @@ void jpl::_parser::_csv::CSVParser::parseHeader(std::string header){
         jpl::_utils::_collections::Table* table;
         if(check){
             if(this->tables.getSize() <= i){    //Check if there are at least i-1 tables
-                throw new jpl::_exception::RuntimeException("There are no enough tables into list");
+                throw jpl::_exception::RuntimeException("There are no enough tables into list");
             }
             table = this->tables.get(i++);
         }else{
@@ -65,15 +65,15 @@ void jpl::_parser::_csv::CSVParser::parseHeader(std::string header){
         while ( (endSingleCol = tableDecl.find(this->separator) ) != std::string::npos){   //Each column
             std::string colName = tableDecl.substr(0, endSingleCol);
             if(colName.empty()){
-                throw new jpl::_parser::_csv::_exception::CSVParsingException("There's an empty column name for the " + std::to_string(i) + " table");
+                throw jpl::_parser::_csv::_exception::CSVParsingException("There's an empty column name for the " + std::to_string(i) + " table");
             }
             tableDecl.erase(0, endSingleCol+1);
             if(check){
                 if(table->getColumnsSize() <= j){
-                    throw new jpl::_exception::RuntimeException("Table " + table->getName() + " has only " + std::to_string(table->getColumnsSize()) + " columns");
+                    throw jpl::_exception::RuntimeException("Table " + table->getName() + " has only " + std::to_string(table->getColumnsSize()) + " columns");
                 }
                 if(table->getColumn(j)->getName().compare(colName) != 0){
-                    throw new jpl::_parser::_csv::_exception::CSVParsingException("Table " + table->getName() + " does not contain " + colName + " column");
+                    throw jpl::_parser::_csv::_exception::CSVParsingException("Table " + table->getName() + " does not contain " + colName + " column");
                 }
             }else{
                 table->addColumn(new jpl::_utils::_collections::Column<std::string>(colName, false));
@@ -91,7 +91,7 @@ void jpl::_parser::_csv::CSVParser::parseHeader(std::string header){
 
 void jpl::_parser::_csv::CSVParser::parseData(std::istream* is){
     if(is == nullptr){
-        throw new jpl::_exception::IllegalArgumentException("input stream passed is nullptr");
+        throw jpl::_exception::IllegalArgumentException("input stream passed is nullptr");
     }
     std::string line;
     size_t i = 0;
@@ -102,7 +102,7 @@ void jpl::_parser::_csv::CSVParser::parseData(std::istream* is){
                 i = 0;
             else{
                 if(i+1 > this->tables.getSize())
-                    throw new jpl::_parser::_csv::_exception::CSVParsingException("There's a set of data of " + std::to_string(i+1) + " rows. Max is " + std::to_string(this->tables.getSize()));
+                    throw jpl::_parser::_csv::_exception::CSVParsingException("There's a set of data of " + std::to_string(i+1) + " rows. Max is " + std::to_string(this->tables.getSize()));
                 table = this->tables.get(i++);
             }
         }
@@ -124,7 +124,7 @@ void jpl::_parser::_csv::CSVParser::parseData(std::istream* is){
             if(value.empty()){//Empty value, it checks if column is mandatory
                 jpl::_utils::_collections::AbstractColumn* col = table->getColumn(j);
                 if(col->isMandatory()){
-                    throw new jpl::_parser::_csv::_exception::CSVParsingException(col->getName() + " column is mandatory");
+                    throw jpl::_parser::_csv::_exception::CSVParsingException(col->getName() + " column is mandatory");
                 }
             }
             jpl::_utils::_collections::TableWrapper::setSmartValue(table, table->getTuplesSize()-1, j++, value);
@@ -133,7 +133,7 @@ void jpl::_parser::_csv::CSVParser::parseData(std::istream* is){
             for(size_t iMissCol = j; iMissCol < table->getColumnsSize(); iMissCol++ ){
                 jpl::_utils::_collections::AbstractColumn* col = table->getColumn(iMissCol);
                 if(col->isMandatory()){
-                    throw new jpl::_parser::_csv::_exception::CSVParsingException(col->getName() + " column is mandatory");
+                    throw jpl::_parser::_csv::_exception::CSVParsingException(col->getName() + " column is mandatory");
                 }
             }
         }

@@ -95,7 +95,7 @@
                         unsigned int _err = _error::_GetLastError();
                         switch (_err){
                             case 2:
-                                throw new _exception::FileNotFoundException(pathToFile.c_str());
+                                throw _exception::FileNotFoundException(pathToFile.c_str());
                             break;
 
                             #ifdef __linux__
@@ -103,13 +103,13 @@
                             #elif _WIN32
                                 case 5:
                             #endif
-                                throw new _exception::PermissionException(
+                                throw _exception::PermissionException(
                                     std::string("Permission Needed to open " + pathToFile).c_str() 
                                     );
                             break;
                             
                         default:
-                            throw new _exception::RuntimeException(_error::_GetLastErrorAsString(_err).c_str());
+                            throw _exception::RuntimeException(_error::_GetLastErrorAsString(_err).c_str());
                         
                         }
                     }
@@ -223,6 +223,18 @@
                         file->close();
                         delete file;
                     }
+                }
+
+                inline bool existsFile(const std::string& path){
+                    return std::filesystem::exists(path);
+                }
+
+                inline bool existsFolder(const std::string& path, bool createDir = false){
+                    bool flag = std::filesystem::exists(path) && std::filesystem::is_directory(path);
+                    if (createDir){
+                        std::filesystem::create_directories(path);
+                    }
+                    return flag;
                 }
             }       
         }

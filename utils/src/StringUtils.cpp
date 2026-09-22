@@ -32,7 +32,7 @@ size_t jpl::_utils::_string::getIndexGroupOver(std::string src, std::regex o, st
             return ms.pos;
     }while(i > 0);
     if(i > 0)
-        throw new jpl::_exception::RuntimeException("Amount of opening chars do not correspond to closing one");
+        throw jpl::_exception::RuntimeException("Amount of opening chars do not correspond to closing one");
     return count-1;
 }
 

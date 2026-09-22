@@ -31,8 +31,14 @@ namespace jpl{
                         return this->responseBody;
                     }
 
-                    HTTP_STATUS getStatus() const noexcept{
-                        return std::atoi(this->headers.at(0)->getValue().c_str());
+                    HTTP_STATUS getStatus() const{
+                        std::string httpStatus = this->headers.at(0)->getKey();
+                        int index = httpStatus.find(" ");
+                        if(index == std::string::npos){
+                            throw jpl::_exception::RuntimeException("Error during getting http status code");
+                        }
+                        httpStatus = httpStatus.substr(index);
+                        return std::atoi(httpStatus.c_str());
                     }
 
                     bool isError() const noexcept{
