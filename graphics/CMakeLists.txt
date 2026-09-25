@@ -33,6 +33,7 @@ set(SOURCES
     "src/engine/VAOManager.cpp"
     "src/engine/scene/Scene.cpp"
     "src/engine/scene/SceneManager.cpp"
+        "src/engine/instancerendering/InstanceRendering.cpp"
 )
 
 # --- 4. CREAZIONE TARGET ---

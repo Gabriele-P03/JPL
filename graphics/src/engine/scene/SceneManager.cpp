@@ -42,6 +42,7 @@ void jpl::_graphics::_engine::SceneManager::setNewCurrentSceneByName(const std::
     if(this->currentScene != nullptr){
         scene->onDiscard(this->currentScene);
         if(this->currentScene->isDeleteOnDiscard()){
+            jpl::_logger::info("Deleting scene " + this->currentSceneName);
             this->scenes.erase(this->currentSceneName);
             this->currentScene = nullptr;
             this->currentSceneName = "";

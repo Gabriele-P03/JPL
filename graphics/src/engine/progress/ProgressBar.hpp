@@ -25,18 +25,8 @@ namespace jpl{
 
                 protected:
 
-                    _texture::Texture* background;
-
+                    _texture::Texture* empty, *filled;
                     float progress, max;
-
-                    static constexpr int indicesPerPart[2] = {6,6};
-                    static constexpr int indices[12] = {
-                        0,1,2,  //Empty part
-                        0,1,3,
-
-                        4,5,6,  //Filled part
-                        4,5,7
-                    };
 
                 public:
 
@@ -51,7 +41,7 @@ namespace jpl{
                      * @param h height of the filled part
                      * @throw IllegalArgumentException if either painter or texture are nullptr 
                      */
-                    ProgressBar(_texture::Texture* background, float max);
+                    ProgressBar(_texture::Texture* empty, _texture::Texture* filled, float max);
 
 
                     float getProgress() const noexcept{
@@ -64,17 +54,17 @@ namespace jpl{
                         return this->max;
                     }
 
-                    virtual void bind() const noexcept;
-
                     /**
                      * @param p
                      * @throw IllegalArgumentException if p is less than 0 or greater than max
                      */
                     virtual void setProgress(float p);
 
-                    virtual void render() const noexcept;
+                    virtual void render(jpl::_graphics::_engine::Painter* p, float x, float y, float w, float h) const noexcept;
 
                     ~ProgressBar(){
+                        delete this->filled;
+                        delete this->empty;
                     }
             };
 
