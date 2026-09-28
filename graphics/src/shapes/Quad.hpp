@@ -16,10 +16,10 @@ namespace jpl{
                     static constexpr unsigned int POINTS = 4;
                     static constexpr unsigned int SIZE = POINTS*VALUES_PER_POINTS; 
                     static constexpr float ORTHO_VERTICES[SIZE] = {
-                        0.5f, 0.5f, 0.0f,       1.0f, 1.0f,     //Upper-right
-                        -0.5f, 0.5f, 0.0f,      0.0f, 1.0f,     //Upper-Left
-                        -0.5f, -0.5f, 0.0f,     0.0f, 0.0f,     //Bottom-Left
-                        0.5f, -0.5f, 0.0f,      1.0f, 0.0f      //Bottom-Right
+                        1.0f, 1.0f, 0.0f,       1.0f, 1.0f,     //Upper-right
+                        -1.0f, 1.0f, 0.0f,      0.0f, 1.0f,     //Upper-Left
+                        -1.0f, -1.0f, 0.0f,     0.0f, 0.0f,     //Bottom-Left
+                        1.0f, -1.0f, 0.0f,      1.0f, 0.0f      //Bottom-Right
                     };
 
                     static constexpr unsigned int SIZE_INDICES = 6;

@@ -78,6 +78,7 @@ void jpl::_graphics::_engine::SceneManager::initializeSceneManager(){
     glfwSetMouseButtonCallback(w, &jpl::_graphics::_engine::sceneButtonCallbackWrapper);
     glfwSetKeyCallback(w, jpl::_graphics::_engine::sceneKeyCallbackWrapper);
     glfwSetCharCallback(w, jpl::_graphics::_engine::sceneCharCallbackWrapper);
+    glfwSetScrollCallback(w, jpl::_graphics::_engine::sceneScrollcallback);
 }
 
 jpl::_graphics::_engine::SceneManager::~SceneManager(){
@@ -92,4 +93,7 @@ void jpl::_graphics::_engine::sceneKeyCallbackWrapper(GLFWwindow* window, int ke
 }
 void jpl::_graphics::_engine::sceneCharCallbackWrapper(GLFWwindow* window, unsigned int codepoint){
     jpl::_graphics::_engine::SceneManager::INSTANCE->getCurrentScene()->charCallback(window, codepoint);
+}
+void jpl::_graphics::_engine::sceneScrollcallback(GLFWwindow* window, double xoffset, double yoffset){
+    jpl::_graphics::_engine::SceneManager::INSTANCE->getCurrentScene()->scrollCallback(window, xoffset, yoffset);
 }

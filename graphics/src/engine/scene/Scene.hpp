@@ -44,6 +44,8 @@ namespace jpl{
 
                     virtual void charCallback(GLFWwindow* window, unsigned int codepoint);
 
+                    virtual void scrollCallback(GLFWwindow* window, double xoffset, double yoffset);
+
                     /**
                      * Called by SceneManager when this scene get out of scope
                      * @param newScene new scene which is getting in scope (check nullptr)

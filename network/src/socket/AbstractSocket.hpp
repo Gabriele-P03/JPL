@@ -115,7 +115,7 @@ namespace jpl{
                     virtual void initialize(unsigned short port, unsigned long in_addr, const std::string &address);
 
                     virtual void send(size_t socket, const char* data, size_t len, int flags);
-                    virtual void receive(size_t socket, std::vector<char>** pBuffer, int flags);
+                    virtual void receive(size_t socket, std::vector<char>** pBuffer, size_t len, int flags);
 
                     SSL* getSSL() const noexcept{
                         return this->ssl;

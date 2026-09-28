@@ -54,24 +54,23 @@ void jpl::_network::_socket::AbstractSocket::send(size_t socket, const char* dat
     if(res == -1){
         throw jpl::_exception::SocketException(socket);
     }
-    if(data[len-1] != '\0'){    //checking whereas last char is \0
-        if(::send(socket, "\0", 1, flags) == -1){  //Sending '\0' as term char
-            throw jpl::_exception::SocketException(socket);
-        }
+    if(::send(socket, "\0", 1, flags) == -1){  //Sending '\0' as term char
+        throw jpl::_exception::SocketException(socket);
     }
+    
 }
 
-void jpl::_network::_socket::AbstractSocket::receive(size_t socket, std::vector<char>** pBuffer, int flags){
+void jpl::_network::_socket::AbstractSocket::receive(size_t socket, std::vector<char>** pBuffer, size_t len, int flags){
     std::vector<char>* buffer = *pBuffer;
     while(true){
-        char packet[2048];
-        int read = recv(socket, packet, 2048, flags);
+        char packet[len];
+        int read = recv(socket, packet, len, flags);
         if(read <= 0){
             throw jpl::_exception::SocketException(socket);
         }
         buffer->insert(buffer->end(), packet, packet+read);
         if(!buffer->empty()){
-            if(buffer->back() == '\0'){
+            if(buffer->back() == '\0' || read == len){
                 break;
             }
         }

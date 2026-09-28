@@ -57,6 +57,8 @@ void jpl::_graphics::_engine::Scene::charCallback(GLFWwindow* window, unsigned i
     }
 }
 
+void jpl::_graphics::_engine::Scene::scrollCallback(GLFWwindow* window, double xoffset, double yoffset){}
+
 jpl::_graphics::_engine::Scene::~Scene(){
     this->clickables.clear();
 }
