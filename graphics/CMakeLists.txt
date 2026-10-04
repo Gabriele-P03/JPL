@@ -33,7 +33,8 @@ set(SOURCES
     "src/engine/VAOManager.cpp"
     "src/engine/scene/Scene.cpp"
     "src/engine/scene/SceneManager.cpp"
-        src/engine/raycasting/MousePicking3D.cpp
+    "src/engine/raycasting/MousePicking3D.cpp"
+    "src/engine/contextsync/ContextSync.cpp"
 )
 
 # --- 4. CREAZIONE TARGET ---

@@ -1,15 +1,24 @@
 /**
  * Instance Rendering is a technique which can be used to render thousands times the same object (i.e. the same VBO).
  *
+ * You have to declare your own InstanceRendering template giving the following template args:
+ * K: your position class (i.e. that class which represents position of your objects)
+ * H: K's hashing to use for map
+ * SIZE: amount of faces of your object
+ *
+ * When passing textures via initTexturesArray and addTextures remember that you may pass the same texture for every face as well
+ *
  * Since this is just a framework, it is not able to foresee your uniforms' location; so, you have to declare them as first ones.
  * location 0 to 3 for modelView
  * location 4 for textures' id for top, bottom, left and right side
  * location 5 ""                 " front and back side
  */
+
 #ifndef INSTANCE_RENDERING_GRAPHICS_JPL
 #define INSTANCE_RENDERING_GRAPHICS_JPL
 
 #include <glm/glm.hpp>
+#include <glm/gtc/type_ptr.hpp>
 #include "../VAO.hpp"
 #include "../../shaders/ProgramShaders.hpp"
 #include <jpl/logger/Logger.hpp>
@@ -19,132 +28,118 @@
 
 namespace jpl::_graphics::_engine::ir{
 
-    #pragma pack(push, 1)
-    inline struct InstanceData{
-        glm::mat4 modelMatrix;
-        unsigned int faceIdTexture[6];
-        size_t i;
-    } ID;
-    #pragma pack(pop)
+    struct DrawElementsIndirectCommand {
+        GLuint count;         // amount of indices to render (Cube::SIZE_INDICES)
+        GLuint instanceCount; // instance amount. Written by GPU's compute shader
+        GLuint firstIndex;    // index buffer offset
+        GLint  baseVertex;
+        GLuint baseInstance;
+    };
 
-    template<typename K, typename H>
+    template<typename K, typename H, unsigned int SIZE>
     class Instancer{
+
+        public:
+
+            struct alignas(16) InstanceData{
+                glm::mat4 modelMatrix;
+                std::array<unsigned int, SIZE> faceIdTexture;
+            };
+            static_assert(sizeof(InstanceData)%16 == 0, "sizeof(InstanceData) must be aligned at 16 bytes. This assert should never be failed... Bug?!");
 
         protected:
 
-            std::unordered_map<K, InstanceData, H> map;
-            std::vector<InstanceData> vec;
-            VAO* vao;
-            VBO* vbo;
+            std::array<K, SIZE> normals;
+
+            unsigned int allInstanceSSBO;
+            unsigned int visibleIndicesSSBO;
+            unsigned int atomicCounterBuffer;
+            unsigned int drawCommandBuffer;
+
+            size_t capacity;    //allocated slots in the buffer
+            size_t count;       //slots actually used
+
+            size_t texturesRegistered, maxRegisterTextures;
+            unsigned int widthTexture, heightTexture;
+
+            std::unordered_map<K, size_t, H> map;
+            std::vector<K> vec;
+
+            /**
+            *   In case of addID and removeID, to retrieve data from GPU via glGetBufferData would cause a synchronous stall CPU-GPU.
+            *   In order to prevent this, a mirror of the data passed to the GPU is rest here.
+            *   It is already known that it could be a massive memory usage - regardless sizeof(InstanceData) is few bytes - but you know,
+            *   in rendering, memory is never a massive usage rather than GPU's state changes
+            */
+            std::vector<InstanceData> cpuMirror;
+
+            /*
+             * Original buffer which stores all textures
+             * InstanceData's faceIdTextures cannot be used as original one sice its values can be set to -1 for occlusion culling
+             */
+            std::unordered_map<size_t, std::array<unsigned int, SIZE>> originalTextures;
+
             unsigned int textureArray;
-            jpl::_graphics::_shaders::ProgramShaders* ps;
+            VAO* vao;
+            _shaders::ProgramShaders* ps;
 
         public:
-            Instancer(VAO* vao, jpl::_graphics::_shaders::ProgramShaders* ps) {
-                this->vao = vao;
-                this->ps = ps;
-                this->vao->bind();
-                this->vbo = vao->addVBO();
-                this->vbo->bind();
-                std::size_t stride = sizeof(InstanceData);
-                std::size_t tex1Offset = sizeof(glm::mat4);
-                std::size_t tex2Offset = tex1Offset + (4 * sizeof(unsigned int));
 
-                std::size_t vec4Size = sizeof(glm::vec4);
+            Instancer(jpl::_graphics::_shaders::ProgramShaders* ps, VAO* vao, const std::array<K, SIZE>& normals, unsigned int capacity);
 
-                for (unsigned int i = 0; i < 4; i++) {
-                    glEnableVertexAttribArray(i);
-                    glVertexAttribPointer(i, 4, GL_FLOAT, GL_FALSE, stride, (void*)(i * vec4Size));
-                    glVertexAttribDivisor(i, 1);
-                }
+            /**
+             * Called by addID to extends SSBO by a factor of 2 (duplicate its sizeSS).
+             */
+            virtual void growBuffers();
 
-                glEnableVertexAttribArray(4);
-                glVertexAttribIPointer(4, 4, GL_UNSIGNED_INT, stride, (void*)tex1Offset);
-                glVertexAttribDivisor(4, 1);
+            virtual void occlusionCulling(const K& k, unsigned int objectId);
 
-                glEnableVertexAttribArray(5);
-                glVertexAttribIPointer(5, 2, GL_UNSIGNED_INT, stride, (void*)tex2Offset);
-                glVertexAttribDivisor(5, 1);
+            /**
+             * Initialize texture array via glTexImage3D
+             * @param count how many different textures it has to contain (you have to count even any different faces)
+             * @param w textures' width
+             * @param h textures' height
+            */
+            virtual void initializeTextureArray(unsigned int count, unsigned int w, unsigned int h);
 
-                glBindVertexArray(0);
-                glGenTextures(1, &this->textureArray);
-            }
+            /**
+             * @param id of the object
+             * @oaram textures vector of all textures of the given object
+             * @param faces array of textures' indices (e.g. {0,0,0,0,0,0} means that all the six faces have the same textures - which is passed into textures )
+            */
+            virtual void addTextures(size_t id, std::vector<_texture::Texture*>* textures, const std::array<unsigned int, SIZE> &faces);
 
-            virtual void addTextures(unsigned int w, unsigned int h, std::vector<_texture::Texture*>* textures) {
-                size_t n = textures->size();
-                glBindTexture(GL_TEXTURE_2D_ARRAY, this->textureArray);
-                glTexImage3D(
-                    GL_TEXTURE_2D_ARRAY,
-                    0,
-                    GL_RGBA8,
-                    w,
-                    h,
-                    n,
-                    0,
-                    GL_RGBA,
-                    GL_UNSIGNED_BYTE,
-                    nullptr
-                );
-                for (size_t i = 0; i < n; i++) {
-                    glTexSubImage3D(
-                        GL_TEXTURE_2D_ARRAY, 0, 0, 0, i, w, h, 1,
-                        GL_RGBA, GL_UNSIGNED_BYTE, textures->at(i)->getData()
-                    );
-                }
-                glTexParameteri(GL_TEXTURE_2D_ARRAY, GL_TEXTURE_MIN_FILTER, GL_NEAREST_MIPMAP_NEAREST);
-                glTexParameteri(GL_TEXTURE_2D_ARRAY, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-                glTexParameteri(GL_TEXTURE_2D_ARRAY, GL_TEXTURE_WRAP_S, GL_REPEAT);
-                glTexParameteri(GL_TEXTURE_2D_ARRAY, GL_TEXTURE_WRAP_T, GL_REPEAT);
-                glGenerateMipmap(GL_TEXTURE_2D_ARRAY);
-                glBindTexture(GL_TEXTURE_2D_ARRAY, 0);
-            }
+            /**
+             *  To be called once all textures have been sent via addTextures().
+             *  It unbinds texture array buffer and calls glTexParameteri and glGenerateMipmap
+            */
+            virtual void terminateAddingTextures() noexcept;
 
-            virtual void addID(const _camera::CameraFrustum &cf, const InstanceData &id, const K& k, bool updateVBOFlag = true) {
-                this->map.insert(std::pair<K, InstanceData>(std::move(k), std::move(id)));
-                if (updateVBOFlag)
-                    this->updateVBO(cf);
-            }
+            virtual void addID(unsigned int objectId, const _camera::CameraFrustum &cf, const InstanceData &id, const K& k);
+            virtual void removeID(unsigned int objectId, const _camera::CameraFrustum &cf, const K& k);
 
-            virtual void removeID(const _camera::CameraFrustum &cf, const K& k, bool updateVBOFlag = true) {
-                this->map.erase(k);
-                if (updateVBOFlag)
-                    this->updateVBO(cf);
-            }
-
-            virtual void render() {
+            virtual void render(const glm::mat4 &view, const glm::mat4 &projection){
                 this->ps->use();
                 glActiveTexture(GL_TEXTURE0);
                 glBindTexture(GL_TEXTURE_2D_ARRAY, this->textureArray);
                 glUniform1i(glGetUniformLocation(this->ps->getProgramIndex(), "textureArray"), 0);
                 this->vao->bind();
-                glDrawElementsInstanced(GL_TRIANGLES, jpl::_graphics::_shapes::Cube::SIZE_INDICES, GL_UNSIGNED_INT, nullptr, this->vec.size());
+                glUniformMatrix4fv(glGetUniformLocation(this->ps->getProgramIndex(), "view"), 1, GL_FALSE, glm::value_ptr(view));
+                glUniformMatrix4fv(glGetUniformLocation(this->ps->getProgramIndex(), "projection"), 1, GL_FALSE, glm::value_ptr(projection));
+
+                glBindBufferBase(GL_SHADER_STORAGE_BUFFER, 0, this->allInstanceSSBO);
+                glBindBufferBase(GL_SHADER_STORAGE_BUFFER, 1, this->visibleIndicesSSBO);
+                glBindBuffer(GL_DRAW_INDIRECT_BUFFER, this->drawCommandBuffer);
+                GLuint instanceCountValue = static_cast<GLuint>(this->count);
+                glBufferSubData(GL_DRAW_INDIRECT_BUFFER, offsetof(DrawElementsIndirectCommand, instanceCount), sizeof(GLuint), &instanceCountValue);
+
+                glDrawElementsIndirect(GL_TRIANGLES, GL_UNSIGNED_INT, nullptr);
             }
 
-            /**
-             * Called by addID and removeID both to update VBO's vertices
-             */
-            virtual void updateVBO(const _camera::CameraFrustum &cf) {
-                    this->vao->bind();
-                    this->vbo->bind();
-                    this->vec.clear();
-                    for (auto& [k, id] : this->map) {
-                        glm::vec3 blockPos = glm::vec3(id.modelMatrix[3]);
-                        if (cf.isPointVisible(blockPos, 0.86f)) {
-                            // block is within camera
-                            this->vec.push_back(id);
-                        }
-                    }
-                    glBufferData(GL_ARRAY_BUFFER, this->vec.size()*sizeof(InstanceData), this->vec.data(), GL_DYNAMIC_DRAW);
-                }
-
-            /**
-             * Clear map and vec
-             */
-            virtual void clear() {
-                this->map.clear();
-                this->vec.clear();
-            }
+            virtual ~Instancer() = default;
     };
 }
+
+#include "InstanceRendering.tpp"
 
 #endif

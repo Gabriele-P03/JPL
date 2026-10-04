@@ -27,5 +27,5 @@ void jpl::_graphics::_engine::ProgressBar::setProgress(float i){
 
 void jpl::_graphics::_engine::ProgressBar::render(jpl::_graphics::_engine::Painter* p, float x, float y, float w, float h) const noexcept{
     p->render(this->empty, x,y,w,h);
-    p->render(this->filled, x+2.0f, y+2.0f, w-4.0f, h-4.0f);
+    p->render(this->filled, x+2.0f, y+2.0f, w*(this->progress/this->max)-4.0f, h-4.0f);
 }

@@ -52,6 +52,11 @@ namespace jpl{
                      */
                     virtual void onDiscard(Scene* &newScene) = 0;
 
+                    /**
+                     * Called by SceneManager when this scene has to be freed
+                     */
+                    virtual void onDelete() = 0;
+
                     virtual void render() = 0;
 
                     bool isDeleteOnDiscard() const noexcept {

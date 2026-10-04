@@ -9,6 +9,7 @@ jpl::_graphics::_engine::_text::TextRender::TextRender(jpl::_graphics::_shaders:
     this->focused = false;
     this->ps = ps;
     this->ps->use();
+    this->setRGBA(1.0f, 1.0f, 1.0f, 1.0f);
     glGenVertexArrays(1, &this->vao);
     glGenBuffers(1, &this->vbo);
     glBindVertexArray(this->vao);
@@ -131,7 +132,6 @@ void jpl::_graphics::_engine::_text::TextRender::render(jpl::_graphics::_engine:
     glGetIntegerv(GL_CURRENT_PROGRAM, &x);
     int i = glGetUniformLocation(x, "projection");
     glUniformMatrix4fv(i, 1, GL_FALSE, glm::value_ptr(jpl::_graphics::_metrics::ortho));
-    i = glGetUniformLocation(x, "colors");
     glUniform4fv(2, 1, glm::value_ptr(glm::vec4(this->r, this->g, this->b, this->a)));
     glDrawElements(GL_TRIANGLES, 6 * this->charsToRender, GL_UNSIGNED_INT, 0);
 }

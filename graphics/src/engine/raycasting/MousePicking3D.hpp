@@ -44,7 +44,7 @@ namespace jpl::_graphics::_engine::_raycasting {
                 );
                 T res = (world.*blockGetter)(blockpos);
                 if (res != toAvoid) {
-                    return MP3DResolverResult{res, glm::ivec3(checkPos)};
+                    return MP3DResolverResult{res, glm::ivec3(blockpos)};
                 }
             }
             return MP3DResolverResult{toAvoid, glm::ivec3(ray.origin)};
