@@ -60,6 +60,20 @@ namespace jpl{
                     }
 
                     virtual void render(_texture::Texture* texture, float x, float y, float w, float h) const;
+
+                    /**
+                     * Render a quad with given dimension and colors
+                     * @param psIndex ProgramShader index
+                     * @param x
+                     * @param y
+                     * @param w
+                     * @param h
+                     * @param r
+                     * @param g
+                     * @param b
+                     * @param a
+                     */
+                    virtual void render(unsigned long psIndex, float x, float y, float w, float h, float r, float g, float b, float a) const;
             };
 
 

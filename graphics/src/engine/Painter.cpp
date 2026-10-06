@@ -50,3 +50,19 @@ void jpl::_graphics::_engine::Painter::render(jpl::_graphics::_texture::Texture*
         glDrawArrays(GL_TRIANGLES, 0, this->valuesPerPoint);
     }
 }
+
+void jpl::_graphics::_engine::Painter::render(unsigned long psIndex, float x, float y, float w, float h, float r, float g, float b, float a) const {
+    glBindTexture(GL_TEXTURE_2D, 0);    //Disabling texture
+    glm::mat4 model = glm::mat4(1.0f);
+    model = glm::translate(model, glm::vec3(x, y, 0.0f));
+    model = glm::scale(model, glm::vec3(w/2.0f, h/2.0f, 1.0f));
+    model = glm::translate(model, glm::vec3(1.0f, 1.0f, 0.0f));
+    glUniformMatrix4fv(2, 1, GL_FALSE, glm::value_ptr(model));
+    glUniformMatrix4fv(4, 1, GL_FALSE, glm::value_ptr(jpl::_graphics::_metrics::ortho));
+    glUniform4f(glGetUniformLocation(psIndex, "colors"), r, g, b, a);
+    if(this->sizeIndices > 0){
+        glDrawElements(GL_TRIANGLES, this->sizeIndices, GL_UNSIGNED_INT, 0);
+    }else{
+        glDrawArrays(GL_TRIANGLES, 0, this->valuesPerPoint);
+    }
+}
