@@ -18,7 +18,6 @@ set(SOURCES
     "src/shaders/ProgramShaders.cpp"
     "src/shaders/ProgramManager.cpp"
     "src/mesh/Mesh.cpp"
-    "src/mesh/MeshLoader.cpp"
     "src/input/Keyboard.cpp"
     "src/input/Mouse.cpp"
     "src/engine/Painter.cpp"
@@ -35,6 +34,10 @@ set(SOURCES
     "src/engine/scene/SceneManager.cpp"
     "src/engine/raycasting/MousePicking3D.cpp"
     "src/engine/contextsync/ContextSync.cpp"
+    "src/mesh/Animator.cpp"
+        "src/mesh/Model.cpp"
+        "src/mesh/Morph.cpp"
+        "src/mesh/GltfLoader.cpp"
 )
 
 # --- 4. CREAZIONE TARGET ---
@@ -53,7 +56,8 @@ set_target_properties(graphicsJPL_sh PROPERTIES OUTPUT_NAME "graphicsJPL" SOVERS
 set(COMMON_LIBS 
     OpenGL::GL 
     GLEW::GLEW 
-    glfw 
+    glfw
+    fastgltf
     parserJPL
     loggerJPL
 )

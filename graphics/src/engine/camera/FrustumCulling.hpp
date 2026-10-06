@@ -49,6 +49,18 @@ namespace jpl::_graphics::_engine::_camera {
             }
             return true;
         }
+        bool isAABBVisibile(const glm::vec3& min, const glm::vec3& max){
+            for (int i = 0; i < 6; ++i) {
+                glm::vec3 positive(
+                    planes[i].normal.x >= 0 ? max.x : min.x,
+                    planes[i].normal.y >= 0 ? max.y : min.y,
+                    planes[i].normal.z >= 0 ? max.z : min.z
+                );
+                if (planes[i].getSignedDistance(positive) < 0.0f)
+                    return false; // il vertice più "favorevole" è comunque fuori
+            }
+            return true;
+        }
     };
 
 }
