@@ -36,6 +36,9 @@ set(SOURCES
         "src/mesh/Model.cpp"
         "src/mesh/Morph.cpp"
         "src/mesh/GltfLoader.cpp"
+        "src/engine/text/FontLoader.cpp"
+        "src/engine/text/TextRender.cpp"
+        "src/engine/text/TextInput.cpp"
 )
 
 # --- 4. CREAZIONE TARGET ---

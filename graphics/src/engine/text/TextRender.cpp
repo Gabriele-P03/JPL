@@ -1,15 +1,12 @@
-#include "TextRender.h"
+#include "TextRender.hpp"
 #include <algorithm>
 #include <cmath>
 #include <cstddef>
 
-// ---------------------------------------------------------------- init
-
-bool TextRender::init(const std::string& vertPath, const std::string& fragPath) {
-    if (!shader_.loadFromFiles(vertPath, fragPath)) return false;
-
-    uScreenLoc_ = shader_.uniform("uScreen");
-    uAtlasLoc_  = shader_.uniform("uAtlas");
+void jpl::_graphics::_engine::_text::TextRender::init(_graphics::_shaders::ProgramShaders* psText) {
+    this->ps = psText;
+    uScreenLoc_ = glGetUniformLocation(psText->getProgramIndex(), "uScreen");
+    uAtlasLoc_  = glGetUniformLocation(psText->getProgramIndex(),"uAtlas");
 
     // Quad unitario come triangle strip
     const float quad[] = { 0,0,  1,0,  0,1,  1,1 };
@@ -44,27 +41,26 @@ bool TextRender::init(const std::string& vertPath, const std::string& fragPath) 
     glBindBuffer(GL_ARRAY_BUFFER, instVbo_);
     glBufferData(GL_ARRAY_BUFFER, instCapacity_ * sizeof(GlyphInstance), nullptr, GL_STREAM_DRAW);
     glBindBuffer(GL_ARRAY_BUFFER, 0);
-    return true;
 }
 
-void TextRender::shutdown() {
-    if (instVbo_) glDeleteBuffers(1, &instVbo_);
-    if (quadVbo_) glDeleteBuffers(1, &quadVbo_);
-    if (vao_)     glDeleteVertexArrays(1, &vao_);
-    shader_.destroy();
+void jpl::_graphics::_engine::_text::TextRender::shutdown() {
+    if (instVbo_)
+        glDeleteBuffers(1, &instVbo_);
+    if (quadVbo_)
+        glDeleteBuffers(1, &quadVbo_);
+    if (vao_)
+        glDeleteVertexArrays(1, &vao_);
     instVbo_ = quadVbo_ = vao_ = 0;
 }
 
-// ---------------------------------------------------------------- helpers
 
-const Glyph& TextRender::glyphFor(unsigned char c) const {
-    const Glyph& g = font_->glyphs[c];
-    return g.valid ? g : font_->glyphs[(unsigned char)'?'];
+const jpl::_graphics::_engine::_text::Glyph& jpl::_graphics::_engine::_text::TextRender::glyphFor(const uint32_t c) const {
+    const Glyph& g = font_->glyphs.at(c);
+    return g.valid ? g : font_->glyphs.at('?');
 }
 
-// ---------------------------------------------------------------- accodamento
 
-void TextRender::draw(std::string_view s, float x, float y, float scale, Color c) {
+void jpl::_graphics::_engine::_text::TextRender::draw(std::string_view s, float x, float y, float scale, glm::vec4 c) {
     if (!font_) return;
     const float lh = font_->lineHeight * scale;
     float cx = x, cy = y;
@@ -79,14 +75,14 @@ void TextRender::draw(std::string_view s, float x, float y, float scale, Color c
             gi.size[0] = g.w * scale;
             gi.size[1] = g.h * scale;
             gi.uv[0] = g.u0; gi.uv[1] = g.v0; gi.uv[2] = g.u1; gi.uv[3] = g.v1;
-            gi.color[0] = c.r; gi.color[1] = c.g; gi.color[2] = c.b; gi.color[3] = c.a;
+            gi.color[0] = c.x; gi.color[1] = c.y; gi.color[2] = c.z; gi.color[3] = c.w;
             instances_.push_back(gi);
         }
         cx += g.advance * scale;
     }
 }
 
-Vec2 TextRender::measure(std::string_view s, float scale) const {
+glm::vec2 jpl::_graphics::_engine::_text::TextRender::measure(std::string_view s, float scale) const {
     if (!font_) return {};
     float w = 0, maxW = 0;
     int lines = 1;
@@ -98,79 +94,71 @@ Vec2 TextRender::measure(std::string_view s, float scale) const {
     return { maxW, lines * font_->lineHeight * scale };
 }
 
-// ---------------------------------------------------------------- layout / wrap
 
-TextLayout TextRender::layout(std::string_view s, float maxWidth, float scale) const {
+jpl::_graphics::_engine::_text::TextLayout jpl::_graphics::_engine::_text::TextRender::layout(std::string_view s, float maxWidth, float scale) const {
     TextLayout L;
     L.scale = scale;
-    if (!font_) return L;
+    if (!font_)
+        return L;
 
     constexpr size_t npos = (size_t)-1;
     size_t start = 0, i = 0, lastSpace = npos;
     float  w = 0, wAtSpace = 0;
 
-    auto push = [&](size_t b, size_t e, float width) {
-        L.lines.push_back({ b, e, width });
-    };
+    auto push = [&](size_t b, size_t e, float width) {L.lines.push_back({ b, e, width });};
 
     while (i < s.size()) {
         unsigned char c = s[i];
-
         if (c == '\n') {
             push(start, i, w);
             start = i = i + 1;
             w = 0; lastSpace = npos;
             continue;
         }
-
         float adv = glyphFor(c).advance * scale;
-
-        // Overflow (gli spazi non provocano a capo: restano a fine riga, invisibili)
+        // Overflow (spaces does not cause new-line: kept at the end of the line as transparent)
         if (maxWidth > 0 && c != ' ' && w + adv > maxWidth && i > start) {
-            if (lastSpace != npos) {          // spezza all'ultimo spazio
+            if (lastSpace != npos) {
                 push(start, lastSpace, wAtSpace);
-                start = i = lastSpace + 1;    // salta lo spazio e riparti da li'
-            } else {                          // parola piu' lunga della riga: spezza il carattere
+                start = i = lastSpace + 1;
+            } else {
                 push(start, i, w);
                 start = i;
             }
             w = 0; lastSpace = npos;
             continue;
         }
-
         if (c == ' ') { lastSpace = i; wAtSpace = w; }
         w += adv;
         ++i;
     }
-    push(start, s.size(), w);                 // ultima riga
+    push(start, s.size(), w);
 
     L.height = L.lines.size() * font_->lineHeight * scale;
     return L;
 }
 
-void TextRender::drawLayout(std::string_view s, const TextLayout& L,
-                            const Rect& area, float scrollY, Color c) {
+void jpl::_graphics::_engine::_text::TextRender::drawLayout(std::string_view s, const TextLayout& L,
+                                        const glm::vec4& area, float scrollY, glm::vec4 c) {
     if (!font_) return;
     const float lh = font_->lineHeight * L.scale;
 
     for (size_t k = 0; k < L.lines.size(); ++k) {
         float y = area.y + k * lh - scrollY;
-        if (y + lh < area.y)      continue;   // sopra l'area
-        if (y > area.y + area.h)  break;      // sotto l'area: le successive sono ancora piu' giu'
+        if (y + lh < area.y)      continue;
+        if (y > area.y + area.w)  break;
         const auto& ln = L.lines[k];
         draw(s.substr(ln.begin, ln.end - ln.begin), area.x, y, L.scale, c);
     }
 }
 
-// ---------------------------------------------------------------- flush
 
-void TextRender::flush(const Rect* clip) {
+void jpl::_graphics::_engine::_text::TextRender::flush(const glm::vec4* clip) {
     if (instances_.empty() || !font_) { instances_.clear(); return; }
 
-    // Capacita' crescente (raddoppio)
     while (instCapacity_ < instances_.size()) instCapacity_ *= 2;
 
-    shader_.use();
+    this->ps->use();
     glUniform2f(uScreenLoc_, (float)screenW_, (float)screenH_);
     glActiveTexture(GL_TEXTURE0);
     glBindTexture(GL_TEXTURE_2D, font_->texture);
@@ -183,9 +171,9 @@ void TextRender::flush(const Rect* clip) {
     if (clip) {
         // GL: origine dello scissor in basso a sinistra -> inverti la y
         GLint   sx = (GLint)std::floor(clip->x);
-        GLint   sy = (GLint)std::floor(screenH_ - (clip->y + clip->h));
-        GLsizei sw = (GLsizei)std::ceil(clip->w);
-        GLsizei sh = (GLsizei)std::ceil(clip->h);
+        GLint   sy = (GLint)std::floor(screenH_ - (clip->y + clip->w));
+        GLsizei sw = (GLsizei)std::ceil(clip->z);
+        GLsizei sh = (GLsizei)std::ceil(clip->w);
         glEnable(GL_SCISSOR_TEST);
         glScissor(sx, sy, sw, sh);
     }
@@ -197,10 +185,65 @@ void TextRender::flush(const Rect* clip) {
     glBufferData(GL_ARRAY_BUFFER, instCapacity_ * sizeof(GlyphInstance), nullptr, GL_STREAM_DRAW);
     glBufferSubData(GL_ARRAY_BUFFER, 0, instances_.size() * sizeof(GlyphInstance), instances_.data());
 
-    glDrawArraysInstanced(GL_TRIANGLE_STRIP, 0, 4, (GLsizei)instances_.size());
+    glDrawArraysInstanced(GL_TRIANGLE_STRIP, 0, 4, static_cast<GLsizei>(instances_.size()));
 
     glBindVertexArray(0);
     if (clip) glDisable(GL_SCISSOR_TEST);
 
     instances_.clear();
+}
+
+float jpl::_graphics::_engine::_text::TextRender::capCenterOffset(float scale) const {
+    if (!font_)
+        return 0.0f;
+    const Glyph& H = font_->glyphs.at('H');
+    if (!H.valid)
+        return font_->lineHeight * 0.5f * scale;   // fallback: centro della riga
+    return (H.yoff + H.h * 0.5f) * scale;
+}
+
+void jpl::_graphics::_engine::_text::TextRender::fillRect(const glm::vec4& r, const glm::vec4& c) {
+    if (!font_ || r.z <= 0 || r.w <= 0) return;
+    GlyphInstance gi;
+    gi.pos[0]  = r.x;  gi.pos[1]  = r.y;
+    gi.size[0] = r.z;  gi.size[1] = r.w;
+    gi.uv[0] = gi.uv[2] = font_->whiteU;
+    gi.uv[1] = gi.uv[3] = font_->whiteV;
+    gi.color[0] = c.x; gi.color[1] = c.y; gi.color[2] = c.z; gi.color[3] = c.w;
+    instances_.push_back(gi);
+}
+
+//This function is declared inside this source file only
+uint32_t decodeUtf8(std::string_view s, size_t& i) {
+    unsigned char c = (unsigned char)s[i];
+    int len; uint32_t cp;
+    if      (c < 0x80)           { ++i; return c; }
+    if ((c & 0xE0) == 0xC0) { len = 2; cp = c & 0x1F; }
+    else if ((c & 0xF0) == 0xE0) { len = 3; cp = c & 0x0F; }
+    else if ((c & 0xF8) == 0xF0) { len = 4; cp = c & 0x07; }
+    else                         { ++i; return 0xFFFD; }
+
+    if (i + len > s.size()) { ++i; return 0xFFFD; }
+    for (int k = 1; k < len; ++k) {
+        unsigned char cc = (unsigned char)s[i + k];
+        if ((cc & 0xC0) != 0x80) { ++i; return 0xFFFD; }
+        cp = (cp << 6) | (cc & 0x3F);
+    }
+    i += len;
+    return cp;
+}
+
+size_t jpl::_graphics::_engine::_text::TextRender::indexAtX(std::string_view s, float x, float scale) const {
+    if (!font_ || x <= 0) return 0;
+    float w = 0;
+    size_t i = 0;
+    while (i < s.size()) {
+        size_t next = i;
+        uint32_t cp = decodeUtf8(s, next);
+        float adv = glyphFor(cp).advance * scale;
+        if (x < w + adv * 0.5f) return i;
+        w += adv;
+        i = next;
+    }
+    return s.size();
 }

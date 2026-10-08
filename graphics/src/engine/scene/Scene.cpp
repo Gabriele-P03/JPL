@@ -1,5 +1,7 @@
 #include "Scene.hpp"
 
+#include "engine/text/TextInput.hpp"
+
 jpl::_graphics::_engine::Scene::Scene(){
     this->focusedElement = nullptr;
     this->setDeleteOnDiscard(false);
@@ -16,9 +18,9 @@ void jpl::_graphics::_engine::Scene::clickCallback(GLFWwindow* window, int butto
         mouseY *= ((float)jpl::_graphics::_metrics::monitorHeight/(float)jpl::_graphics::_metrics::height);
         jpl::_logger::debug("Looking for focused element");
         for( long i = 0; i < this->clickables.size(); i++ ){
-            jpl::_graphics::_engine::IClickable* cr = this->clickables.at(i);
-            if( mouseX >= cr->getX() && mouseX <= cr->getX()+cr->getW() && mouseY >= cr->getY() && mouseY <= cr->getY()+cr->getH()  ){
+            if(IClickable* cr = this->clickables.at(i); mouseX >= cr->getX() && mouseX <= cr->getX()+cr->getW() && mouseY >= cr->getY() && mouseY <= cr->getY()+cr->getH()  ){
                 cr->click();
+                cr->setFocus(true);
                 jpl::_logger::debug("New focused element");
                 this->focusedElement = cr;
                 return;
@@ -32,13 +34,8 @@ void jpl::_graphics::_engine::Scene::clickCallback(GLFWwindow* window, int butto
 void jpl::_graphics::_engine::Scene::keyCallback(GLFWwindow* window, int key, int scancode, int action, int mods){
     if(this->focusedElement != nullptr && action != GLFW_RELEASE){
         if(key == GLFW_KEY_BACKSPACE){
-            jpl::_graphics::_engine::ITextEditable* cr = dynamic_cast<jpl::_graphics::_engine::ITextEditable*>(this->focusedElement);
-            if(cr != nullptr){
-                std::string tmp = cr->getText();
-                if (!tmp.empty()){
-                    tmp.pop_back();
-                    cr->setText(tmp);
-                }
+            if(const auto cr = dynamic_cast<_input::TextInput*>(this->focusedElement); cr != nullptr){
+                cr->onKey(window, key, scancode, action);
             }
         }
     }
@@ -47,11 +44,8 @@ void jpl::_graphics::_engine::Scene::keyCallback(GLFWwindow* window, int key, in
 void jpl::_graphics::_engine::Scene::charCallback(GLFWwindow* window, unsigned int codepoint){
     if(this->focusedElement != nullptr){
         if(codepoint >= 32 && codepoint <= 126){
-            jpl::_graphics::_engine::ITextEditable* cr = dynamic_cast<jpl::_graphics::_engine::ITextEditable*>(this->focusedElement);
-            if(cr != nullptr){
-                std::string tmp = cr->getText();
-                tmp += (char)codepoint;
-                cr->setText(tmp);
+            if(const auto cr = dynamic_cast<_input::TextInput*>(this->focusedElement); cr != nullptr){
+                cr->onChar(codepoint);
             }
         }
     }

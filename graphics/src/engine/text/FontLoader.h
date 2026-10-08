@@ -1,10 +1,20 @@
 #pragma once
+
+#include <string>
+
 #include "Font.h"
 
-// Carica un .ttf con stb_truetype, genera l'atlas (GL_R8) e riempie `out`.
-// Copre i caratteri ASCII 32..127 (96 glifi).
-// pixelHeight: altezza in pixel a cui viene rasterizzato il font.
-// Ritorna false se il file manca o se l'atlas e' troppo piccolo.
-bool loadFontTTF(Font& out, const char* path, float pixelHeight, int atlasSize = 512);
+namespace jpl::_graphics::_engine::_text {
 
-void destroyFont(Font& f);
+    /**
+     * Load TTF from path
+     * @param out
+     * @param path
+     * @param pixelHeight
+     * @param atlasSize
+     */
+    extern void loadFontTTF(jpl::_graphics::_engine::_text::Font& out, const std::string &path, float pixelHeight, int atlasSize = 512);
+
+    extern void destroyFont(jpl::_graphics::_engine::_text::Font& f);
+}
+

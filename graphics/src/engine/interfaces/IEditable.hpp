@@ -9,7 +9,8 @@ namespace jpl{
         namespace _engine{
 
             class IEditable{
-
+            public:
+                virtual ~IEditable() = default;
             };
             
         }

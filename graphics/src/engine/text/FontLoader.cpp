@@ -1,24 +1,23 @@
 #include "FontLoader.h"
 
 #define STB_TRUETYPE_IMPLEMENTATION
-#include "stb_truetype.h"   // https://github.com/nothings/stb
+#include <stb_truetype.h>
 
 #include <cstdio>
 #include <fstream>
 #include <iterator>
 #include <vector>
+#include <jpl/utils/FilesUtils.hpp>
 
-bool loadFontTTF(Font& out, const char* path, float pixelHeight, int atlasSize) {
-    // 1. Leggi il file .ttf in memoria
-    std::ifstream f(path, std::ios::binary);
-    if (!f) {
-        std::fprintf(stderr, "FontLoader: impossibile aprire '%s'\n", path);
-        return false;
-    }
-    std::vector<unsigned char> ttf((std::istreambuf_iterator<char>(f)),
+void loadFontTTF(jpl::_graphics::_engine::_text::Font& out, const std::string &path, float pixelHeight, int atlasSize) {
+
+    std::fstream file;
+    std::fstream* file_ptr = &file;
+    jpl::_utils::_files::getLocalFile(path, std::ios_base::binary, &file_ptr);
+    std::vector<unsigned char> ttf((std::istreambuf_iterator<char>(file)),
                                     std::istreambuf_iterator<char>());
 
-    // 2. Rasterizza i glifi in un bitmap 8 bit (1 byte per pixel, origine in alto)
+    // Rasterize glyphs into an 8-bit bitmap (1 byte per pixel, top-left origin)
     constexpr int kFirst = 32, kCount = 96;
     std::vector<unsigned char> bitmap(atlasSize * atlasSize);
     stbtt_bakedchar baked[kCount];
@@ -27,13 +26,17 @@ bool loadFontTTF(Font& out, const char* path, float pixelHeight, int atlasSize) 
                                    bitmap.data(), atlasSize, atlasSize,
                                    kFirst, kCount, baked);
     if (res <= 0) {   // <= 0: non tutti i glifi stanno nell'atlas
-        std::fprintf(stderr, "FontLoader: atlas %dx%d troppo piccolo per '%s' a %.0fpx\n",
-                     atlasSize, atlasSize, path, pixelHeight);
-        return false;
+        std::string msg = std::format("FontLoader: atlas {}x{} troppo piccolo per '{}' a {}px",atlasSize, atlasSize, path.c_str(), std::to_string(pixelHeight).c_str());
+        throw jpl::_exception::RuntimeException(msg);
     }
 
-    // 3. Metriche verticali (stb_truetype da' gli offset rispetto alla baseline,
-    //    il nostro Glyph li vuole rispetto all'alto della riga)
+    for (int y = atlasSize - 2; y < atlasSize; ++y)
+        for (int x = atlasSize - 2; x < atlasSize; ++x)
+            bitmap[y * atlasSize + x] = 255;
+    out.whiteU = (atlasSize - 1) / float(atlasSize);
+    out.whiteV = (atlasSize - 1) / float(atlasSize);
+
+    // stb_truetype gives offsets relative to the baseline, but Glyph need them relative to the top of the line
     stbtt_fontinfo info;
     stbtt_InitFont(&info, ttf.data(), stbtt_GetFontOffsetForIndex(ttf.data(), 0));
     float scale = stbtt_ScaleForPixelHeight(&info, pixelHeight);
@@ -43,11 +46,11 @@ bool loadFontTTF(Font& out, const char* path, float pixelHeight, int atlasSize) 
 
     out.lineHeight = (asc - desc + gap) * scale;
 
-    // 4. Riempi la tabella glifi
+    // 4. Filling glyphs
     const float inv = 1.0f / atlasSize;
     for (int i = 0; i < kCount; ++i) {
         const stbtt_bakedchar& b = baked[i];
-        Glyph& g = out.glyphs[kFirst + i];
+        jpl::_graphics::_engine::_text::Glyph& g = out.glyphs[kFirst + i];
         g.u0 = b.x0 * inv;  g.v0 = b.y0 * inv;
         g.u1 = b.x1 * inv;  g.v1 = b.y1 * inv;
         g.w  = float(b.x1 - b.x0);
@@ -58,7 +61,7 @@ bool loadFontTTF(Font& out, const char* path, float pixelHeight, int atlasSize) 
         g.valid   = true;              // lo spazio ha w = h = 0: draw() lo salta ma avanza
     }
 
-    // 5. Carica l'atlas su GPU come texture a canale singolo
+    // Load atlas as single-channel texture
     glGenTextures(1, &out.texture);
     glBindTexture(GL_TEXTURE_2D, out.texture);
     glPixelStorei(GL_UNPACK_ALIGNMENT, 1);   // righe da 1 byte: serve per GL_RED
@@ -68,10 +71,10 @@ bool loadFontTTF(Font& out, const char* path, float pixelHeight, int atlasSize) 
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
-    return true;
 }
 
-void destroyFont(Font& f) {
-    if (f.texture) glDeleteTextures(1, &f.texture);
+void destroyFont(jpl::_graphics::_engine::_text::Font& f) {
+    if (f.texture)
+        glDeleteTextures(1, &f.texture);
     f.texture = 0;
 }

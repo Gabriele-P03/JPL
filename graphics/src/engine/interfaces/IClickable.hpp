@@ -7,26 +7,35 @@
 #define ICLICKABLE_GRAPHICS_JPL
 
 #include <functional>
-#include "IRenderable.hpp"
 
 
 namespace jpl{
     namespace _graphics{
         namespace _engine{
 
-            class IClickable : public IRenderable{
+            class IClickable{
 
                 protected:
-
-                    IClickable(float x, float y, float w, float h) : IRenderable(x,y,w,h){}
+                    float x,y,w,h;
+                    bool focus;
+                    IClickable(float x, float y, float w, float h) : x(x), y(y), w(w), h(h), focus(false){}
 
                     std::function<void()> f;
 
                 public:
+                    virtual ~IClickable() = default;
 
-                    virtual void setOnClick( std::function<void()> f ) noexcept{
-                        this->f = std::move(f);
+                    float getX(){ return x; }
+                    float getY(){ return y; }
+                    float getW(){ return w; }
+                    float getH(){ return h; }
+
+                    virtual void setOnClick( std::function<void()> f_ ) noexcept{
+                        this->f = std::move(f_);
                     }
+
+                    virtual void setFocus( bool focus_ ){ this->focus = focus_; }
+                    bool isFocused() const noexcept{ return this->focus; }
 
                     virtual void click(){
                         this->f();
