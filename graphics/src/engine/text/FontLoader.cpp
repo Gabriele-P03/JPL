@@ -9,11 +9,11 @@
 #include <vector>
 #include <jpl/utils/FilesUtils.hpp>
 
-void loadFontTTF(jpl::_graphics::_engine::_text::Font& out, const std::string &path, float pixelHeight, int atlasSize) {
+void jpl::_graphics::_engine::_text::loadFontTTF(jpl::_graphics::_engine::_text::Font& out, const std::string &path, float pixelHeight, int atlasSize) {
 
     std::fstream file;
     std::fstream* file_ptr = &file;
-    jpl::_utils::_files::getLocalFile(path, std::ios_base::binary, &file_ptr);
+    jpl::_utils::_files::getInternalFile(path, std::ios_base::in | std::ios_base::binary, &file_ptr);
     std::vector<unsigned char> ttf((std::istreambuf_iterator<char>(file)),
                                     std::istreambuf_iterator<char>());
 

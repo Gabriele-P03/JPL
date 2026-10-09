@@ -5,7 +5,6 @@
 #include <vector>
 #include <glm/glm.hpp>
 
-#include "../interfaces/ITextEditable.hpp"
 #include "../../shaders/ProgramShaders.hpp"
 
 namespace jpl::_graphics::_engine::_text {
@@ -16,14 +15,13 @@ namespace jpl::_graphics::_engine::_text {
         float scale  = 1;
     };
 
-    class TextRender : public _graphics::_engine::ITextEditable {
+    class TextRender {
     public:
         TextRender() = default;
         void init(_graphics::_shaders::ProgramShaders* psText);
         void shutdown();
 
         void setFont(const Font* font) { font_ = font; }
-        void setScreenSize(int w, int h) { screenW_ = w; screenH_ = h; }
 
         void draw(std::string_view s, float x, float y, float scale, glm::vec4 c);
 
@@ -74,10 +72,9 @@ namespace jpl::_graphics::_engine::_text {
         const Glyph& glyphFor(uint32_t c) const;
 
         const Font* font_ = nullptr;
-        int screenW_ = 1, screenH_ = 1;
 
         std::vector<GlyphInstance> instances_;
-        _graphics::_shaders::ProgramShaders* ps;
+        _graphics::_shaders::ProgramShaders* ps = nullptr;
         GLuint vao_ = 0, quadVbo_ = 0, instVbo_ = 0;
         GLint  uScreenLoc_ = -1, uAtlasLoc_ = -1;
         size_t instCapacity_ = 0;

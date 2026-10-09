@@ -67,7 +67,7 @@ for %%d in (%builds%) do (
             rmdir /s /q build
             mkdir build
             cd build
-            cmake -S .. -B . -G "MinGW Makefiles" >nul
+            cmake -S .. -B . -G "MinGW Makefiles" -DCMAKE_BUILD_TYPE=Debug >nul
             %makePath%
             
             echo Coping static library lib%%iJPL.a %libraryPath%\

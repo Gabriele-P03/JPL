@@ -1,6 +1,6 @@
 #include "Scene.hpp"
 
-#include "engine/text/TextInput.hpp"
+#include "../text/TextInput.hpp"
 
 jpl::_graphics::_engine::Scene::Scene(){
     this->focusedElement = nullptr;
@@ -16,12 +16,21 @@ void jpl::_graphics::_engine::Scene::clickCallback(GLFWwindow* window, int butto
         mouseY =  ((float)jpl::_graphics::_metrics::height)-mouseY;
         mouseX *= ((float)jpl::_graphics::_metrics::monitorWidth/(float)jpl::_graphics::_metrics::width);
         mouseY *= ((float)jpl::_graphics::_metrics::monitorHeight/(float)jpl::_graphics::_metrics::height);
-        jpl::_logger::debug("Looking for focused element");
         for( long i = 0; i < this->clickables.size(); i++ ){
+            if (this->focusedElement != nullptr) {
+                this->focusedElement->release();
+                if (auto* ti = dynamic_cast<_input::TextInput*>(this->focusedElement); ti != nullptr) {
+                    ti->onMouseUp();
+                }
+            }
             if(IClickable* cr = this->clickables.at(i); mouseX >= cr->getX() && mouseX <= cr->getX()+cr->getW() && mouseY >= cr->getY() && mouseY <= cr->getY()+cr->getH()  ){
+                jpl::_logger::info("New element focused");
+                if (auto* ti = dynamic_cast<_input::TextInput*>(cr); ti != nullptr) {
+                    ti->onMouseDown(this->tr, mouseX, mouseY, false);
+                    jpl::_logger::info("Which is a textinput");
+                }
                 cr->click();
                 cr->setFocus(true);
-                jpl::_logger::debug("New focused element");
                 this->focusedElement = cr;
                 return;
             }

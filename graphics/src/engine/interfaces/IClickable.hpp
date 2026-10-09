@@ -20,7 +20,7 @@ namespace jpl{
                     bool focus;
                     IClickable(float x, float y, float w, float h) : x(x), y(y), w(w), h(h), focus(false){}
 
-                    std::function<void()> f;
+                    std::function<void()> f, fR;
 
                 public:
                     virtual ~IClickable() = default;
@@ -33,12 +33,18 @@ namespace jpl{
                     virtual void setOnClick( std::function<void()> f_ ) noexcept{
                         this->f = std::move(f_);
                     }
+                    virtual void setOnFocusReleased( std::function<void()> f_ ) noexcept {
+                        this->fR = std::move(f_);
+                    }
 
                     virtual void setFocus( bool focus_ ){ this->focus = focus_; }
                     bool isFocused() const noexcept{ return this->focus; }
 
                     virtual void click(){
                         this->f();
+                    }
+                    virtual void release() {
+                        this->fR();
                     }
             };
         }

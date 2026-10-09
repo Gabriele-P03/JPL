@@ -24,7 +24,8 @@
 #include "../VAO.hpp"
 #include <GLFW/glfw3.h>                    // after the GL loader
 
-#include "engine/Painter.hpp"
+#include "../Painter.hpp"
+#include "../interfaces/ITextEditable.hpp"
 
 namespace jpl{
     namespace _graphics{
@@ -78,7 +79,7 @@ namespace jpl{
 
                     protected:
 
-                        glm::vec4        area;
+                        glm::vec4        area{};
                         _texture::Texture* background;
 
                         std::string text;
@@ -99,6 +100,7 @@ namespace jpl{
                         bool deleteSelection();
                         void insert(std::string s);
                         float localX(double mx) const noexcept;
+
                 };
             }
         }

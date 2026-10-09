@@ -1,10 +1,12 @@
 #include "TextRender.hpp"
+#include "../../Metrics.hpp"
 #include <algorithm>
 #include <cmath>
 #include <cstddef>
 
 void jpl::_graphics::_engine::_text::TextRender::init(_graphics::_shaders::ProgramShaders* psText) {
     this->ps = psText;
+    this->ps->use();
     uScreenLoc_ = glGetUniformLocation(psText->getProgramIndex(), "uScreen");
     uAtlasLoc_  = glGetUniformLocation(psText->getProgramIndex(),"uAtlas");
 
@@ -159,7 +161,7 @@ void jpl::_graphics::_engine::_text::TextRender::flush(const glm::vec4* clip) {
     while (instCapacity_ < instances_.size()) instCapacity_ *= 2;
 
     this->ps->use();
-    glUniform2f(uScreenLoc_, (float)screenW_, (float)screenH_);
+    glUniform2f(uScreenLoc_, (float)jpl::_graphics::_metrics::width, (float)jpl::_graphics::_metrics::height);
     glActiveTexture(GL_TEXTURE0);
     glBindTexture(GL_TEXTURE_2D, font_->texture);
     glUniform1i(uAtlasLoc_, 0);
@@ -171,7 +173,7 @@ void jpl::_graphics::_engine::_text::TextRender::flush(const glm::vec4* clip) {
     if (clip) {
         // GL: origine dello scissor in basso a sinistra -> inverti la y
         GLint   sx = (GLint)std::floor(clip->x);
-        GLint   sy = (GLint)std::floor(screenH_ - (clip->y + clip->w));
+        GLint   sy = (GLint)std::floor(clip->y);
         GLsizei sw = (GLsizei)std::ceil(clip->z);
         GLsizei sh = (GLsizei)std::ceil(clip->w);
         glEnable(GL_SCISSOR_TEST);

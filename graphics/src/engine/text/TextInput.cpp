@@ -224,6 +224,7 @@ void TextInput::onMouseDrag(const _text::TextRender &tr, double mx, double my){
     this->moveCursor(tr.indexAtX(this->text, this->localX(mx), this->scale), true);
 }
 
+
 // ---------------------------------------------------------------- rendering
 
 void TextInput::renderBackground(Painter* painter){
@@ -232,9 +233,10 @@ void TextInput::renderBackground(Painter* painter){
     }
 }
 
+
 void TextInput::renderText(_text::TextRender &tr){
     const std::string_view sv(this->text);
-    const float viewW  = this->area.w - 2.0f * this->padding;
+    const float viewW  = this->area.z - 2.0f * this->padding;
     const float caretW = std::max(1.0f, std::round(this->scale));
     const float lineH  = tr.measure("", this->scale).y;
 
@@ -250,7 +252,7 @@ void TextInput::renderText(_text::TextRender &tr){
     }
 
     const float textX = this->area.x + this->padding - this->scrollX;
-    const float topY  = this->area.y + this->area.w * 0.5f - tr.capCenterOffset(this->scale);
+    const float topY  = jpl::_graphics::_metrics::height - this->area.y - this->area.w * 0.5f + tr.capCenterOffset(this->scale);
 
     // Whatever is already queued must not be clipped by this field's scissor
     tr.flush();
@@ -273,5 +275,6 @@ void TextInput::renderText(_text::TextRender &tr){
     glm::vec4 clip = {this->area.x + this->padding, this->area.y, viewW, this->area.w};
     tr.flush(&clip);
 }
+
 
 }}}}

@@ -27,6 +27,8 @@ namespace jpl{
 
                     bool deleteOnDiscard;
 
+                    _text::TextRender tr;
+
                 public:
                     Scene();
                     virtual ~Scene();
